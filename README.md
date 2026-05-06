@@ -1,4 +1,4 @@
-## Hi there 👋
+Kings of Ewing: Born to Rock!
 
 <!--
 **kingsofewing/kingsofewing** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
