@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kings of Ewing</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="images/Kings_of_Ewing.png">
+  <link rel="apple-touch-icon" href="images/Kings_of_Ewing.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,6 +42,10 @@
   .hero-sub { font-size: 1rem; color: rgba(232,223,192,0.7); font-weight: 300; max-width: 440px; line-height: 1.7; margin-top: 1.4rem; animation: fadeUp 0.9s 0.35s ease both; }
   .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.9s 0.5s ease both; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Scroll entrance */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   .btn { display: inline-block; padding: 0.7rem 1.8rem; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; border: 2px solid; transition: all 0.22s; cursor: pointer; background: none; }
   .btn-coral { color: var(--brown); background: var(--coral); border-color: var(--coral); }
@@ -182,7 +188,7 @@
 </section>
 
 <!-- 1. FOLLOW -->
-<section id="social">
+<section id="social" class="reveal">
   <p class="section-label">Stay connected</p>
   <h2 class="section-title">Follow Along</h2>
   <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
@@ -214,7 +220,7 @@
 </section>
 
 <!-- 2. SHOWS -->
-<section id="shows">
+<section id="shows" class="reveal">
   <div class="shows-inner">
     <p class="section-label">On the calendar</p>
     <h2 class="section-title">Shows</h2>
@@ -241,7 +247,7 @@
 </section>
 
 <!-- 3. ABOUT (includes songs) -->
-<section id="about">
+<section id="about" class="reveal">
   <div class="about-inner">
     <div class="about-text">
       <p class="section-label">About the band</p>
@@ -252,9 +258,9 @@
 
       <p class="songs-label">Photos</p>
       <div class="photo-gallery">
-        <img src="images/1778268498290_IMG_1810.jpeg" alt="Kings of Ewing at Chicago Union">
-        <img src="images/1778268567941_Resized_IMG_5512_jpg.jpeg" alt="Kings of Ewing at Goat Village">
-        <img src="images/1778268591710_kings_of_ewing-1.jpg" alt="Kings of Ewing at Double Clutch">
+        <img src="images/IMG_1810.jpeg" alt="Kings of Ewing at Chicago Union">
+        <img src="images/Resized_IMG_5512.jpg.jpeg" alt="Kings of Ewing at Goat Village">
+        <img src="images/kings_of_ewing-1.jpg" alt="Kings of Ewing at Double Clutch">
       </div>
 
       <p class="songs-label">A Sample of What We Play</p>
@@ -303,7 +309,7 @@
 </section>
 
 <!-- 4. BOOK -->
-<section id="book">
+<section id="book" class="reveal">
   <div class="book-inner">
     <p class="section-label">Hire us</p>
     <h2 class="section-title">Book the Band</h2>
@@ -382,6 +388,12 @@ function buildShows() {
     const d = new Date(s.date + 'T00:00:00');
     (d >= today ? upcoming : past).push(s);
   });
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
   upcoming.sort((a,b) => new Date(a.date) - new Date(b.date));
   past.sort((a,b) => new Date(b.date) - new Date(a.date));
 
@@ -414,9 +426,21 @@ document.getElementById('booking-form').addEventListener('submit', async functio
   e.preventDefault();
   try {
     const res = await fetch(e.target.action, { method: 'POST', body: new FormData(e.target), headers: { 'Accept': 'application/json' } });
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
     if (res.ok) { document.getElementById('success-msg').style.display = 'block'; e.target.reset(); }
   } catch { alert('Something went wrong. Please email us at KingsOfEwing@gmail.com'); }
 });
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
