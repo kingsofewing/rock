@@ -106,6 +106,7 @@
   .song-title { font-size: 0.82rem; font-weight: 500; color: var(--cream); }
   .song-artist { font-size: 0.68rem; color: rgba(232,223,192,0.4); margin-top: 0.1rem; }
   .songs-note { font-size: 0.75rem; color: rgba(232,223,192,0.35); font-style: italic; }
+  .song-header { grid-column: 1 / -1; padding: 0.5rem 1rem; background: rgba(79,179,168,0.12); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); font-weight: 600; border-bottom: 1px solid rgba(79,179,168,0.2); }
 
   /* SOCIAL */
   .social-row { display: flex; gap: 1.2rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
@@ -259,7 +260,7 @@
       <p class="songs-label">Photos</p>
       <div class="photo-gallery">
         <img src="images/kings_of_ewing-1.jpg" alt="Kings of Ewing at Double Clutch">
-        <img src="images/IMG_2445.jpeg" alt="Kings of Ewing chalk art">
+        <img src="images/IMG_2445.jpeg" alt="Kings of Ewing at The Fat Shallot">
         <img src="images/IMG_1810.jpeg" alt="Kings of Ewing at Chicago Union">
         <img src="images/Resized_IMG_5512.jpg.jpeg" alt="Kings of Ewing at Goat Village">
       </div>
@@ -316,11 +317,11 @@
     <p style="color:rgba(232,223,192,0.55); font-size:0.95rem; line-height:1.8; margin-bottom:2rem; text-align:center;">Fill out the form below and we&rsquo;ll get back to you. Prefer to reach out directly? Email us at <a href="mailto:KingsOfEwing@gmail.com" class="email-link">KingsOfEwing@gmail.com</a>.</p>
     <form action="https://formspree.io/f/mwvynqoe" method="POST" id="booking-form">
       <div class="form-row">
-        <div class="form-field"><label for="name">Your Name *</label><input type="text" id="name" name="name" placeholder="Jane Smith" required></div>
-        <div class="form-field"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="jane@example.com" required></div>
+        <div class="form-field"><label for="name">Your Name *</label><input type="text" id="name" name="name" placeholder="Herbie Hancock" required></div>
+        <div class="form-field"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="herbie@hancock.com" required></div>
       </div>
       <div class="form-row">
-        <div class="form-field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(555) 555-5555"></div>
+        <div class="form-field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(847) 867-5309"></div>
         <div class="form-field"><label for="event-date">Event Date</label><input type="date" id="event-date" name="event_date"></div>
       </div>
       <div class="form-row">
@@ -338,9 +339,9 @@
             <option>Other</option>
           </select>
         </div>
-        <div class="form-field"><label for="location">Event Location</label><input type="text" id="location" name="location" placeholder="City, venue, or address"></div>
+        <div class="form-field"><label for="location">Event Location</label><input type="text" id="location" name="location" placeholder="Somewhere that can handle the rock"></div>
       </div>
-      <div class="form-field"><label for="message">Tell us more</label><textarea id="message" name="message" placeholder="Number of guests, set length, any special requests..."></textarea></div>
+      <div class="form-field"><label for="message">Tell us more</label><textarea id="message" name="message" placeholder="How many people, how long, any must-plays or must-avoids..."></textarea></div>
       <button type="submit" class="submit-btn">Send Booking Request</button>
       <div class="success-msg" id="success-msg">Thanks! We&rsquo;ll be in touch soon. 🎸</div>
     </form>
