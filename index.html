@@ -25,7 +25,7 @@
   .nav-links a:hover { opacity: 1; color: var(--teal); }
 
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-  .hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); transition: all 0.3s; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); }
   .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: rgba(30,14,8,0.98); border-bottom: 2px solid var(--teal); z-index: 99; padding: 1rem 0; }
   .mobile-menu.open { display: block; }
   .mobile-menu a { display: block; padding: 0.75rem 2rem; text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); opacity: 0.8; border-bottom: 1px solid rgba(79,179,168,0.1); transition: color 0.2s; }
@@ -48,19 +48,16 @@
   .section-label { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 0.5rem; }
   .section-title { font-family: 'Pacifico', cursive; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--cream); margin-bottom: 1.6rem; }
   .divider { width: 40px; height: 2px; background: var(--coral); margin: 0.8rem 0 1.8rem; }
+  .cta-pair { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
-  #about  { background: var(--brown); padding: 7rem 3rem; }
-  #shows  { background: var(--bg);    padding: 7rem 3rem; }
-  #social { background: var(--brown); padding: 6rem 2rem; text-align: center; }
-  #book   { background: var(--bg);    padding: 7rem 2rem; text-align: center; }
-  footer  { background: var(--brown); border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem; }
+  /* Section order: follow(brown) > shows(bg) > about(brown) > book(bg) */
+  #social  { background: var(--brown); padding: 6rem 2rem; text-align: center; }
+  #shows   { background: var(--bg);    padding: 7rem 3rem; }
+  #about   { background: var(--brown); padding: 7rem 3rem; }
+  #book    { background: var(--bg);    padding: 7rem 2rem; text-align: center; }
+  footer   { background: var(--brown); border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem; }
 
-  .about-inner { max-width: 1050px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  .about-text p { font-size: 1rem; line-height: 1.85; color: rgba(232,223,192,0.8); font-weight: 300; margin-bottom: 1.2rem; }
-  .about-photo { position: relative; }
-  .about-photo img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; }
-  .about-photo::after { content: ''; position: absolute; inset: 0; border: 3px solid var(--teal); pointer-events: none; transform: translate(8px, 8px); opacity: 0.5; }
-
+  /* SHOWS */
   .shows-inner { max-width: 860px; margin: 0 auto; }
   .shows-tabs { display: flex; border-bottom: 1px solid rgba(79,179,168,0.3); }
   .tab-btn { background: none; border: none; padding: 0.75rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(232,223,192,0.4); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s, border-color 0.2s; }
@@ -88,17 +85,32 @@
   .past .show-info h3 a { color: rgba(232,223,192,0.5); border-bottom-color: rgba(79,179,168,0.25); }
   .past .show-info h3 a:hover { color: var(--teal); border-color: var(--teal); }
 
+  /* ABOUT */
+  .about-inner { max-width: 1050px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { font-size: 1rem; line-height: 1.85; color: rgba(232,223,192,0.8); font-weight: 300; margin-bottom: 1.2rem; }
+  .about-photo { position: relative; }
+  .about-photo img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; }
+  .about-photo::after { content: ''; position: absolute; inset: 0; border: 3px solid var(--teal); pointer-events: none; transform: translate(8px, 8px); opacity: 0.5; }
+
+  /* SONG LIST */
+  .songs-label { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin: 2rem 0 0.75rem; }
+  .song-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: 1px solid rgba(79,179,168,0.2); margin-bottom: 0.75rem; }
+  .song-item { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(79,179,168,0.12); border-right: 1px solid rgba(79,179,168,0.12); }
+  .song-item:nth-child(2n) { border-right: none; }
+  .song-title { font-size: 0.82rem; font-weight: 500; color: var(--cream); }
+  .song-artist { font-size: 0.68rem; color: rgba(232,223,192,0.4); margin-top: 0.1rem; }
+  .songs-note { font-size: 0.75rem; color: rgba(232,223,192,0.35); font-style: italic; }
+
+  /* SOCIAL */
   .social-row { display: flex; gap: 1.2rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
   .social-btn { display: flex; align-items: center; gap: 0.65rem; padding: 0.85rem 2rem; border: 2px solid rgba(79,179,168,0.5); text-decoration: none; color: var(--cream); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.22s; }
   .social-btn:hover { border-color: var(--teal); background: rgba(79,179,168,0.12); color: var(--teal); }
   .social-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
 
-  .cta-pair { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-
+  /* BOOK */
   .book-inner { max-width: 680px; margin: 0 auto; }
   .email-link { display: inline-block; font-family: 'Pacifico', cursive; font-size: clamp(1rem, 2vw, 1.3rem); color: var(--teal); text-decoration: none; border-bottom: 2px solid rgba(79,179,168,0.4); padding-bottom: 0.2rem; transition: color 0.2s, border-color 0.2s; }
   .email-link:hover { color: var(--coral); border-color: var(--coral); }
-
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
   .form-field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; text-align: left; }
   .form-field label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: rgba(232,223,192,0.5); }
@@ -111,6 +123,11 @@
   .submit-btn:hover { background: var(--cream); border-color: var(--cream); color: var(--brown); }
   .success-msg { display: none; margin-top: 1rem; padding: 1rem; background: rgba(79,179,168,0.12); border: 1.5px solid rgba(79,179,168,0.35); color: var(--teal); font-size: 0.9rem; text-align: center; }
 
+  /* GALLERY */
+  .photo-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 2rem 0 1.5rem; }
+  .photo-gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: opacity 0.2s; }
+  .photo-gallery img:hover { opacity: 0.85; }
+
   .footer-logo { height: 56px; margin-bottom: 0.8rem; }
   footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.08em; }
 
@@ -120,7 +137,8 @@
     .hamburger { display: flex; }
     .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .about-photo { order: -1; }
-    #about, #shows { padding: 5rem 1.5rem; }
+    #shows, #about { padding: 5rem 1.5rem; }
+    .photo-gallery { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
   }
 </style>
@@ -130,9 +148,9 @@
 <nav>
   <a href="#hero" class="nav-logo"><img src="images/Kings_of_Ewing.png" alt="Kings of Ewing"></a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#shows">Shows</a></li>
     <li><a href="#social">Follow</a></li>
+    <li><a href="#shows">Shows</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#book">Book</a></li>
     <li><a href="mailto:kingsofewing@gmail.com">Contact</a></li>
   </ul>
@@ -142,9 +160,9 @@
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#about" onclick="closeMenu()">About</a>
-  <a href="#shows" onclick="closeMenu()">Shows</a>
   <a href="#social" onclick="closeMenu()">Follow</a>
+  <a href="#shows" onclick="closeMenu()">Shows</a>
+  <a href="#about" onclick="closeMenu()">About</a>
   <a href="#book" onclick="closeMenu()">Book</a>
   <a href="mailto:kingsofewing@gmail.com" onclick="closeMenu()">Contact</a>
 </div>
@@ -155,104 +173,15 @@
   <h1 class="hero-title">Kings of Ewing</h1>
   <p class="hero-sub">A Dad Band from North Chicagoland</p>
   <div class="hero-cta">
-    <a href="#about" class="btn btn-coral">About</a>
-    <a href="#shows" class="btn btn-coral">Shows</a>
     <a href="#social" class="btn btn-coral">Follow</a>
+    <a href="#shows" class="btn btn-coral">Shows</a>
+    <a href="#about" class="btn btn-coral">About</a>
     <a href="#book" class="btn btn-coral">Book</a>
     <a href="mailto:kingsofewing@gmail.com" class="btn btn-coral">Contact</a>
   </div>
 </section>
 
-<section id="about">
-  <div class="about-inner">
-    <div class="about-text">
-      <p class="section-label">About the band</p>
-      <h2 class="section-title">The Kings</h2>
-      <div class="divider"></div>
-      <p>We&rsquo;re the Kings of Ewing from Evanston, IL (from one block on Ewing Ave.!). Whether it&rsquo;s a classic rock singalong or the latest pop hit, we bring it all to life with energy and heart.</p>
-      <p>With a setlist spanning six decades of pop, rock, and everything in between, we keep the dance floor moving and the crowd singing along. Plus a couple originals thrown in for good measure.</p>
-      <div class="cta-pair" style="margin-top:1rem;">
-        <a href="#book" class="btn btn-coral">Book</a>
-        <a href="mailto:kingsofewing@gmail.com" class="btn btn-coral">Contact</a>
-      </div>
-    </div>
-    <div class="about-photo">
-      <img src="images/IMG_2445.jpeg" alt="Kings of Ewing at The Fat Shallot">
-    </div>
-  </div>
-</section>
-
-<section id="shows">
-  <div class="shows-inner">
-    <p class="section-label">On the calendar</p>
-    <h2 class="section-title">Shows</h2>
-    <div class="divider"></div>
-    <div class="shows-tabs">
-      <button class="tab-btn active" onclick="switchTab('upcoming', this)">Upcoming</button>
-      <button class="tab-btn" onclick="switchTab('past', this)">Past Gigs</button>
-    </div>
-    <div class="tab-panel active" id="tab-upcoming">
-      <div class="show-list">
-        <div class="show-item">
-          <div class="show-date"><div class="show-month">May</div><div class="show-day">14</div></div>
-          <div class="show-info"><h3><a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a></h3><p>5:30 PM &middot; <a href="https://www.covenantnurseryschool.org/" target="_blank">Covenant Nursery School</a> Dining for Dollars</p></div>
-        </div>
-        <div class="show-item">
-          <div class="show-date"><div class="show-month">May</div><div class="show-day">16</div></div>
-          <div class="show-info"><h3>Private Party</h3><p>2026</p></div>
-        </div>
-        <div class="show-item">
-          <div class="show-date"><div class="show-month">Jun</div><div class="show-day">21</div></div>
-          <div class="show-info"><h3><a href="https://watchufa.com/union" target="_blank">Chicago Union</a></h3><p>6:00 PM &middot; 2026</p></div>
-        </div>
-        <div class="show-item">
-          <div class="show-date"><div class="show-month">Jun</div><div class="show-day">24</div></div>
-          <div class="show-info"><h3><a href="https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893" target="_blank">Ridgeville Parks District</a></h3><p>6:00 PM &middot; 2026</p></div>
-        </div>
-        <div class="show-item">
-          <div class="show-date"><div class="show-month">Sep</div><div class="show-day">12</div></div>
-          <div class="show-info"><h3>Ewing Block Party</h3><p>2026</p></div>
-        </div>
-      </div>
-      <div style="margin-top: 2.5rem;" class="cta-pair">
-        <a href="#book" class="btn btn-coral">Book</a>
-        <a href="mailto:kingsofewing@gmail.com" class="btn btn-coral">Contact</a>
-      </div>
-    </div>
-    <div class="tab-panel" id="tab-past">
-      <div class="show-list">
-        <div class="show-item past"><div class="show-date"><div class="show-month">Apr</div><div class="show-day">24</div></div><div class="show-info"><h3><a href="https://www.evanstonpost42.com/" target="_blank">American Legion Post 42</a></h3><p>April 2026 &middot; D65 One Fund Spring Cha Ching</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Jan</div><div class="show-day">24</div></div><div class="show-info"><h3><a href="https://www.goatvillage777.com/" target="_blank">Goat Village</a></h3><p>January 2026</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Nov</div><div class="show-day">16</div></div><div class="show-info"><h3><a href="https://www.doubleclutchbrewing.com/" target="_blank">Double Clutch</a></h3><p>November 2025</p></div></div>
-        <div class="show-item past">
-          <div class="show-date"><div class="show-month">Oct</div><div class="show-day">18</div></div>
-          <div class="show-info"><h3><a href="https://www.macksbikeandgoods.com/" target="_blank">Mack's Bike &amp; Goods</a></h3><p>October 2025 &middot; Fall Fest</p><p class="cancelled">⛈ Cancelled due to weather</p></div>
-        </div>
-        <div class="show-item past">
-          <div class="show-date"><div class="show-month">Oct</div><div class="show-day">10</div></div>
-          <div class="show-info"><h3>Ackerman Park</h3><p>October 2025 &middot; <a href="https://www.investinevanston.com/" target="_blank">Invest in Neighborhood Schools</a></p></div>
-        </div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Sep</div><div class="show-day">6</div></div><div class="show-info"><h3>Ewing Block Party</h3><p>September 2025</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Jun</div><div class="show-day">25</div></div><div class="show-info"><h3><a href="https://www.evanstonpost42.com/" target="_blank">American Legion Post 42</a></h3><p>June 2025</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Jun</div><div class="show-day">7</div></div><div class="show-info"><h3><a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a></h3><p>June 2025</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Apr</div><div class="show-day">3</div></div><div class="show-info"><h3>Lincolnwood Spring Fling</h3><p>April 2025 &middot; PTA Spring Fling</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Oct</div><div class="show-day">9</div></div><div class="show-info"><h3><a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a></h3><p>October 2024 &middot; <a href="https://www.covenantnurseryschool.org/" target="_blank">Covenant Nursery School</a> Dining for Dollars</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Sep</div><div class="show-day">7</div></div><div class="show-info"><h3>Ewing Block Party</h3><p>September 2024</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Aug</div><div class="show-day">24</div></div><div class="show-info"><h3><a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a></h3><p>August 2024</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Aug</div><div class="show-day">17</div></div><div class="show-info"><h3>Private Party</h3><p>August 2024</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Jul</div><div class="show-day">21</div></div><div class="show-info"><h3><a href="https://watchufa.com/union" target="_blank">Chicago Union</a></h3><p>July 2024</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Jun</div><div class="show-day">7</div></div><div class="show-info"><h3><a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a></h3><p>June 2024</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Apr</div><div class="show-day">26</div></div><div class="show-info"><h3>Lincolnwood Spring Fling</h3><p>April 2024 &middot; PTA Spring Fling</p></div></div>
-        <div class="show-item past"><div class="show-date"><div class="show-month">Sep</div><div class="show-day">9</div></div><div class="show-info"><h3>Ewing Block Party</h3><p>September 2023</p></div></div>
-      </div>
-      <div style="margin-top: 2.5rem;" class="cta-pair">
-        <a href="#book" class="btn btn-coral">Book</a>
-        <a href="mailto:kingsofewing@gmail.com" class="btn btn-coral">Contact</a>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- 1. FOLLOW -->
 <section id="social">
   <p class="section-label">Stay connected</p>
   <h2 class="section-title">Follow Along</h2>
@@ -284,6 +213,96 @@
   </div>
 </section>
 
+<!-- 2. SHOWS -->
+<section id="shows">
+  <div class="shows-inner">
+    <p class="section-label">On the calendar</p>
+    <h2 class="section-title">Shows</h2>
+    <div class="divider"></div>
+    <div class="shows-tabs">
+      <button class="tab-btn active" onclick="switchTab('upcoming', this)">Upcoming</button>
+      <button class="tab-btn" onclick="switchTab('past', this)">Past Gigs</button>
+    </div>
+    <div class="tab-panel active" id="tab-upcoming">
+      <div class="show-list" id="upcoming-list"></div>
+      <div style="margin-top: 2.5rem;" class="cta-pair">
+        <a href="#book" class="btn btn-coral">Book</a>
+        <a href="mailto:kingsofewing@gmail.com" class="btn btn-coral">Contact</a>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-past">
+      <div class="show-list" id="past-list"></div>
+      <div style="margin-top: 2.5rem;" class="cta-pair">
+        <a href="#book" class="btn btn-coral">Book</a>
+        <a href="mailto:kingsofewing@gmail.com" class="btn btn-coral">Contact</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ABOUT (includes songs) -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <p class="section-label">About the band</p>
+      <h2 class="section-title">The Kings</h2>
+      <div class="divider"></div>
+      <p>We&rsquo;re the Kings of Ewing from Evanston, IL (from one block on Ewing Ave.!). Whether it&rsquo;s a classic rock singalong or the latest pop hit, we bring it all to life with energy and heart.</p>
+      <p>With a setlist spanning six decades of pop, rock, and everything in between, we keep the dance floor moving and the crowd singing along. Plus a couple originals thrown in for good measure.</p>
+
+      <p class="songs-label">Photos</p>
+      <div class="photo-gallery">
+        <img src="images/1778268498290_IMG_1810.jpeg" alt="Kings of Ewing at Chicago Union">
+        <img src="images/1778268567941_Resized_IMG_5512_jpg.jpeg" alt="Kings of Ewing at Goat Village">
+        <img src="images/1778268591710_kings_of_ewing-1.jpg" alt="Kings of Ewing at Double Clutch">
+      </div>
+
+      <p class="songs-label">A Sample of What We Play</p>
+      <div class="song-grid">
+        <div class="song-item"><div class="song-title">Found Out About You</div><div class="song-artist">Gin Blossoms</div></div>
+        <div class="song-item"><div class="song-title">Whipping Post</div><div class="song-artist">Allman Brothers</div></div>
+        <div class="song-item"><div class="song-title">Midnight Rider</div><div class="song-artist">Allman Brothers</div></div>
+        <div class="song-item"><div class="song-title">No One to Depend On</div><div class="song-artist">Santana</div></div>
+        <div class="song-item"><div class="song-title">Seven Nation Army</div><div class="song-artist">The White Stripes</div></div>
+        <div class="song-item"><div class="song-title">Smooth Operator</div><div class="song-artist">Sade</div></div>
+
+        <div class="song-item"><div class="song-title">Octopus&rsquo;s Garden</div><div class="song-artist">The Beatles</div></div>
+        <div class="song-item"><div class="song-title">Dedicated Follower of Fashion</div><div class="song-artist">The Kinks</div></div>
+        <div class="song-item"><div class="song-title">Laid</div><div class="song-artist">James</div></div>
+        <div class="song-item"><div class="song-title">Just Like Heaven</div><div class="song-artist">The Cure</div></div>
+        <div class="song-item"><div class="song-title">Heroes</div><div class="song-artist">David Bowie</div></div>
+        <div class="song-item"><div class="song-title">Bohemian Like You</div><div class="song-artist">Dandy Warhols</div></div>
+        <div class="song-item"><div class="song-title">Come Together</div><div class="song-artist">The Beatles</div></div>
+        <div class="song-item"><div class="song-title">Pink Pony Club</div><div class="song-artist">Chappell Roan</div></div>
+        <div class="song-item"><div class="song-title">Just What I Needed</div><div class="song-artist">The Cars</div></div>
+        <div class="song-item"><div class="song-title">Follow Your Arrow</div><div class="song-artist">Kacey Musgraves</div></div>
+        <div class="song-item"><div class="song-title">Rockin&rsquo; in the Free World</div><div class="song-artist">Neil Young</div></div>
+        <div class="song-item"><div class="song-title">Won&rsquo;t Back Down</div><div class="song-artist">Tom Petty</div></div>
+        <div class="song-item"><div class="song-title">Riders on the Storm</div><div class="song-artist">The Doors</div></div>
+        <div class="song-item"><div class="song-title">Fortunate Son</div><div class="song-artist">CCR</div></div>
+        <div class="song-item"><div class="song-title">Angel from Montgomery</div><div class="song-artist">John Prine</div></div>
+        <div class="song-item"><div class="song-title">Walk On</div><div class="song-artist">U2</div></div>
+        <div class="song-item"><div class="song-title">War Pigs</div><div class="song-artist">Black Sabbath</div></div>
+        <div class="song-item"><div class="song-title">Don&rsquo;t Let Me Down</div><div class="song-artist">The Beatles</div></div>
+        <div class="song-item"><div class="song-title">Ohio</div><div class="song-artist">CSNY</div></div>
+        <div class="song-item"><div class="song-title">Sympathy for the Devil</div><div class="song-artist">Rolling Stones</div></div>
+        <div class="song-item"><div class="song-title">I&rsquo;ve Got a Feeling</div><div class="song-artist">The Beatles</div></div>
+        <div class="song-item"><div class="song-title">Teach Your Children</div><div class="song-artist">CSNY</div></div>
+      </div>
+      <p class="songs-note">Plus originals &amp; more. Set varies by event.</p>
+
+      <div class="cta-pair" style="margin-top:1.5rem;">
+        <a href="#book" class="btn btn-coral">Book</a>
+        <a href="mailto:kingsofewing@gmail.com" class="btn btn-coral">Contact</a>
+      </div>
+    </div>
+    <div class="about-photo">
+      <img src="images/IMG_2445.jpeg" alt="Kings of Ewing at The Fat Shallot">
+    </div>
+  </div>
+</section>
+
+<!-- 4. BOOK -->
 <section id="book">
   <div class="book-inner">
     <p class="section-label">Hire us</p>
@@ -329,31 +348,74 @@
 </footer>
 
 <script>
+const SHOWS = [
+  { date: '2026-05-14', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a>', detail: '5:30 PM &middot; <a href="https://www.covenantnurseryschool.org/" target="_blank">Covenant Nursery School</a> Dining for Dollars' },
+  { date: '2026-05-16', venue: 'Private Party', detail: '2026' },
+  { date: '2026-06-21', venue: '<a href="https://watchufa.com/union" target="_blank">Chicago Union</a>', detail: '6:00 PM &middot; 2026' },
+  { date: '2026-06-24', venue: '<a href="https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893" target="_blank">Ridgeville Parks District</a>', detail: '6:00 PM &middot; 2026' },
+  { date: '2026-09-12', venue: 'Ewing Block Party', detail: '2026' },
+  { date: '2026-04-24', venue: '<a href="https://www.evanstonpost42.com/" target="_blank">American Legion Post 42</a>', detail: 'April 2026 &middot; D65 One Fund Spring Cha Ching' },
+  { date: '2026-01-24', venue: '<a href="https://www.goatvillage777.com/" target="_blank">Goat Village</a>', detail: 'January 2026' },
+  { date: '2025-11-16', venue: '<a href="https://www.doubleclutchbrewing.com/" target="_blank">Double Clutch</a>', detail: 'November 2025' },
+  { date: '2025-10-18', venue: '<a href="https://www.macksbikeandgoods.com/" target="_blank">Mack\'s Bike &amp; Goods</a>', detail: 'October 2025 &middot; Fall Fest', cancelled: true },
+  { date: '2025-10-10', venue: 'Ackerman Park', detail: 'October 2025 &middot; <a href="https://www.investinevanston.com/" target="_blank">Invest in Neighborhood Schools</a>' },
+  { date: '2025-09-06', venue: 'Ewing Block Party', detail: 'September 2025' },
+  { date: '2025-06-25', venue: '<a href="https://www.evanstonpost42.com/" target="_blank">American Legion Post 42</a>', detail: 'June 2025' },
+  { date: '2025-06-07', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a>', detail: 'June 2025' },
+  { date: '2025-04-03', venue: 'Lincolnwood Spring Fling', detail: 'April 2025 &middot; PTA Spring Fling' },
+  { date: '2024-10-09', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a>', detail: 'October 2024 &middot; <a href="https://www.covenantnurseryschool.org/" target="_blank">Covenant Nursery School</a> Dining for Dollars' },
+  { date: '2024-09-07', venue: 'Ewing Block Party', detail: 'September 2024' },
+  { date: '2024-08-24', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a>', detail: 'August 2024' },
+  { date: '2024-08-17', venue: 'Private Party', detail: 'August 2024' },
+  { date: '2024-07-21', venue: '<a href="https://watchufa.com/union" target="_blank">Chicago Union</a>', detail: 'July 2024' },
+  { date: '2024-06-07', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a>', detail: 'June 2024' },
+  { date: '2024-04-26', venue: 'Lincolnwood Spring Fling', detail: 'April 2024 &middot; PTA Spring Fling' },
+  { date: '2023-09-09', venue: 'Ewing Block Party', detail: 'September 2023' },
+];
+
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function buildShows() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const upcoming = [], past = [];
+  SHOWS.forEach(s => {
+    const d = new Date(s.date + 'T00:00:00');
+    (d >= today ? upcoming : past).push(s);
+  });
+  upcoming.sort((a,b) => new Date(a.date) - new Date(b.date));
+  past.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+  function render(s, isPast) {
+    const d = new Date(s.date + 'T00:00:00');
+    const cancelled = s.cancelled ? '<p class="cancelled">⛈ Cancelled due to weather</p>' : '';
+    return `<div class="${isPast ? 'show-item past' : 'show-item'}">
+      <div class="show-date"><div class="show-month">${MONTHS[d.getMonth()]}</div><div class="show-day">${d.getDate()}</div></div>
+      <div class="show-info"><h3>${s.venue}</h3><p>${s.detail}</p>${cancelled}</div>
+    </div>`;
+  }
+
+  document.getElementById('upcoming-list').innerHTML = upcoming.map(s => render(s, false)).join('');
+  document.getElementById('past-list').innerHTML = past.map(s => render(s, true)).join('');
+}
+
+buildShows();
+
 function switchTab(tab, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
   btn.classList.add('active');
 }
-function toggleMenu() {
-  document.getElementById('mobile-menu').classList.toggle('open');
-}
-function closeMenu() {
-  document.getElementById('mobile-menu').classList.remove('open');
-}
+
+function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+function closeMenu()  { document.getElementById('mobile-menu').classList.remove('open'); }
+
 document.getElementById('booking-form').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const form = e.target;
-  const data = new FormData(form);
   try {
-    const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-    if (res.ok) {
-      document.getElementById('success-msg').style.display = 'block';
-      form.reset();
-    }
-  } catch(err) {
-    alert('Something went wrong. Please email us at KingsOfEwing@gmail.com');
-  }
+    const res = await fetch(e.target.action, { method: 'POST', body: new FormData(e.target), headers: { 'Accept': 'application/json' } });
+    if (res.ok) { document.getElementById('success-msg').style.display = 'block'; e.target.reset(); }
+  } catch { alert('Something went wrong. Please email us at KingsOfEwing@gmail.com'); }
 });
 </script>
 </body>
