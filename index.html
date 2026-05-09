@@ -50,7 +50,7 @@
   .hero-tagline { font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 1.4rem; animation: fadeUp 0.9s 0.2s ease both; }
   .hero-title { font-family: 'Pacifico', cursive; font-size: clamp(3rem, 9vw, 7rem); line-height: 1.2; color: var(--cream); animation: fadeUp 0.9s ease both; }
   .hero-sub { font-size: 1rem; color: rgba(232,223,192,0.7); font-weight: 300; max-width: 440px; line-height: 1.7; margin-top: 1.4rem; animation: fadeUp 0.9s 0.35s ease both; }
-  .hero-cta { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; max-width: 420px; width: 100%; animation: fadeUp 0.9s 0.5s ease both; }
+  .hero-cta { margin-top: 0.75rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; max-width: 420px; width: 100%; animation: fadeUp 0.9s 0.5s ease both; }
   .hero-cta .btn { text-align: center; width: 100%; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -151,6 +151,61 @@
   .footer-logo { height: 56px; margin-bottom: 0.8rem; }
   footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.08em; }
 
+  /* Audio player */
+  #audio-player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: rgba(30,14,8,0.5);
+    border: 1px solid rgba(200,98,58,0.4);
+    padding: 0.5rem 1.4rem 0.5rem 0.9rem;
+    animation: fadeUp 0.9s 0.6s ease both;
+    opacity: 0;
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+  #audio-player.loaded { opacity: 1; transition: opacity 0.4s; }
+  #play-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--coral);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  #play-btn:hover { background: var(--cream); }
+  #play-btn svg { width: 14px; height: 14px; fill: var(--brown); }
+  #audio-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(232,223,192,0.7);
+    white-space: nowrap;
+  }
+  #audio-progress {
+    width: 80px;
+    height: 2px;
+    background: rgba(232,223,192,0.15);
+    position: relative;
+    cursor: pointer;
+  }
+  #audio-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--coral);
+    transition: width 0.5s linear;
+  }
+  @media (max-width: 750px) {
+    #audio-progress { width: 60px; }
+    #audio-label { font-size: 0.62rem; }
+  }
+
   @media (max-width: 750px) {
     nav { padding: 0.8rem 1.5rem; }
     .nav-links { display: none; }
@@ -164,6 +219,7 @@
 </style>
 </head>
 <body>
+
 
 <nav>
   <a href="#hero" class="nav-logo"><img src="images/Kings_of_Ewing.png" alt="Kings of Ewing"></a>
@@ -194,6 +250,21 @@
   <p class="hero-tagline">Live Music &middot; Covers &amp; Originals</p>
   <h1 class="hero-title">Kings of Ewing</h1>
   <p class="hero-sub">A Dad Band from North Chicagoland</p>
+  <!-- Audio player + CTA wrapper -->
+  <div style="margin-top:2.5rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; width:100%; max-width:420px; animation: fadeUp 0.9s 0.45s ease both;">
+  <div id="audio-player" style="width:100%;">
+    <button id="play-btn" aria-label="Play/Pause">
+      <svg id="play-icon" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg id="pause-icon" viewBox="0 0 24 24" style="display:none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    </button>
+    <span id="audio-label">Play us while you scroll</span>
+    <div id="audio-progress"><div id="audio-progress-bar"></div></div>
+  </div>
+  <audio id="band-audio" preload="none">
+    <source src="docs/kings_of_ewing.mp3" type="audio/mpeg">
+  </audio>
+  </div>
+
   <div class="hero-cta">
     <a href="#social" class="btn btn-coral">Socials</a>
     <a href="#mailing" class="btn btn-coral">Mailing List</a>
@@ -581,6 +652,47 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
 }, { threshold: 0.08 });
 document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+
+// Audio player
+const audio = document.getElementById('band-audio');
+const playBtn = document.getElementById('play-btn');
+const playIcon = document.getElementById('play-icon');
+const pauseIcon = document.getElementById('pause-icon');
+const progressBar = document.getElementById('audio-progress-bar');
+const player = document.getElementById('audio-player');
+
+setTimeout(() => player.classList.add('loaded'), 1400);
+
+playBtn.addEventListener('click', function() {
+  if (audio.paused) {
+    audio.play();
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = 'block';
+  } else {
+    audio.pause();
+    playIcon.style.display = 'block';
+    pauseIcon.style.display = 'none';
+  }
+});
+
+audio.addEventListener('timeupdate', function() {
+  if (audio.duration) {
+    progressBar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+  }
+});
+
+audio.addEventListener('ended', function() {
+  playIcon.style.display = 'block';
+  pauseIcon.style.display = 'none';
+  progressBar.style.width = '0%';
+});
+
+document.getElementById('audio-progress').addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = pct * audio.duration;
+});
 
 </script>
 </body>
