@@ -50,7 +50,8 @@
   .hero-tagline { font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 1.4rem; animation: fadeUp 0.9s 0.2s ease both; }
   .hero-title { font-family: 'Pacifico', cursive; font-size: clamp(3rem, 9vw, 7rem); line-height: 1.2; color: var(--cream); animation: fadeUp 0.9s ease both; }
   .hero-sub { font-size: 1rem; color: rgba(232,223,192,0.7); font-weight: 300; max-width: 440px; line-height: 1.7; margin-top: 1.4rem; animation: fadeUp 0.9s 0.35s ease both; }
-  .hero-cta { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.9s 0.5s ease both; }
+  .hero-cta { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; max-width: 420px; width: 100%; animation: fadeUp 0.9s 0.5s ease both; }
+  .hero-cta .btn { text-align: center; width: 100%; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
   /* Scroll entrance */
