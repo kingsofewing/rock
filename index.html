@@ -68,9 +68,9 @@
 
   /* Section order: follow(brown) > shows(bg) > about(brown) > book(bg) */
   #social  { background: var(--brown); padding: 6rem 2rem; text-align: center; }
-  #shows   { background: var(--bg);    padding: 7rem 3rem; }
-  #about   { background: var(--brown); padding: 7rem 3rem; }
-  #book    { background: var(--bg);    padding: 7rem 2rem; text-align: center; }
+  #shows   { background: var(--brown); padding: 7rem 3rem; }
+  #about   { background: var(--bg);    padding: 7rem 3rem; }
+  #book    { background: var(--brown); padding: 7rem 2rem; text-align: center; }
   footer   { background: var(--brown); border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem; }
 
   /* SHOWS */
@@ -168,6 +168,7 @@
   <a href="#hero" class="nav-logo"><img src="images/Kings_of_Ewing.png" alt="Kings of Ewing"></a>
   <ul class="nav-links">
     <li><a href="#social">Follow</a></li>
+    <li><a href="#mailing">Mailing List</a></li>
     <li><a href="#shows">Shows</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#book">Book</a></li>
@@ -180,6 +181,7 @@
 
 <div class="mobile-menu" id="mobile-menu">
   <a href="#social" onclick="closeMenu()">Follow</a>
+  <a href="#mailing" onclick="closeMenu()">Mailing List</a>
   <a href="#shows" onclick="closeMenu()">Shows</a>
   <a href="#about" onclick="closeMenu()">About</a>
   <a href="#book" onclick="closeMenu()">Book</a>
@@ -193,6 +195,7 @@
   <p class="hero-sub">A Dad Band from North Chicagoland</p>
   <div class="hero-cta">
     <a href="#social" class="btn btn-coral">Follow</a>
+    <a href="#mailing" class="btn btn-coral">Mailing List</a>
     <a href="#shows" class="btn btn-coral">Shows</a>
     <a href="#about" class="btn btn-coral">About</a>
     <a href="#book" class="btn btn-coral">Book</a>
@@ -231,7 +234,11 @@
     <a href="mailto:kingsofewing@gmail.com" class="btn btn-coral">Contact</a>
   </div>
 
-  <div style="margin-top:3rem; border-top:1px solid rgba(79,179,168,0.2); padding-top:3rem;">
+
+</section>
+
+<!-- 2. MAILING LIST -->
+<section id="mailing" style="background:var(--bg); padding:5rem 2rem; text-align:center;">
   <p class="section-label">Stay in the loop</p>
   <h2 style="font-family:'Pacifico',cursive; font-size:clamp(1.5rem,3vw,2.2rem); color:var(--cream); margin-bottom:0.5rem;">Join the Mailing List</h2>
   <div style="width:40px;height:2px;background:var(--coral);margin:0.8rem auto 1.5rem;"></div>
@@ -319,11 +326,9 @@
   <script>fetch("https://assets.mailerlite.com/jsonp/2332985/forms/187010863696184576/takel")</script>
 
 
-  </div>
-
 </section>
 
-<!-- 2. SHOWS -->
+<!-- 3. SHOWS -->
 <section id="shows" class="reveal">
   <div class="shows-inner">
     <p class="section-label">On the calendar</p>
