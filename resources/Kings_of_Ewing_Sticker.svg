@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="220" viewBox="0 0 700 220">
+
+  <!-- Cream background -->
+  <rect x="0" y="0" width="700" height="220" rx="30" fill="#e8dfc0"/>
+
+  <!-- Coral outer border -->
+  <rect x="4" y="4" width="692" height="212" rx="27" fill="none" stroke="#c8623a" stroke-width="6"/>
+
+  <!-- Teal inner border -->
+  <rect x="14" y="14" width="672" height="192" rx="20" fill="none" stroke="#4fb3a8" stroke-width="2.5"/>
+
+  <!-- KingsOfEwing.com — layered retro shadow -->
+  <!-- coral layer -->
+  <text x="352" y="138" text-anchor="middle"
+    font-family="Georgia, serif" font-style="italic" font-weight="bold"
+    font-size="58" fill="#c8623a" letter-spacing="1">KingsOfEwing.com</text>
+  <!-- teal layer -->
+  <text x="350" y="136" text-anchor="middle"
+    font-family="Georgia, serif" font-style="italic" font-weight="bold"
+    font-size="58" fill="#4fb3a8" letter-spacing="1">KingsOfEwing.com</text>
+  <!-- dark top layer -->
+  <text x="348" y="134" text-anchor="middle"
+    font-family="Georgia, serif" font-style="italic" font-weight="bold"
+    font-size="58" fill="#1e0e08" letter-spacing="1">KingsOfEwing.com</text>
+
+</svg>
