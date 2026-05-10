@@ -89,14 +89,14 @@
   <!-- Vocal mic — diamond -->
   <polygon points="630,362 638,376 630,390 622,376" fill="#ffffff" stroke="#000000" stroke-width="2"/>
   <!-- DI opt -->
-  <rect x="668" y="320" width="52" height="22" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
-  <text x="694" y="334" text-anchor="middle" font-size="8" fill="#000000">DI (opt)</text>
+  <rect x="656" y="318" width="76" height="22" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="694" y="332" text-anchor="middle" font-size="8" fill="#000000">DI — Bass (opt)</text>
 
   <!-- ══ POS 5 — Gtr / Aux Keys / Trombone / Vocals (Stage Left) ══ -->
   <circle cx="867" cy="415" r="32" fill="#ffffff" stroke="#000000" stroke-width="2"/>
-  <text x="867" y="407" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">GTR /</text>
-  <text x="867" y="420" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">AUX KEYS</text>
-  <text x="867" y="433" text-anchor="middle" font-size="9" fill="#000000">/ TROMBONE</text>
+  <text x="867" y="405" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">GTR</text>
+  <text x="867" y="418" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">AUX KEYS</text>
+  <text x="867" y="431" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">TROMBONE</text>
   <!-- Vocal mic — diamond -->
   <polygon points="867,447 875,461 867,475 859,461" fill="#ffffff" stroke="#000000" stroke-width="2"/>
   <!-- DI boxes — two separate, moved left -->
@@ -125,6 +125,7 @@
   <text x="410" y="590" font-size="10" fill="#000000">Direct In</text>
   <polygon points="468,580 502,580 496,594 474,594" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
   <text x="510" y="592" font-size="10" fill="#000000">Floor monitor</text>
-  <text x="660" y="590" font-size="10" fill="#888888">KingsOfEwing.com · KingsOfEwing@gmail.com</text>
+  <text x="918" y="582" text-anchor="end" font-size="10" fill="#000000" font-weight="bold">Miles Shultz · (734) 883-7119 · KingsOfEwing@gmail.com</text>
+  <text x="918" y="594" text-anchor="end" font-size="10" fill="#000000" font-weight="bold">KingsOfEwing.com</text>
 
 </svg>
