@@ -767,7 +767,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (audioBox && stickyPlayer) {
     const audioBoxObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting && audio.src && audio.src !== window.location.href) {
+        if (!entry.isIntersecting) {
           stickyPlayer.classList.add('visible');
         } else {
           stickyPlayer.classList.remove('visible');
