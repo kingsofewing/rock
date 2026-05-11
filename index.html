@@ -251,7 +251,10 @@
     #sticky-track-name { max-width: 110px; }
     #sticky-volume { display: none; }
   }
-  input[type="date"] { color-scheme: dark; color: var(--cream); }
+  input[type="date"] { color-scheme: dark; color: var(--cream) !important; }
+  input[type="date"]::-webkit-datetime-edit { color: var(--cream); }
+  input[type="date"]::-webkit-datetime-edit-fields-wrapper { color: var(--cream); }
+  input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) opacity(0.6); }
 </style>
 </head>
 <body>
@@ -510,58 +513,57 @@
 
       <p class="songs-label">A Sample of What We Play</p>
       <div class="song-grid">
-      </div></div>
+        <div class="song-header">60s</div>
         <div class="song-item"><div class="song-title">Come Together</div><div class="song-artist">Beatles</div></div>
+        <div class="song-item"><div class="song-title">Crossroads</div><div class="song-artist">Cream</div></div>
+        <div class="song-item"><div class="song-title">Dedicated Follower of Fashion</div><div class="song-artist">The Kinks</div></div>
         <div class="song-item"><div class="song-title">Don&rsquo;t Let Me Down</div><div class="song-artist">Beatles</div></div>
-        <div class="song-item"><div class="song-title">I&rsquo;ve Got A Feeling</div><div class="song-artist">The Beatles</div></div>
-        <div class="song-item"><div class="song-title">Octopus&rsquo;s Garden</div><div class="song-artist">Beatles</div></div>
         <div class="song-item"><div class="song-title">For What It&rsquo;s Worth</div><div class="song-artist">Buffalo Springfield</div></div>
         <div class="song-item"><div class="song-title">Fortunate Son</div><div class="song-artist">CCR</div></div>
-        <div class="song-item"><div class="song-title">Crossroads</div><div class="song-artist">Cream</div></div>
-        <div class="song-item"><div class="song-title">Voodoo Child</div><div class="song-artist">Jimi Hendrix</div></div>
-        <div class="song-item"><div class="song-title">Dedicated Follower Of Fashion</div><div class="song-artist">The Kinks</div></div>
+        <div class="song-item"><div class="song-title">I&rsquo;ve Got A Feeling</div><div class="song-artist">The Beatles</div></div>
+        <div class="song-item"><div class="song-title">Octopus&rsquo;s Garden</div><div class="song-artist">Beatles</div></div>
         <div class="song-item"><div class="song-title">Sympathy For The Devil</div><div class="song-artist">Rolling Stones</div></div>
+        <div class="song-item"><div class="song-title">Voodoo Child</div><div class="song-artist">Jimi Hendrix</div></div>
         <div class="song-header">70s</div>
-        <div class="song-item"><div class="song-title">Midnight Rider</div><div class="song-artist">The Allman Brothers Band</div></div>
-        <div class="song-item"><div class="song-title">Whipping Post</div><div class="song-artist">The Allman Brothers Band</div></div>
-        <div class="song-item"><div class="song-title">War Pigs</div><div class="song-artist">Black Sabbath</div></div>
-        <div class="song-item"><div class="song-title">Just What I Needed</div><div class="song-artist">The Cars</div></div>
-        <div class="song-item"><div class="song-title">Ohio</div><div class="song-artist">CSNY</div></div>
-        <div class="song-item"><div class="song-title">Teach Your Children</div><div class="song-artist">CSNY</div></div>
-        <div class="song-item"><div class="song-title">Heroes</div><div class="song-artist">David Bowie</div></div>
-        <div class="song-item"><div class="song-title">Walk On</div><div class="song-artist">Neil Young</div></div>
-        <div class="song-item"><div class="song-title">Riders On The Storm</div><div class="song-artist">The Doors</div></div>
-        <div class="song-item"><div class="song-title">Who&rsquo;s That Lady</div><div class="song-artist">The Isley Brothers</div></div>
         <div class="song-item"><div class="song-title">Angel From Montgomery</div><div class="song-artist">John Prine</div></div>
-        <div class="song-item"><div class="song-title">No One To Depend On</div><div class="song-artist">Santana</div></div>
-        <div class="song-item"><div class="song-title">The Seeker</div><div class="song-artist">The Who</div></div>
+        <div class="song-item"><div class="song-title">Heroes</div><div class="song-artist">David Bowie</div></div>
+        <div class="song-item"><div class="song-title">Just What I Needed</div><div class="song-artist">The Cars</div></div>
         <div class="song-item"><div class="song-title">Let Me Roll It</div><div class="song-artist">Wings</div></div>
+        <div class="song-item"><div class="song-title">Midnight Rider</div><div class="song-artist">The Allman Brothers Band</div></div>
+        <div class="song-item"><div class="song-title">No One To Depend On</div><div class="song-artist">Santana</div></div>
+        <div class="song-item"><div class="song-title">Ohio</div><div class="song-artist">CSNY</div></div>
+        <div class="song-item"><div class="song-title">Riders On The Storm</div><div class="song-artist">The Doors</div></div>
+        <div class="song-item"><div class="song-title">Teach Your Children</div><div class="song-artist">CSNY</div></div>
+        <div class="song-item"><div class="song-title">The Seeker</div><div class="song-artist">The Who</div></div>
+        <div class="song-item"><div class="song-title">Walk On</div><div class="song-artist">Neil Young</div></div>
+        <div class="song-item"><div class="song-title">War Pigs</div><div class="song-artist">Black Sabbath</div></div>
+        <div class="song-item"><div class="song-title">Whipping Post</div><div class="song-artist">The Allman Brothers Band</div></div>
+        <div class="song-item"><div class="song-title">Who&rsquo;s That Lady</div><div class="song-artist">The Isley Brothers</div></div>
         <div class="song-header">80s</div>
+        <div class="song-item"><div class="song-title">End Of The World</div><div class="song-artist">R.E.M.</div></div>
         <div class="song-item"><div class="song-title">Head Over Heels</div><div class="song-artist">Tears for Fears</div></div>
         <div class="song-item"><div class="song-title">Just Like Heaven</div><div class="song-artist">The Cure</div></div>
-        <div class="song-item"><div class="song-title">Rockin&rsquo; In The Free World</div><div class="song-artist">Neil Young</div></div>
-        <div class="song-item"><div class="song-title">Won&rsquo;t Back Down</div><div class="song-artist">Tom Petty</div></div>
         <div class="song-item"><div class="song-title">Message In A Bottle</div><div class="song-artist">The Police</div></div>
-        <div class="song-item"><div class="song-title">End Of The World</div><div class="song-artist">R.E.M.</div></div>
+        <div class="song-item"><div class="song-title">Rockin&rsquo; In The Free World</div><div class="song-artist">Neil Young</div></div>
         <div class="song-item"><div class="song-title">Smooth Operator</div><div class="song-artist">Sade</div></div>
+        <div class="song-item"><div class="song-title">Won&rsquo;t Back Down</div><div class="song-artist">Tom Petty</div></div>
         <div class="song-header">90s</div>
+        <div class="song-item"><div class="song-title">Black</div><div class="song-artist">Pearl Jam</div></div>
+        <div class="song-item"><div class="song-title">Don&rsquo;t Look Back In Anger</div><div class="song-artist">Oasis</div></div>
         <div class="song-item"><div class="song-title">Found Out About You</div><div class="song-artist">Gin Blossoms</div></div>
         <div class="song-item"><div class="song-title">Laid</div><div class="song-artist">James</div></div>
-
-        <div class="song-item"><div class="song-title">Don&rsquo;t Look Back In Anger</div><div class="song-artist">Oasis</div></div>
-        <div class="song-item"><div class="song-title">Black</div><div class="song-artist">Pearl Jam</div></div>
         <div class="song-header">2000s</div>
         <div class="song-item"><div class="song-title">Bohemian Like You</div><div class="song-artist">Dandy Warhols</div></div>
-        <div class="song-item"><div class="song-title">Starlight</div><div class="song-artist">Muse</div></div>
         <div class="song-item"><div class="song-title">Little By Little</div><div class="song-artist">Oasis</div></div>
         <div class="song-item"><div class="song-title">Seven Nation Army</div><div class="song-artist">The White Stripes</div></div>
+        <div class="song-item"><div class="song-title">Starlight</div><div class="song-artist">Muse</div></div>
         <div class="song-header">2010s</div>
-        <div class="song-item"><div class="song-title">Follow Your Arrow</div><div class="song-artist">Kasey Musgraves</div></div>
+        <div class="song-item"><div class="song-title">Follow Your Arrow</div><div class="song-artist">Kacey Musgraves</div></div>
         <div class="song-item"><div class="song-title">That&rsquo;s What I Love</div><div class="song-artist">Leon Bridges</div></div>
         <div class="song-header">2020s</div>
-        <div class="song-item"><div class="song-title">Pink Pony Club</div><div class="song-artist">Chappell Roan</div></div>
-        <div class="song-item"><div class="song-title">Guess Again</div><div class="song-artist">Jeff Tweedy</div></div>
         <div class="song-item"><div class="song-title">From The Start</div><div class="song-artist">Laufey</div></div>
+        <div class="song-item"><div class="song-title">Guess Again</div><div class="song-artist">Jeff Tweedy</div></div>
+        <div class="song-item"><div class="song-title">Pink Pony Club</div><div class="song-artist">Chappell Roan</div></div>
         <div class="song-header">Originals</div>
         <div class="song-item"><div class="song-title">Kings Of Ewing</div><div class="song-artist">Kings of Ewing</div></div>
       </div>
