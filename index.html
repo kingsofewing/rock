@@ -203,14 +203,17 @@
   }
   .sticky-logo {
     position: absolute;
-    top: 50%; transform: translateY(-50%);
-    height: 38px; width: auto;
-    opacity: 0.12;
+    top: 0; bottom: 0;
+    height: 100%;
+    width: 58px;
+    object-fit: contain;
+    background: white;
     pointer-events: none;
-    filter: brightness(10);
+    padding: 6px;
+    box-sizing: border-box;
   }
-  .sticky-logo-left  { left: 16px; }
-  .sticky-logo-right { right: 16px; }
+  .sticky-logo-left  { left: 0; }
+  .sticky-logo-right { right: 0; }
   @media (max-width: 600px) {
     .sticky-logo { display: none; }
   }
