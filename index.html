@@ -600,48 +600,42 @@
   input[type="date"]::-webkit-datetime-edit-fields-wrapper { color: var(--cream); }
   input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) opacity(0.6); }</style>
 
-  <div id="mlb2-41075044" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-41075044">
-    <div class="ml-form-align-center">
-      <div class="ml-form-embedWrapper embedForm">
-        <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
-          <div class="ml-form-embedContent" style="display:none;"></div>
-          <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2332985/forms/187010863696184576/subscribe" data-code="" method="post" target="_blank">
-            <div class="ml-form-formContent">
-              <div class="ml-form-fieldRow ml-last-item">
-                <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-                  <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="herbie@hancock.com" autocomplete="email">
-                </div>
-              </div>
-            </div>
-            <input type="hidden" name="ml-submit" value="1">
-            <div class="ml-form-embedSubmit">
-              <button type="submit" class="primary">Sign Me Up</button>
-              <button disabled="disabled" style="display:none;" type="button" class="loading">
-                <div class="ml-form-embedSubmitLoad"></div>
-                <span class="sr-only">Loading...</span>
-              </button>
-            </div>
-            <input type="hidden" name="anticsrf" value="true">
-          </form>
-        </div>
-        <div class="ml-form-successBody row-success" style="display:none;">
-          <div class="ml-form-successContent">
-            <h4>Thanks! 🎸</h4>
-            <p>You're on the list. We'll keep you posted on shows.</p>
-          </div>
-        </div>
-      </div>
+  <div id="ml-signup" style="display:flex; flex-direction:column; align-items:center; gap:0.75rem; width:100%; max-width:420px; margin:0 auto;">
+    <div id="ml-form-row" style="display:flex; gap:0.5rem; width:100%;">
+      <input type="email" id="ml-email" placeholder="herbie@hancock.com" autocomplete="email"
+        style="flex:1; padding:0.65rem 1rem; background:rgba(255,255,255,0.08); border:1px solid rgba(232,223,192,0.3); color:var(--cream); font-size:0.9rem; border-radius:0; outline:none;">
+      <button onclick="mlSignup()" style="padding:0.65rem 1.4rem; background:var(--coral); border:none; color:var(--brown); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; cursor:pointer;">
+        SIGN ME UP
+      </button>
     </div>
+    <p id="ml-success" style="display:none; color:var(--teal); font-size:0.85rem; letter-spacing:0.05em;">Thanks! You're on the list. 🎸</p>
+    <p id="ml-error" style="display:none; color:var(--coral); font-size:0.8rem;">Something went wrong. Try again!</p>
   </div>
   <script>
-  function ml_webform_success_41075044() {
-    var $ = ml_jQuery || jQuery;
-    $('.ml-subscribe-form-41075044 .row-success').show();
-    $('.ml-subscribe-form-41075044 .row-form').hide();
+  function mlSignup() {
+    var email = document.getElementById('ml-email').value;
+    if (!email || !email.includes('@')) {
+      document.getElementById('ml-error').style.display = 'block';
+      document.getElementById('ml-error').textContent = 'Please enter a valid email.';
+      return;
+    }
+    var fd = new FormData();
+    fd.append('fields[email]', email);
+    fd.append('ml-submit', '1');
+    fd.append('anticsrf', 'true');
+    fetch('https://assets.mailerlite.com/jsonp/2332985/forms/187010863696184576/subscribe', {
+      method: 'POST', body: fd
+    }).then(function(r) {
+      document.getElementById('ml-form-row').style.display = 'none';
+      document.getElementById('ml-success').style.display = 'block';
+    }).catch(function() {
+      document.getElementById('ml-error').style.display = 'block';
+    });
   }
+  document.getElementById('ml-email').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') mlSignup();
+  });
   </script>
-  <script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>
-  <script>fetch("https://assets.mailerlite.com/jsonp/2332985/forms/187010863696184576/takel");</script>
 
 
 </section>
