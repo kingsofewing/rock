@@ -119,7 +119,7 @@
   .songs-note { font-size: 0.75rem; color: rgba(232,223,192,0.35); font-style: italic; }
   .download-btn { display: inline-flex; align-items: center; padding: 0.55rem 1.2rem; border: 1.5px solid rgba(79,179,168,0.45); color: var(--teal); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.2s; }
   .download-btn:hover { background: rgba(79,179,168,0.1); border-color: var(--teal); }
-  .song-header { grid-column: 1 / -1; padding: 0.5rem 1rem; background: rgba(79,179,168,0.12); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); font-weight: 600; border-bottom: 1px solid rgba(79,179,168,0.2); }
+  .song-header { grid-column: 1 / -1; padding: 0.5rem 1rem; background: rgba(79,179,168,0.12); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: none; color: var(--teal); font-weight: 600; border-bottom: 1px solid rgba(79,179,168,0.2); }
 
   /* SOCIAL */
   .social-row { display: flex; gap: 1.2rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
@@ -251,6 +251,7 @@
     #sticky-track-name { max-width: 110px; }
     #sticky-volume { display: none; }
   }
+  input[type="date"] { color-scheme: dark; color: var(--cream); }
 </style>
 </head>
 <body>
@@ -509,7 +510,7 @@
 
       <p class="songs-label">A Sample of What We Play</p>
       <div class="song-grid">
-        <div class="song-header">60s</div>
+      </div></div>
         <div class="song-item"><div class="song-title">Come Together</div><div class="song-artist">Beatles</div></div>
         <div class="song-item"><div class="song-title">Don&rsquo;t Let Me Down</div><div class="song-artist">Beatles</div></div>
         <div class="song-item"><div class="song-title">I&rsquo;ve Got A Feeling</div><div class="song-artist">The Beatles</div></div>
