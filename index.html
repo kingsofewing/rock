@@ -295,6 +295,12 @@ nav { padding: 0.8rem 1.5rem; }
     height: 58px;
     box-sizing: border-box;
     overflow: hidden;
+    width: 100%;
+  }
+  @media (max-width: 480px) {
+    #sticky-player { padding: 0.6rem 8px; gap: 0.5rem; }
+    .sticky-logo { display: none; }
+    #sticky-progress-bar, [onclick="seekTo(event, this)"] { width: 60px; }
   }
 
 #sticky-player.visible { display: flex; }
