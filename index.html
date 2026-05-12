@@ -104,7 +104,7 @@ to { opacity: 1; transform: translateY(0); }
 
 #book    { background: var(--brown); padding: 7rem 2rem; text-align: center; }
 
-footer   { background: var(--brown); border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem; }
+footer   { background: var(--brown); border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem 2.5rem calc(2.5rem + 58px); }
 
 /* SHOWS */
   .shows-inner { max-width: 860px; margin: 0 auto; }
@@ -261,21 +261,16 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.0
     margin-bottom: 0.9rem;
   }
 
-nav { padding: 0.8rem 1.5rem; }
-
-.nav-links { display: none; }
-
-.hamburger { display: flex; }
-
-.about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-
-.about-photo { order: -1; }
-
-#shows, #about { padding: 5rem 1.5rem; }
-
-.photo-gallery { grid-template-columns: 1fr; }
-
-.form-row { grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+  nav { padding: 0.8rem 1.5rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-photo { order: -1; }
+  #shows, #about { padding: 5rem 1.5rem; }
+  .photo-gallery { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
 
 /* ── Sticky mini player ───────────────────────────────── */
   #sticky-player {
@@ -304,19 +299,9 @@ nav { padding: 0.8rem 1.5rem; }
     padding: 0 70px;
     min-width: 0;
   }
-  .sticky-seek {
-    width: 90px; height: 3px;
-    background: rgba(232,223,192,0.2);
-    border-radius: 2px; cursor: pointer; flex-shrink: 0;
-  }
-  #sticky-volume { width: 60px; accent-color: var(--teal); cursor: pointer; flex-shrink: 0; }
-  .sticky-vol-icon { opacity: 0.5; flex-shrink: 0; }
   @media (max-width: 540px) {
     .sticky-controls { padding: 0 8px; gap: 0.5rem; }
     .sticky-logo { display: none; }
-    .sticky-seek { width: 50px; }
-    #sticky-volume { width: 50px; }
-    .sticky-vol-icon { display: none; }
   }
 
 #sticky-player.visible { display: flex; }
@@ -350,11 +335,7 @@ nav { padding: 0.8rem 1.5rem; }
     flex-shrink: 0;
   }
 
-#sticky-volume {
-    width: 70px; accent-color: var(--teal); cursor: pointer;
-  }
-
-#sticky-track-name { max-width: 110px; }
+#sticky-track-name { max-width: 260px; }
 }
 
 input[type="date"] { color-scheme: dark; color: var(--cream) !important; }
@@ -387,7 +368,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 
 <nav>
-  <a href="#hero" class="nav-logo"><img src="docs/Kings_of_Ewing_Logo.png" alt="Kings of Ewing" style="filter:brightness(0) invert(1);"></a>
+  <a href="#hero" class="nav-logo"><img src="docs/Kings_of_Ewing_Logo.png" alt="Kings of Ewing" style="filter:sepia(1) saturate(0.3) brightness(0.82) contrast(0.9); opacity:0.88;"></a>
   <ul class="nav-links">
     <li><a href="#social">Socials</a></li>
     <li><a href="#mailing">Mailing List</a></li>
@@ -452,7 +433,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <!-- Volume -->
     <div style="display:flex; align-items:center; justify-content:center; gap:0.6rem;">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-      <input type="range" id="player-volume" min="0" max="1" step="0.05" value="0.8" oninput="document.getElementById('band-audio').volume=this.value; document.getElementById('sticky-volume').value=this.value" style="width:90px; accent-color:var(--teal); cursor:pointer;">
+      <input type="range" id="player-volume" min="0" max="1" step="0.05" value="0.8" oninput="document.getElementById('band-audio').volume=this.value" style="width:90px; accent-color:var(--teal); cursor:pointer;">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
     </div>
   </div><!-- end audio-box -->
@@ -641,7 +622,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
         <!-- Press Kit highlight -->
         <a href="docs/Kings_of_Ewing_Press_Kit.zip" download class="download-btn" style="display:inline-flex; margin-bottom:0.75rem; border-color:var(--coral); color:var(--coral);">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:0.4rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          &#128230; Download Full Press Kit
+          &#128230; Electronic Press Kit
         </a>
         <div style="display:flex; gap:1rem; flex-wrap:wrap;">
           <a href="docs/Kings_of_Ewing_Bio.txt" download class="download-btn">
@@ -692,6 +673,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
         <div class="form-field"><label for="location">Event Location</label><input type="text" id="location" name="location" placeholder="Somewhere that can handle the rock"></div>
       </div>
       <div class="form-field"><label for="message">Tell us more</label><textarea id="message" name="message" placeholder="How many paparazzi can we expect?"></textarea></div>
+      <div class="form-field"><label for="referral">How did you hear about us?</label><input type="text" id="referral" name="referral" placeholder="the Grammys"></div>
       <button type="submit" class="submit-btn">Send Booking Request</button>
       <div class="success-msg" id="success-msg">Thanks! We&rsquo;ll be in touch soon. 🎸</div>
     </form>
@@ -735,18 +717,9 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
     </button>
     <span id="sticky-track-name">—</span>
-    <div onclick="seekTo(event, this)" class="sticky-seek">
-      <div id="sticky-progress-bar" style="height:100%; width:0%; background:var(--teal); border-radius:2px; pointer-events:none;"></div>
-    </div>
-    <svg viewBox="0 0 24 24" width="12" height="12" fill="var(--cream)" class="sticky-vol-icon"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-    <input type="range" id="sticky-volume" min="0" max="1" step="0.05" value="0.8"
-      oninput="document.getElementById('band-audio').volume=this.value; document.getElementById('player-volume').value=this.value"
-      title="Volume">
-    <svg viewBox="0 0 24 24" width="12" height="12" fill="var(--cream)" class="sticky-vol-icon"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    <div id="sticky-progress-bar" style="display:none;"></div>
   </div>
 </div>
-<script>
-</script>
 <script>
 function mlSignup() {
     var email = document.getElementById('ml-email').value;
@@ -774,9 +747,9 @@ function mlSignup() {
 
 const SHOWS = [
   { date: '2026-05-14', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a>', detail: '5:30 PM &middot; <a href="https://www.covenantnurseryschool.org/" target="_blank">Covenant Nursery School</a> Dining for Dollars' },
-  { date: '2026-05-16', venue: 'Private Party', detail: '2026' },
-  { date: '2026-06-21', venue: '<a href="https://watchufa.com/union" target="_blank">Chicago Union</a>', detail: '5:00 PM &middot; 2026' },
-  { date: '2026-06-24', venue: '<a href="https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893" target="_blank">Ridgeville Parks District</a>', detail: '6:00 PM &middot; 2026' },
+  { date: '2026-05-16', venue: 'Private Party', detail: '7:00 PM' },
+  { date: '2026-06-21', venue: '<a href="https://watchufa.com/union" target="_blank">Chicago Union</a>', detail: '5:00 PM &middot; ETHS Lazier Field' },
+  { date: '2026-06-24', venue: '<a href="https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893" target="_blank">Ridgeville Parks District</a>', detail: '6:00 PM' },
   { date: '2026-09-12', venue: 'Ewing Block Party', detail: '2026' },
   { date: '2026-04-24', venue: '<a href="https://www.evanstonpost42.com/" target="_blank">American Legion Post 42</a>', detail: 'April 2026 &middot; D65 One Fund Spring Cha Ching' },
   { date: '2026-01-24', venue: '<a href="https://www.goatvillage777.com/" target="_blank">Goat Village</a>', detail: 'January 2026' },
@@ -807,11 +780,7 @@ function buildShows() {
     (d >= today ? upcoming : past).push(s);
   });
 
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
-}, { threshold: 0.08 });
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+// Scroll reveal — initialized once after DOM is ready
   upcoming.sort((a,b) => new Date(a.date) - new Date(b.date));
   past.sort((a,b) => new Date(b.date) - new Date(a.date));
 
@@ -845,11 +814,6 @@ document.getElementById('booking-form').addEventListener('submit', async functio
   try {
     const res = await fetch(e.target.action, { method: 'POST', body: new FormData(e.target), headers: { 'Accept': 'application/json' } });
 
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
-}, { threshold: 0.08 });
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
     if (res.ok) { document.getElementById('success-msg').style.display = 'block'; e.target.reset(); }
   } catch { alert('Something went wrong. Please email us at Miles@KingsOfEwing.com'); }
 });
