@@ -1,1 +1,1 @@
-Kings of Ewing: a dad band living on the same block in Evanston, IL: we were simply born to rock!
+Kings of Ewing: crowd‑pleasing live band for breweries, block parties, and private events — playing hits everyone knows.
