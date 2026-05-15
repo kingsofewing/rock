@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kings of Ewing</title>
+<meta name="geo.placename" content="Evanston, IL">
+<meta name="geo.region" content="US-IL">
 <meta name="description" content="Kings of Ewing — a five-piece mostly-covers band from Evanston, IL. Six decades of rock, pop, folk and soul. Available for weddings, block parties, fundraisers and more.">
 <meta property="og:title" content="Kings of Ewing">
 <meta property="og:description" content="A five-piece mostly-covers band from one block in Evanston, IL. Six decades of rock, pop, folk and soul. Available for weddings, block parties, fundraisers and more.">
@@ -362,12 +364,40 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 .sticky-logo-right { right: 0; }
 
-@media (max-width: 600px) { .sticky-logo { display: none; } }</style>
+@media (max-width: 600px) { .sticky-logo { display: none; } }
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #4fb3a8;
+  color: #1e0e08;
+  padding: 8px 12px;
+  z-index: 1000;
+}
+.skip-link:focus {
+  top: 0;
+}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "Kings of Ewing",
+  "url": "https://www.kingsofewing.com",
+  "image": "https://www.kingsofewing.com/images/IMG_2445.jpeg",
+  "description": "Kings of Ewing are a high-energy cover band from Evanston, IL.",
+  "genre": ["Rock","Pop","Folk","Soul","Blues"],
+  "email": "Miles@KingsOfEwing.com",
+  "sameAs": [
+    "https://www.instagram.com/kingsofewing/",
+    "https://www.youtube.com/@KingsofEwing"
+  ]
+}
+</script>
 </head>
 <body>
-
-
-<nav>
+<a href="#hero" class="skip-link">Skip to main content</a>
+<nav role="navigation" aria-label="Primary">
   <a href="#hero" class="nav-logo"><img src="docs/Kings_of_Ewing_Logo.png" alt="Kings of Ewing" style="filter:sepia(1) saturate(0.3) brightness(0.82) contrast(0.9); opacity:0.88;"></a>
   <ul class="nav-links">
     <li><a href="#social">Socials</a></li>
@@ -395,7 +425,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <div class="hero-bg"></div>
   <p class="hero-tagline">Live Music &middot; Covers &amp; Originals</p>
   <h1 class="hero-title">Kings of Ewing</h1>
-  <p class="hero-sub">A Dad Band from North Chicagoland</p>
+  <p class="hero-sub">A high-energy cover band from Evanston for weddings, block parties, and packed dance floors</p>
 
   <!-- Nav links -->
   <div class="hero-cta">
@@ -568,7 +598,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
         <div class="song-item"><div class="song-title">Don&rsquo;t Let Me Down</div><div class="song-artist">Beatles</div></div>
         <div class="song-item"><div class="song-title">For What It&rsquo;s Worth</div><div class="song-artist">Buffalo Springfield</div></div>
         <div class="song-item"><div class="song-title">Fortunate Son</div><div class="song-artist">CCR</div></div>
-        <div class="song-item"><div class="song-title">I&rsquo;ve Got A Feeling</div><div class="song-artist">The Beatles</div></div>
+        <div class="song-item"><div class="song-title">I&rsquo;ve Got A Feeling</div><div class="song-artist">Beatles</div></div>
         <div class="song-item"><div class="song-title">Octopus&rsquo;s Garden</div><div class="song-artist">Beatles</div></div>
         <div class="song-item"><div class="song-title">Sympathy For The Devil</div><div class="song-artist">Rolling Stones</div></div>
         <div class="song-item"><div class="song-title">Voodoo Child</div><div class="song-artist">Jimi Hendrix</div></div>
@@ -615,7 +645,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
         <div class="song-header">Originals</div>
         <div class="song-item"><div class="song-title">Kings Of Ewing</div><div class="song-artist">Kings of Ewing</div></div>
       </div>
-      <p class="songs-note">Plus more. Set varies by event.</p>
+      <p class="songs-note">Plus more. Sets are customized for each crowd and event.</p>
 
       <div class="download-links">
         <p class="songs-label" style="margin-top:1.8rem; margin-bottom:0.75rem;">Downloads</p>
@@ -675,7 +705,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
       <div class="form-field"><label for="message">Tell us more</label><textarea id="message" name="message" placeholder="How many paparazzi can we expect?"></textarea></div>
       <div class="form-field"><label for="referral">How did you hear about us?</label><input type="text" id="referral" name="referral" placeholder="the Grammys"></div>
       <button type="submit" class="submit-btn">Send Booking Request</button>
-      <div class="success-msg" id="success-msg">Thanks! We&rsquo;ll be in touch soon. 🎸</div>
+      <div class="success-msg" id="success-msg" aria-live="polite">Thanks! We&rsquo;ll be in touch soon. 🎸</div>
     </form>
   </div>
 </section>
