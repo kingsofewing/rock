@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="680" viewBox="0 0 1020 680" font-family="Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="1020" height="680" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="510" y="36" text-anchor="middle" font-size="19" font-weight="bold" fill="#000000" letter-spacing="3">KINGS OF EWING — STAGE DIAGRAM</text>
+  <line x1="60" y1="46" x2="960" y2="46" stroke="#000000" stroke-width="1.5"/>
+
+  <!-- Stage box -->
+  <rect x="100" y="58" width="820" height="540" rx="6" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+
+  <!-- BACK label bar -->
+  <rect x="100" y="58" width="820" height="28" fill="#ffffff" rx="6"/>
+  <line x1="100" y1="86" x2="920" y2="86" stroke="#000000" stroke-width="1"/>
+  <text x="510" y="77" text-anchor="middle" font-size="11" fill="#000000" letter-spacing="6">BACK</text>
+
+  <!-- AUDIENCE label -->
+  <text x="510" y="665" text-anchor="middle" font-size="11" fill="#000000" letter-spacing="6">AUDIENCE</text>
+
+
+  <!-- ── AMPS (back row) ── -->
+  <rect x="120" y="155" width="65" height="36" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="152" y="170" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">AMP</text>
+  <text x="152" y="184" text-anchor="middle" font-size="8" fill="#000000">Lead Gtr</text>
+
+  <rect x="330" y="108" width="65" height="36" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="362" y="123" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">AMP</text>
+  <text x="362" y="137" text-anchor="middle" font-size="8" fill="#000000">Keys</text>
+
+  <rect x="625" y="108" width="65" height="36" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="657" y="123" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">AMP</text>
+  <text x="657" y="137" text-anchor="middle" font-size="8" fill="#000000">Bass</text>
+
+  <rect x="835" y="155" width="65" height="36" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="867" y="170" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">AMP</text>
+  <text x="867" y="184" text-anchor="middle" font-size="8" fill="#000000">Rhythm Gtr</text>
+
+  <!-- ── DRUMS ── -->
+  <!-- Drummer circle — center back -->
+  <circle cx="510" cy="172" r="32" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="510" y="176" text-anchor="middle" font-size="10" fill="#000000" font-weight="bold">DRUMMER</text>
+
+  <!-- Kick drum -->
+  <ellipse cx="510" cy="272" rx="42" ry="32" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="510" y="268" text-anchor="middle" font-size="10" fill="#000000" font-weight="bold">KICK</text>
+  <text x="510" y="282" text-anchor="middle" font-size="9" fill="#000000">DRUM</text>
+
+  <!-- Rack tom -->
+  <ellipse cx="510" cy="228" rx="17" ry="13" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="510" y="232" text-anchor="middle" font-size="8" fill="#000000">TOM</text>
+
+  <!-- Snare -->
+  <ellipse cx="465" cy="258" rx="16" ry="12" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="465" y="262" text-anchor="middle" font-size="8" fill="#000000">SN</text>
+
+  <!-- Floor tom -->
+  <ellipse cx="444" cy="225" rx="20" ry="16" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="444" y="229" text-anchor="middle" font-size="8" fill="#000000">FT</text>
+
+  <!-- Crash cymbal -->
+  <ellipse cx="430" cy="192" rx="24" ry="7" fill="#ffffff" stroke="#000000" stroke-width="1.5" transform="rotate(-10,430,192)"/>
+  <text x="412" y="183" text-anchor="middle" font-size="8" fill="#000000">CRASH</text>
+
+  <!-- Hi-hat -->
+  <ellipse cx="576" cy="228" rx="20" ry="7" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="592" y="218" text-anchor="middle" font-size="8" fill="#000000">HH</text>
+
+  <!-- Ride -->
+  <ellipse cx="554" cy="195" rx="22" ry="7" fill="#ffffff" stroke="#000000" stroke-width="1.5" transform="rotate(10,554,195)"/>
+  <text x="572" y="186" text-anchor="middle" font-size="8" fill="#000000">RIDE</text>
+
+  <!-- ══ POS 1 — Lead Guitar / Vocals (Stage Right) ══ -->
+  <circle cx="152" cy="415" r="32" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="152" y="411" text-anchor="middle" font-size="10" fill="#000000" font-weight="bold">LEAD</text>
+  <text x="152" y="425" text-anchor="middle" font-size="10" fill="#000000" font-weight="bold">GUITAR</text>
+  <!-- Vocal mic — diamond shape -->
+  <polygon points="152,447 160,461 152,475 144,461" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+
+  <!-- ══ POS 2 — Keys / Vocals (center left) ══ -->
+  <circle cx="390" cy="330" r="32" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="390" y="334" text-anchor="middle" font-size="10" fill="#000000" font-weight="bold">KEYS</text>
+  <!-- Vocal mic — diamond -->
+  <polygon points="390,362 398,376 390,390 382,376" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+
+  <!-- ══ POS 4 — Bass / Vocals (center right) ══ -->
+  <circle cx="630" cy="330" r="32" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="630" y="334" text-anchor="middle" font-size="10" fill="#000000" font-weight="bold">BASS</text>
+  <!-- Vocal mic — diamond -->
+  <polygon points="630,362 638,376 630,390 622,376" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <!-- DI opt -->
+  <rect x="656" y="318" width="76" height="22" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="694" y="332" text-anchor="middle" font-size="8" fill="#000000">DI — Bass (opt)</text>
+
+  <!-- ══ POS 5 — Gtr / Aux Keys / Trombone / Vocals (Stage Left) ══ -->
+  <circle cx="867" cy="415" r="32" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="867" y="405" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">GTR</text>
+  <text x="867" y="418" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">AUX KEYS</text>
+  <text x="867" y="431" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">TROMBONE</text>
+  <!-- Vocal mic — diamond -->
+  <polygon points="867,447 875,461 867,475 859,461" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <!-- DI boxes — two separate, moved left -->
+  <rect x="730" y="398" width="76" height="18" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="768" y="411" text-anchor="middle" font-size="7" fill="#000000">DI — Aux Keys</text>
+  <rect x="730" y="420" width="76" height="18" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="768" y="433" text-anchor="middle" font-size="7" fill="#000000">DI — Acoustic Gtr</text>
+
+  <!-- ── FLOOR MONITORS ── -->
+  <polygon points="228,515 288,515 276,543 240,543" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="258" y="533" text-anchor="middle" font-size="8" fill="#000000">MON</text>
+
+  <polygon points="732,515 792,515 780,543 744,543" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="762" y="533" text-anchor="middle" font-size="8" fill="#000000">MON</text>
+
+  <!-- ── Legend ── -->
+  <line x1="100" y1="572" x2="920" y2="572" stroke="#000000" stroke-width="0.5"/>
+  <circle cx="122" cy="586" r="6" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="134" y="590" font-size="10" fill="#000000">Musician</text>
+  <polygon points="210,578 218,586 210,594 202,586" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="225" y="590" font-size="10" fill="#000000">Vocal mic</text>
+  <rect x="305" y="580" width="18" height="12" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="329" y="590" font-size="10" fill="#000000">Amp</text>
+  <rect x="375" y="580" width="28" height="12" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="389" y="590" text-anchor="middle" font-size="8" fill="#000000">DI</text>
+  <text x="410" y="590" font-size="10" fill="#000000">Direct In</text>
+  <polygon points="468,580 502,580 496,594 474,594" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="510" y="592" font-size="10" fill="#000000">Floor monitor</text>
+  <text x="918" y="582" text-anchor="end" font-size="10" fill="#000000" font-weight="bold">Miles Shultz · (734) 883-7119 · Miles@KingsOfEwing.com</text>
+  <text x="918" y="594" text-anchor="end" font-size="10" fill="#000000" font-weight="bold">KingsOfEwing.com</text>
+
+</svg>
