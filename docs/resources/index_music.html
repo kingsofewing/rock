@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sheet Music — Kings of Ewing</title>
+<link rel="icon" type="image/png" href="/docs/resources/branding/Kings_of_Ewing_Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #3d4f58;
+    --cream: #e8dfc0;
+    --teal: #4fb3a8;
+    --coral: #c8623a;
+    --brown: #1e0e08;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--cream);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ── Header ── */
+  header {
+    background: rgba(30,14,8,0.97);
+    border-bottom: 2px solid var(--teal);
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .header-logo img {
+    height: 40px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .header-back {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .header-back:hover { opacity: 1; color: var(--teal); }
+
+  /* ── Hero ── */
+  .hero {
+    text-align: center;
+    padding: 3.5rem 2rem 2.5rem;
+    border-bottom: 1px solid rgba(232,223,192,0.15);
+  }
+
+  .hero h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ── Main ── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  .song-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .song-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(30,14,8,0.4);
+    border: 1px solid rgba(232,223,192,0.12);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    text-decoration: none;
+    color: var(--cream);
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  }
+
+  .song-card:hover {
+    background: rgba(200,98,58,0.15);
+    border-color: var(--coral);
+    transform: translateY(-2px);
+  }
+
+  .song-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .song-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.75rem;
+    color: rgba(232,223,192,0.4);
+    border-top: 1px solid rgba(232,223,192,0.1);
+    letter-spacing: 0.08em;
+  }
+
+  footer a { color: var(--teal); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 480px) {
+    .song-grid { grid-template-columns: 1fr; }
+    .hero { padding: 2.5rem 1.5rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://kingsofewing.com" class="header-logo">
+    <img src="/docs/resources/branding/Kings_of_Ewing_Logo.png" alt="Kings of Ewing">
+  </a>
+  <a href="https://kingsofewing.com" class="header-back">← Back to site</a>
+</header>
+
+<div class="hero">
+  <h1>Sheet Music</h1>
+  <p>Kings of Ewing — chord charts &amp; tabs</p>
+</div>
+
+<main>
+  <div class="song-grid">
+    <a class="song-card" href="angel_from_montgomery.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Angel from Montgomery</span></a>
+    <a class="song-card" href="black.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Black</span></a>
+    <a class="song-card" href="Bohemian Like You.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Bohemian Like You</span></a>
+    <a class="song-card" href="come together official.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Come Together</span></a>
+    <a class="song-card" href="Crossroads.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Crossroads</span></a>
+    <a class="song-card" href="dedicated follower of fashion.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Dedicated Follower of Fashion</span></a>
+    <a class="song-card" href="dont let me down.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Don't Let Me Down</span></a>
+    <a class="song-card" href="dont_look_back_in_anger_official.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Don't Look Back in Anger</span></a>
+    <a class="song-card" href="down by the river.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Down by the River</span></a>
+    <a class="song-card" href="end_of_the_world.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">End of the World</span></a>
+    <a class="song-card" href="follow_your_arrow_official.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Follow Your Arrow</span></a>
+    <a class="song-card" href="for_what_its_worth.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">For What It's Worth</span></a>
+    <a class="song-card" href="fortunate son.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Fortunate Son</span></a>
+    <a class="song-card" href="found out about you.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Found Out About You</span></a>
+    <a class="song-card" href="from the start official.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">From the Start</span></a>
+    <a class="song-card" href="guess_again.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Guess Again</span></a>
+    <a class="song-card" href="happy_birthday.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Happy Birthday</span></a>
+    <a class="song-card" href="head over heels official.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Head Over Heels</span></a>
+    <a class="song-card" href="heroes.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Heroes</span></a>
+    <a class="song-card" href="I Walk The Line Chords (ver 3) by Johnny Cashtabs @ Ultimate Guitar Archive.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">I Walk the Line</span></a>
+    <a class="song-card" href="ive_got_a_feeling_official.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">I've Got a Feeling</span></a>
+    <a class="song-card" href="just like heaven.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Just Like Heaven</span></a>
+    <a class="song-card" href="just_what_i_needed.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Just What I Needed</span></a>
+    <a class="song-card" href="kings of ewing.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Kings of Ewing</span></a>
+    <a class="song-card" href="laid.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Laid</span></a>
+    <a class="song-card" href="let me roll it official.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Let Me Roll It</span></a>
+    <a class="song-card" href="little_by_little.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Little by Little</span></a>
+    <a class="song-card" href="message_in_a_bottle.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Message in a Bottle</span></a>
+    <a class="song-card" href="midnight rider.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Midnight Rider</span></a>
+    <a class="song-card" href="no one to depend on.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">No One to Depend On</span></a>
+    <a class="song-card" href="octopus_garden.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Octopus's Garden</span></a>
+    <a class="song-card" href="ohio.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Ohio</span></a>
+    <a class="song-card" href="pink_pony_club.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Pink Pony Club</span></a>
+    <a class="song-card" href="riders on the storm.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Riders on the Storm</span></a>
+    <a class="song-card" href="rockin in the free world.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Rockin' in the Free World</span></a>
+    <a class="song-card" href="seven nation army.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Seven Nation Army</span></a>
+    <a class="song-card" href="smooth_operator.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Smooth Operator</span></a>
+    <a class="song-card" href="So What.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">So What</span></a>
+    <a class="song-card" href="starlight.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Starlight</span></a>
+    <a class="song-card" href="sunny_afternoon.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Sunny Afternoon</span></a>
+    <a class="song-card" href="sympathy for the devil.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Sympathy for the Devil</span></a>
+    <a class="song-card" href="Teach Your Children.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Teach Your Children</span></a>
+    <a class="song-card" href="thats_what_i_love_chords.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">That's What I Like</span></a>
+    <a class="song-card" href="the_seeker_official.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">The Seeker</span></a>
+    <a class="song-card" href="to be with you official.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">To Be with You</span></a>
+    <a class="song-card" href="voodoo_child.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Voodoo Child</span></a>
+    <a class="song-card" href="walk_on_chords.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Walk On</span></a>
+    <a class="song-card" href="war_pigs_official.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">War Pigs</span></a>
+    <a class="song-card" href="whipping_post.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Whipping Post</span></a>
+    <a class="song-card" href="won't back down.pdf" target="_blank"><span class="song-icon">🎵</span><span class="song-name">Won't Back Down</span></a>
+  </div>
+</main>
+
+<footer>
+  <a href="https://kingsofewing.com">KingsOfEwing.com</a> &nbsp;·&nbsp; <a href="mailto:Miles@KingsOfEwing.com">Miles@KingsOfEwing.com</a>
+</footer>
+
+</body>
+</html>
