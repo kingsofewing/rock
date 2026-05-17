@@ -4,186 +4,489 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kings of Ewing — Quick Links</title>
+<link rel="icon" type="image/png" href="/docs/resources/branding/Kings_of_Ewing_Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Georgia', serif; background: #f5f5f0; color: #1e0e08; padding: 2rem; max-width: 700px; margin: 0 auto; }
-  h1 { font-size: 1.8rem; color: #1e0e08; margin-bottom: 0.25rem; }
-  .subtitle { font-size: 0.85rem; color: #888; margin-bottom: 2rem; font-style: italic; }
-  h2 { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: #4fb3a8; font-family: Arial, sans-serif; font-weight: 600; margin: 2rem 0 0.75rem; padding-bottom: 0.4rem; border-bottom: 1.5px solid #e0d8c0; }
-  .link-row { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid #ece8dc; gap: 1rem; }
-  .link-label { font-size: 0.92rem; font-weight: bold; color: #1e0e08; min-width: 160px; }
-  .link-url { font-size: 0.78rem; color: #c8623a; text-decoration: none; word-break: break-all; flex: 1; }
-  .link-url:hover { text-decoration: underline; }
-  .copy-btn { background: #4fb3a8; color: white; border: none; padding: 0.3rem 0.7rem; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: 3px; white-space: nowrap; font-family: Arial, sans-serif; transition: background 0.2s; flex-shrink: 0; }
-  .copy-btn:hover { background: #c8623a; }
-  .copy-btn.copied { background: #2a8a5a; }
-  footer { margin-top: 3rem; font-size: 0.75rem; color: #aaa; text-align: center; font-family: Arial, sans-serif; }
+
+  :root {
+    --bg: #3d4f58;
+    --cream: #e8dfc0;
+    --teal: #4fb3a8;
+    --coral: #c8623a;
+    --brown: #1e0e08;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--cream);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ── Header ── */
+  header {
+    background: rgba(30,14,8,0.97);
+    border-bottom: 2px solid var(--teal);
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .header-logo img {
+    height: 40px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .header-back {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .header-back:hover { opacity: 1; color: var(--teal); }
+
+  /* ── Hero ── */
+  .hero {
+    text-align: center;
+    padding: 3.5rem 2rem 2.5rem;
+    border-bottom: 1px solid rgba(232,223,192,0.15);
+  }
+
+  .hero h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ── Main ── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* ── Section heading ── */
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1.5px solid rgba(79,179,168,0.35);
+  }
+
+  .section-label:first-child { margin-top: 0; }
+
+  /* ── Link grid ── */
+  .link-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 0.6rem;
+  }
+
+  /* ── Link card ── */
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(30,14,8,0.4);
+    border: 1px solid rgba(232,223,192,0.12);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  }
+
+  .link-card:hover {
+    background: rgba(200,98,58,0.15);
+    border-color: var(--coral);
+    transform: translateY(-2px);
+  }
+
+  .link-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    opacity: 0.75;
+    width: 1.4rem;
+    text-align: center;
+  }
+
+  .link-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .link-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--cream);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+
+  .link-url {
+    font-size: 0.72rem;
+    color: var(--coral);
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    opacity: 0.85;
+  }
+
+  .link-url:hover { opacity: 1; text-decoration: underline; }
+
+  /* mailto / tel links that don't show a url preview */
+  .link-url.plain {
+    color: rgba(232,223,192,0.5);
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .copy-btn {
+    background: var(--teal);
+    color: var(--brown);
+    border: none;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .copy-btn:hover { background: var(--coral); color: #fff; }
+  .copy-btn.copied { background: #2a8a5a; color: #fff; }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.75rem;
+    color: rgba(232,223,192,0.4);
+    border-top: 1px solid rgba(232,223,192,0.1);
+    letter-spacing: 0.08em;
+  }
+
+  footer a { color: var(--teal); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 480px) {
+    .link-grid { grid-template-columns: 1fr; }
+    .hero { padding: 2.5rem 1.5rem 2rem; }
+    header { padding: 1rem 1.25rem; }
+  }
 </style>
 </head>
 <body>
 
-<div style="margin-bottom: 1.5rem;">
-  <a href="https://www.kingsofewing.com" style="display:inline-flex; align-items:center; gap:0.4rem; background:#4fb3a8; color:#1e0e08; font-family:Arial,sans-serif; font-size:0.78rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; padding:0.45rem 1rem; border-radius:3px; transition:background 0.2s;" onmouseover="this.style.background='#c8623a'" onmouseout="this.style.background='#4fb3a8'">← Back to Site</a>
+<header>
+  <a href="https://kingsofewing.com" class="header-logo">
+    <img src="/docs/resources/branding/Kings_of_Ewing_Logo.png" alt="Kings of Ewing">
+  </a>
+  <a href="https://kingsofewing.com" class="header-back">← Back to site</a>
+</header>
+
+<div class="hero">
+  <h1>Quick Links</h1>
+  <p>Kings of Ewing — copy &amp; share as needed</p>
 </div>
 
-<h1>Kings of Ewing</h1>
-<p class="subtitle">Quick reference links — copy and paste as needed</p>
+<main>
 
-<h2>Website</h2>
-<div class="link-row">
-  <span class="link-label">This Links Page</span>
-  <a class="link-url" href="https://www.kingsofewing.com/docs/resources/Kings_of_Ewing_Links.html" target="_blank">https://www.kingsofewing.com/docs/resources/Kings_of_Ewing_Links.html</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/resources/Kings_of_Ewing_Links.html')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Main Website</span>
-  <a class="link-url" href="https://www.kingsofewing.com" target="_blank">https://www.kingsofewing.com</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Shows Section</span>
-  <a class="link-url" href="https://www.kingsofewing.com/#shows" target="_blank">https://www.kingsofewing.com/#shows</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/#shows')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Book the Band</span>
-  <a class="link-url" href="https://www.kingsofewing.com/#book" target="_blank">https://www.kingsofewing.com/#book</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/#book')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Sheet Music</span>
-  <a class="link-url" href="https://www.kingsofewing.com/docs/music/music_pdf_links.html" target="_blank">https://www.kingsofewing.com/docs/music/music_pdf_links.html</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/music/music_pdf_links.html')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">About / Setlist</span>
-  <a class="link-url" href="https://www.kingsofewing.com/#about" target="_blank">https://www.kingsofewing.com/#about</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/#about')">Copy</button>
-</div>
+  <div class="section-label">Website</div>
+  <div class="link-grid">
+    <div class="link-card">
+      <span class="link-icon">🔗</span>
+      <div class="link-info">
+        <span class="link-label">Main Website</span>
+        <a class="link-url" href="https://www.kingsofewing.com" target="_blank">kingsofewing.com</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🎤</span>
+      <div class="link-info">
+        <span class="link-label">Shows Section</span>
+        <a class="link-url" href="https://www.kingsofewing.com/#shows" target="_blank">kingsofewing.com/#shows</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/#shows')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">📅</span>
+      <div class="link-info">
+        <span class="link-label">Book the Band</span>
+        <a class="link-url" href="https://www.kingsofewing.com/#book" target="_blank">kingsofewing.com/#book</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/#book')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🎵</span>
+      <div class="link-info">
+        <span class="link-label">Sheet Music</span>
+        <a class="link-url" href="https://www.kingsofewing.com/docs/music/music_pdf_links.html" target="_blank">kingsofewing.com/docs/music/music_pdf_links.html</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/music/music_pdf_links.html')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">ℹ️</span>
+      <div class="link-info">
+        <span class="link-label">About / Setlist</span>
+        <a class="link-url" href="https://www.kingsofewing.com/#about" target="_blank">kingsofewing.com/#about</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/#about')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🔗</span>
+      <div class="link-info">
+        <span class="link-label">This Links Page</span>
+        <a class="link-url" href="https://www.kingsofewing.com/docs/resources/Kings_of_Ewing_Links.html" target="_blank">kingsofewing.com/docs/resources/Kings_of_Ewing_Links.html</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/resources/Kings_of_Ewing_Links.html')">Copy</button>
+    </div>
+  </div>
 
-<h2>Socials</h2>
-<div class="link-row">
-  <span class="link-label">Instagram</span>
-  <a class="link-url" href="https://www.instagram.com/kingsofewing/" target="_blank">https://www.instagram.com/kingsofewing/</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.instagram.com/kingsofewing/')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">YouTube</span>
-  <a class="link-url" href="https://www.youtube.com/@KingsofEwing" target="_blank">https://www.youtube.com/@KingsofEwing</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.youtube.com/@KingsofEwing')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">SoundCloud</span>
-  <a class="link-url" href="https://soundcloud.com/kingsofewing" target="_blank">https://soundcloud.com/kingsofewing</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://soundcloud.com/kingsofewing')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Facebook</span>
-  <a class="link-url" href="https://www.facebook.com/profile.php?id=61589244524113" target="_blank">https://www.facebook.com/profile.php?id=61589244524113</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.facebook.com/profile.php?id=61589244524113')">Copy</button>
-</div>
+  <div class="section-label">Socials</div>
+  <div class="link-grid">
+    <div class="link-card">
+      <span class="link-icon">📸</span>
+      <div class="link-info">
+        <span class="link-label">Instagram</span>
+        <a class="link-url" href="https://www.instagram.com/kingsofewing/" target="_blank">instagram.com/kingsofewing</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.instagram.com/kingsofewing/')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">▶️</span>
+      <div class="link-info">
+        <span class="link-label">YouTube</span>
+        <a class="link-url" href="https://www.youtube.com/@KingsofEwing" target="_blank">youtube.com/@KingsofEwing</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.youtube.com/@KingsofEwing')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🎧</span>
+      <div class="link-info">
+        <span class="link-label">SoundCloud</span>
+        <a class="link-url" href="https://soundcloud.com/kingsofewing" target="_blank">soundcloud.com/kingsofewing</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://soundcloud.com/kingsofewing')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">👥</span>
+      <div class="link-info">
+        <span class="link-label">Facebook</span>
+        <a class="link-url" href="https://www.facebook.com/profile.php?id=61589244524113" target="_blank">facebook.com/profile.php?id=61589244524113</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.facebook.com/profile.php?id=61589244524113')">Copy</button>
+    </div>
+  </div>
 
-<h2>Contact</h2>
-<div class="link-row">
-  <span class="link-label">Email</span>
-  <a class="link-url" href="mailto:Miles@KingsOfEwing.com">Miles@KingsOfEwing.com</a>
-  <button class="copy-btn" onclick="copyLink(this, 'Miles@KingsOfEwing.com')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Phone</span>
-  <a class="link-url" href="tel:7348837119">(734) 883-7119</a>
-  <button class="copy-btn" onclick="copyLink(this, '(734) 883-7119')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Booking Form</span>
-  <a class="link-url" href="https://www.kingsofewing.com/#book" target="_blank">https://www.kingsofewing.com/#book</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/#book')">Copy</button>
-</div>
+  <div class="section-label">Contact</div>
+  <div class="link-grid">
+    <div class="link-card">
+      <span class="link-icon">✉️</span>
+      <div class="link-info">
+        <span class="link-label">Email</span>
+        <a class="link-url" href="mailto:Miles@KingsOfEwing.com">Miles@KingsOfEwing.com</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'Miles@KingsOfEwing.com')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">📞</span>
+      <div class="link-info">
+        <span class="link-label">Phone</span>
+        <a class="link-url" href="tel:7348837119">(734) 883-7119</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, '(734) 883-7119')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">📅</span>
+      <div class="link-info">
+        <span class="link-label">Booking Form</span>
+        <a class="link-url" href="https://www.kingsofewing.com/#book" target="_blank">kingsofewing.com/#book</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/#book')">Copy</button>
+    </div>
+  </div>
 
-<h2>Downloads</h2>
-<div class="link-row">
-  <span class="link-label">Full Press Kit</span>
-  <a class="link-url" href="https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Press_Kit.zip" target="_blank">https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Press_Kit.zip</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Press_Kit.zip')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Band Bio</span>
-  <a class="link-url" href="https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Bio.txt" target="_blank">https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Bio.txt</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Bio.txt')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Song List PDF</span>
-  <a class="link-url" href="https://www.kingsofewing.com/docs/resources/Kings_of_Ewing_Song_List.pdf" target="_blank">https://www.kingsofewing.com/docs/resources/Kings_of_Ewing_Song_List.pdf</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/resources/Kings_of_Ewing_Song_List.pdf')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Stage Diagram (SVG)</span>
-  <a class="link-url" href="https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Stage_Diagram.svg" target="_blank">https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Stage_Diagram.svg</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Stage_Diagram.svg')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Stage Diagram (PDF)</span>
-  <a class="link-url" href="https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Stage_Diagram.pdf" target="_blank">https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Stage_Diagram.pdf</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Stage_Diagram.pdf')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Logo (PNG)</span>
-  <a class="link-url" href="https://www.kingsofewing.com/docs/resources/branding/Kings_of_Ewing_Logo.png" target="_blank">https://www.kingsofewing.com/docs/resources/branding/Kings_of_Ewing_Logo.png</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/resources/branding/Kings_of_Ewing_Logo.png')">Copy</button>
-</div>
+  <div class="section-label">Downloads</div>
+  <div class="link-grid">
+    <div class="link-card">
+      <span class="link-icon">📦</span>
+      <div class="link-info">
+        <span class="link-label">Full Press Kit</span>
+        <a class="link-url" href="https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Press_Kit.zip" target="_blank">…/Kings_of_Ewing_Press_Kit.zip</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Press_Kit.zip')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">📄</span>
+      <div class="link-info">
+        <span class="link-label">Band Bio</span>
+        <a class="link-url" href="https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Bio.txt" target="_blank">…/Kings_of_Ewing_Bio.txt</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Bio.txt')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">📋</span>
+      <div class="link-info">
+        <span class="link-label">Song List PDF</span>
+        <a class="link-url" href="https://www.kingsofewing.com/docs/resources/Kings_of_Ewing_Song_List.pdf" target="_blank">…/Kings_of_Ewing_Song_List.pdf</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/resources/Kings_of_Ewing_Song_List.pdf')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🎸</span>
+      <div class="link-info">
+        <span class="link-label">Stage Diagram (SVG)</span>
+        <a class="link-url" href="https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Stage_Diagram.svg" target="_blank">…/Kings_of_Ewing_Stage_Diagram.svg</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Stage_Diagram.svg')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🎸</span>
+      <div class="link-info">
+        <span class="link-label">Stage Diagram (PDF)</span>
+        <a class="link-url" href="https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Stage_Diagram.pdf" target="_blank">…/Kings_of_Ewing_Stage_Diagram.pdf</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/resources/branding/Kings_of_Ewing_Stage_Diagram.pdf')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🖼️</span>
+      <div class="link-info">
+        <span class="link-label">Logo (PNG)</span>
+        <a class="link-url" href="https://www.kingsofewing.com/docs/resources/branding/Kings_of_Ewing_Logo.png" target="_blank">…/Kings_of_Ewing_Logo.png</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/resources/branding/Kings_of_Ewing_Logo.png')">Copy</button>
+    </div>
+  </div>
 
-<h2>Setlists</h2>
-<div class="link-row">
-  <span class="link-label">Setlists (XLSX)</span>
-  <a class="link-url" href="https://www.kingsofewing.com/docs/resources/setlists/Kings_of_Ewing_Setlists.xlsx" target="_blank">https://www.kingsofewing.com/docs/resources/setlists/Kings_of_Ewing_Setlists.xlsx</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/resources/setlists/Kings_of_Ewing_Setlists.xlsx')">Copy</button>
-</div>
+  <div class="section-label">Setlists</div>
+  <div class="link-grid">
+    <div class="link-card">
+      <span class="link-icon">📊</span>
+      <div class="link-info">
+        <span class="link-label">Setlists (XLSX)</span>
+        <a class="link-url" href="https://www.kingsofewing.com/docs/resources/setlists/Kings_of_Ewing_Setlists.xlsx" target="_blank">…/Kings_of_Ewing_Setlists.xlsx</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/resources/setlists/Kings_of_Ewing_Setlists.xlsx')">Copy</button>
+    </div>
+  </div>
 
-<h2>Audio — Live Covers</h2>
-<div class="link-row">
-  <span class="link-label">Don't Let Me Down</span>
-  <a class="link-url" href="https://www.kingsofewing.com/docs/audio/dont_let_me_down.mp3" target="_blank">https://www.kingsofewing.com/docs/audio/dont_let_me_down.mp3</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/dont_let_me_down.mp3')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">End of the World</span>
-  <a class="link-url" href="https://www.kingsofewing.com/docs/audio/end_of_the_world.mp3" target="_blank">https://www.kingsofewing.com/docs/audio/end_of_the_world.mp3</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/end_of_the_world.mp3')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Head Over Heels</span>
-  <a class="link-url" href="https://www.kingsofewing.com/docs/audio/head_over_heels.mp3" target="_blank">https://www.kingsofewing.com/docs/audio/head_over_heels.mp3</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/head_over_heels.mp3')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Midnight Rider</span>
-  <a class="link-url" href="https://www.kingsofewing.com/docs/audio/midnight_rider.mp3" target="_blank">https://www.kingsofewing.com/docs/audio/midnight_rider.mp3</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/midnight_rider.mp3')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Ohio</span>
-  <a class="link-url" href="https://www.kingsofewing.com/docs/audio/ohio.mp3" target="_blank">https://www.kingsofewing.com/docs/audio/ohio.mp3</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/ohio.mp3')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Whipping Post</span>
-  <a class="link-url" href="https://www.kingsofewing.com/docs/audio/whipping_post.mp3" target="_blank">https://www.kingsofewing.com/docs/audio/whipping_post.mp3</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/whipping_post.mp3')">Copy</button>
-</div>
+  <div class="section-label">Audio — Live Covers</div>
+  <div class="link-grid">
+    <div class="link-card">
+      <span class="link-icon">🎶</span>
+      <div class="link-info">
+        <span class="link-label">Don't Let Me Down</span>
+        <a class="link-url" href="https://www.kingsofewing.com/docs/audio/dont_let_me_down.mp3" target="_blank">…/dont_let_me_down.mp3</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/dont_let_me_down.mp3')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🎶</span>
+      <div class="link-info">
+        <span class="link-label">End of the World</span>
+        <a class="link-url" href="https://www.kingsofewing.com/docs/audio/end_of_the_world.mp3" target="_blank">…/end_of_the_world.mp3</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/end_of_the_world.mp3')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🎶</span>
+      <div class="link-info">
+        <span class="link-label">Head Over Heels</span>
+        <a class="link-url" href="https://www.kingsofewing.com/docs/audio/head_over_heels.mp3" target="_blank">…/head_over_heels.mp3</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/head_over_heels.mp3')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🎶</span>
+      <div class="link-info">
+        <span class="link-label">Midnight Rider</span>
+        <a class="link-url" href="https://www.kingsofewing.com/docs/audio/midnight_rider.mp3" target="_blank">…/midnight_rider.mp3</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/midnight_rider.mp3')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🎶</span>
+      <div class="link-info">
+        <span class="link-label">Ohio</span>
+        <a class="link-url" href="https://www.kingsofewing.com/docs/audio/ohio.mp3" target="_blank">…/ohio.mp3</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/ohio.mp3')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">🎶</span>
+      <div class="link-info">
+        <span class="link-label">Whipping Post</span>
+        <a class="link-url" href="https://www.kingsofewing.com/docs/audio/whipping_post.mp3" target="_blank">…/whipping_post.mp3</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.kingsofewing.com/docs/audio/whipping_post.mp3')">Copy</button>
+    </div>
+  </div>
 
-<h2>YouTube Videos</h2>
-<div class="link-row">
-  <span class="link-label">Live at Goat Village</span>
-  <a class="link-url" href="https://www.youtube.com/watch?v=PhVwRvgKHvQ" target="_blank">https://www.youtube.com/watch?v=PhVwRvgKHvQ</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.youtube.com/watch?v=PhVwRvgKHvQ')">Copy</button>
-</div>
-<div class="link-row">
-  <span class="link-label">Live at Chicago Union</span>
-  <a class="link-url" href="https://www.youtube.com/watch?v=mMwmRn1mP-A" target="_blank">https://www.youtube.com/watch?v=mMwmRn1mP-A</a>
-  <button class="copy-btn" onclick="copyLink(this, 'https://www.youtube.com/watch?v=mMwmRn1mP-A')">Copy</button>
-</div>
+  <div class="section-label">YouTube Videos</div>
+  <div class="link-grid">
+    <div class="link-card">
+      <span class="link-icon">▶️</span>
+      <div class="link-info">
+        <span class="link-label">Live at Goat Village</span>
+        <a class="link-url" href="https://www.youtube.com/watch?v=PhVwRvgKHvQ" target="_blank">youtube.com/watch?v=PhVwRvgKHvQ</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.youtube.com/watch?v=PhVwRvgKHvQ')">Copy</button>
+    </div>
+    <div class="link-card">
+      <span class="link-icon">▶️</span>
+      <div class="link-info">
+        <span class="link-label">Live at Chicago Union</span>
+        <a class="link-url" href="https://www.youtube.com/watch?v=mMwmRn1mP-A" target="_blank">youtube.com/watch?v=mMwmRn1mP-A</a>
+      </div>
+      <button class="copy-btn" onclick="copyLink(this, 'https://www.youtube.com/watch?v=mMwmRn1mP-A')">Copy</button>
+    </div>
+  </div>
 
-<footer>Kings of Ewing &nbsp;·&nbsp; KingsOfEwing.com &nbsp;·&nbsp; Miles@KingsOfEwing.com</footer>
+</main>
+
+<footer>
+  <a href="https://kingsofewing.com">KingsOfEwing.com</a> &nbsp;·&nbsp; <a href="mailto:Miles@KingsOfEwing.com">Miles@KingsOfEwing.com</a>
+</footer>
 
 <script>
 function copyLink(btn, text) {
