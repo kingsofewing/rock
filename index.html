@@ -44,7 +44,9 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--c
 
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; background: rgba(30,14,8,0.97); backdrop-filter: blur(8px); border-bottom: 2px solid var(--teal); }
 
-.nav-logo img { height: 48px; width: auto; display: block; }
+.nav-logo { font-family: 'Pacifico', cursive; font-size: 1.3rem; color: var(--cream); text-decoration: none; transition: color 0.2s; }
+
+.nav-logo:hover { color: var(--teal); }
 
 .nav-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
 
@@ -425,7 +427,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <body>
 <a href="#hero" class="skip-link">Skip to main content</a>
 <nav role="navigation" aria-label="Primary">
-  <a href="#hero" class="nav-logo"><img src="docs/resources/branding/Kings_of_Ewing_Logo.png" alt="Kings of Ewing" style="filter:brightness(0) invert(1);"></a>
+  <a href="#hero" class="nav-logo">Kings of Ewing</a>
   <ul class="nav-links">
     <li><a href="#social">Socials</a></li>
     <li><a href="#mailing">Mailing List</a></li>
