@@ -146,6 +146,8 @@ footer   { background: var(--brown); border-top: 2px solid var(--teal); text-ali
 
 .show-day { font-family: 'Pacifico', cursive; font-size: 1.9rem; color: var(--cream); line-height: 1.1; }
 
+.show-year { font-size: 0.6rem; letter-spacing: 0.18em; color: rgba(232,223,192,0.4); font-weight: 500; margin-top: 0.2rem; }
+
 .show-info h3 { font-size: 0.95rem; font-weight: 600; color: var(--cream); margin-bottom: 0.25rem; }
 
 .show-info h3 a { color: var(--cream); text-decoration: none; border-bottom: 1px solid rgba(79,179,168,0.5); transition: color 0.2s, border-color 0.2s; }
@@ -165,6 +167,8 @@ footer   { background: var(--brown); border-top: 2px solid var(--teal); text-ali
 .past .show-month { color: rgba(232,223,192,0.35); }
 
 .past .show-day { color: rgba(232,223,192,0.4); }
+
+.past .show-year { color: rgba(232,223,192,0.2); }
 
 .past .show-info h3 { color: rgba(232,223,192,0.5); }
 
@@ -580,7 +584,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <div class="divider"></div>
     <div class="shows-tabs">
       <button class="tab-btn active" onclick="switchTab('upcoming', this)">Upcoming</button>
-      <button class="tab-btn" onclick="switchTab('past', this)">Past Gigs</button>
+      <button class="tab-btn" onclick="switchTab('past', this)">Past</button>
     </div>
     <div class="tab-panel active" id="tab-upcoming">
       <div class="show-list" id="upcoming-list"></div>
@@ -856,24 +860,24 @@ const SHOWS = [
   { date: '2026-05-16', venue: 'Private Party', detail: '7:00 PM' },
   { date: '2026-06-21', venue: '<a href="https://watchufa.com/union" target="_blank" rel="noopener noreferrer">Chicago Union</a>', detail: '5:00 PM &middot; ETHS Lazier Field' },
   { date: '2026-06-24', venue: '<a href="https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893" target="_blank" rel="noopener noreferrer">Ridgeville Parks District</a>', detail: '6:00 PM' },
-  { date: '2026-09-12', venue: 'Ewing Block Party', detail: '2026' },
-  { date: '2026-04-24', venue: '<a href="https://www.evanstonpost42.com/" target="_blank" rel="noopener noreferrer">American Legion Post 42</a>', detail: 'April 2026 &middot; D65 One Fund Spring Cha Ching' },
-  { date: '2026-01-24', venue: '<a href="https://www.goatvillage777.com/" target="_blank" rel="noopener noreferrer">Goat Village</a>', detail: 'January 2026' },
-  { date: '2025-11-16', venue: '<a href="https://www.doubleclutchbrewing.com/" target="_blank" rel="noopener noreferrer">Double Clutch</a>', detail: 'November 2025' },
-  { date: '2025-10-18', venue: '<a href="https://www.macksbikeandgoods.com/" target="_blank" rel="noopener noreferrer">Mack\'s Bike &amp; Goods</a>', detail: 'October 2025 &middot; Fall Fest', cancelled: true },
-  { date: '2025-10-10', venue: 'Ackerman Park', detail: 'October 2025 &middot; <a href="https://www.investinevanston.com/" target="_blank" rel="noopener noreferrer">Invest in Neighborhood Schools</a>' },
-  { date: '2025-09-06', venue: 'Ewing Block Party', detail: 'September 2025' },
-  { date: '2025-06-25', venue: '<a href="https://www.evanstonpost42.com/" target="_blank" rel="noopener noreferrer">American Legion Post 42</a>', detail: 'June 2025' },
-  { date: '2025-06-07', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: 'June 2025' },
-  { date: '2025-04-03', venue: 'Lincolnwood Spring Fling', detail: 'April 2025 &middot; PTA Spring Fling' },
-  { date: '2024-10-09', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: 'October 2024 &middot; <a href="https://www.covenantnurseryschool.org/" target="_blank" rel="noopener noreferrer">Covenant Nursery School</a> Dining for Dollars' },
-  { date: '2024-09-07', venue: 'Ewing Block Party', detail: 'September 2024' },
-  { date: '2024-08-24', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: 'August 2024' },
-  { date: '2024-08-17', venue: 'Private Party', detail: 'August 2024' },
-  { date: '2024-07-21', venue: '<a href="https://watchufa.com/union" target="_blank" rel="noopener noreferrer">Chicago Union</a>', detail: 'July 2024' },
-  { date: '2024-06-07', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: 'June 2024' },
-  { date: '2024-04-26', venue: 'Lincolnwood Spring Fling', detail: 'April 2024 &middot; PTA Spring Fling' },
-  { date: '2023-09-09', venue: 'Ewing Block Party', detail: 'September 2023' },
+  { date: '2026-09-12', venue: 'Ewing Block Party', detail: '' },
+  { date: '2026-04-24', venue: '<a href="https://www.evanstonpost42.com/" target="_blank" rel="noopener noreferrer">American Legion Post 42</a>', detail: 'D65 One Fund Spring Cha Ching' },
+  { date: '2026-01-24', venue: '<a href="https://www.goatvillage777.com/" target="_blank" rel="noopener noreferrer">Goat Village</a>', detail: '' },
+  { date: '2025-11-16', venue: '<a href="https://www.doubleclutchbrewing.com/" target="_blank" rel="noopener noreferrer">Double Clutch</a>', detail: '' },
+  { date: '2025-10-18', venue: '<a href="https://www.macksbikeandgoods.com/" target="_blank" rel="noopener noreferrer">Mack\'s Bike &amp; Goods</a>', detail: 'Fall Fest', cancelled: true },
+  { date: '2025-10-10', venue: 'Ackerman Park', detail: '<a href="https://www.investinevanston.com/" target="_blank" rel="noopener noreferrer">Invest in Neighborhood Schools</a>' },
+  { date: '2025-09-06', venue: 'Ewing Block Party', detail: '' },
+  { date: '2025-06-25', venue: '<a href="https://www.evanstonpost42.com/" target="_blank" rel="noopener noreferrer">American Legion Post 42</a>', detail: '' },
+  { date: '2025-06-07', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: '' },
+  { date: '2025-04-03', venue: 'Lincolnwood Spring Fling', detail: 'PTA Spring Fling' },
+  { date: '2024-10-09', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: '<a href="https://www.covenantnurseryschool.org/" target="_blank" rel="noopener noreferrer">Covenant Nursery School</a> Dining for Dollars' },
+  { date: '2024-09-07', venue: 'Ewing Block Party', detail: '' },
+  { date: '2024-08-24', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: '' },
+  { date: '2024-08-17', venue: 'Private Party', detail: '' },
+  { date: '2024-07-21', venue: '<a href="https://watchufa.com/union" target="_blank" rel="noopener noreferrer">Chicago Union</a>', detail: '' },
+  { date: '2024-06-07', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: '' },
+  { date: '2024-04-26', venue: 'Lincolnwood Spring Fling', detail: 'PTA Spring Fling' },
+  { date: '2023-09-09', venue: 'Ewing Block Party', detail: '' },
 ];
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -892,9 +896,10 @@ function buildShows() {
   function render(s, isPast) {
     const d = new Date(s.date + 'T00:00:00');
     const cancelled = s.cancelled ? '<p class="cancelled">⛈ Cancelled due to weather</p>' : '';
+    const detailHtml = s.detail ? `<p>${s.detail}</p>` : '';
     return `<div class="${isPast ? 'show-item past' : 'show-item'}">
-      <div class="show-date"><div class="show-month">${MONTHS[d.getMonth()]}</div><div class="show-day">${d.getDate()}</div></div>
-      <div class="show-info"><h3>${s.venue}</h3><p>${s.detail}</p>${cancelled}</div>
+      <div class="show-date"><div class="show-month">${MONTHS[d.getMonth()]}</div><div class="show-day">${d.getDate()}</div><div class="show-year">${d.getFullYear()}</div></div>
+      <div class="show-info"><h3>${s.venue}</h3>${detailHtml}${cancelled}</div>
     </div>`;
   }
 
