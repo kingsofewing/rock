@@ -318,7 +318,6 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.0
   }
   @media (max-width: 540px) {
     .sticky-controls { padding: 0 8px; gap: 0.5rem; }
-    .sticky-logo { display: none; }
   }
 
 #sticky-player.visible { display: flex; }
@@ -402,7 +401,23 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   width: 100%;
   height: auto;
   object-fit: cover;
-}</style>
+}
+
+/* Audio transport buttons (prev/next in main player) */
+.player-transport-btn { background: none; border: none; cursor: pointer; color: var(--cream); opacity: 0.7; padding: 4px; transition: opacity 0.2s; display: flex; align-items: center; }
+.player-transport-btn:hover { opacity: 1; }
+.player-transport-btn:focus-visible { opacity: 1; outline: none; box-shadow: 0 0 0 2px var(--teal); }
+
+/* Footer social icon links */
+.footer-social-link { color: rgba(232,223,192,0.4); transition: color 0.2s; display: inline-flex; }
+.footer-social-link:hover, .footer-social-link:focus-visible { color: var(--teal); outline: none; }
+
+/* Honeypot — visually hidden, still accessible to bots */
+.honeypot { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* Progress bar keyboard focus */
+.progress-bar { width: 100%; height: 4px; background: rgba(232,223,192,0.15); border-radius: 2px; cursor: pointer; margin-bottom: 0.8rem; }
+.progress-bar:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -430,7 +445,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 </script>
 </head>
 <body>
-<a href="#hero" class="skip-link">Skip to main content</a>
+<a href="#main" class="skip-link">Skip to main content</a>
 <nav role="navigation" aria-label="Primary">
   <a href="#hero" class="nav-logo">Kings of Ewing</a>
   <ul class="nav-links">
@@ -441,20 +456,21 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <li><a href="#book">Book</a></li>
     <li><a href="mailto:Miles@KingsOfEwing.com">Contact</a></li>
   </ul>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false">
+  <button class="hamburger" id="hamburger-btn" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#social" onclick="closeMenu()">Socials</a>
-  <a href="#mailing" onclick="closeMenu()">Mailing List</a>
-  <a href="#shows" onclick="closeMenu()">Shows</a>
-  <a href="#about" onclick="closeMenu()">About</a>
-  <a href="#book" onclick="closeMenu()">Book</a>
-  <a href="mailto:Miles@KingsOfEwing.com" onclick="closeMenu()">Contact</a>
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <a href="#social" data-close-menu>Socials</a>
+  <a href="#mailing" data-close-menu>Mailing List</a>
+  <a href="#shows" data-close-menu>Shows</a>
+  <a href="#about" data-close-menu>About</a>
+  <a href="#book" data-close-menu>Book</a>
+  <a href="mailto:Miles@KingsOfEwing.com" data-close-menu>Contact</a>
 </div>
 
+<main id="main">
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
   <p class="hero-tagline">Live Music &middot; Covers &amp; Originals</p>
@@ -477,28 +493,28 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <span style="font-family:'Pacifico',cursive; font-size:1.1rem; color:var(--teal); letter-spacing:0.02em; display:block; margin-bottom:0.5rem;">&#9835; Play Us While You Scroll</span>
     <span style="display:block; font-size:0.68rem; letter-spacing:0.15em; color:rgba(232,223,192,0.45); margin-bottom:1rem; text-transform:uppercase;">All Live Covers</span>
     <div id="player-track-name" style="font-size:0.8rem; letter-spacing:0.1em; color:var(--cream); min-height:1.2em; margin-bottom:0.6rem; text-align:center;">—</div>
-    <!-- Progress bar -->
-    <div onclick="seekTo(event,this)" style="width:100%; height:4px; background:rgba(232,223,192,0.15); border-radius:2px; cursor:pointer; margin-bottom:0.8rem;">
+    <!-- Progress bar (keyboard accessible) -->
+    <div id="player-progress-track" class="progress-bar" role="slider" tabindex="0" aria-label="Seek audio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
       <div id="player-progress-bar" style="height:100%; width:0%; background:var(--teal); border-radius:2px; pointer-events:none;"></div>
     </div>
     <!-- Transport controls -->
     <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:0.8rem;">
-      <button onclick="playerPrev()" title="Previous" style="background:none; border:none; cursor:pointer; color:var(--cream); opacity:0.7; padding:4px;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
+      <button id="player-prev-btn" class="player-transport-btn" aria-label="Previous track" title="Previous">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
       </button>
-      <button onclick="playerPlayPause()" id="player-play-btn" title="Play" style="background:var(--coral); border:none; cursor:pointer; color:var(--brown); border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center;">
-        <svg id="player-play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-        <svg id="player-pause-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="display:none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      <button id="player-play-btn" aria-label="Play" title="Play" style="background:var(--coral); border:none; cursor:pointer; color:var(--brown); border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center;">
+        <svg id="player-play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
+        <svg id="player-pause-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="display:none;" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
       </button>
-      <button onclick="playerNext()" title="Next" style="background:none; border:none; cursor:pointer; color:var(--cream); opacity:0.7; padding:4px;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
+      <button id="player-next-btn" class="player-transport-btn" aria-label="Next track" title="Next">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
       </button>
     </div>
     <!-- Volume -->
     <div style="display:flex; align-items:center; justify-content:center; gap:0.6rem;">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-      <input type="range" id="player-volume" min="0" max="1" step="0.05" value="0.8" oninput="document.getElementById('band-audio').volume=this.value" style="width:90px; accent-color:var(--teal); cursor:pointer;">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;" aria-hidden="true"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      <input type="range" id="player-volume" min="0" max="1" step="0.05" value="0.8" aria-label="Volume" style="width:90px; accent-color:var(--teal); cursor:pointer;">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;" aria-hidden="true"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
     </div>
   </div><!-- end audio-box -->
 
@@ -557,22 +573,17 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <div style="width:40px;height:2px;background:var(--coral);margin:0.8rem auto 1.5rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:380px; margin:0 auto 1.8rem; line-height:1.75;">Get notified when we announce new shows. No spam, just gigs.</p>
 
-  <!-- MailerLite embed -->
-  
-
   <div id="ml-signup" style="display:flex; flex-direction:column; align-items:center; gap:0.75rem; width:100%; max-width:420px; margin:0 auto;">
     <div id="ml-form-row" style="display:flex; gap:0.5rem; width:100%;">
-      <input type="email" id="ml-email" placeholder="herbie@hancock.com" autocomplete="email"
+      <input type="email" id="ml-email" placeholder="herbie@hancock.com" autocomplete="email" aria-label="Email address"
         style="flex:1; padding:0.65rem 1rem; background:rgba(255,255,255,0.08); border:1px solid rgba(232,223,192,0.3); color:var(--cream); font-size:0.9rem; border-radius:0; outline:none;">
-      <button onclick="mlSignup()" style="padding:0.65rem 1.4rem; background:var(--coral); border:none; color:var(--brown); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; cursor:pointer;">
+      <button type="button" id="ml-submit-btn" style="padding:0.65rem 1.4rem; background:var(--coral); border:none; color:var(--brown); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; cursor:pointer;">
         SIGN ME UP
       </button>
     </div>
-    <p id="ml-success" style="display:none; color:var(--teal); font-size:0.85rem; letter-spacing:0.05em;">Thanks! You're on the list. 🎸</p>
-    <p id="ml-error" style="display:none; color:var(--coral); font-size:0.8rem;">Something went wrong. Try again!</p>
+    <p id="ml-success" style="display:none; color:var(--teal); font-size:0.85rem; letter-spacing:0.05em;" aria-live="polite">Thanks! You're on the list. 🎸</p>
+    <p id="ml-error" style="display:none; color:var(--coral); font-size:0.8rem;" aria-live="polite">Something went wrong. Try again!</p>
   </div>
-  
-
 
 </section>
 
@@ -582,18 +593,18 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <p class="section-label">On the calendar</p>
     <h2 class="section-title">Shows</h2>
     <div class="divider"></div>
-    <div class="shows-tabs">
-      <button class="tab-btn active" onclick="switchTab('upcoming', this)">Upcoming</button>
-      <button class="tab-btn" onclick="switchTab('past', this)">Past</button>
+    <div class="shows-tabs" role="tablist" aria-label="Shows">
+      <button class="tab-btn active" id="tab-btn-upcoming" data-tab="upcoming" role="tab" aria-selected="true" aria-controls="tab-upcoming" tabindex="0">Upcoming</button>
+      <button class="tab-btn" id="tab-btn-past" data-tab="past" role="tab" aria-selected="false" aria-controls="tab-past" tabindex="-1">Past</button>
     </div>
-    <div class="tab-panel active" id="tab-upcoming">
+    <div class="tab-panel active" id="tab-upcoming" role="tabpanel" aria-labelledby="tab-btn-upcoming">
       <div class="show-list" id="upcoming-list"></div>
       <div style="margin-top: 2.5rem;" class="cta-pair">
         <a href="#book" class="btn btn-coral">Book</a>
         <a href="mailto:Miles@KingsOfEwing.com" class="btn btn-coral">Contact</a>
       </div>
     </div>
-    <div class="tab-panel" id="tab-past">
+    <div class="tab-panel" id="tab-past" role="tabpanel" aria-labelledby="tab-btn-past" hidden>
       <div class="show-list" id="past-list"></div>
       <div style="margin-top: 2.5rem;" class="cta-pair">
         <a href="#book" class="btn btn-coral">Book</a>
@@ -617,10 +628,10 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
       <p class="songs-label">Photos</p>
       <div class="photo-gallery">
-        <img src="docs/images/IMG_2445.jpeg" alt="Kings of Ewing at The Fat Shallot">
-        <img src="docs/images/kings_of_ewing-1.jpg" alt="Kings of Ewing at Double Clutch">
-        <img src="docs/images/IMG_1810.jpeg" alt="Kings of Ewing at Chicago Union">
-        <img src="docs/images/Resized_IMG_5512.jpg.jpeg" alt="Kings of Ewing at Goat Village">
+        <img src="docs/images/IMG_2445.jpeg" alt="Kings of Ewing at The Fat Shallot" loading="lazy" decoding="async">
+        <img src="docs/images/kings_of_ewing-1.jpg" alt="Kings of Ewing at Double Clutch" loading="lazy" decoding="async">
+        <img src="docs/images/IMG_1810.jpeg" alt="Kings of Ewing at Chicago Union" loading="lazy" decoding="async">
+        <img src="docs/images/Resized_IMG_5512.jpg.jpeg" alt="Kings of Ewing at Goat Village" loading="lazy" decoding="async">
       </div>
 
       <p class="songs-label"><a href="docs/music/music_pdf_links.html" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">A Sample of What We Play</a></p>
@@ -753,13 +764,18 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <h2 class="section-title">Book the Band</h2>
     <div class="divider" style="margin: 0.8rem auto 2rem;"></div>
     <p style="color:rgba(232,223,192,0.55); font-size:0.95rem; line-height:1.8; margin-bottom:2rem; text-align:center;">Fill out the form below and we&rsquo;ll get back to you. Prefer to reach out directly? Email us at <a href="mailto:Miles@KingsOfEwing.com" class="email-link">Miles@KingsOfEwing.com</a>.</p>
-    <form action="https://formspree.io/f/mwvynqoe" method="POST" id="booking-form">
-      <div class="form-row">
-        <div class="form-field"><label for="name">Your Name *</label><input type="text" id="name" name="name" placeholder="Herbie Hancock" required></div>
-        <div class="form-field"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="herbie@hancock.com" required></div>
+    <form action="https://formspree.io/f/mwvynqoe" method="POST" id="booking-form" novalidate>
+      <!-- Honeypot field - bots fill this in, humans don't see it -->
+      <div class="honeypot" aria-hidden="true">
+        <label for="website">Leave this field empty</label>
+        <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off">
       </div>
       <div class="form-row">
-        <div class="form-field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(847) 867-5309"></div>
+        <div class="form-field"><label for="name">Your Name *</label><input type="text" id="name" name="name" placeholder="Herbie Hancock" required autocomplete="name"></div>
+        <div class="form-field"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="herbie@hancock.com" required autocomplete="email"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(847) 867-5309" autocomplete="tel"></div>
         <div class="form-field"><label for="event-date">Event Date</label><input type="date" id="event-date" name="event_date"></div>
       </div>
       <div class="form-row">
@@ -777,110 +793,187 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     </form>
   </div>
 </section>
+</main>
 
 <footer>
-  <img src="docs/resources/branding/Kings_of_Ewing_Logo.png" alt="Kings of Ewing" class="footer-logo">
+  <img src="docs/resources/branding/Kings_of_Ewing_Logo.png" alt="Kings of Ewing" class="footer-logo" loading="lazy" decoding="async">
   <div style="display:flex; gap:1.5rem; justify-content:center; margin:1rem 0;">
-    <a href="https://www.instagram.com/kingsofewing/" target="_blank" rel="noopener noreferrer" style="color:rgba(232,223,192,0.4); transition:color 0.2s;" onmouseover="this.style.color='#4fb3a8'" onmouseout="this.style.color='rgba(232,223,192,0.4)'">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    <a href="https://www.instagram.com/kingsofewing/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
     </a>
-    <a href="https://www.youtube.com/@KingsofEwing" target="_blank" rel="noopener noreferrer" style="color:rgba(232,223,192,0.4); transition:color 0.2s;" onmouseover="this.style.color='#4fb3a8'" onmouseout="this.style.color='rgba(232,223,192,0.4)'">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+    <a href="https://www.youtube.com/@KingsofEwing" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="YouTube">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
     </a>
-    <a href="https://soundcloud.com/kingsofewing" target="_blank" rel="noopener noreferrer" style="color:rgba(232,223,192,0.4); transition:color 0.2s;" onmouseover="this.style.color='#4fb3a8'" onmouseout="this.style.color='rgba(232,223,192,0.4)'">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 17c0 1.1.9 2 2 2h16.5c1.4 0 2.5-1.1 2.5-2.5 0-1.3-1-2.4-2.3-2.5 0-.2.1-.3.1-.5 0-2.2-1.8-4-4-4-.4 0-.8.1-1.2.2C13.8 7.5 11.9 6 9.7 6 7 6 4.8 8.2 4.8 11c0 .1 0 .3.1.4C2.7 11.9 1 14.3 1 17z"/></svg>
+    <a href="https://soundcloud.com/kingsofewing" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="SoundCloud">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 17c0 1.1.9 2 2 2h16.5c1.4 0 2.5-1.1 2.5-2.5 0-1.3-1-2.4-2.3-2.5 0-.2.1-.3.1-.5 0-2.2-1.8-4-4-4-.4 0-.8.1-1.2.2C13.8 7.5 11.9 6 9.7 6 7 6 4.8 8.2 4.8 11c0 .1 0 .3.1.4C2.7 11.9 1 14.3 1 17z"/></svg>
     </a>
-    <a href="https://www.facebook.com/profile.php?id=61589244524113" target="_blank" rel="noopener noreferrer" style="color:rgba(232,223,192,0.4); transition:color 0.2s;" onmouseover="this.style.color='#4fb3a8'" onmouseout="this.style.color='rgba(232,223,192,0.4)'">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    <a href="https://www.facebook.com/profile.php?id=61589244524113" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
     </a>
   </div>
   <p>&copy; 2026 Kings of Ewing &middot; Evanston, IL</p>
 </footer>
 <div class="chalk-banner">
-  <img src="docs/images/IMG_5358.jpeg" alt="Kings of Ewing chalk art">
+  <img src="docs/images/IMG_5358.jpeg" alt="Kings of Ewing chalk art" loading="lazy" decoding="async">
 </div>
 
 <!-- Sticky mini player -->
-<div id="sticky-player">
+<div id="sticky-player" aria-label="Now playing">
   <!-- Logos flush to edges -->
-  <img src="docs/resources/branding/Kings_of_Ewing_Logo.png" class="sticky-logo sticky-logo-left" alt="">
-  <img src="docs/resources/branding/Kings_of_Ewing_Logo.png" class="sticky-logo sticky-logo-right" alt="">
+  <img src="docs/resources/branding/Kings_of_Ewing_Logo.png" class="sticky-logo sticky-logo-left" alt="" aria-hidden="true">
+  <img src="docs/resources/branding/Kings_of_Ewing_Logo.png" class="sticky-logo sticky-logo-right" alt="" aria-hidden="true">
   <!-- Controls wrapper — centered, won't overlap logos -->
   <div class="sticky-controls">
-    <button class="sticky-btn" onclick="playerPrev()" title="Previous">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
+    <button class="sticky-btn" id="sticky-prev-btn" aria-label="Previous track" title="Previous">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
     </button>
-    <button id="sticky-play-btn" onclick="playerPlayPause()" title="Play/Pause">
-      <svg id="sticky-play-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg id="sticky-pause-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="display:none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    <button id="sticky-play-btn" aria-label="Play" title="Play/Pause">
+      <svg id="sticky-play-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg id="sticky-pause-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="display:none;" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
     </button>
-    <button class="sticky-btn" onclick="playerNext()" title="Next">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
+    <button class="sticky-btn" id="sticky-next-btn" aria-label="Next track" title="Next">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
     </button>
     <span id="sticky-track-name">—</span>
     <div id="sticky-progress-bar" style="display:none;"></div>
   </div>
 </div>
 <script>
-function mlSignup() {
-    var email = document.getElementById('ml-email').value;
-    if (!email || !email.includes('@')) {
-      document.getElementById('ml-error').style.display = 'block';
-      document.getElementById('ml-error').textContent = 'Please enter a valid email.';
-      return;
-    }
-    var fd = new FormData();
-    fd.append('fields[email]', email);
-    fd.append('ml-submit', '1');
-    fd.append('anticsrf', 'true');
-    fetch('https://assets.mailerlite.com/jsonp/2332985/forms/187010863696184576/subscribe', {
-      method: 'POST', body: fd
-    }).then(function(r) {
-      if (r.ok) {
-        document.getElementById('ml-form-row').style.display = 'none';
-        document.getElementById('ml-success').style.display = 'block';
-        document.getElementById('ml-error').style.display = 'none';
-      } else {
-        document.getElementById('ml-error').style.display = 'block';
-        document.getElementById('ml-error').textContent = 'Something went wrong. Please try again.';
-      }
-    }).catch(function() {
-      document.getElementById('ml-error').style.display = 'block';
-      document.getElementById('ml-error').textContent = 'Something went wrong. Please try again.';
-    });
-  }
-  document.getElementById('ml-email').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') { e.preventDefault(); mlSignup(); }
-  });
+// ─────────────────────────────────────────────────────────────
+// Mailing list (MailerLite custom fetch — not the embed widget)
+// ─────────────────────────────────────────────────────────────
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// NOTE: SHOWS is a hardcoded local constant. Never load this from user input or
-// a CMS without sanitizing HTML content first — venue/detail fields are rendered via innerHTML.
+function mlSignup() {
+  const emailEl = document.getElementById('ml-email');
+  const errEl   = document.getElementById('ml-error');
+  const okEl    = document.getElementById('ml-success');
+  const rowEl   = document.getElementById('ml-form-row');
+  const email   = emailEl.value.trim();
+
+  if (!EMAIL_RE.test(email)) {
+    errEl.textContent = 'Please enter a valid email.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  const fd = new FormData();
+  fd.append('fields[email]', email);
+  fd.append('ml-submit', '1');
+  fd.append('anticsrf', 'true');
+
+  fetch('https://assets.mailerlite.com/jsonp/2332985/forms/187010863696184576/subscribe', {
+    method: 'POST', body: fd
+  }).then(r => {
+    if (r.ok) {
+      rowEl.style.display = 'none';
+      okEl.style.display = 'block';
+      errEl.style.display = 'none';
+    } else {
+      errEl.textContent = 'Something went wrong. Please try again.';
+      errEl.style.display = 'block';
+    }
+  }).catch(() => {
+    errEl.textContent = 'Something went wrong. Please try again.';
+    errEl.style.display = 'block';
+  });
+}
+
+document.getElementById('ml-submit-btn').addEventListener('click', mlSignup);
+document.getElementById('ml-email').addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); mlSignup(); }
+});
+
+// ─────────────────────────────────────────────────────────────
+// Shows
+// Structured data — venue/detail are rendered safely via DOM
+// methods (no innerHTML), so no escaping needed even if this
+// is ever loaded from a CMS later.
+// ─────────────────────────────────────────────────────────────
 const SHOWS = [
-  { date: '2026-05-14', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: '5:30 PM &middot; <a href="https://www.covenantnurseryschool.org/" target="_blank" rel="noopener noreferrer">Covenant Nursery School</a> Dining for Dollars' },
-  { date: '2026-05-16', venue: 'Private Party', detail: '7:00 PM' },
-  { date: '2026-06-21', venue: '<a href="https://watchufa.com/union" target="_blank" rel="noopener noreferrer">Chicago Union</a>', detail: '5:00 PM &middot; ETHS Lazier Field' },
-  { date: '2026-06-24', venue: '<a href="https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893" target="_blank" rel="noopener noreferrer">Ridgeville Parks District</a>', detail: '6:00 PM' },
-  { date: '2026-09-12', venue: 'Ewing Block Party', detail: '' },
-  { date: '2026-04-24', venue: '<a href="https://www.evanstonpost42.com/" target="_blank" rel="noopener noreferrer">American Legion Post 42</a>', detail: 'D65 One Fund Spring Cha Ching' },
-  { date: '2026-01-24', venue: '<a href="https://www.goatvillage777.com/" target="_blank" rel="noopener noreferrer">Goat Village</a>', detail: '' },
-  { date: '2025-11-16', venue: '<a href="https://www.doubleclutchbrewing.com/" target="_blank" rel="noopener noreferrer">Double Clutch</a>', detail: '' },
-  { date: '2025-10-18', venue: '<a href="https://www.macksbikeandgoods.com/" target="_blank" rel="noopener noreferrer">Mack\'s Bike &amp; Goods</a>', detail: 'Fall Fest', cancelled: true },
-  { date: '2025-10-10', venue: 'Ackerman Park', detail: '<a href="https://www.investinevanston.com/" target="_blank" rel="noopener noreferrer">Invest in Neighborhood Schools</a>' },
-  { date: '2025-09-06', venue: 'Ewing Block Party', detail: '' },
-  { date: '2025-06-25', venue: '<a href="https://www.evanstonpost42.com/" target="_blank" rel="noopener noreferrer">American Legion Post 42</a>', detail: '' },
-  { date: '2025-06-07', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: '' },
-  { date: '2025-04-03', venue: 'Lincolnwood Spring Fling', detail: 'PTA Spring Fling' },
-  { date: '2024-10-09', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: '<a href="https://www.covenantnurseryschool.org/" target="_blank" rel="noopener noreferrer">Covenant Nursery School</a> Dining for Dollars' },
-  { date: '2024-09-07', venue: 'Ewing Block Party', detail: '' },
-  { date: '2024-08-24', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: '' },
-  { date: '2024-08-17', venue: 'Private Party', detail: '' },
-  { date: '2024-07-21', venue: '<a href="https://watchufa.com/union" target="_blank" rel="noopener noreferrer">Chicago Union</a>', detail: '' },
-  { date: '2024-06-07', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank" rel="noopener noreferrer">Fat Shallot</a>', detail: '' },
-  { date: '2024-04-26', venue: 'Lincolnwood Spring Fling', detail: 'PTA Spring Fling' },
-  { date: '2023-09-09', venue: 'Ewing Block Party', detail: '' },
+  { date: '2026-05-14', venue: { name: 'Fat Shallot', url: 'https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/' }, detail: '5:30 PM', detailLink: { name: 'Covenant Nursery School', url: 'https://www.covenantnurseryschool.org/', suffix: ' Dining for Dollars' } },
+  { date: '2026-05-16', venue: { name: 'Private Party' }, detail: '7:00 PM' },
+  { date: '2026-06-21', venue: { name: 'Chicago Union', url: 'https://watchufa.com/union' }, detail: '5:00 PM · ETHS Lazier Field' },
+  { date: '2026-06-24', venue: { name: 'Ridgeville Parks District', url: 'https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893' }, detail: '6:00 PM' },
+  { date: '2026-09-12', venue: { name: 'Ewing Block Party' } },
+  { date: '2026-04-24', venue: { name: 'American Legion Post 42', url: 'https://www.evanstonpost42.com/' }, detail: 'D65 One Fund Spring Cha Ching' },
+  { date: '2026-01-24', venue: { name: 'Goat Village', url: 'https://www.goatvillage777.com/' } },
+  { date: '2025-11-16', venue: { name: 'Double Clutch', url: 'https://www.doubleclutchbrewing.com/' } },
+  { date: '2025-10-18', venue: { name: "Mack's Bike & Goods", url: 'https://www.macksbikeandgoods.com/' }, detail: 'Fall Fest', cancelled: true },
+  { date: '2025-10-10', venue: { name: 'Ackerman Park' }, detailLink: { name: 'Invest in Neighborhood Schools', url: 'https://www.investinevanston.com/' } },
+  { date: '2025-09-06', venue: { name: 'Ewing Block Party' } },
+  { date: '2025-06-25', venue: { name: 'American Legion Post 42', url: 'https://www.evanstonpost42.com/' } },
+  { date: '2025-06-07', venue: { name: 'Fat Shallot', url: 'https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/' } },
+  { date: '2025-04-03', venue: { name: 'Lincolnwood Spring Fling' }, detail: 'PTA Spring Fling' },
+  { date: '2024-10-09', venue: { name: 'Fat Shallot', url: 'https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/' }, detailLink: { name: 'Covenant Nursery School', url: 'https://www.covenantnurseryschool.org/', suffix: ' Dining for Dollars' } },
+  { date: '2024-09-07', venue: { name: 'Ewing Block Party' } },
+  { date: '2024-08-24', venue: { name: 'Fat Shallot', url: 'https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/' } },
+  { date: '2024-08-17', venue: { name: 'Private Party' } },
+  { date: '2024-07-21', venue: { name: 'Chicago Union', url: 'https://watchufa.com/union' } },
+  { date: '2024-06-07', venue: { name: 'Fat Shallot', url: 'https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/' } },
+  { date: '2024-04-26', venue: { name: 'Lincolnwood Spring Fling' }, detail: 'PTA Spring Fling' },
+  { date: '2023-09-09', venue: { name: 'Ewing Block Party' } },
 ];
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+// Safe link builder — never inserts HTML strings
+function makeLink(name, url) {
+  const a = document.createElement('a');
+  a.href = url;
+  a.textContent = name;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  return a;
+}
+
+function renderShow(s, isPast) {
+  const d = new Date(s.date + 'T00:00:00');
+  const wrap = document.createElement('div');
+  wrap.className = isPast ? 'show-item past' : 'show-item';
+
+  // Date card
+  const dateBox = document.createElement('div');
+  dateBox.className = 'show-date';
+  const mo = document.createElement('div'); mo.className = 'show-month'; mo.textContent = MONTHS[d.getMonth()];
+  const da = document.createElement('div'); da.className = 'show-day';   da.textContent = d.getDate();
+  const yr = document.createElement('div'); yr.className = 'show-year';  yr.textContent = d.getFullYear();
+  dateBox.append(mo, da, yr);
+
+  // Info block
+  const info = document.createElement('div');
+  info.className = 'show-info';
+
+  const h3 = document.createElement('h3');
+  if (s.venue && s.venue.url) {
+    h3.appendChild(makeLink(s.venue.name, s.venue.url));
+  } else {
+    h3.textContent = s.venue ? s.venue.name : '';
+  }
+  info.appendChild(h3);
+
+  // Detail line: plain text, optional link, optional suffix
+  if (s.detail || s.detailLink) {
+    const p = document.createElement('p');
+    if (s.detail) p.appendChild(document.createTextNode(s.detail));
+    if (s.detail && s.detailLink) p.appendChild(document.createTextNode(' · '));
+    if (s.detailLink) {
+      p.appendChild(makeLink(s.detailLink.name, s.detailLink.url));
+      if (s.detailLink.suffix) p.appendChild(document.createTextNode(s.detailLink.suffix));
+    }
+    info.appendChild(p);
+  }
+
+  if (s.cancelled) {
+    const c = document.createElement('p');
+    c.className = 'cancelled';
+    c.textContent = '⛈ Cancelled due to weather';
+    info.appendChild(c);
+  }
+
+  wrap.append(dateBox, info);
+  return wrap;
+}
 
 function buildShows() {
   const today = new Date(); today.setHours(0,0,0,0);
@@ -893,66 +986,126 @@ function buildShows() {
   upcoming.sort((a,b) => new Date(a.date) - new Date(b.date));
   past.sort((a,b) => new Date(b.date) - new Date(a.date));
 
-  function render(s, isPast) {
-    const d = new Date(s.date + 'T00:00:00');
-    const cancelled = s.cancelled ? '<p class="cancelled">⛈ Cancelled due to weather</p>' : '';
-    const detailHtml = s.detail ? `<p>${s.detail}</p>` : '';
-    return `<div class="${isPast ? 'show-item past' : 'show-item'}">
-      <div class="show-date"><div class="show-month">${MONTHS[d.getMonth()]}</div><div class="show-day">${d.getDate()}</div><div class="show-year">${d.getFullYear()}</div></div>
-      <div class="show-info"><h3>${s.venue}</h3>${detailHtml}${cancelled}</div>
-    </div>`;
-  }
-
-  document.getElementById('upcoming-list').innerHTML = upcoming.map(s => render(s, false)).join('');
-  document.getElementById('past-list').innerHTML = past.map(s => render(s, true)).join('');
+  const upEl = document.getElementById('upcoming-list');
+  const pastEl = document.getElementById('past-list');
+  upEl.replaceChildren(...upcoming.map(s => renderShow(s, false)));
+  pastEl.replaceChildren(...past.map(s => renderShow(s, true)));
 }
 
 buildShows();
 
-function switchTab(tab, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + tab).classList.add('active');
-  btn.classList.add('active');
+// ─────────────────────────────────────────────────────────────
+// Tabs (ARIA)
+// ─────────────────────────────────────────────────────────────
+const tabButtons = document.querySelectorAll('.shows-tabs .tab-btn');
+
+function switchTab(tabName) {
+  tabButtons.forEach(b => {
+    const active = b.dataset.tab === tabName;
+    b.classList.toggle('active', active);
+    b.setAttribute('aria-selected', active ? 'true' : 'false');
+    b.setAttribute('tabindex', active ? '0' : '-1');
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => {
+    const active = p.id === 'tab-' + tabName;
+    p.classList.toggle('active', active);
+    if (active) p.removeAttribute('hidden'); else p.setAttribute('hidden', '');
+  });
 }
 
-function toggleMenu() {
-  const menu = document.getElementById('mobile-menu');
-  const btn = document.querySelector('.hamburger');
-  const isOpen = menu.classList.toggle('open');
-  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-}
-function closeMenu() {
-  document.getElementById('mobile-menu').classList.remove('open');
-  document.querySelector('.hamburger').setAttribute('aria-expanded', 'false');
-}
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+  btn.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    e.preventDefault();
+    const list = Array.from(tabButtons);
+    const idx = list.indexOf(btn);
+    const next = e.key === 'ArrowRight' ? (idx + 1) % list.length : (idx - 1 + list.length) % list.length;
+    list[next].focus();
+    switchTab(list[next].dataset.tab);
+  });
+});
 
+// ─────────────────────────────────────────────────────────────
+// Mobile menu (open/close, Escape, outside click)
+// ─────────────────────────────────────────────────────────────
+const mobileMenu = document.getElementById('mobile-menu');
+const hamburger  = document.getElementById('hamburger-btn');
+
+function setMenu(open) {
+  mobileMenu.classList.toggle('open', open);
+  mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+  hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+function toggleMenu() { setMenu(!mobileMenu.classList.contains('open')); }
+function closeMenu()  { setMenu(false); }
+
+hamburger.addEventListener('click', toggleMenu);
+mobileMenu.querySelectorAll('[data-close-menu]').forEach(a => {
+  a.addEventListener('click', closeMenu);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
+});
+document.addEventListener('click', e => {
+  if (!mobileMenu.classList.contains('open')) return;
+  if (mobileMenu.contains(e.target) || hamburger.contains(e.target)) return;
+  closeMenu();
+});
+
+// ─────────────────────────────────────────────────────────────
+// Booking form
+// ─────────────────────────────────────────────────────────────
 document.getElementById('booking-form').addEventListener('submit', async function(e) {
   e.preventDefault();
   const errorEl = document.getElementById('booking-error');
   const successEl = document.getElementById('success-msg');
+  const emailVal = document.getElementById('email').value.trim();
+  const nameVal  = document.getElementById('name').value.trim();
+
+  if (!nameVal || !EMAIL_RE.test(emailVal)) {
+    errorEl.style.display = 'block';
+    errorEl.textContent = 'Please add your name and a valid email.';
+    return;
+  }
+  // Honeypot check — if filled, silently "succeed" without sending
+  if (document.getElementById('website').value) {
+    successEl.style.display = 'block';
+    e.target.reset();
+    return;
+  }
+
   try {
-    const res = await fetch(e.target.action, { method: 'POST', body: new FormData(e.target), headers: { 'Accept': 'application/json' } });
+    const res = await fetch(e.target.action, {
+      method: 'POST',
+      body: new FormData(e.target),
+      headers: { 'Accept': 'application/json' }
+    });
     if (res.ok) {
       successEl.style.display = 'block';
-      if (errorEl) errorEl.style.display = 'none';
+      errorEl.style.display = 'none';
       e.target.reset();
     } else {
-      if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = 'Something went wrong. Please email us at Miles@KingsOfEwing.com'; }
+      errorEl.style.display = 'block';
+      errorEl.textContent = 'Something went wrong. Please email us at Miles@KingsOfEwing.com';
     }
   } catch {
-    if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = 'Something went wrong. Please email us at Miles@KingsOfEwing.com'; }
+    errorEl.style.display = 'block';
+    errorEl.textContent = 'Something went wrong. Please email us at Miles@KingsOfEwing.com';
   }
 });
 
+// ─────────────────────────────────────────────────────────────
 // Scroll reveal
+// ─────────────────────────────────────────────────────────────
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
 }, { threshold: 0.08 });
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-
-// ── Audio Player ──────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────
+// Audio Player
+// ─────────────────────────────────────────────────────────────
 const audio = document.getElementById('band-audio');
 const TRACKS = [
   { src: 'docs/audio/dont_let_me_down.mp3',  name: "Don't Let Me Down" },
@@ -987,6 +1140,9 @@ function showPause(playing) {
   document.getElementById('player-pause-icon').style.display = playing ? 'block' : 'none';
   document.getElementById('sticky-play-icon').style.display  = playing ? 'none'  : 'block';
   document.getElementById('sticky-pause-icon').style.display = playing ? 'block' : 'none';
+  const label = playing ? 'Pause' : 'Play';
+  document.getElementById('player-play-btn').setAttribute('aria-label', label);
+  document.getElementById('sticky-play-btn').setAttribute('aria-label', label);
 }
 
 function playerPlayPause() {
@@ -1008,13 +1164,26 @@ function playerPrev() {
   loadTrack(currentTrackIndex(), !audio.paused);
 }
 
-// Progress bars
+// Wire up audio controls
+document.getElementById('player-prev-btn').addEventListener('click', playerPrev);
+document.getElementById('player-next-btn').addEventListener('click', playerNext);
+document.getElementById('player-play-btn').addEventListener('click', playerPlayPause);
+document.getElementById('sticky-prev-btn').addEventListener('click', playerPrev);
+document.getElementById('sticky-next-btn').addEventListener('click', playerNext);
+document.getElementById('sticky-play-btn').addEventListener('click', playerPlayPause);
+document.getElementById('player-volume').addEventListener('input', function() {
+  audio.volume = this.value;
+});
+
+// Progress bar — click to seek
 function updateProgress() {
   const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
   const pb = document.getElementById('player-progress-bar');
   const spb = document.getElementById('sticky-progress-bar');
+  const track = document.getElementById('player-progress-track');
   if (pb)  pb.style.width  = pct + '%';
   if (spb) spb.style.width = pct + '%';
+  if (track) track.setAttribute('aria-valuenow', Math.round(pct));
 }
 
 function seekTo(e, el) {
@@ -1022,6 +1191,26 @@ function seekTo(e, el) {
   const rect = el.getBoundingClientRect();
   audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
 }
+
+const progressTrack = document.getElementById('player-progress-track');
+progressTrack.addEventListener('click', e => seekTo(e, progressTrack));
+progressTrack.addEventListener('keydown', e => {
+  if (!audio.duration) return;
+  const step = audio.duration * 0.05; // 5% per arrow press
+  if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    audio.currentTime = Math.min(audio.duration, audio.currentTime + step);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    audio.currentTime = Math.max(0, audio.currentTime - step);
+  } else if (e.key === 'Home') {
+    e.preventDefault();
+    audio.currentTime = 0;
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    audio.currentTime = audio.duration;
+  }
+});
 
 audio.addEventListener('timeupdate', updateProgress);
 audio.addEventListener('ended', playerNext);
