@@ -10,12 +10,16 @@
 <meta property="og:title" content="Kings of Ewing">
 <meta property="og:description" content="A five-piece mostly-covers band from one block in Evanston, IL. Six decades of rock, pop, folk and soul. Available for weddings, block parties, fundraisers and more.">
 <meta property="og:image" content="https://www.kingsofewing.com/docs/images/IMG_2445.jpeg">
+<meta property="og:image:alt" content="Kings of Ewing performing live — a five-piece cover band from Evanston, IL">
 <meta property="og:url" content="https://www.kingsofewing.com">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Kings of Ewing">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kings of Ewing">
 <meta name="twitter:description" content="A five-piece mostly-covers band from one block in Evanston, IL.">
 <meta name="twitter:image" content="https://www.kingsofewing.com/docs/images/IMG_2445.jpeg">
+<meta name="twitter:image:alt" content="Kings of Ewing performing live — a five-piece cover band from Evanston, IL">
 <link rel="icon" type="image/png" href="docs/resources/branding/Kings_of_Ewing_Logo.png">
   <link rel="apple-touch-icon" href="docs/resources/branding/Kings_of_Ewing_Logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,6 +103,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 .btn-coral { color: var(--brown); background: var(--coral); border-color: var(--coral); }
 
 .btn-coral:hover { background: var(--cream); color: var(--brown); border-color: var(--cream); }
+
+.btn-outline { color: var(--cream); background: transparent; border-color: var(--cream); }
+
+.btn-outline:hover, .btn-outline:focus-visible { background: var(--cream); color: var(--brown); border-color: var(--cream); outline: none; }
 
 .section-label { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 0.5rem; }
 
@@ -417,7 +425,26 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 /* Progress bar keyboard focus */
 .progress-bar { width: 100%; height: 4px; background: rgba(232,223,192,0.15); border-radius: 2px; cursor: pointer; margin-bottom: 0.8rem; }
-.progress-bar:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }</style>
+.progress-bar:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+/* FAQ */
+#faq { background: var(--bg); padding: 7rem 3rem; }
+.faq-inner { max-width: 760px; margin: 0 auto; }
+.faq-list { border-top: 1px solid rgba(79,179,168,0.25); margin-top: 0.5rem; }
+.faq-item { border-bottom: 1px solid rgba(79,179,168,0.15); }
+.faq-item summary { list-style: none; padding: 1.3rem 0; cursor: pointer; font-size: 1rem; font-weight: 500; color: var(--cream); display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; transition: color 0.2s; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover, .faq-item summary:focus-visible { color: var(--teal); outline: none; }
+.faq-item summary::after { content: '+'; font-family: 'DM Sans', sans-serif; font-size: 1.6rem; color: var(--coral); font-weight: 300; line-height: 1; flex-shrink: 0; transition: transform 0.2s; }
+.faq-item[open] summary::after { content: '−'; }
+.faq-answer { padding: 0 0 1.4rem; color: rgba(232,223,192,0.75); font-size: 0.92rem; line-height: 1.75; max-width: 640px; }
+.faq-answer a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(79,179,168,0.4); transition: color 0.2s, border-color 0.2s; }
+.faq-answer a:hover { color: var(--coral); border-color: var(--coral); }
+
+@media (max-width: 768px) {
+  #faq { padding: 5rem 1.5rem; }
+  .faq-item summary { font-size: 0.95rem; gap: 1rem; }
+}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -453,6 +480,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <li><a href="#mailing">Mailing List</a></li>
     <li><a href="#shows">Shows</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#book">Book</a></li>
     <li><a href="mailto:Miles@KingsOfEwing.com">Contact</a></li>
   </ul>
@@ -466,6 +494,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <a href="#mailing" data-close-menu>Mailing List</a>
   <a href="#shows" data-close-menu>Shows</a>
   <a href="#about" data-close-menu>About</a>
+  <a href="#faq" data-close-menu>FAQ</a>
   <a href="#book" data-close-menu>Book</a>
   <a href="mailto:Miles@KingsOfEwing.com" data-close-menu>Contact</a>
 </div>
@@ -477,14 +506,10 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <h1 class="hero-title">Kings of Ewing</h1>
   <p class="hero-sub">A high-energy cover band from Evanston for weddings, block parties, and packed dance floors!</p>
 
-  <!-- Nav links -->
+  <!-- Primary CTAs — drive booking, with Hear Us as supporting action -->
   <div class="hero-cta">
-    <a href="#social" class="btn btn-coral">Socials</a>
-    <a href="#mailing" class="btn btn-coral">Mailing List</a>
-    <a href="#shows" class="btn btn-coral">Shows</a>
-    <a href="#about" class="btn btn-coral">About</a>
-    <a href="#book" class="btn btn-coral">Book</a>
-    <a href="mailto:Miles@KingsOfEwing.com" class="btn btn-coral">Contact</a>
+    <a href="#book" class="btn btn-coral">Book Us</a>
+    <button type="button" id="hear-us-btn" class="btn btn-outline" aria-label="Hear us — start the audio player">Hear Us ♪</button>
   </div>
 
   <!-- Audio player -->
@@ -757,6 +782,53 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   </div>
 </section>
 
+<!-- 3b. FAQ -->
+<section id="faq" class="reveal">
+  <div class="faq-inner">
+    <p class="section-label">Booking 101</p>
+    <h2 class="section-title">Frequently Asked</h2>
+    <div class="divider"></div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>How long do you play?</summary>
+        <div class="faq-answer">Typical events are 2–3 hours of live music, split into a few sets with short breaks. We&rsquo;re flexible — tell us what you have in mind and we&rsquo;ll work it out.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Do you bring your own sound system?</summary>
+        <div class="faq-answer">Yes. We can bring our own PA and mixing board and run our own sound, or plug into whatever the venue provides. Either way works for us.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Indoor or outdoor — do you do both?</summary>
+        <div class="faq-answer">Both. We&rsquo;ve played backyards, brewery patios, fundraiser tents, club rooms, and street block parties. For outdoor events, we just ask for a rain plan or covered backup space.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How much space do you need?</summary>
+        <div class="faq-answer">A 12&prime;&times;8&prime; area is comfortable for the full five-piece. We&rsquo;ve squeezed into smaller spots and spread out across bigger stages too. <a href="docs/resources/Kings_of_Ewing_Stage_Diagram.svg" target="_blank" rel="noopener noreferrer">Stage diagram here</a>.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How far do you travel?</summary>
+        <div class="faq-answer">We&rsquo;re based in Evanston and play throughout North Chicagoland — Evanston, Wilmette, Lincolnwood, Skokie, Glenview, Northbrook, and into Chicago. Reach out about events further afield; we&rsquo;ll let you know.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Can we request specific songs?</summary>
+        <div class="faq-answer">Usually yes. Send us your must-plays with your booking inquiry and we&rsquo;ll let you know what we can do. For weddings, we&rsquo;re happy to learn a first-dance song or other special request.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How much setup and breakdown time do you need?</summary>
+        <div class="faq-answer">We arrive about 90 minutes before showtime for load-in and soundcheck, and need around 45 minutes to break down at the end.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What kinds of events do you play?</summary>
+        <div class="faq-answer">Weddings, block parties, fundraisers, backyard gatherings, breweries, bars, and corporate events. If it has a dance floor or could have one, we&rsquo;re probably a fit.</div>
+      </details>
+    </div>
+    <div class="cta-pair" style="margin-top: 2.5rem;">
+      <a href="#book" class="btn btn-coral">Book</a>
+      <a href="mailto:Miles@KingsOfEwing.com" class="btn btn-coral">Contact</a>
+    </div>
+  </div>
+</section>
+
 <!-- 4. BOOK -->
 <section id="book" class="reveal">
   <div class="book-inner">
@@ -995,6 +1067,53 @@ function buildShows() {
 buildShows();
 
 // ─────────────────────────────────────────────────────────────
+// MusicEvent JSON-LD schema for upcoming shows
+// Google reads dynamically-injected JSON-LD; this keeps the
+// structured data in sync with SHOWS without duplication.
+// ─────────────────────────────────────────────────────────────
+(function injectEventSchema() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const upcoming = SHOWS.filter(s => new Date(s.date + 'T00:00:00') >= today && !s.cancelled);
+
+  upcoming.forEach(s => {
+    const venueName = s.venue.name || 'TBA';
+    const event = {
+      "@context": "https://schema.org",
+      "@type": "MusicEvent",
+      "name": "Kings of Ewing at " + venueName,
+      "startDate": s.date,
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "performer": {
+        "@type": "MusicGroup",
+        "name": "Kings of Ewing",
+        "url": "https://www.kingsofewing.com"
+      },
+      "location": {
+        "@type": "Place",
+        "name": venueName,
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "IL",
+          "addressCountry": "US"
+        }
+      },
+      "organizer": {
+        "@type": "MusicGroup",
+        "name": "Kings of Ewing",
+        "url": "https://www.kingsofewing.com"
+      }
+    };
+    if (s.venue.url) event.location.url = s.venue.url;
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(event);
+    document.head.appendChild(script);
+  });
+})();
+
+// ─────────────────────────────────────────────────────────────
 // Tabs (ARIA)
 // ─────────────────────────────────────────────────────────────
 const tabButtons = document.querySelectorAll('.shows-tabs .tab-btn');
@@ -1173,6 +1292,18 @@ document.getElementById('sticky-next-btn').addEventListener('click', playerNext)
 document.getElementById('sticky-play-btn').addEventListener('click', playerPlayPause);
 document.getElementById('player-volume').addEventListener('input', function() {
   audio.volume = this.value;
+});
+
+// "Hear Us" button — scroll the audio player into view and start playback
+document.getElementById('hear-us-btn').addEventListener('click', () => {
+  const box = document.getElementById('audio-box');
+  if (box) box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // If audio hasn't been loaded yet, kick it off; otherwise toggle
+  if (!audio.src || audio.src === window.location.href) {
+    loadTrack(currentTrackIndex(), true);
+  } else if (audio.paused) {
+    audio.play().then(() => showPause(true)).catch(() => showPause(false));
+  }
 });
 
 // Progress bar — click to seek
