@@ -84,7 +84,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .hero-sub { font-size: 1rem; color: rgba(232,223,192,0.7); font-weight: 300; max-width: 440px; line-height: 1.7; margin-top: 1.4rem; animation: fadeUp 0.9s 0.35s ease both; }
 
-.hero-cta { margin-top: 0.75rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; max-width: 420px; width: 100%; animation: fadeUp 0.9s 0.5s ease both; }
+.hero-cta { margin-top: 0.75rem; display: grid; grid-template-columns: 1fr; gap: 0.75rem; max-width: 280px; width: 100%; animation: fadeUp 0.9s 0.5s ease both; }
 
 .hero-cta .btn { text-align: center; width: 100%; }
 
@@ -103,10 +103,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 .btn-coral { color: var(--brown); background: var(--coral); border-color: var(--coral); }
 
 .btn-coral:hover { background: var(--cream); color: var(--brown); border-color: var(--cream); }
-
-.btn-outline { color: var(--cream); background: transparent; border-color: var(--cream); }
-
-.btn-outline:hover, .btn-outline:focus-visible { background: var(--cream); color: var(--brown); border-color: var(--cream); outline: none; }
 
 .section-label { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 0.5rem; }
 
@@ -506,10 +502,9 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <h1 class="hero-title">Kings of Ewing</h1>
   <p class="hero-sub">A high-energy cover band from Evanston for weddings, block parties, and packed dance floors!</p>
 
-  <!-- Primary CTAs — drive booking, with Hear Us as supporting action -->
+  <!-- Primary CTA — drive booking -->
   <div class="hero-cta">
     <a href="#book" class="btn btn-coral">Book Us</a>
-    <button type="button" id="hear-us-btn" class="btn btn-outline" aria-label="Hear us — start the audio player">Hear Us ♪</button>
   </div>
 
   <!-- Audio player -->
@@ -1292,18 +1287,6 @@ document.getElementById('sticky-next-btn').addEventListener('click', playerNext)
 document.getElementById('sticky-play-btn').addEventListener('click', playerPlayPause);
 document.getElementById('player-volume').addEventListener('input', function() {
   audio.volume = this.value;
-});
-
-// "Hear Us" button — scroll the audio player into view and start playback
-document.getElementById('hear-us-btn').addEventListener('click', () => {
-  const box = document.getElementById('audio-box');
-  if (box) box.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  // If audio hasn't been loaded yet, kick it off; otherwise toggle
-  if (!audio.src || audio.src === window.location.href) {
-    loadTrack(currentTrackIndex(), true);
-  } else if (audio.paused) {
-    audio.play().then(() => showPause(true)).catch(() => showPause(false));
-  }
 });
 
 // Progress bar — click to seek
