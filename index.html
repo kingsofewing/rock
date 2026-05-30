@@ -1066,16 +1066,63 @@ buildShows();
 // structured data in sync with SHOWS without duplication.
 // ─────────────────────────────────────────────────────────────
 (function injectEventSchema() {
+  const pad = n => String(n).padStart(2, '0');
+
+  // Pull a leading "H:MM AM/PM" time out of the detail string, if present
+  function parseTime(detail) {
+    if (!detail) return null;
+    const m = detail.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+    if (!m) return null;
+    let h = parseInt(m[1], 10) % 12;
+    if (/pm/i.test(m[3])) h += 12;
+    return { h, min: parseInt(m[2], 10) };
+  }
+
+  // Correct America/Chicago UTC offset for a given date (handles CST/CDT)
+  function chicagoOffset(dateStr) {
+    try {
+      const d = new Date(dateStr + 'T12:00:00Z');
+      const name = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Chicago', timeZoneName: 'shortOffset'
+      }).formatToParts(d).find(p => p.type === 'timeZoneName').value;
+      const m = name.match(/GMT([+-]\d{1,2})/);
+      if (!m) return '-06:00';
+      const h = parseInt(m[1], 10);
+      return (h < 0 ? '-' : '+') + pad(Math.abs(h)) + ':00';
+    } catch (e) { return '-06:00'; }
+  }
+
   const today = new Date(); today.setHours(0,0,0,0);
   const upcoming = SHOWS.filter(s => new Date(s.date + 'T00:00:00') >= today && !s.cancelled);
 
   upcoming.forEach(s => {
     const venueName = s.venue.name || 'TBA';
+    const t = parseTime(s.detail);
+    const offset = chicagoOffset(s.date);
+
+    // startDate / endDate — use real times when known, assume a ~3 hr set
+    let startDate = s.date;
+    let endDate = s.date;
+    if (t) {
+      startDate = `${s.date}T${pad(t.h)}:${pad(t.min)}:00${offset}`;
+      let endH = t.h + 3, endDay = s.date;
+      if (endH > 23) {
+        endH -= 24;
+        const nd = new Date(s.date + 'T00:00:00');
+        nd.setDate(nd.getDate() + 1);
+        endDay = nd.toISOString().slice(0, 10);
+      }
+      endDate = `${endDay}T${pad(endH)}:${pad(t.min)}:00${offset}`;
+    }
+
     const event = {
       "@context": "https://schema.org",
       "@type": "MusicEvent",
       "name": "Kings of Ewing at " + venueName,
-      "startDate": s.date,
+      "description": "Kings of Ewing — a five-piece mostly-covers band from Evanston, IL — performing live at " + venueName + ". Six decades of rock, pop, folk and soul.",
+      "image": "https://www.kingsofewing.com/docs/images/IMG_2445.jpeg",
+      "startDate": startDate,
+      "endDate": endDate,
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "performer": {
@@ -1096,6 +1143,14 @@ buildShows();
         "@type": "MusicGroup",
         "name": "Kings of Ewing",
         "url": "https://www.kingsofewing.com"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": s.venue.url || "https://www.kingsofewing.com",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "validFrom": new Date().toISOString().slice(0, 10)
       }
     };
     if (s.venue.url) event.location.url = s.venue.url;
