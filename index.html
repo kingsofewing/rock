@@ -995,6 +995,18 @@ function makeLink(name, url) {
   return a;
 }
 
+// Strip a "H:MM AM/PM" start time (and any orphaned · separator) from a
+// detail string — used so past shows drop the time but keep any location.
+function stripTime(detail) {
+  if (!detail) return detail;
+  return detail
+    .replace(/\b\d{1,2}:\d{2}\s*(AM|PM)\b/i, '')
+    .replace(/^\s*·\s*/, '')
+    .replace(/\s*·\s*$/, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function renderShow(s, isPast) {
   const d = new Date(s.date + 'T00:00:00');
   const wrap = document.createElement('div');
@@ -1020,11 +1032,13 @@ function renderShow(s, isPast) {
   }
   info.appendChild(h3);
 
-  // Detail line: plain text, optional link, optional suffix
-  if (s.detail || s.detailLink) {
+  // Detail line: plain text, optional link, optional suffix.
+  // Past shows drop the start time (keeping any location text).
+  const detailText = isPast ? stripTime(s.detail) : s.detail;
+  if (detailText || s.detailLink) {
     const p = document.createElement('p');
-    if (s.detail) p.appendChild(document.createTextNode(s.detail));
-    if (s.detail && s.detailLink) p.appendChild(document.createTextNode(' · '));
+    if (detailText) p.appendChild(document.createTextNode(detailText));
+    if (detailText && s.detailLink) p.appendChild(document.createTextNode(' · '));
     if (s.detailLink) {
       p.appendChild(makeLink(s.detailLink.name, s.detailLink.url));
       if (s.detailLink.suffix) p.appendChild(document.createTextNode(s.detailLink.suffix));
