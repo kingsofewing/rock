@@ -164,6 +164,8 @@ footer   { background: var(--brown); border-top: 2px solid var(--teal); text-ali
 
 .show-info p a:hover { color: var(--teal); border-color: var(--teal); }
 
+.show-desc { font-size: 0.78rem; font-style: italic; color: rgba(232,223,192,0.55); margin-top: 0.4rem; line-height: 1.5; max-width: 46ch; }
+
 .cancelled { font-size: 0.7rem; color: var(--coral); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
 
 .past .show-date { border-color: rgba(232,223,192,0.15); }
@@ -959,8 +961,8 @@ document.getElementById('ml-email').addEventListener('keydown', e => {
 const SHOWS = [
   { date: '2026-05-14', venue: { name: 'Fat Shallot', url: 'https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/' }, detail: '5:30 PM', detailLink: { name: 'Covenant Nursery School', url: 'https://www.covenantnurseryschool.org/', suffix: ' Dining for Dollars' } },
   { date: '2026-05-16', venue: { name: 'Private Party' }, detail: '7:00 PM' },
-  { date: '2026-06-21', venue: { name: 'Chicago Union', url: 'https://watchufa.com/union' }, detail: '5:00 PM · ETHS Lazier Field' },
-  { date: '2026-06-24', venue: { name: 'Ridgeville Parks District', url: 'https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893' }, detail: '6:00 PM' },
+  { date: '2026-06-21', venue: { name: 'Chicago Union', url: 'https://watchufa.com/union' }, detail: '5:00 PM · ETHS Lazier Field', description: 'Pre-game set before the Chicago Union — a pro Ultimate Frisbee Association (UFA) team — takes the field.' },
+  { date: '2026-06-24', venue: { name: 'Ridgeville Parks District', url: 'https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893' }, detail: '6:00 PM', description: 'Part of the Ridgeville Parks District “Concerts on the Ridge” summer series.' },
   { date: '2026-09-12', venue: { name: 'Ewing Block Party' } },
   { date: '2026-04-24', venue: { name: 'American Legion Post 42', url: 'https://www.evanstonpost42.com/' }, detail: 'D65 One Fund Spring Cha Ching' },
   { date: '2026-01-24', venue: { name: 'Goat Village', url: 'https://www.goatvillage777.com/' } },
@@ -1028,6 +1030,14 @@ function renderShow(s, isPast) {
       if (s.detailLink.suffix) p.appendChild(document.createTextNode(s.detailLink.suffix));
     }
     info.appendChild(p);
+  }
+
+  // Optional descriptive blurb
+  if (s.description) {
+    const desc = document.createElement('p');
+    desc.className = 'show-desc';
+    desc.textContent = s.description;
+    info.appendChild(desc);
   }
 
   if (s.cancelled) {
@@ -1119,7 +1129,7 @@ buildShows();
       "@context": "https://schema.org",
       "@type": "MusicEvent",
       "name": "Kings of Ewing at " + venueName,
-      "description": "Kings of Ewing — a five-piece mostly-covers band from Evanston, IL — performing live at " + venueName + ". Six decades of rock, pop, folk and soul.",
+      "description": (s.description ? s.description + " " : "") + "Kings of Ewing — a five-piece mostly-covers band from Evanston, IL — performing live at " + venueName + ". Six decades of rock, pop, folk and soul.",
       "image": "https://www.kingsofewing.com/docs/images/IMG_2445.jpeg",
       "startDate": startDate,
       "endDate": endDate,
