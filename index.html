@@ -166,6 +166,12 @@ footer   { background: var(--brown); border-top: 2px solid var(--teal); text-ali
 
 .show-desc { font-size: 0.78rem; font-style: italic; color: rgba(232,223,192,0.55); margin-top: 0.4rem; line-height: 1.5; max-width: 46ch; }
 
+.cal-btn { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 0.7rem; padding: 0.4rem 0.85rem; background: none; border: 1px solid rgba(79,179,168,0.5); color: var(--teal); font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+
+.cal-btn:hover { background: var(--teal); color: var(--brown); border-color: var(--teal); }
+
+.cal-btn svg { flex-shrink: 0; }
+
 .cancelled { font-size: 0.7rem; color: var(--coral); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
 
 .past .show-date { border-color: rgba(232,223,192,0.15); }
@@ -1007,6 +1013,123 @@ function stripTime(detail) {
     .trim();
 }
 
+// ─── Shared date/time helpers (used by calendar invites + JSON-LD) ───
+const pad2 = n => String(n).padStart(2, '0');
+
+// Pull a leading "H:MM AM/PM" time out of the detail string, if present
+function parseTime(detail) {
+  if (!detail) return null;
+  const m = detail.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+  if (!m) return null;
+  let h = parseInt(m[1], 10) % 12;
+  if (/pm/i.test(m[3])) h += 12;
+  return { h, min: parseInt(m[2], 10) };
+}
+
+// Correct America/Chicago UTC offset for a given date (handles CST/CDT)
+function chicagoOffset(dateStr) {
+  try {
+    const d = new Date(dateStr + 'T12:00:00Z');
+    const name = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Chicago', timeZoneName: 'shortOffset'
+    }).formatToParts(d).find(p => p.type === 'timeZoneName').value;
+    const m = name.match(/GMT([+-]\d{1,2})/);
+    if (!m) return '-06:00';
+    const h = parseInt(m[1], 10);
+    return (h < 0 ? '-' : '+') + pad2(Math.abs(h)) + ':00';
+  } catch (e) { return '-06:00'; }
+}
+
+// Start/end for a show as ISO strings w/ Chicago offset; ~3 hr set assumed.
+// When no time is known, returns the bare date and hasTime:false.
+function showStartEnd(s) {
+  const t = parseTime(s.detail);
+  if (!t) return { start: s.date, end: s.date, hasTime: false };
+  const offset = chicagoOffset(s.date);
+  const start = `${s.date}T${pad2(t.h)}:${pad2(t.min)}:00${offset}`;
+  let endH = t.h + 3, endDay = s.date;
+  if (endH > 23) {
+    endH -= 24;
+    const nd = new Date(s.date + 'T00:00:00');
+    nd.setDate(nd.getDate() + 1);
+    endDay = nd.toISOString().slice(0, 10);
+  }
+  const end = `${endDay}T${pad2(endH)}:${pad2(t.min)}:00${offset}`;
+  return { start, end, hasTime: true };
+}
+
+// ─── Calendar invite (.ics) builder + download ───
+function icsUTC(iso) {
+  const d = new Date(iso);
+  return d.getUTCFullYear() + pad2(d.getUTCMonth() + 1) + pad2(d.getUTCDate()) + 'T' +
+         pad2(d.getUTCHours()) + pad2(d.getUTCMinutes()) + pad2(d.getUTCSeconds()) + 'Z';
+}
+
+function buildICS(s) {
+  const venueName = (s.venue && s.venue.name) || 'TBA';
+  const { start, end, hasTime } = showStartEnd(s);
+
+  const esc = txt => String(txt)
+    .replace(/\\/g, '\\\\').replace(/;/g, '\\;')
+    .replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+
+  // RFC 5545 line folding at 75 octets
+  const fold = line => {
+    if (line.length <= 74) return line;
+    let out = line.slice(0, 74), rest = line.slice(74);
+    while (rest.length > 73) { out += '\r\n ' + rest.slice(0, 73); rest = rest.slice(73); }
+    return out + '\r\n ' + rest;
+  };
+
+  let dtStart, dtEnd;
+  if (hasTime) {
+    dtStart = 'DTSTART:' + icsUTC(start);
+    dtEnd   = 'DTEND:'   + icsUTC(end);
+  } else {
+    const nd = new Date(s.date + 'T00:00:00'); nd.setDate(nd.getDate() + 1);
+    dtStart = 'DTSTART;VALUE=DATE:' + s.date.replace(/-/g, '');
+    dtEnd   = 'DTEND;VALUE=DATE:' + `${nd.getFullYear()}${pad2(nd.getMonth() + 1)}${pad2(nd.getDate())}`;
+  }
+
+  const locText = stripTime(s.detail);
+  const location = locText ? `${venueName}, ${locText}` : venueName;
+  const description = [s.description, 'More info: https://www.kingsofewing.com']
+    .filter(Boolean).join('\n\n');
+  const uid = `${s.date}-${venueName.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}@kingsofewing.com`;
+
+  return [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Kings of Ewing//Website//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    'UID:' + uid,
+    'DTSTAMP:' + icsUTC(new Date().toISOString()),
+    dtStart,
+    dtEnd,
+    'SUMMARY:' + esc('Kings of Ewing at ' + venueName),
+    'LOCATION:' + esc(location),
+    'DESCRIPTION:' + esc(description),
+    'URL:' + ((s.venue && s.venue.url) || 'https://www.kingsofewing.com'),
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].map(fold).join('\r\n');
+}
+
+function downloadICS(s) {
+  const blob = new Blob([buildICS(s)], { type: 'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `kings-of-ewing-${s.date}.ics`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+
 function renderShow(s, isPast) {
   const d = new Date(s.date + 'T00:00:00');
   const wrap = document.createElement('div');
@@ -1054,6 +1177,17 @@ function renderShow(s, isPast) {
     info.appendChild(desc);
   }
 
+  // Add-to-calendar button — upcoming shows only
+  if (!isPast && !s.cancelled) {
+    const cal = document.createElement('button');
+    cal.type = 'button';
+    cal.className = 'cal-btn';
+    cal.setAttribute('aria-label', 'Add ' + (s.venue && s.venue.name ? s.venue.name + ' ' : '') + 'show to your calendar');
+    cal.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Add to Calendar</span>';
+    cal.addEventListener('click', () => downloadICS(s));
+    info.appendChild(cal);
+  }
+
   if (s.cancelled) {
     const c = document.createElement('p');
     c.className = 'cancelled';
@@ -1090,55 +1224,12 @@ buildShows();
 // structured data in sync with SHOWS without duplication.
 // ─────────────────────────────────────────────────────────────
 (function injectEventSchema() {
-  const pad = n => String(n).padStart(2, '0');
-
-  // Pull a leading "H:MM AM/PM" time out of the detail string, if present
-  function parseTime(detail) {
-    if (!detail) return null;
-    const m = detail.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
-    if (!m) return null;
-    let h = parseInt(m[1], 10) % 12;
-    if (/pm/i.test(m[3])) h += 12;
-    return { h, min: parseInt(m[2], 10) };
-  }
-
-  // Correct America/Chicago UTC offset for a given date (handles CST/CDT)
-  function chicagoOffset(dateStr) {
-    try {
-      const d = new Date(dateStr + 'T12:00:00Z');
-      const name = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/Chicago', timeZoneName: 'shortOffset'
-      }).formatToParts(d).find(p => p.type === 'timeZoneName').value;
-      const m = name.match(/GMT([+-]\d{1,2})/);
-      if (!m) return '-06:00';
-      const h = parseInt(m[1], 10);
-      return (h < 0 ? '-' : '+') + pad(Math.abs(h)) + ':00';
-    } catch (e) { return '-06:00'; }
-  }
-
   const today = new Date(); today.setHours(0,0,0,0);
   const upcoming = SHOWS.filter(s => new Date(s.date + 'T00:00:00') >= today && !s.cancelled);
 
   upcoming.forEach(s => {
     const venueName = s.venue.name || 'TBA';
-    const t = parseTime(s.detail);
-    const offset = chicagoOffset(s.date);
-
-    // startDate / endDate — use real times when known, assume a ~3 hr set
-    let startDate = s.date;
-    let endDate = s.date;
-    if (t) {
-      startDate = `${s.date}T${pad(t.h)}:${pad(t.min)}:00${offset}`;
-      let endH = t.h + 3, endDay = s.date;
-      if (endH > 23) {
-        endH -= 24;
-        const nd = new Date(s.date + 'T00:00:00');
-        nd.setDate(nd.getDate() + 1);
-        endDay = nd.toISOString().slice(0, 10);
-      }
-      endDate = `${endDay}T${pad(endH)}:${pad(t.min)}:00${offset}`;
-    }
-
+    const { start: startDate, end: endDate } = showStartEnd(s);
     const event = {
       "@context": "https://schema.org",
       "@type": "MusicEvent",
