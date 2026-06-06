@@ -23,6 +23,7 @@
 <link rel="icon" type="image/png" href="docs/resources/branding/Kings_of_Ewing_Logo.png">
   <link rel="apple-touch-icon" href="docs/resources/branding/Kings_of_Ewing_Logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
@@ -112,7 +113,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .cta-pair { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
-/* Section order: follow(brown) > shows(bg) > about(brown) > book(bg) */
+/* Section order: social(brown) > mailing(bg) > shows(brown) > about(bg) > faq(brown) > book(bg) */
   #social  { background: var(--brown); padding: 6rem 2rem; text-align: center; }
 
 #shows   { background: var(--brown); padding: 7rem 3rem; }
@@ -278,10 +279,7 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.0
     max-width: 320px;
     text-align: center;
     animation: fadeUp 0.9s 0.55s ease both;
-    opacity: 0;
   }
-
-.audio-box.loaded { opacity: 1; transition: opacity 0.4s; }
 
 #player-track-name {
     font-size: 0.78rem;
@@ -388,6 +386,16 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .sticky-logo-right { right: 0; }
 
 @media (max-width: 600px) { .sticky-logo { display: none; } }
+
+#sticky-progress-bar {
+  position: absolute;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--teal);
+  pointer-events: none;
+  transition: width 0.25s linear;
+}
 
 .skip-link {
   position: absolute;
@@ -558,13 +566,13 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <div style="flex: 1 1 300px;">
       <p class="section-label" style="margin-bottom:0.75rem;">Live at Goat Village</p>
       <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-        <iframe src="https://www.youtube.com/embed/PhVwRvgKHvQ" title="Kings of Ewing Live at Goat Village" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+        <iframe src="https://www.youtube.com/embed/PhVwRvgKHvQ" title="Kings of Ewing Live at Goat Village" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
       </div>
     </div>
     <div style="flex: 1 1 300px;">
       <p class="section-label" style="margin-bottom:0.75rem;">Live at Chicago Union</p>
       <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-        <iframe src="https://www.youtube.com/embed/mMwmRn1mP-A" title="Kings of Ewing Live at Chicago Union" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+        <iframe src="https://www.youtube.com/embed/mMwmRn1mP-A" title="Kings of Ewing Live at Chicago Union" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
       </div>
     </div>
   </div>
@@ -595,7 +603,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 </section>
 
 <!-- 2. MAILING LIST -->
-<section id="mailing" style="background:var(--bg); padding:5rem 2rem; text-align:center;">
+<section id="mailing" class="reveal" style="background:var(--bg); padding:5rem 2rem; text-align:center;">
   <p class="section-label">Stay in the loop</p>
   <h2 style="font-family:'Pacifico',cursive; font-size:clamp(1.5rem,3vw,2.2rem); color:var(--cream); margin-bottom:0.5rem;">Join the Mailing List</h2>
   <div style="width:40px;height:2px;background:var(--coral);margin:0.8rem auto 1.5rem;"></div>
@@ -837,7 +845,8 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <p class="section-label">Hire us</p>
     <h2 class="section-title">Book the Band</h2>
     <div class="divider" style="margin: 0.8rem auto 2rem;"></div>
-    <p style="color:rgba(232,223,192,0.55); font-size:0.95rem; line-height:1.8; margin-bottom:2rem; text-align:center;">Fill out the form below and we&rsquo;ll get back to you. Prefer to reach out directly? Email us at <a href="mailto:Miles@KingsOfEwing.com" class="email-link">Miles@KingsOfEwing.com</a>.</p>
+    <p style="color:rgba(232,223,192,0.55); font-size:0.95rem; line-height:1.8; margin-bottom:0.75rem; text-align:center;">Fill out the form below and we&rsquo;ll get back to you. Prefer to reach out directly? Email us at <a href="mailto:Miles@KingsOfEwing.com" class="email-link">Miles@KingsOfEwing.com</a>.</p>
+    <p style="color:rgba(232,223,192,0.35); font-size:0.8rem; line-height:1.7; margin-bottom:2rem; text-align:center; font-style:italic;">Our rates are flexible and vary by event — reach out and we&rsquo;ll send you a quote.</p>
     <form action="https://formspree.io/f/mwvynqoe" method="POST" id="booking-form" novalidate>
       <!-- Honeypot field - bots fill this in, humans don't see it -->
       <div class="honeypot" aria-hidden="true">
@@ -909,7 +918,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
     </button>
     <span id="sticky-track-name">—</span>
-    <div id="sticky-progress-bar" style="display:none;"></div>
+    <div id="sticky-progress-bar"></div>
   </div>
 </div>
 <script>
@@ -1183,7 +1192,19 @@ function renderShow(s, isPast) {
     cal.type = 'button';
     cal.className = 'cal-btn';
     cal.setAttribute('aria-label', 'Add ' + (s.venue && s.venue.name ? s.venue.name + ' ' : '') + 'show to your calendar');
-    cal.innerHTML = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Add to Calendar</span>';
+    const calSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    calSvg.setAttribute('viewBox', '0 0 24 24'); calSvg.setAttribute('width', '13'); calSvg.setAttribute('height', '13');
+    calSvg.setAttribute('fill', 'none'); calSvg.setAttribute('stroke', 'currentColor');
+    calSvg.setAttribute('stroke-width', '2'); calSvg.setAttribute('stroke-linecap', 'round');
+    calSvg.setAttribute('stroke-linejoin', 'round'); calSvg.setAttribute('aria-hidden', 'true');
+    [['rect','x=3 y=4 width=18 height=18 rx=2'],['line','x1=16 y1=2 x2=16 y2=6'],['line','x1=8 y1=2 x2=8 y2=6'],['line','x1=3 y1=10 x2=21 y2=10']].forEach(([tag, attrs]) => {
+      const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      attrs.split(' ').forEach(a => { const [k,v] = a.split('='); el.setAttribute(k, v); });
+      calSvg.appendChild(el);
+    });
+    const calSpan = document.createElement('span');
+    calSpan.textContent = 'Add to Calendar';
+    cal.append(calSvg, calSpan);
     cal.addEventListener('click', () => downloadICS(s));
     info.appendChild(cal);
   }
@@ -1498,7 +1519,7 @@ progressTrack.addEventListener('keydown', e => {
 audio.addEventListener('timeupdate', updateProgress);
 audio.addEventListener('ended', playerNext);
 
-setTimeout(() => { document.getElementById('audio-box').classList.add('loaded'); }, 800);
+// audio-box fade-in handled by CSS animation (fadeUp 0.9s 0.55s ease both)
 
 // Show sticky player when audio box scrolls out of view
 const audioBox = document.getElementById('audio-box');
