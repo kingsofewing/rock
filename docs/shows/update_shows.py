@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-# Run with: python3 scripts/update_shows.py
+# Run with: python3 docs/shows/update_shows.py
 """
 update_shows.py
 ---------------
-Reads shows.xlsx (in the repo root) and writes shows.json.
+Reads shows.xlsx and writes shows.json (both in docs/shows/).
 Run this whenever you update the spreadsheet:
 
-    python scripts/update_shows.py
+    python3 docs/shows/update_shows.py
 
-Then commit both shows.xlsx and shows.json and push.
-Requires openpyxl:  pip install openpyxl
+Then commit shows.xlsx and shows.json via GitHub Desktop and push.
+Requires openpyxl:  pip3 install openpyxl
 """
 
 import json
@@ -19,11 +19,11 @@ from pathlib import Path
 try:
     from openpyxl import load_workbook
 except ImportError:
-    sys.exit("Missing dependency. Run:  pip install openpyxl")
+    sys.exit("Missing dependency. Run:  pip3 install openpyxl")
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-XLSX_PATH = REPO_ROOT / "shows.xlsx"
-JSON_PATH = REPO_ROOT / "shows.json"
+THIS_DIR  = Path(__file__).resolve().parent   # docs/shows/
+XLSX_PATH = THIS_DIR / "shows.xlsx"
+JSON_PATH = THIS_DIR / "shows.json"
 
 # Column positions (1-based) in the Shows sheet
 COL_DATE             = 1
@@ -92,7 +92,7 @@ def build_shows():
 
 def main():
     if not XLSX_PATH.exists():
-        sys.exit(f"Cannot find {XLSX_PATH}")
+        sys.exit(f"Cannot find {XLSX_PATH}\nMake sure you're running from the repo root.")
 
     shows = build_shows()
     JSON_PATH.write_text(json.dumps(shows, indent=2, ensure_ascii=False))
