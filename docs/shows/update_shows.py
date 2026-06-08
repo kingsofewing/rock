@@ -33,12 +33,13 @@ COL_VENUE_URL        = 3
 COL_START_TIME       = 4
 COL_END_TIME         = 5
 COL_LOCATION         = 6
-COL_DETAIL           = 7
-COL_DETAIL_LINK_NAME = 8
-COL_DETAIL_LINK_URL  = 9
-COL_DETAIL_LINK_SUFFIX = 10
-COL_DESCRIPTION      = 11
-COL_CANCELLED        = 12
+COL_ADDRESS          = 7
+COL_DETAIL           = 8
+COL_DETAIL_LINK_NAME = 9
+COL_DETAIL_LINK_URL  = 10
+COL_DETAIL_LINK_SUFFIX = 11
+COL_DESCRIPTION      = 12
+COL_CANCELLED        = 13
 
 DATA_START_ROW = 3  # row 1 = instructions, row 2 = headers
 
@@ -83,6 +84,10 @@ def build_shows():
             show["end_time"] = end_time
         if location:
             show["location"] = location
+
+        address = cell_val(row, COL_ADDRESS)
+        if address:
+            show["address"] = address
 
         detail = cell_val(row, COL_DETAIL)
         if detail:
