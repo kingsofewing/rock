@@ -1,21 +1,91 @@
 [
   {
-    "date": "2026-06-21",
-    "venue_name": "Chicago Union",
-    "venue_url": "https://watchufa.com/union",
-    "detail": "5:00 PM · ETHS Lazier Field",
-    "description": "Pre-game set before the Chicago Union — a pro Ultimate Frisbee Association (UFA) team — takes the field."
-  },
-  {
-    "date": "2026-06-24",
-    "venue_name": "Ridgeville Parks District",
-    "venue_url": "https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893",
-    "detail": "6:00 PM",
-    "description": "Part of the Ridgeville Parks District \"Concerts on the Ridge\" summer series."
-  },
-  {
-    "date": "2026-09-12",
+    "date": "2023-09-09",
     "venue_name": "Ewing Block Party"
+  },
+  {
+    "date": "2024-04-26",
+    "venue_name": "Lincolnwood Spring Fling",
+    "detail": "PTA Spring Fling"
+  },
+  {
+    "date": "2024-06-07",
+    "venue_name": "Fat Shallot",
+    "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/"
+  },
+  {
+    "date": "2024-07-21",
+    "venue_name": "Chicago Union",
+    "venue_url": "https://watchufa.com/union"
+  },
+  {
+    "date": "2024-08-17",
+    "venue_name": "Private Party"
+  },
+  {
+    "date": "2024-08-24",
+    "venue_name": "Fat Shallot",
+    "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/"
+  },
+  {
+    "date": "2024-09-07",
+    "venue_name": "Ewing Block Party"
+  },
+  {
+    "date": "2024-10-09",
+    "venue_name": "Fat Shallot",
+    "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
+    "detail_link_name": "Covenant Nursery School",
+    "detail_link_url": "https://www.covenantnurseryschool.org/",
+    "detail_link_suffix": "Dining for Dollars"
+  },
+  {
+    "date": "2025-04-03",
+    "venue_name": "Lincolnwood Spring Fling",
+    "detail": "PTA Spring Fling"
+  },
+  {
+    "date": "2025-06-07",
+    "venue_name": "Fat Shallot",
+    "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/"
+  },
+  {
+    "date": "2025-06-25",
+    "venue_name": "American Legion Post 42",
+    "venue_url": "https://www.evanstonpost42.com/"
+  },
+  {
+    "date": "2025-09-06",
+    "venue_name": "Ewing Block Party"
+  },
+  {
+    "date": "2025-10-10",
+    "venue_name": "Ackerman Park",
+    "detail_link_name": "Invest in Neighborhood Schools",
+    "detail_link_url": "https://www.investinevanston.com/"
+  },
+  {
+    "date": "2025-10-18",
+    "venue_name": "Mack's Bike & Goods",
+    "venue_url": "https://www.macksbikeandgoods.com/",
+    "detail": "Fall Fest",
+    "cancelled": true
+  },
+  {
+    "date": "2025-11-16",
+    "venue_name": "Double Clutch",
+    "venue_url": "https://www.doubleclutchbrewing.com/"
+  },
+  {
+    "date": "2026-01-24",
+    "venue_name": "Goat Village",
+    "venue_url": "https://www.goatvillage777.com/"
+  },
+  {
+    "date": "2026-04-24",
+    "venue_name": "American Legion Post 42",
+    "venue_url": "https://www.evanstonpost42.com/",
+    "detail": "D65 One Fund Spring Cha Ching"
   },
   {
     "date": "2026-05-14",
@@ -32,92 +102,22 @@
     "detail": "7:00 PM"
   },
   {
-    "date": "2026-04-24",
-    "venue_name": "American Legion Post 42",
-    "venue_url": "https://www.evanstonpost42.com/",
-    "detail": "D65 One Fund Spring Cha Ching"
-  },
-  {
-    "date": "2026-01-24",
-    "venue_name": "Goat Village",
-    "venue_url": "https://www.goatvillage777.com/"
-  },
-  {
-    "date": "2025-11-16",
-    "venue_name": "Double Clutch",
-    "venue_url": "https://www.doubleclutchbrewing.com/"
-  },
-  {
-    "date": "2025-10-18",
-    "venue_name": "Mack's Bike & Goods",
-    "venue_url": "https://www.macksbikeandgoods.com/",
-    "detail": "Fall Fest",
-    "cancelled": true
-  },
-  {
-    "date": "2025-10-10",
-    "venue_name": "Ackerman Park",
-    "detail_link_name": "Invest in Neighborhood Schools",
-    "detail_link_url": "https://www.investinevanston.com/"
-  },
-  {
-    "date": "2025-09-06",
-    "venue_name": "Ewing Block Party"
-  },
-  {
-    "date": "2025-06-25",
-    "venue_name": "American Legion Post 42",
-    "venue_url": "https://www.evanstonpost42.com/"
-  },
-  {
-    "date": "2025-06-07",
-    "venue_name": "Fat Shallot",
-    "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/"
-  },
-  {
-    "date": "2025-04-03",
-    "venue_name": "Lincolnwood Spring Fling",
-    "detail": "PTA Spring Fling"
-  },
-  {
-    "date": "2024-10-09",
-    "venue_name": "Fat Shallot",
-    "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
-    "detail_link_name": "Covenant Nursery School",
-    "detail_link_url": "https://www.covenantnurseryschool.org/",
-    "detail_link_suffix": "Dining for Dollars"
-  },
-  {
-    "date": "2024-09-07",
-    "venue_name": "Ewing Block Party"
-  },
-  {
-    "date": "2024-08-24",
-    "venue_name": "Fat Shallot",
-    "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/"
-  },
-  {
-    "date": "2024-08-17",
-    "venue_name": "Private Party"
-  },
-  {
-    "date": "2024-07-21",
+    "date": "2026-06-21",
     "venue_name": "Chicago Union",
-    "venue_url": "https://watchufa.com/union"
+    "venue_url": "https://watchufa.com/union",
+    "detail": "5:00 PM · ETHS Lazier Field",
+    "description": "Pre-game set before the Chicago Union — a pro Ultimate Frisbee Association (UFA) team — takes the field."
   },
   {
-    "date": "2024-06-07",
-    "venue_name": "Fat Shallot",
-    "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/"
+    "date": "2026-06-24",
+    "venue_name": "Ridgeville Parks District",
+    "venue_url": "https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893",
+    "detail": "6:00 PM",
+    "description": "Part of the Ridgeville Parks District \"Concerts on the Ridge\" summer series."
   },
   {
-    "date": "2024-04-26",
-    "venue_name": "Lincolnwood Spring Fling",
-    "detail": "PTA Spring Fling"
-  },
-  {
-    "date": "2023-09-09",
+    "date": "2026-09-12",
     "venue_name": "Ewing Block Party",
-    "detail": "04:00:00"
+    "detail": "4:00 PM"
   }
 ]

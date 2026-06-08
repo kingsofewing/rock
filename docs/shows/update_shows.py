@@ -12,6 +12,7 @@ Then commit shows.xlsx and shows.json via GitHub Desktop and push.
 Requires openpyxl:  pip3 install openpyxl
 """
 
+import datetime
 import json
 import sys
 from pathlib import Path
@@ -41,7 +42,14 @@ DATA_START_ROW = 3  # row 1 = instructions, row 2 = headers
 
 def cell_val(row, col):
     v = row[col - 1].value
-    return str(v).strip() if v is not None else ""
+    if v is None:
+        return ""
+    # Excel time cells come back as datetime.time — convert to "H:MM AM/PM"
+    if isinstance(v, datetime.time):
+        return v.strftime("%-I:%M %p")   # e.g. "4:00 PM"
+    if isinstance(v, datetime.datetime):
+        return v.strftime("%-I:%M %p")
+    return str(v).strip()
 
 
 def build_shows():
