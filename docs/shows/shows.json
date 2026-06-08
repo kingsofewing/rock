@@ -91,7 +91,7 @@
     "date": "2026-05-14",
     "venue_name": "Fat Shallot",
     "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
-    "detail": "5:30 PM",
+    "start_time": "5:30 PM",
     "detail_link_name": "Covenant Nursery School",
     "detail_link_url": "https://www.covenantnurseryschool.org/",
     "detail_link_suffix": "Dining for Dollars"
@@ -99,25 +99,26 @@
   {
     "date": "2026-05-16",
     "venue_name": "Private Party",
-    "detail": "7:00 PM"
+    "start_time": "7:00 PM"
   },
   {
     "date": "2026-06-21",
     "venue_name": "Chicago Union",
     "venue_url": "https://watchufa.com/union",
-    "detail": "5:00 PM · ETHS Lazier Field",
+    "start_time": "5:00 PM",
+    "location": "ETHS Lazier Field",
     "description": "Pre-game set before the Chicago Union — a pro Ultimate Frisbee Association (UFA) team — takes the field."
   },
   {
     "date": "2026-06-24",
     "venue_name": "Ridgeville Parks District",
     "venue_url": "https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893",
-    "detail": "6:00 PM",
+    "start_time": "6:00 PM",
     "description": "Part of the Ridgeville Parks District \"Concerts on the Ridge\" summer series."
   },
   {
     "date": "2026-09-12",
     "venue_name": "Ewing Block Party",
-    "detail": "4:00 PM"
+    "start_time": "4:00 PM"
   }
 ]

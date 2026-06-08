@@ -6,9 +6,9 @@
 <title>Kings of Ewing</title>
 <meta name="geo.placename" content="Evanston, IL">
 <meta name="geo.region" content="US-IL">
-<meta name="description" content="Kings of Ewing — a five-piece mostly-covers band from Evanston, IL. Six decades of rock, pop, folk and soul. Available for weddings, block parties, fundraisers and more.">
+<meta name="description" content="Kings of Ewing — a five-piece mostly-covers band from Evanston, IL. Six decades of rock, pop, folk, blues, and soul. Available for weddings, block parties, fundraisers and more.">
 <meta property="og:title" content="Kings of Ewing">
-<meta property="og:description" content="A five-piece mostly-covers band from one block in Evanston, IL. Six decades of rock, pop, folk and soul. Available for weddings, block parties, fundraisers and more.">
+<meta property="og:description" content="A five-piece mostly-covers band from one block in Evanston, IL. Six decades of rock, pop, folk, blues, and soul. Available for weddings, block parties, fundraisers and more.">
 <meta property="og:image" content="https://www.kingsofewing.com/docs/images/IMG_2445.jpeg">
 <meta property="og:image:alt" content="Kings of Ewing performing live — a five-piece cover band from Evanston, IL">
 <meta property="og:url" content="https://www.kingsofewing.com">
@@ -658,7 +658,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
       <h2 class="section-title"><a href="docs/resources/Kings_of_Ewing_Links.html" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none; border-bottom: 2px solid rgba(79,179,168,0.5); padding-bottom: 2px;">The Kings</a></h2>
       <div class="divider"></div>
       <p>Kings of Ewing is a five-piece band from Evanston, Illinois. We live on the same block on Ewing Ave: hence the name! We started in 2023 to play our own block party and liked it so much we never stopped.</p>
-      <p>By day, we hold down regular jobs. By night we play the music we love: six decades of rock, pop, folk, blues, and soul, from Beatles classics and Allman Brothers jams to Tom Petty and Chappell Roan. With four vocalists, a horn, keys, and a rhythm section, we keep the floor full and the crowd singing along.</p>
+      <p>By day, we hold down regular jobs. By night we play the music we love: six decades of rock, pop, folk, blues, and soul, from Beatles classics and Allman Brothers jams to Tom Petty, Chappell Roan, and everything in between. With four vocalists, a horn player, keys, and a rhythm section that knows how to read a room, we keep the dance floor moving and the crowd singing along.</p>
       <p>We play weddings, block parties, fundraisers, bars, and backyard gatherings throughout North Chicagoland. We&rsquo;re flexible on production too &mdash; we can bring our own PA and mixing board and run our own sound if needed, or plug into whatever a venue has. Either way works for us.</p>
       <p>No rock star egos. No tour bus. Just five friends from the same block who happen to make a really good racket.</p>
 
@@ -980,6 +980,9 @@ function normalizeShow(s) {
     date:  s.date,
     venue: { name: s.venue_name || '', url: s.venue_url || '' },
   };
+  if (s.start_time)  show.start_time  = s.start_time;
+  if (s.end_time)    show.end_time    = s.end_time;
+  if (s.location)    show.location    = s.location;
   if (s.detail)      show.detail      = s.detail;
   if (s.description) show.description = s.description;
   if (s.cancelled)   show.cancelled   = true;
@@ -1048,18 +1051,27 @@ function chicagoOffset(dateStr) {
 // Start/end for a show as ISO strings w/ Chicago offset; ~2 hr set assumed.
 // When no time is known, returns the bare date and hasTime:false.
 function showStartEnd(s) {
-  const t = parseTime(s.detail);
+  // Prefer explicit start_time field; fall back to parsing legacy detail string
+  const t = parseTime(s.start_time) || parseTime(s.detail);
   if (!t) return { start: s.date, end: s.date, hasTime: false };
   const offset = chicagoOffset(s.date);
   const start = `${s.date}T${pad2(t.h)}:${pad2(t.min)}:00${offset}`;
-  let endH = t.h + 2, endDay = s.date;
-  if (endH > 23) {
-    endH -= 24;
-    const nd = new Date(s.date + 'T00:00:00');
-    nd.setDate(nd.getDate() + 1);
-    endDay = nd.toISOString().slice(0, 10);
+
+  // Use explicit end_time if present, otherwise assume ~2 hr set
+  const te = parseTime(s.end_time);
+  let endH, endMin, endDay;
+  if (te) {
+    endH = te.h; endMin = te.min; endDay = s.date;
+  } else {
+    endH = t.h + 2; endMin = t.min; endDay = s.date;
+    if (endH > 23) {
+      endH -= 24;
+      const nd = new Date(s.date + 'T00:00:00');
+      nd.setDate(nd.getDate() + 1);
+      endDay = nd.toISOString().slice(0, 10);
+    }
   }
-  const end = `${endDay}T${pad2(endH)}:${pad2(t.min)}:00${offset}`;
+  const end = `${endDay}T${pad2(endH)}:${pad2(endMin)}:00${offset}`;
   return { start, end, hasTime: true };
 }
 
@@ -1096,7 +1108,7 @@ function buildICS(s) {
     dtEnd   = 'DTEND;VALUE=DATE:' + `${nd.getFullYear()}${pad2(nd.getMonth() + 1)}${pad2(nd.getDate())}`;
   }
 
-  const locText = stripTime(s.detail);
+  const locText = s.location || stripTime(s.detail);
   const location = locText ? `${venueName}, ${locText}` : venueName;
   const description = [s.description, 'More info: https://www.kingsofewing.com']
     .filter(Boolean).join('\n\n');
@@ -1160,18 +1172,31 @@ function renderShow(s, isPast) {
   }
   info.appendChild(h3);
 
-  // Detail line: plain text, optional link, optional suffix.
-  // Past shows drop the start time (keeping any location text).
-  const detailText = isPast ? stripTime(s.detail) : s.detail;
-  if (detailText || s.detailLink) {
-    const p = document.createElement('p');
-    if (detailText) p.appendChild(document.createTextNode(detailText));
-    if (detailText && s.detailLink) p.appendChild(document.createTextNode(' · '));
-    if (s.detailLink) {
-      p.appendChild(makeLink(s.detailLink.name, s.detailLink.url));
-      if (s.detailLink.suffix) p.appendChild(document.createTextNode(s.detailLink.suffix));
+  // Detail line: time (upcoming only), location, sub-title, link.
+  // Build parts, then join with " · ".
+  {
+    const parts = [];
+    if (!isPast && s.start_time) {
+      parts.push({ text: s.end_time ? `${s.start_time} – ${s.end_time}` : s.start_time });
     }
-    info.appendChild(p);
+    if (s.location) parts.push({ text: s.location });
+    // Legacy: detail may still hold a time string on old rows — strip it for past shows
+    const legacyDetail = isPast ? stripTime(s.detail) : s.detail;
+    if (legacyDetail) parts.push({ text: legacyDetail });
+    if (s.detailLink) parts.push({ link: s.detailLink });
+    if (parts.length) {
+      const p = document.createElement('p');
+      parts.forEach((part, i) => {
+        if (i > 0) p.appendChild(document.createTextNode(' · '));
+        if (part.text) {
+          p.appendChild(document.createTextNode(part.text));
+        } else if (part.link) {
+          p.appendChild(makeLink(part.link.name, part.link.url));
+          if (part.link.suffix) p.appendChild(document.createTextNode(part.link.suffix));
+        }
+      });
+      info.appendChild(p);
+    }
   }
 
   // Optional descriptive blurb
@@ -1249,7 +1274,7 @@ function injectEventSchema(SHOWS) {
       "@context": "https://schema.org",
       "@type": "MusicEvent",
       "name": "Kings of Ewing at " + venueName,
-      "description": (s.description ? s.description + " " : "") + "Kings of Ewing — a five-piece mostly-covers band from Evanston, IL — performing live at " + venueName + ". Six decades of rock, pop, folk and soul.",
+      "description": (s.description ? s.description + " " : "") + "Kings of Ewing — a five-piece mostly-covers band from Evanston, IL — performing live at " + venueName + ". Six decades of rock, pop, folk, blues, and soul.",
       "image": "https://www.kingsofewing.com/docs/images/IMG_2445.jpeg",
       "startDate": startDate,
       "endDate": endDate,
@@ -1262,7 +1287,7 @@ function injectEventSchema(SHOWS) {
       },
       "location": {
         "@type": "Place",
-        "name": venueName,
+        "name": s.location ? `${venueName}, ${s.location}` : venueName,
         "address": {
           "@type": "PostalAddress",
           "addressRegion": "IL",

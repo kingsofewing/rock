@@ -30,12 +30,15 @@ JSON_PATH = THIS_DIR / "shows.json"
 COL_DATE             = 1
 COL_VENUE_NAME       = 2
 COL_VENUE_URL        = 3
-COL_DETAIL           = 4
-COL_DETAIL_LINK_NAME = 5
-COL_DETAIL_LINK_URL  = 6
-COL_DETAIL_LINK_SUFFIX = 7
-COL_DESCRIPTION      = 8
-COL_CANCELLED        = 9
+COL_START_TIME       = 4
+COL_END_TIME         = 5
+COL_LOCATION         = 6
+COL_DETAIL           = 7
+COL_DETAIL_LINK_NAME = 8
+COL_DETAIL_LINK_URL  = 9
+COL_DETAIL_LINK_SUFFIX = 10
+COL_DESCRIPTION      = 11
+COL_CANCELLED        = 12
 
 DATA_START_ROW = 3  # row 1 = instructions, row 2 = headers
 
@@ -70,6 +73,16 @@ def build_shows():
             show["venue_name"] = venue_name
         if venue_url:
             show["venue_url"] = venue_url
+
+        start_time = cell_val(row, COL_START_TIME)
+        end_time   = cell_val(row, COL_END_TIME)
+        location   = cell_val(row, COL_LOCATION)
+        if start_time:
+            show["start_time"] = start_time
+        if end_time:
+            show["end_time"] = end_time
+        if location:
+            show["location"] = location
 
         detail = cell_val(row, COL_DETAIL)
         if detail:
