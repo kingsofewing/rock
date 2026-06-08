@@ -1243,9 +1243,8 @@ function renderShow(s, isPast) {
     const cal = document.createElement('button');
     cal.type = 'button';
     cal.className = 'cal-btn';
-    const timeRange = s.start_time ? (s.end_time ? `${s.start_time} – ${s.end_time}` : s.start_time) : null;
     const vName = s.venue && s.venue.name ? s.venue.name + ' ' : '';
-    cal.setAttribute('aria-label', 'Add ' + vName + 'show to your calendar' + (timeRange ? ' (' + timeRange + ')' : ''));
+    cal.setAttribute('aria-label', 'Add ' + vName + 'show to your calendar');
     const calSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     calSvg.setAttribute('viewBox', '0 0 24 24'); calSvg.setAttribute('width', '13'); calSvg.setAttribute('height', '13');
     calSvg.setAttribute('fill', 'none'); calSvg.setAttribute('stroke', 'currentColor');
@@ -1258,14 +1257,7 @@ function renderShow(s, isPast) {
     });
     const calSpan = document.createElement('span');
     calSpan.textContent = 'Add to Calendar';
-    if (timeRange) {
-      const calTime = document.createElement('span');
-      calTime.className = 'cal-time';
-      calTime.textContent = ' · ' + timeRange;
-      cal.append(calSvg, calSpan, calTime);
-    } else {
-      cal.append(calSvg, calSpan);
-    }
+    cal.append(calSvg, calSpan);
     cal.addEventListener('click', () => downloadICS(s));
     info.appendChild(cal);
   }
