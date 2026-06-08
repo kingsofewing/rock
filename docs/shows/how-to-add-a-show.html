@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Add a New Show — Kings of Ewing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 680px;
+      margin: 48px auto;
+      padding: 0 24px;
+      background: #f9f7f2;
+      color: #222;
+      line-height: 1.6;
+    }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.05rem; margin: 2rem 0 0.5rem; color: #5a3e2b; border-bottom: 1px solid #d6c9b0; padding-bottom: 0.3rem; }
+    p  { margin: 0.5rem 0; }
+    ol { padding-left: 1.4rem; }
+    li { margin-bottom: 0.6rem; }
+    code {
+      background: #2b1f14;
+      color: #e8dfc0;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.92em;
+      font-family: monospace;
+    }
+    .cmd-block {
+      background: #2b1f14;
+      color: #e8dfc0;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.95rem;
+      margin: 0.75rem 0;
+      white-space: pre;
+    }
+    .note {
+      background: #fff8e8;
+      border-left: 3px solid #c8623a;
+      padding: 10px 14px;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.92rem;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>How to Add a New Show</h1>
+  <p>No HTML editing needed. Just update the spreadsheet, run one command, and push.</p>
+
+  <h2>Step 1 — Update the spreadsheet</h2>
+  <ol>
+    <li>Open <strong>shows.xlsx</strong> (in this folder).</li>
+    <li>Go to the <strong>Shows</strong> tab and add a new row at the bottom.</li>
+    <li>Required: <strong>Date</strong> (format: <code>2026-07-04</code>) and <strong>Venue Name</strong>.</li>
+    <li>Fill in any optional columns — time, URL, description, etc. See the <strong>Column Guide</strong> tab for what each column does.</li>
+    <li><strong>Save and close the file</strong> (<code>Cmd + S</code>, then close Excel). The script will fail if the file is still open.</li>
+  </ol>
+
+  <h2>Step 2 — Open Terminal</h2>
+  <ol>
+    <li>Press <code>Cmd + Space</code> to open Spotlight.</li>
+    <li>Type <strong>Terminal</strong> and press <code>Return</code>.</li>
+  </ol>
+
+  <h2>Step 3 — Navigate to the repo folder</h2>
+  <div class="cmd-block">cd ~/Documents/kings_website/rock</div>
+
+  <h2>Step 4 — Run the script</h2>
+  <div class="cmd-block">python3 docs/shows/update_shows.py</div>
+  <p>You should see: <code>Wrote XX shows to shows.json</code></p>
+
+  <div class="note">
+    <strong>First time only —</strong> if you see "Missing dependency", run this first, then re-run the script:<br/><br/>
+    <code>pip3 install openpyxl</code>
+  </div>
+
+  <h2>Step 5 — Commit and push via GitHub Desktop</h2>
+  <ol>
+    <li>Open <strong>GitHub Desktop</strong>.</li>
+    <li>You'll see <strong>shows.xlsx</strong> and <strong>shows.json</strong> listed as changed files.</li>
+    <li>Type a summary in the bottom-left — e.g. <code>add show: Venue Name</code>.</li>
+    <li>Click <strong>Commit to main</strong>.</li>
+    <li>Click <strong>Push origin</strong> (top right).</li>
+  </ol>
+
+  <p>GitHub Pages rebuilds in under a minute. Check <a href="https://www.kingsofewing.com/#shows">kingsofewing.com/#shows</a> to confirm.</p>
+
+</body>
+</html>
