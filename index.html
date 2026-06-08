@@ -1045,14 +1045,14 @@ function chicagoOffset(dateStr) {
   } catch (e) { return '-06:00'; }
 }
 
-// Start/end for a show as ISO strings w/ Chicago offset; ~3 hr set assumed.
+// Start/end for a show as ISO strings w/ Chicago offset; ~2 hr set assumed.
 // When no time is known, returns the bare date and hasTime:false.
 function showStartEnd(s) {
   const t = parseTime(s.detail);
   if (!t) return { start: s.date, end: s.date, hasTime: false };
   const offset = chicagoOffset(s.date);
   const start = `${s.date}T${pad2(t.h)}:${pad2(t.min)}:00${offset}`;
-  let endH = t.h + 3, endDay = s.date;
+  let endH = t.h + 2, endDay = s.date;
   if (endH > 23) {
     endH -= 24;
     const nd = new Date(s.date + 'T00:00:00');
