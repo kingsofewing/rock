@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+# Run with: python3 scripts/update_shows.py
+"""
+update_shows.py
+---------------
+Reads shows.xlsx (in the repo root) and writes shows.json.
+Run this whenever you update the spreadsheet:
+
+    python scripts/update_shows.py
+
+Then commit both shows.xlsx and shows.json and push.
+Requires openpyxl:  pip install openpyxl
+"""
+
+import json
+import sys
+from pathlib import Path
+
+try:
+    from openpyxl import load_workbook
+except ImportError:
+    sys.exit("Missing dependency. Run:  pip install openpyxl")
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+XLSX_PATH = REPO_ROOT / "shows.xlsx"
+JSON_PATH = REPO_ROOT / "shows.json"
+
+# Column positions (1-based) in the Shows sheet
+COL_DATE             = 1
+COL_VENUE_NAME       = 2
+COL_VENUE_URL        = 3
+COL_DETAIL           = 4
+COL_DETAIL_LINK_NAME = 5
+COL_DETAIL_LINK_URL  = 6
+COL_DETAIL_LINK_SUFFIX = 7
+COL_DESCRIPTION      = 8
+COL_CANCELLED        = 9
+
+DATA_START_ROW = 3  # row 1 = instructions, row 2 = headers
+
+
+def cell_val(row, col):
+    v = row[col - 1].value
+    return str(v).strip() if v is not None else ""
+
+
+def build_shows():
+    wb = load_workbook(XLSX_PATH, data_only=True)
+    ws = wb["Shows"]
+    shows = []
+
+    for row in ws.iter_rows(min_row=DATA_START_ROW):
+        date = cell_val(row, COL_DATE)
+        if not date:
+            continue  # skip blank rows
+
+        show = {"date": date}
+
+        venue_name = cell_val(row, COL_VENUE_NAME)
+        venue_url  = cell_val(row, COL_VENUE_URL)
+        if venue_name:
+            show["venue_name"] = venue_name
+        if venue_url:
+            show["venue_url"] = venue_url
+
+        detail = cell_val(row, COL_DETAIL)
+        if detail:
+            show["detail"] = detail
+
+        dl_name   = cell_val(row, COL_DETAIL_LINK_NAME)
+        dl_url    = cell_val(row, COL_DETAIL_LINK_URL)
+        dl_suffix = cell_val(row, COL_DETAIL_LINK_SUFFIX)
+        if dl_name:
+            show["detail_link_name"] = dl_name
+        if dl_url:
+            show["detail_link_url"] = dl_url
+        if dl_suffix:
+            show["detail_link_suffix"] = dl_suffix.lstrip()
+
+        description = cell_val(row, COL_DESCRIPTION)
+        if description:
+            show["description"] = description
+
+        cancelled = cell_val(row, COL_CANCELLED).upper()
+        if cancelled == "TRUE":
+            show["cancelled"] = True
+
+        shows.append(show)
+
+    return shows
+
+
+def main():
+    if not XLSX_PATH.exists():
+        sys.exit(f"Cannot find {XLSX_PATH}")
+
+    shows = build_shows()
+    JSON_PATH.write_text(json.dumps(shows, indent=2, ensure_ascii=False))
+    print(f"Wrote {len(shows)} shows to {JSON_PATH.name}")
+
+
+if __name__ == "__main__":
+    main()

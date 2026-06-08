@@ -970,35 +970,29 @@ document.getElementById('ml-email').addEventListener('keydown', e => {
 });
 
 // ─────────────────────────────────────────────────────────────
-// Shows
-// Structured data — venue/detail are rendered safely via DOM
-// methods (no innerHTML), so no escaping needed even if this
-// is ever loaded from a CMS later.
+// Shows — loaded from shows.json (edit that file via shows.xlsx
+// + scripts/update_shows.py; no HTML changes needed).
 // ─────────────────────────────────────────────────────────────
-const SHOWS = [
-  { date: '2026-05-14', venue: { name: 'Fat Shallot', url: 'https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/' }, detail: '5:30 PM', detailLink: { name: 'Covenant Nursery School', url: 'https://www.covenantnurseryschool.org/', suffix: ' Dining for Dollars' } },
-  { date: '2026-05-16', venue: { name: 'Private Party' }, detail: '7:00 PM' },
-  { date: '2026-06-21', venue: { name: 'Chicago Union', url: 'https://watchufa.com/union' }, detail: '5:00 PM · ETHS Lazier Field', description: 'Pre-game set before the Chicago Union — a pro Ultimate Frisbee Association (UFA) team — takes the field.' },
-  { date: '2026-06-24', venue: { name: 'Ridgeville Parks District', url: 'https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893' }, detail: '6:00 PM', description: 'Part of the Ridgeville Parks District “Concerts on the Ridge” summer series.' },
-  { date: '2026-09-12', venue: { name: 'Ewing Block Party' } },
-  { date: '2026-04-24', venue: { name: 'American Legion Post 42', url: 'https://www.evanstonpost42.com/' }, detail: 'D65 One Fund Spring Cha Ching' },
-  { date: '2026-01-24', venue: { name: 'Goat Village', url: 'https://www.goatvillage777.com/' } },
-  { date: '2025-11-16', venue: { name: 'Double Clutch', url: 'https://www.doubleclutchbrewing.com/' } },
-  { date: '2025-10-18', venue: { name: "Mack's Bike & Goods", url: 'https://www.macksbikeandgoods.com/' }, detail: 'Fall Fest', cancelled: true },
-  { date: '2025-10-10', venue: { name: 'Ackerman Park' }, detailLink: { name: 'Invest in Neighborhood Schools', url: 'https://www.investinevanston.com/' } },
-  { date: '2025-09-06', venue: { name: 'Ewing Block Party' } },
-  { date: '2025-06-25', venue: { name: 'American Legion Post 42', url: 'https://www.evanstonpost42.com/' } },
-  { date: '2025-06-07', venue: { name: 'Fat Shallot', url: 'https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/' } },
-  { date: '2025-04-03', venue: { name: 'Lincolnwood Spring Fling' }, detail: 'PTA Spring Fling' },
-  { date: '2024-10-09', venue: { name: 'Fat Shallot', url: 'https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/' }, detailLink: { name: 'Covenant Nursery School', url: 'https://www.covenantnurseryschool.org/', suffix: ' Dining for Dollars' } },
-  { date: '2024-09-07', venue: { name: 'Ewing Block Party' } },
-  { date: '2024-08-24', venue: { name: 'Fat Shallot', url: 'https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/' } },
-  { date: '2024-08-17', venue: { name: 'Private Party' } },
-  { date: '2024-07-21', venue: { name: 'Chicago Union', url: 'https://watchufa.com/union' } },
-  { date: '2024-06-07', venue: { name: 'Fat Shallot', url: 'https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/' } },
-  { date: '2024-04-26', venue: { name: 'Lincolnwood Spring Fling' }, detail: 'PTA Spring Fling' },
-  { date: '2023-09-09', venue: { name: 'Ewing Block Party' } },
-];
+// Converts the flat spreadsheet row shape into the nested shape
+// the rest of the code expects.
+function normalizeShow(s) {
+  const show = {
+    date:  s.date,
+    venue: { name: s.venue_name || '', url: s.venue_url || '' },
+  };
+  if (s.detail)      show.detail      = s.detail;
+  if (s.description) show.description = s.description;
+  if (s.cancelled)   show.cancelled   = true;
+  if (s.detail_link_name || s.detail_link_url) {
+    const sfx = (s.detail_link_suffix || '').replace(/^ /, '');
+    show.detailLink = {
+      name:   s.detail_link_name || '',
+      url:    s.detail_link_url  || '',
+      suffix: sfx ? ' ' + sfx : '',  // always one space before suffix text
+    };
+  }
+  return show;
+}
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -1222,7 +1216,7 @@ function renderShow(s, isPast) {
   return wrap;
 }
 
-function buildShows() {
+function buildShows(SHOWS) {
   const today = new Date(); today.setHours(0,0,0,0);
   const upcoming = [], past = [];
   SHOWS.forEach(s => {
@@ -1239,14 +1233,12 @@ function buildShows() {
   pastEl.replaceChildren(...past.map(s => renderShow(s, true)));
 }
 
-buildShows();
-
 // ─────────────────────────────────────────────────────────────
 // MusicEvent JSON-LD schema for upcoming shows
 // Google reads dynamically-injected JSON-LD; this keeps the
-// structured data in sync with SHOWS without duplication.
+// structured data in sync with shows.json without duplication.
 // ─────────────────────────────────────────────────────────────
-(function injectEventSchema() {
+function injectEventSchema(SHOWS) {
   const today = new Date(); today.setHours(0,0,0,0);
   const upcoming = SHOWS.filter(s => new Date(s.date + 'T00:00:00') >= today && !s.cancelled);
 
@@ -1298,7 +1290,26 @@ buildShows();
     script.textContent = JSON.stringify(event);
     document.head.appendChild(script);
   });
-})();
+}
+
+// ─────────────────────────────────────────────────────────────
+// Load shows from shows.json (generated by scripts/update_shows.py)
+// ─────────────────────────────────────────────────────────────
+fetch('shows.json')
+  .then(r => r.json())
+  .then(data => {
+    const shows = data.map(normalizeShow);
+    buildShows(shows);
+    injectEventSchema(shows);
+  })
+  .catch(() => {
+    // Fallback message if fetch fails (e.g. opened as a local file)
+    const msg = document.createElement('p');
+    msg.style.cssText = 'color:rgba(232,223,192,0.5);padding:1rem 0;';
+    msg.textContent = 'Shows coming soon.';
+    const upEl = document.getElementById('upcoming-list');
+    if (upEl) upEl.appendChild(msg);
+  });
 
 // ─────────────────────────────────────────────────────────────
 // Tabs (ARIA)
