@@ -106,6 +106,7 @@
     "venue_name": "Chicago Union",
     "venue_url": "https://watchufa.com/union",
     "start_time": "5:00 PM",
+    "end_time": "6:00 PM",
     "location": "ETHS Lazier Field",
     "description": "Pre-game set before the Chicago Union — a pro Ultimate Frisbee Association (UFA) team — takes the field."
   },
@@ -114,6 +115,7 @@
     "venue_name": "Ridgeville Parks District",
     "venue_url": "https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893",
     "start_time": "6:00 PM",
+    "end_time": "8:00 PM",
     "description": "Part of the Ridgeville Parks District \"Concerts on the Ridge\" summer series."
   },
   {
