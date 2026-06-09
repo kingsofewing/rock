@@ -438,29 +438,32 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .footer-social-link { color: rgba(232,223,192,0.4); transition: color 0.2s; display: inline-flex; }
 .footer-social-link:hover, .footer-social-link:focus-visible { color: var(--teal); outline: none; }
 
-/* Video PiP (picture-in-picture) floating player */
+/* Video PiP — UI overlay (label + close); iframe floats via .yt-pip-active, no DOM move */
 #video-pip {
   display: none;
   position: fixed;
   bottom: 80px;
   right: 1.5rem;
   width: 300px;
+  height: 168.75px; /* 16:9 */
   z-index: 200;
-  background: var(--brown);
-  border: 2px solid var(--coral);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.65);
+  pointer-events: none;
 }
 #video-pip.visible { display: block; }
 #pip-label {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  padding-bottom: 0.3rem;
   font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(232,223,192,0.5);
-  padding: 0.4rem 0.75rem 0.3rem;
+  color: rgba(232,223,192,0.6);
+  white-space: nowrap;
+  pointer-events: none;
 }
-#pip-slot { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
-#pip-slot iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 #pip-close {
+  pointer-events: all;
   position: absolute;
   top: -12px; right: -12px;
   width: 26px; height: 26px;
@@ -476,8 +479,26 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   justify-content: center;
   z-index: 201;
 }
+/* Applied to the iframe itself — CSS teleport, no reload, no pause */
+.yt-pip-active {
+  position: fixed !important;
+  bottom: 80px !important;
+  right: 1.5rem !important;
+  top: auto !important;
+  left: auto !important;
+  width: 300px !important;
+  height: 168.75px !important;
+  z-index: 199 !important;
+  border: 2px solid var(--coral);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.65);
+}
 @media (max-width: 480px) {
-  #video-pip { width: calc(100vw - 3rem); }
+  #video-pip,
+  .yt-pip-active {
+    width: calc(100vw - 3rem) !important;
+    height: calc((100vw - 3rem) * 9 / 16) !important;
+    right: 1.5rem !important;
+  }
 }
 
 /* Song requests placeholder — crossed-out "Free Bird" gag */
@@ -972,7 +993,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <div id="video-pip">
   <button id="pip-close" aria-label="Close video">&times;</button>
   <div id="pip-label"></div>
-  <div id="pip-slot"></div>
 </div>
 
 <!-- Sticky mini player -->
@@ -1664,7 +1684,6 @@ audio.addEventListener('ended', playerNext);
 // ─────────────────────────────────────────────────────────────
 (function pipInit() {
   const pipContainer = document.getElementById('video-pip');
-  const pipSlot      = document.getElementById('pip-slot');
   const pipLabel     = document.getElementById('pip-label');
   const pipClose     = document.getElementById('pip-close');
   const videoGrid    = document.querySelector('.video-grid');
@@ -1675,8 +1694,8 @@ audio.addEventListener('ended', playerNext);
     'yt-chicago': 'Live at Chicago Union',
   };
 
-  let activePip      = null; // { player, iframe, parent, id }
-  let gridIsVisible  = true;
+  let activePip     = null; // { player, iframe, id }
+  let gridIsVisible = true;
 
   // Load YouTube IFrame API
   const tag = document.createElement('script');
@@ -1692,7 +1711,11 @@ audio.addEventListener('ended', playerNext);
           onStateChange(event) {
             const iframe = event.target.getIframe();
             if (event.data === YT.PlayerState.PLAYING) {
-              activePip = { player: event.target, iframe, parent: iframe.parentNode, id: iframe.id };
+              // Clear any previously active pip first
+              if (activePip && activePip.iframe !== iframe) {
+                activePip.iframe.classList.remove('yt-pip-active');
+              }
+              activePip = { player: event.target, iframe, id: iframe.id };
               if (!gridIsVisible) showPip();
             } else if (event.data === YT.PlayerState.ENDED) {
               hidePip(false);
@@ -1717,15 +1740,13 @@ audio.addEventListener('ended', playerNext);
   function showPip() {
     if (!activePip) return;
     pipLabel.textContent = TITLES[activePip.id] || '';
-    pipSlot.appendChild(activePip.iframe);
+    activePip.iframe.classList.add('yt-pip-active');
     pipContainer.classList.add('visible');
   }
 
   function hidePip(pause) {
     if (pause && activePip) activePip.player.pauseVideo();
-    if (activePip && activePip.parent) {
-      activePip.parent.appendChild(activePip.iframe);
-    }
+    if (activePip) activePip.iframe.classList.remove('yt-pip-active');
     pipContainer.classList.remove('visible');
     if (pause) activePip = null;
   }
