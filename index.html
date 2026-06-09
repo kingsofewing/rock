@@ -1607,15 +1607,16 @@ const TRACKS = [
   });
 })();
 
+let currentPos = 0;
+
+function currentTrackIndex() { return currentPos; }
+
+// Called after currentPos is declared — safe
 function updateTrackList() {
   document.querySelectorAll('.track-item').forEach((el, i) => {
     el.classList.toggle('now-playing', i === currentTrackIndex());
   });
 }
-
-let currentPos = 0;
-
-function currentTrackIndex() { return currentPos; }
 
 function loadTrack(index, autoplay) {
   const t = TRACKS[index];
@@ -1761,7 +1762,11 @@ audio.addEventListener('ended', playerNext);
               if (activePip && activePip.iframe !== iframe) {
                 returnToHome(activePip);
               }
-              activePip = { player: event.target, iframe, originalParent: iframe.parentNode, id };
+              // Preserve originalParent if iframe is already in pip-slot — don't overwrite with pipSlot
+              const knownOriginal = (activePip && activePip.iframe === iframe)
+                ? activePip.originalParent
+                : (iframe.parentNode !== pipSlot ? iframe.parentNode : activePip?.originalParent);
+              activePip = { player: event.target, iframe, originalParent: knownOriginal, id };
               if (!gridIsVisible) showPip();
             } else if (event.data === YT.PlayerState.ENDED) {
               hidePip(false);
