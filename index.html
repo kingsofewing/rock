@@ -113,14 +113,14 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .cta-pair { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
-/* Section order: social(brown) > mailing(bg) > shows(brown) > about(bg) > faq(brown) > book(bg) */
-  #social  { background: var(--brown); padding: 6rem 2rem; text-align: center; }
+/* Section order: media(brown) > social(bg) > mailing(brown) > shows(bg) > about(brown) > faq(bg) > book(brown) */
+  #social  { background: var(--bg); padding: 6rem 2rem; text-align: center; }
 
-#shows   { background: var(--brown); padding: 7rem 3rem; }
+#shows   { background: var(--bg);    padding: 7rem 3rem; }
 
-#about   { background: var(--bg);    padding: 7rem 3rem; }
+#about   { background: var(--brown); padding: 7rem 3rem; }
 
-#book    { background: var(--bg); padding: 7rem 2rem; text-align: center; }
+#book    { background: var(--brown); padding: 7rem 2rem; text-align: center; }
 
 footer   { background: var(--brown); border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem 2.5rem calc(2.5rem + 58px); }
 
@@ -449,12 +449,12 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .progress-bar:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
 
 /* MEDIA */
-#media { background: var(--bg); padding: 6rem 2rem; text-align: center; }
-.video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 960px; margin: 2rem auto 0; text-align: left; }
+#media { background: var(--brown); padding: 6rem 2rem; text-align: center; }
+.video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 960px; margin: 2rem auto 0; }
 @media (max-width: 768px) { #media { padding: 5rem 1.5rem; } .video-grid { grid-template-columns: 1fr; } }
 
 /* FAQ */
-#faq { background: var(--brown); padding: 7rem 3rem; }
+#faq { background: var(--bg); padding: 7rem 3rem; }
 .faq-inner { max-width: 760px; margin: 0 auto; }
 .faq-list { border-top: 1px solid rgba(79,179,168,0.25); margin-top: 0.5rem; }
 .faq-item { border-bottom: 1px solid rgba(79,179,168,0.15); }
@@ -543,15 +543,16 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 </section>
 
 <!-- 1. MEDIA (audio + video) -->
-<section id="media" class="reveal" style="background:var(--bg); padding:6rem 2rem; text-align:center;">
+<section id="media" class="reveal" style="background:var(--brown); padding:6rem 2rem; text-align:center;">
   <p class="section-label">Listen &amp; watch</p>
   <h2 class="section-title">Watch &amp; Listen</h2>
   <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:420px; margin:0 auto; line-height:1.75;">Live recordings and footage from recent shows &mdash; see what a Kings of Ewing set looks (and sounds) like.</p>
 
   <!-- Audio player -->
+  <p class="section-label" style="margin-bottom:1.5rem;">Listen</p>
   <audio id="band-audio" preload="none"></audio>
-  <div style="display:flex; justify-content:center; margin:2rem 0 3rem;">
+  <div style="display:flex; justify-content:center; margin:1rem 0 3rem;">
     <div class="audio-box" id="audio-box">
       <span style="font-family:'Pacifico',cursive; font-size:1.1rem; color:var(--teal); letter-spacing:0.02em; display:block; margin-bottom:0.5rem;">&#9835; Play Us While You Scroll</span>
       <span style="display:block; font-size:0.68rem; letter-spacing:0.15em; color:rgba(232,223,192,0.45); margin-bottom:1rem; text-transform:uppercase;">All Live Covers</span>
@@ -580,16 +581,16 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   </div>
 
   <!-- Video embeds -->
-  <p class="section-label" style="margin-bottom:1.5rem;">Live footage</p>
+  <p class="section-label" style="margin-bottom:1.5rem;">Watch</p>
   <div class="video-grid">
     <div>
-      <p class="section-label" style="margin-bottom:0.75rem;">Live at Goat Village</p>
+      <p class="section-label" style="margin-bottom:0.75rem; text-align:center;">Live at Goat Village</p>
       <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
         <iframe src="https://www.youtube.com/embed/PhVwRvgKHvQ" title="Kings of Ewing Live at Goat Village" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
       </div>
     </div>
     <div>
-      <p class="section-label" style="margin-bottom:0.75rem;">Live at Chicago Union</p>
+      <p class="section-label" style="margin-bottom:0.75rem; text-align:center;">Live at Chicago Union</p>
       <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
         <iframe src="https://www.youtube.com/embed/mMwmRn1mP-A" title="Kings of Ewing Live at Chicago Union" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
       </div>
@@ -632,7 +633,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 </section>
 
 <!-- 3. MAILING LIST -->
-<section id="mailing" class="reveal" style="background:var(--bg); padding:5rem 2rem; text-align:center;">
+<section id="mailing" class="reveal" style="background:var(--brown); padding:5rem 2rem; text-align:center;">
   <p class="section-label">Stay in the loop</p>
   <h2 style="font-family:'Pacifico',cursive; font-size:clamp(1.5rem,3vw,2.2rem); color:var(--cream); margin-bottom:0.5rem;">Join the Mailing List</h2>
   <div style="width:40px;height:2px;background:var(--coral);margin:0.8rem auto 1.5rem;"></div>
