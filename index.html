@@ -1946,20 +1946,21 @@ let currentVideoIndex = 0;
     }
     if (pipIframe && pipOrigParent && pipIframe.parentNode !== pipOrigParent) {
       let resumeAt = 0;
+      const resumeVideoId = VIDEOS[currentVideoIndex]?.id;
       if (!pause) try { resumeAt = ytPlayer.getCurrentTime() || 0; } catch(e) {}
       pipOrigParent.appendChild(pipIframe);
       if (!pause) setTimeout(() => {
-        try { ytPlayer.seekTo(resumeAt, true); ytPlayer.playVideo(); } catch(e) {}
-        try {
-          pipIframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo',   args: [resumeAt, true] }), '*');
-          pipIframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
-        } catch(e) {}
+        try { ytPlayer.loadVideoById({ videoId: resumeVideoId, startSeconds: resumeAt }); } catch(e) {}
       }, 200);
     }
     if (pause) { pipIframe = null; pipOrigParent = null; }
   }
 
   pipClose && pipClose.addEventListener('click', () => hidePip(true));
+
+  // Sync video icons when audio starts (pauseVideo fires onStateChange async,
+  // but update icons immediately so there's no lag)
+  audio.addEventListener('play', () => syncVideoPlayIcons(false));
 })();
 
 // Pause YouTube when audio player starts
