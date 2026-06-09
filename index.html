@@ -1562,11 +1562,11 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 const audio = document.getElementById('band-audio');
 const TRACKS = [
   { src: 'docs/audio/dont_let_me_down.mp3',  name: "Don't Let Me Down", artist: 'The Beatles'    },
-  { src: 'docs/audio/end_of_the_world.mp3',  name: 'End of the World',  artist: 'Skeeter Davis'  },
+  { src: 'docs/audio/end_of_the_world.mp3',  name: 'End of the World',  artist: 'R.E.M.'          },
   { src: 'docs/audio/head_over_heels.mp3',   name: 'Head Over Heels',   artist: 'Tears for Fears'},
-  { src: 'docs/audio/midnight_rider.mp3',    name: 'Midnight Rider',    artist: 'Allman Brothers' },
+  { src: 'docs/audio/midnight_rider.mp3',    name: 'Midnight Rider',    artist: 'The Allman Brothers Band' },
   { src: 'docs/audio/ohio.mp3',              name: 'Ohio',              artist: 'CSNY'            },
-  { src: 'docs/audio/whipping_post.mp3',     name: 'Whipping Post',     artist: 'Allman Brothers' },
+  { src: 'docs/audio/whipping_post.mp3',     name: 'Whipping Post',     artist: 'The Allman Brothers Band' },
 ];
 
 // Render track list
@@ -1771,14 +1771,23 @@ audio.addEventListener('ended', playerNext);
     if (!activePip || pipVisible) return;
     pipLabel.textContent = TITLES[activePip.id] || '';
     const pip = activePip;
-    pipSlot.appendChild(pip.iframe);                // move iframe into pip slot
+    // Capture position BEFORE the DOM move resets the frame
+    let resumeAt = 0;
+    try { resumeAt = pip.player.getCurrentTime() || 0; } catch(e) {}
+    pipSlot.appendChild(pip.iframe);                // move iframe (may reset frame)
     pipContainer.classList.add('visible');
     pipVisible = true;
-    // DOM move briefly suspends the frame — wait a tick then resume via both
-    // the player API and a direct postMessage fallback
+    // After move settles: seek back to captured position then play
     setTimeout(() => {
-      try { pip.player.playVideo(); } catch(e) {}
       try {
+        pip.player.seekTo(resumeAt, true);
+        pip.player.playVideo();
+      } catch(e) {}
+      // postMessage fallback for browsers where player ref breaks after DOM move
+      try {
+        pip.iframe.contentWindow.postMessage(
+          JSON.stringify({ event: 'command', func: 'seekTo', args: [resumeAt, true] }), '*'
+        );
         pip.iframe.contentWindow.postMessage(
           JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*'
         );
