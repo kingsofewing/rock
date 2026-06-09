@@ -346,8 +346,20 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.0
     max-width: 260px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
     text-align: center;
+  }
+  #sticky-track-name.scrolling {
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+  #sticky-track-name.scrolling span {
+    display: inline-block;
+    padding-right: 3rem;
+    animation: marquee-scroll 10s linear infinite;
+  }
+  @keyframes marquee-scroll {
+    0%   { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
   }
 
 .sticky-btn {
@@ -1588,8 +1600,7 @@ const TRACKS = [
     item.appendChild(num);
     item.appendChild(name);
     item.addEventListener('click', () => {
-      shufflePos = shuffleOrder.indexOf(i);
-      if (shufflePos === -1) { shuffleOrder.unshift(i); shufflePos = 0; }
+      currentPos = i;
       loadTrack(i, true);
     });
     listEl.appendChild(item);
@@ -1602,14 +1613,9 @@ function updateTrackList() {
   });
 }
 
-let shuffleOrder = [...Array(TRACKS.length).keys()];
-for (let i = shuffleOrder.length - 1; i > 0; i--) {
-  const j = Math.floor(Math.random() * (i + 1));
-  [shuffleOrder[i], shuffleOrder[j]] = [shuffleOrder[j], shuffleOrder[i]];
-}
-let shufflePos = 0;
+let currentPos = 0;
 
-function currentTrackIndex() { return shuffleOrder[shufflePos]; }
+function currentTrackIndex() { return currentPos; }
 
 function loadTrack(index, autoplay) {
   const t = TRACKS[index];
@@ -1617,7 +1623,17 @@ function loadTrack(index, autoplay) {
   audio.volume = document.getElementById('player-volume').value;
   const trackLabel = t.artist ? `${t.name} (${t.artist})` : t.name;
   document.getElementById('player-track-name').textContent = trackLabel;
-  document.getElementById('sticky-track-name').textContent = trackLabel;
+  // Sticky player: scroll text if it overflows, else show static
+  const stn = document.getElementById('sticky-track-name');
+  stn.classList.remove('scrolling');
+  stn.textContent = trackLabel;
+  requestAnimationFrame(() => {
+    if (stn.scrollWidth > stn.clientWidth) {
+      stn.classList.add('scrolling');
+      // Duplicate text so the loop appears seamless
+      stn.innerHTML = `<span>${trackLabel}&nbsp;&nbsp;&nbsp;&nbsp;${trackLabel}</span>`;
+    }
+  });
   updateProgress();
   updateTrackList();
   if (autoplay) { audio.play().then(() => showPause(true)).catch(() => showPause(false)); }
@@ -1643,13 +1659,13 @@ function playerPlayPause() {
 }
 
 function playerNext() {
-  shufflePos = (shufflePos + 1) % shuffleOrder.length;
-  loadTrack(currentTrackIndex(), true);
+  currentPos = (currentPos + 1) % TRACKS.length;
+  loadTrack(currentPos, true);
 }
 
 function playerPrev() {
-  shufflePos = (shufflePos - 1 + shuffleOrder.length) % shuffleOrder.length;
-  loadTrack(currentTrackIndex(), !audio.paused);
+  currentPos = (currentPos - 1 + TRACKS.length) % TRACKS.length;
+  loadTrack(currentPos, !audio.paused);
 }
 
 // Wire up audio controls
