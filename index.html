@@ -279,7 +279,7 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.0
 
 /* Audio wrapper box */
   .audio-box {
-    background: rgba(30,14,8,0.5);
+    background: var(--bg);
     border: 1px solid rgba(200,98,58,0.4);
     padding: 1.4rem 1.6rem 1.2rem;
     width: 100%;
@@ -438,6 +438,48 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .footer-social-link { color: rgba(232,223,192,0.4); transition: color 0.2s; display: inline-flex; }
 .footer-social-link:hover, .footer-social-link:focus-visible { color: var(--teal); outline: none; }
 
+/* Video PiP (picture-in-picture) floating player */
+#video-pip {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 1.5rem;
+  width: 300px;
+  z-index: 200;
+  background: var(--brown);
+  border: 2px solid var(--coral);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.65);
+}
+#video-pip.visible { display: block; }
+#pip-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232,223,192,0.5);
+  padding: 0.4rem 0.75rem 0.3rem;
+}
+#pip-slot { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+#pip-slot iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+#pip-close {
+  position: absolute;
+  top: -12px; right: -12px;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--coral);
+  color: var(--brown);
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 201;
+}
+@media (max-width: 480px) {
+  #video-pip { width: calc(100vw - 3rem); }
+}
+
 /* Song requests placeholder — crossed-out "Free Bird" gag */
 #song-requests::placeholder { text-decoration: line-through; }
 
@@ -544,7 +586,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 <!-- 1. MEDIA (audio + video) -->
 <section id="media" class="reveal" style="background:var(--brown); padding:6rem 2rem; text-align:center;">
-  <p class="section-label">Listen &amp; watch</p>
   <h2 class="section-title">Watch &amp; Listen</h2>
   <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:420px; margin:0 auto; line-height:1.75;">Live recordings and footage from recent shows &mdash; see what a Kings of Ewing set looks (and sounds) like.</p>
@@ -586,25 +627,24 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <div>
       <p class="section-label" style="margin-bottom:0.75rem; text-align:center;">Live at Goat Village</p>
       <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-        <iframe src="https://www.youtube.com/embed/PhVwRvgKHvQ" title="Kings of Ewing Live at Goat Village" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+        <iframe id="yt-goat" src="https://www.youtube.com/embed/PhVwRvgKHvQ?enablejsapi=1" title="Kings of Ewing Live at Goat Village" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
       </div>
     </div>
     <div>
       <p class="section-label" style="margin-bottom:0.75rem; text-align:center;">Live at Chicago Union</p>
       <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-        <iframe src="https://www.youtube.com/embed/mMwmRn1mP-A" title="Kings of Ewing Live at Chicago Union" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+        <iframe id="yt-chicago" src="https://www.youtube.com/embed/mMwmRn1mP-A?enablejsapi=1" title="Kings of Ewing Live at Chicago Union" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
       </div>
     </div>
   </div>
   <div style="margin-top: 2.5rem;" class="cta-pair">
-    <a href="#book" class="btn btn-coral">Book Us</a>
-    <a href="https://www.youtube.com/@KingsofEwing" target="_blank" rel="noopener noreferrer" class="btn btn-coral">More on YouTube</a>
+    <a href="#book" class="btn btn-coral">Book</a>
+    <a href="mailto:Miles@KingsOfEwing.com" class="btn btn-coral">Contact</a>
   </div>
 </section>
 
 <!-- 2. FOLLOW -->
 <section id="social" class="reveal">
-  <p class="section-label">Follow along</p>
   <h2 class="section-title">Socials</h2>
   <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:420px; margin:0 auto; line-height:1.75;">Live clips and show announcements, plus whatever we&rsquo;re up to between gigs.</p>
@@ -634,7 +674,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 <!-- 3. MAILING LIST -->
 <section id="mailing" class="reveal" style="background:var(--brown); padding:5rem 2rem; text-align:center;">
-  <p class="section-label">Stay in the loop</p>
   <h2 style="font-family:'Pacifico',cursive; font-size:clamp(1.5rem,3vw,2.2rem); color:var(--cream); margin-bottom:0.5rem;">Join the Mailing List</h2>
   <div style="width:40px;height:2px;background:var(--coral);margin:0.8rem auto 1.5rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:380px; margin:0 auto 1.8rem; line-height:1.75;">Get notified when we announce new shows. No spam, just gigs.</p>
@@ -656,7 +695,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <!-- 3. SHOWS -->
 <section id="shows" class="reveal">
   <div class="shows-inner">
-    <p class="section-label">On the calendar</p>
     <h2 class="section-title">Shows</h2>
     <div class="divider"></div>
     <div class="shows-tabs" role="tablist" aria-label="Shows">
@@ -684,7 +722,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <section id="about" class="reveal">
   <div class="about-inner">
     <div class="about-text">
-      <p class="section-label">About the band</p>
       <h2 class="section-title"><a href="docs/resources/Kings_of_Ewing_Links.html" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none; border-bottom: 2px solid rgba(79,179,168,0.5); padding-bottom: 2px;">The Kings</a></h2>
       <div class="divider"></div>
       <p>Kings of Ewing is a five-piece band from Evanston, Illinois. We live on the same block on Ewing Ave: hence the name! We started in 2023 to play our own block party and liked it so much we never stopped.</p>
@@ -827,7 +864,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <!-- 3b. FAQ -->
 <section id="faq" class="reveal">
   <div class="faq-inner">
-    <p class="section-label">Got questions</p>
     <h2 class="section-title">Frequently Asked</h2>
     <div class="divider"></div>
     <div class="faq-list">
@@ -874,7 +910,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <!-- 4. BOOK -->
 <section id="book" class="reveal">
   <div class="book-inner">
-    <p class="section-label">Hire us</p>
     <h2 class="section-title">Book the Band</h2>
     <div class="divider" style="margin: 0.8rem auto 2rem;"></div>
     <p style="color:rgba(232,223,192,0.55); font-size:0.95rem; line-height:1.8; margin-bottom:0.75rem; text-align:center;">Fill out the form below and we&rsquo;ll get back to you. Prefer to reach out directly? Email us at <a href="mailto:Miles@KingsOfEwing.com" class="email-link">Miles@KingsOfEwing.com</a>.</p>
@@ -931,6 +966,13 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 </footer>
 <div class="chalk-banner">
   <img src="docs/images/IMG_5358.jpeg" alt="Kings of Ewing performing live" loading="lazy" decoding="async">
+</div>
+
+<!-- Video PiP floating player -->
+<div id="video-pip">
+  <button id="pip-close" aria-label="Close video">&times;</button>
+  <div id="pip-label"></div>
+  <div id="pip-slot"></div>
 </div>
 
 <!-- Sticky mini player -->
@@ -1616,6 +1658,80 @@ progressTrack.addEventListener('keydown', e => {
 
 audio.addEventListener('timeupdate', updateProgress);
 audio.addEventListener('ended', playerNext);
+
+// ─────────────────────────────────────────────────────────────
+// YouTube PiP — float playing video when user scrolls past grid
+// ─────────────────────────────────────────────────────────────
+(function pipInit() {
+  const pipContainer = document.getElementById('video-pip');
+  const pipSlot      = document.getElementById('pip-slot');
+  const pipLabel     = document.getElementById('pip-label');
+  const pipClose     = document.getElementById('pip-close');
+  const videoGrid    = document.querySelector('.video-grid');
+  if (!pipContainer || !videoGrid) return;
+
+  const TITLES = {
+    'yt-goat':    'Live at Goat Village',
+    'yt-chicago': 'Live at Chicago Union',
+  };
+
+  let activePip      = null; // { player, iframe, parent, id }
+  let gridIsVisible  = true;
+
+  // Load YouTube IFrame API
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+
+  const prevReady = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = function() {
+    if (typeof prevReady === 'function') prevReady();
+    ['yt-goat', 'yt-chicago'].forEach(id => {
+      new YT.Player(id, {
+        events: {
+          onStateChange(event) {
+            const iframe = event.target.getIframe();
+            if (event.data === YT.PlayerState.PLAYING) {
+              activePip = { player: event.target, iframe, parent: iframe.parentNode, id: iframe.id };
+              if (!gridIsVisible) showPip();
+            } else if (event.data === YT.PlayerState.ENDED) {
+              hidePip(false);
+              activePip = null;
+            }
+          }
+        }
+      });
+    });
+  };
+
+  // Watch grid visibility
+  new IntersectionObserver(entries => {
+    gridIsVisible = entries[0].isIntersecting;
+    if (!gridIsVisible && activePip && activePip.player.getPlayerState() === YT.PlayerState.PLAYING) {
+      showPip();
+    } else if (gridIsVisible) {
+      hidePip(false);
+    }
+  }, { threshold: 0 }).observe(videoGrid);
+
+  function showPip() {
+    if (!activePip) return;
+    pipLabel.textContent = TITLES[activePip.id] || '';
+    pipSlot.appendChild(activePip.iframe);
+    pipContainer.classList.add('visible');
+  }
+
+  function hidePip(pause) {
+    if (pause && activePip) activePip.player.pauseVideo();
+    if (activePip && activePip.parent) {
+      activePip.parent.appendChild(activePip.iframe);
+    }
+    pipContainer.classList.remove('visible');
+    if (pause) activePip = null;
+  }
+
+  pipClose.addEventListener('click', () => hidePip(true));
+})();
 
 // Show sticky player when audio box scrolls out of view
 const audioBox = document.getElementById('audio-box');
