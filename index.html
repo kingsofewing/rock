@@ -1615,8 +1615,9 @@ function loadTrack(index, autoplay) {
   const t = TRACKS[index];
   audio.src = t.src;
   audio.volume = document.getElementById('player-volume').value;
-  document.getElementById('player-track-name').textContent = t.name;
-  document.getElementById('sticky-track-name').textContent = t.name;
+  const trackLabel = t.artist ? `${t.name} (${t.artist})` : t.name;
+  document.getElementById('player-track-name').textContent = trackLabel;
+  document.getElementById('sticky-track-name').textContent = trackLabel;
   updateProgress();
   updateTrackList();
   if (autoplay) { audio.play().then(() => showPause(true)).catch(() => showPause(false)); }
