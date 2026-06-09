@@ -438,32 +438,29 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .footer-social-link { color: rgba(232,223,192,0.4); transition: color 0.2s; display: inline-flex; }
 .footer-social-link:hover, .footer-social-link:focus-visible { color: var(--teal); outline: none; }
 
-/* Video PiP — UI overlay sits at same coords as the fixed ratio container */
+/* Video PiP */
 #video-pip {
   display: none;
   position: fixed;
   bottom: 80px;
   right: 1.5rem;
   width: 300px;
-  height: 168.75px;
   z-index: 200;
-  pointer-events: none;
+  background: var(--brown);
+  border: 2px solid var(--coral);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.65);
 }
 #video-pip.visible { display: block; }
 #pip-label {
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  padding-bottom: 0.3rem;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(232,223,192,0.6);
-  white-space: nowrap;
-  pointer-events: none;
+  color: rgba(232,223,192,0.5);
+  padding: 0.35rem 0.75rem 0.25rem;
 }
+#pip-slot { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+#pip-slot iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 #pip-close {
-  pointer-events: all;
   position: absolute;
   top: -12px; right: -12px;
   width: 26px; height: 26px;
@@ -479,32 +476,17 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   justify-content: center;
   z-index: 201;
 }
-/* Fix the ratio CONTAINER (not the iframe) — escapes overflow:hidden, no DOM move */
-.ratio-pip-active {
-  position: fixed !important;
-  bottom: 80px !important;
-  right: 1.5rem !important;
-  top: auto !important;
-  left: auto !important;
-  width: 300px !important;
-  height: 168.75px !important;
-  padding-bottom: 0 !important;
-  z-index: 199 !important;
-  border: 2px solid var(--coral);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.65);
-}
 @media (max-width: 480px) {
-  #video-pip, .ratio-pip-active {
-    width: calc(100vw - 3rem) !important;
-    height: calc((100vw - 3rem) * 9 / 16) !important;
-    right: 1.5rem !important;
-  }
+  #video-pip { width: calc(100vw - 3rem); right: 1.5rem; }
 }
-/* Audio track list */
-.audio-track-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem 1rem; max-width: 320px; margin: 0.75rem auto 0; }
-.track-item { font-size: 0.72rem; color: rgba(232,223,192,0.4); letter-spacing: 0.06em; cursor: pointer; padding: 0.15rem 0; transition: color 0.2s; }
-.track-item:hover { color: var(--teal); }
-.track-item.now-playing { color: var(--teal); }
+/* Audio track list inside the player box */
+.audio-track-list { margin-top: 0.8rem; border-top: 1px solid rgba(232,223,192,0.1); padding-top: 0.6rem; }
+.track-item { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.18rem 0; cursor: pointer; }
+.track-item:hover .track-name, .track-item:hover .track-num { color: var(--teal); }
+.track-item.now-playing .track-name { color: var(--teal); }
+.track-item.now-playing .track-num { color: var(--coral); }
+.track-num { font-size: 0.6rem; color: rgba(232,223,192,0.25); min-width: 1rem; text-align: right; flex-shrink: 0; }
+.track-name { font-size: 0.72rem; color: rgba(232,223,192,0.45); transition: color 0.2s; }
 
 /* Song requests placeholder — crossed-out "Free Bird" gag */
 #song-requests::placeholder { text-decoration: line-through; }
@@ -644,9 +626,9 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
         <input type="range" id="player-volume" min="0" max="1" step="0.05" value="0.8" aria-label="Volume" style="width:90px; accent-color:var(--teal); cursor:pointer;">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;" aria-hidden="true"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
       </div>
+      <div id="audio-track-list" class="audio-track-list"></div>
     </div>
   </div>
-  <div id="audio-track-list" class="audio-track-list"></div>
 
   <!-- Video embeds -->
   <p class="section-label" style="margin-bottom:1.5rem;">Watch</p>
@@ -997,8 +979,9 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 <!-- Video PiP floating player -->
 <div id="video-pip">
-  <button id="pip-close" aria-label="Close video">&times;</button>
   <div id="pip-label"></div>
+  <div id="pip-slot"></div>
+  <button id="pip-close" aria-label="Close video">&times;</button>
 </div>
 
 <!-- Sticky mini player -->
@@ -1591,15 +1574,25 @@ const TRACKS = [
   const listEl = document.getElementById('audio-track-list');
   if (!listEl) return;
   TRACKS.forEach((t, i) => {
-    const span = document.createElement('span');
-    span.className = 'track-item';
-    span.textContent = t.name;
-    span.addEventListener('click', () => {
+    const item = document.createElement('div');
+    item.className = 'track-item';
+
+    const num = document.createElement('span');
+    num.className = 'track-num';
+    num.textContent = i + 1;
+
+    const name = document.createElement('span');
+    name.className = 'track-name';
+    name.textContent = t.name;
+
+    item.appendChild(num);
+    item.appendChild(name);
+    item.addEventListener('click', () => {
       shufflePos = shuffleOrder.indexOf(i);
       if (shufflePos === -1) { shuffleOrder.unshift(i); shufflePos = 0; }
       loadTrack(i, true);
     });
-    listEl.appendChild(span);
+    listEl.appendChild(item);
   });
 })();
 
@@ -1715,16 +1708,19 @@ audio.addEventListener('ended', playerNext);
 (function pipInit() {
   const pipContainer = document.getElementById('video-pip');
   const pipLabel     = document.getElementById('pip-label');
+  const pipSlot      = document.getElementById('pip-slot');
   const pipClose     = document.getElementById('pip-close');
   const videoGrid    = document.querySelector('.video-grid');
-  if (!pipContainer || !videoGrid) return;
+  if (!pipContainer || !videoGrid || !pipSlot) return;
 
   const TITLES = {
     'yt-goat':    'Live at Goat Village',
     'yt-chicago': 'Live at Chicago Union',
   };
 
-  let activePip     = null; // { player, ratioContainer, id }
+  // activePip: { player, iframe, originalParent, id }
+  let activePip     = null;
+  let pipVisible    = false;
   let gridIsVisible = true;
   window._ytPlayers = {};
 
@@ -1741,15 +1737,14 @@ audio.addEventListener('ended', playerNext);
         events: {
           onStateChange(event) {
             const iframe = event.target.getIframe();
-            const ratioContainer = iframe.closest('.video-ratio');
             if (event.data === YT.PlayerState.PLAYING) {
               // Pause audio player when video starts
               audio.pause(); showPause(false);
-              // Clear previous pip if switching videos
-              if (activePip && activePip.ratioContainer !== ratioContainer) {
-                activePip.ratioContainer.classList.remove('ratio-pip-active');
+              // Return previous pip video to its home before tracking new one
+              if (activePip && activePip.iframe !== iframe) {
+                returnToHome(activePip);
               }
-              activePip = { player: event.target, ratioContainer, id };
+              activePip = { player: event.target, iframe, originalParent: iframe.parentNode, id };
               if (!gridIsVisible) showPip();
             } else if (event.data === YT.PlayerState.ENDED) {
               hidePip(false);
@@ -1767,23 +1762,35 @@ audio.addEventListener('ended', playerNext);
     gridIsVisible = entries[0].isIntersecting;
     if (!gridIsVisible && activePip && activePip.player.getPlayerState() === YT.PlayerState.PLAYING) {
       showPip();
-    } else if (gridIsVisible) {
+    } else if (gridIsVisible && pipVisible) {
       hidePip(false);
     }
   }, { threshold: 0 }).observe(videoGrid);
 
   function showPip() {
-    if (!activePip) return;
+    if (!activePip || pipVisible) return;
     pipLabel.textContent = TITLES[activePip.id] || '';
-    activePip.ratioContainer.classList.add('ratio-pip-active');
+    pipSlot.appendChild(activePip.iframe);          // move iframe into pip slot
+    activePip.player.playVideo();                   // resume immediately after DOM move
     pipContainer.classList.add('visible');
+    pipVisible = true;
   }
 
   function hidePip(pause) {
-    if (pause && activePip) activePip.player.pauseVideo();
-    if (activePip) activePip.ratioContainer.classList.remove('ratio-pip-active');
+    if (!pipVisible) return;
     pipContainer.classList.remove('visible');
-    if (pause) activePip = null;
+    pipVisible = false;
+    if (activePip) {
+      if (pause) activePip.player.pauseVideo();
+      returnToHome(activePip);
+      if (pause) activePip = null;
+    }
+  }
+
+  function returnToHome(pip) {
+    if (pip.originalParent && pip.iframe.parentNode !== pip.originalParent) {
+      pip.originalParent.appendChild(pip.iframe);
+    }
   }
 
   pipClose.addEventListener('click', () => hidePip(true));
