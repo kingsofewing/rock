@@ -488,8 +488,30 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   justify-content: center;
   z-index: 201;
 }
-@media (max-width: 480px) {
-  #video-pip { width: calc(100vw - 3rem); right: 1.5rem; }
+/* On touch devices, pip is disabled — show a scroll-back nudge instead */
+@media (hover: none) {
+  #video-pip { display: none !important; }
+}
+#video-scroll-back {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 1rem;
+  background: var(--brown);
+  border: 2px solid var(--coral);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  z-index: 200;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+#video-scroll-back.visible { display: block; }
+@media (hover: any-hover) {
+  #video-scroll-back { display: none !important; }
 }
 /* Audio track list inside the player box */
 .audio-track-list { margin-top: 0.8rem; border-top: 1px solid rgba(232,223,192,0.1); padding-top: 0.6rem; }
@@ -512,8 +534,17 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 /* MEDIA */
 #media { background: var(--brown); padding: 6rem 2rem; text-align: center; }
-.video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 960px; margin: 2rem auto 0; }
-@media (max-width: 768px) { #media { padding: 5rem 1.5rem; } .video-grid { grid-template-columns: 1fr; } }
+.video-display { max-width: 680px; margin: 0 auto; }
+.video-ratio { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+.video-ratio iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+.video-track-list { max-width: 680px; margin: 0.9rem auto 0; border-top: 1px solid rgba(232,223,192,0.1); padding-top: 0.6rem; }
+.video-track-item { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.22rem 0; cursor: pointer; }
+.video-track-item:hover .video-track-name, .video-track-item:hover .video-track-num { color: var(--teal); }
+.video-track-item.now-playing .video-track-name { color: var(--teal); }
+.video-track-item.now-playing .video-track-num { color: var(--coral); }
+.video-track-num { font-size: 0.6rem; color: rgba(232,223,192,0.25); min-width: 1rem; text-align: right; flex-shrink: 0; }
+.video-track-name { font-size: 0.78rem; color: rgba(232,223,192,0.5); transition: color 0.2s; letter-spacing: 0.05em; }
+@media (max-width: 768px) { #media { padding: 5rem 1.5rem; } }
 
 /* FAQ */
 #faq { background: var(--bg); padding: 7rem 3rem; }
@@ -641,21 +672,13 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     </div>
   </div>
 
-  <!-- Video embeds -->
-  <div class="video-grid">
-    <div>
-      <p class="section-label" style="margin-bottom:0.75rem; text-align:center;">Live at Goat Village</p>
-      <div class="video-ratio" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-        <iframe id="yt-goat" src="https://www.youtube.com/embed/PhVwRvgKHvQ?enablejsapi=1" title="Kings of Ewing Live at Goat Village" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-      </div>
-    </div>
-    <div>
-      <p class="section-label" style="margin-bottom:0.75rem; text-align:center;">Live at Chicago Union</p>
-      <div class="video-ratio" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-        <iframe id="yt-chicago" src="https://www.youtube.com/embed/mMwmRn1mP-A?enablejsapi=1" title="Kings of Ewing Live at Chicago Union" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-      </div>
+  <!-- Video display (single player + listing) -->
+  <div class="video-display">
+    <div class="video-ratio">
+      <iframe id="yt-player" src="https://www.youtube.com/embed/PhVwRvgKHvQ?enablejsapi=1" title="Kings of Ewing Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
+  <div id="video-track-list" class="video-track-list"></div>
   <div style="margin-top: 2.5rem;" class="cta-pair">
     <a href="#book" class="btn btn-coral">Book</a>
     <a href="mailto:Miles@KingsOfEwing.com" class="btn btn-coral">Contact</a>
@@ -987,12 +1010,14 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <img src="docs/images/IMG_5358.jpeg" alt="Kings of Ewing performing live" loading="lazy" decoding="async">
 </div>
 
-<!-- Video PiP floating player -->
+<!-- Video PiP floating player (desktop only) -->
 <div id="video-pip">
   <div id="pip-label"></div>
   <div id="pip-slot"></div>
   <button id="pip-close" aria-label="Close video">&times;</button>
 </div>
+<!-- Scroll-back nudge (mobile only) -->
+<button id="video-scroll-back" aria-label="Scroll back to video">▶ Now Playing</button>
 
 <!-- Sticky mini player -->
 <div id="sticky-player" aria-label="Now playing">
@@ -1719,26 +1744,66 @@ audio.addEventListener('timeupdate', updateProgress);
 audio.addEventListener('ended', playerNext);
 
 // ─────────────────────────────────────────────────────────────
-// YouTube PiP — float playing video when user scrolls past grid
+// Videos — single player + clickable listing
 // ─────────────────────────────────────────────────────────────
-(function pipInit() {
-  const pipContainer = document.getElementById('video-pip');
-  const pipLabel     = document.getElementById('pip-label');
-  const pipSlot      = document.getElementById('pip-slot');
-  const pipClose     = document.getElementById('pip-close');
-  const videoGrid    = document.querySelector('.video-grid');
-  if (!pipContainer || !videoGrid || !pipSlot) return;
+const VIDEOS = [
+  { id: 'PhVwRvgKHvQ', title: 'Live at Goat Village'   },
+  { id: 'mMwmRn1mP-A', title: 'Live at Chicago Union'  },
+];
+let currentVideoIndex = 0;
 
-  const TITLES = {
-    'yt-goat':    'Live at Goat Village',
-    'yt-chicago': 'Live at Chicago Union',
-  };
+(function videoInit() {
+  const videoListEl    = document.getElementById('video-track-list');
+  const pipContainer   = document.getElementById('video-pip');
+  const pipLabel       = document.getElementById('pip-label');
+  const pipSlot        = document.getElementById('pip-slot');
+  const pipClose       = document.getElementById('pip-close');
+  const scrollBackBtn  = document.getElementById('video-scroll-back');
+  const videoDisplay   = document.querySelector('.video-display');
+  if (!videoDisplay) return;
+  const isTouchDevice  = () => window.matchMedia('(hover: none)').matches;
 
-  // activePip: { player, iframe, originalParent, id }
-  let activePip     = null;
+  let ytPlayer      = null;
   let pipVisible    = false;
-  let gridIsVisible = true;
-  window._ytPlayers = {};
+  let displayVisible = true;
+  let pipIframe     = null;
+  let pipOrigParent = null;
+
+  // Render video listing
+  if (videoListEl) {
+    VIDEOS.forEach((v, i) => {
+      const item = document.createElement('div');
+      item.className = 'video-track-item' + (i === 0 ? ' now-playing' : '');
+      item.dataset.index = i;
+
+      const num = document.createElement('span');
+      num.className = 'video-track-num';
+      num.textContent = (i + 1) + '.';
+
+      const name = document.createElement('span');
+      name.className = 'video-track-name';
+      name.textContent = v.title;
+
+      item.appendChild(num);
+      item.appendChild(name);
+      item.addEventListener('click', () => selectVideo(i));
+      videoListEl.appendChild(item);
+    });
+  }
+
+  function updateVideoList() {
+    document.querySelectorAll('.video-track-item').forEach((el, i) => {
+      el.classList.toggle('now-playing', i === currentVideoIndex);
+    });
+  }
+
+  function selectVideo(index) {
+    if (!ytPlayer) return;
+    currentVideoIndex = index;
+    updateVideoList();
+    ytPlayer.loadVideoById(VIDEOS[index].id);
+    if (pipVisible) pipLabel.textContent = VIDEOS[index].title;
+  }
 
   // Load YouTube IFrame API
   const tag = document.createElement('script');
@@ -1748,118 +1813,88 @@ audio.addEventListener('ended', playerNext);
   const prevReady = window.onYouTubeIframeAPIReady;
   window.onYouTubeIframeAPIReady = function() {
     if (typeof prevReady === 'function') prevReady();
-    ['yt-goat', 'yt-chicago'].forEach(id => {
-      const player = new YT.Player(id, {
-        events: {
-          onStateChange(event) {
-            const iframe = event.target.getIframe();
-            if (event.data === YT.PlayerState.PLAYING) {
-              // Pause audio player when video starts
-              audio.pause(); showPause(false);
-              // Return previous pip video to its home before tracking new one
-              if (activePip && activePip.iframe !== iframe) {
-                returnToHome(activePip);
-              }
-              // Preserve originalParent if iframe is already in pip-slot — don't overwrite with pipSlot
-              const knownOriginal = (activePip && activePip.iframe === iframe)
-                ? activePip.originalParent
-                : (iframe.parentNode !== pipSlot ? iframe.parentNode : activePip?.originalParent);
-              activePip = { player: event.target, iframe, originalParent: knownOriginal, id };
-              if (!gridIsVisible) showPip();
-            } else if (event.data === YT.PlayerState.ENDED) {
-              hidePip(false);
-              activePip = null;
-            }
+    ytPlayer = new YT.Player('yt-player', {
+      events: {
+        onStateChange(event) {
+          if (event.data === YT.PlayerState.PLAYING) {
+            audio.pause(); showPause(false);
+            if (!displayVisible) showPip();
+          } else if (event.data === YT.PlayerState.ENDED) {
+            hidePip(false);
+            scrollBackBtn && scrollBackBtn.classList.remove('visible');
           }
         }
-      });
-      window._ytPlayers[id] = player;
+      }
     });
+    window._ytPlayers = { 'yt-player': ytPlayer };
   };
 
-  // Watch grid visibility
+  // Watch display visibility for pip
   new IntersectionObserver(entries => {
-    gridIsVisible = entries[0].isIntersecting;
-    if (!gridIsVisible && activePip && activePip.player.getPlayerState() === YT.PlayerState.PLAYING) {
-      showPip();
-    } else if (gridIsVisible && pipVisible) {
+    displayVisible = entries[0].isIntersecting;
+    if (!displayVisible && ytPlayer && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+      if (isTouchDevice()) {
+        scrollBackBtn && scrollBackBtn.classList.add('visible');
+      } else {
+        showPip();
+      }
+    } else if (displayVisible) {
       hidePip(false);
+      scrollBackBtn && scrollBackBtn.classList.remove('visible');
     }
-  }, { threshold: 0 }).observe(videoGrid);
+  }, { threshold: 0 }).observe(videoDisplay);
+
+  scrollBackBtn && scrollBackBtn.addEventListener('click', () => {
+    videoDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    scrollBackBtn.classList.remove('visible');
+  });
 
   function showPip() {
-    if (!activePip || pipVisible) return;
-    pipLabel.textContent = TITLES[activePip.id] || '';
-    const pip = activePip;
-    // Capture position BEFORE the DOM move resets the frame
+    if (pipVisible || !ytPlayer || !pipContainer) return;
+    pipLabel.textContent = VIDEOS[currentVideoIndex]?.title || '';
+    const iframe = ytPlayer.getIframe();
+    pipIframe     = iframe;
+    pipOrigParent = iframe.parentNode;
     let resumeAt = 0;
-    try { resumeAt = pip.player.getCurrentTime() || 0; } catch(e) {}
-    pipSlot.appendChild(pip.iframe);                // move iframe (may reset frame)
+    try { resumeAt = ytPlayer.getCurrentTime() || 0; } catch(e) {}
+    pipSlot.appendChild(iframe);
     pipContainer.classList.add('visible');
     pipVisible = true;
-    // After move settles: seek back to captured position then play
     setTimeout(() => {
+      try { ytPlayer.seekTo(resumeAt, true); ytPlayer.playVideo(); } catch(e) {}
       try {
-        pip.player.seekTo(resumeAt, true);
-        pip.player.playVideo();
-      } catch(e) {}
-      // postMessage fallback for browsers where player ref breaks after DOM move
-      try {
-        pip.iframe.contentWindow.postMessage(
-          JSON.stringify({ event: 'command', func: 'seekTo', args: [resumeAt, true] }), '*'
-        );
-        pip.iframe.contentWindow.postMessage(
-          JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*'
-        );
+        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo',   args: [resumeAt, true] }), '*');
+        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
       } catch(e) {}
     }, 200);
   }
 
   function hidePip(pause) {
-    if (!pipVisible) return;
+    if (!pipVisible || !pipContainer) return;
     pipContainer.classList.remove('visible');
     pipVisible = false;
-    if (activePip) {
-      const pip = activePip;
-      // Capture position before DOM move resets the frame
+    if (pause) {
+      try { ytPlayer.pauseVideo(); } catch(e) {}
+    }
+    if (pipIframe && pipOrigParent && pipIframe.parentNode !== pipOrigParent) {
       let resumeAt = 0;
-      if (!pause) {
-        try { resumeAt = pip.player.getCurrentTime() || 0; } catch(e) {}
-      }
-      if (pause) activePip.player.pauseVideo();
-      returnToHome(pip);
-      if (pause) {
-        activePip = null;
-      } else {
-        // Seek back to captured position and resume in the original player
-        setTimeout(() => {
-          try {
-            pip.player.seekTo(resumeAt, true);
-            pip.player.playVideo();
-          } catch(e) {}
-          try {
-            pip.iframe.contentWindow.postMessage(
-              JSON.stringify({ event: 'command', func: 'seekTo', args: [resumeAt, true] }), '*'
-            );
-            pip.iframe.contentWindow.postMessage(
-              JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*'
-            );
-          } catch(e) {}
-        }, 200);
-      }
+      if (!pause) try { resumeAt = ytPlayer.getCurrentTime() || 0; } catch(e) {}
+      pipOrigParent.appendChild(pipIframe);
+      if (!pause) setTimeout(() => {
+        try { ytPlayer.seekTo(resumeAt, true); ytPlayer.playVideo(); } catch(e) {}
+        try {
+          pipIframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo',   args: [resumeAt, true] }), '*');
+          pipIframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+        } catch(e) {}
+      }, 200);
     }
+    if (pause) { pipIframe = null; pipOrigParent = null; }
   }
 
-  function returnToHome(pip) {
-    if (pip.originalParent && pip.iframe.parentNode !== pip.originalParent) {
-      pip.originalParent.appendChild(pip.iframe);
-    }
-  }
-
-  pipClose.addEventListener('click', () => hidePip(true));
+  pipClose && pipClose.addEventListener('click', () => hidePip(true));
 })();
 
-// Pause any playing YouTube video when audio player starts
+// Pause YouTube when audio player starts
 audio.addEventListener('play', () => {
   Object.values(window._ytPlayers || {}).forEach(p => {
     try { if (p.getPlayerState() === YT.PlayerState.PLAYING) p.pauseVideo(); } catch(e) {}
