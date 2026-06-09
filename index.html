@@ -75,7 +75,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7rem 2rem 5rem; position: relative; overflow: hidden; }
 
-.hero-bg { position: absolute; inset: 0; background-image: url('docs/images/IMG_2445.jpeg'); background-size: cover; background-position: center 40%; filter: brightness(0.55); z-index: 0; }
+.hero-bg { position: absolute; inset: 0; background-image: url('docs/images/IMG_2445.jpeg'); background-size: cover; background-position: center 40%; filter: brightness(0.45); z-index: 0; }
 
 .hero > *:not(.hero-bg) { position: relative; z-index: 1; }
 
@@ -114,10 +114,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 .cta-pair { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
 /* Section order: hero(photo) > media(bg) > social(photo) > mailing(bg) > shows(photo) > about(bg) > faq(photo) > book(bg) */
-.section-photo-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(0.15); z-index: 0; }
-#social-bg  { background-image: url('docs/images/kings_of_ewing-1.jpg'); background-position: center 20%; }
-#shows-bg   { background-image: url('docs/images/IMG_1810.jpeg'); }
-#faq-bg     { background-image: url('docs/images/Resized_IMG_5512.jpg.jpeg'); }
+.section-photo-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
+#social-bg  { background-image: url('docs/images/kings_of_ewing-1.jpg'); background-position: center 20%; filter: brightness(0.28); }
+#shows-bg   { background-image: url('docs/images/IMG_1810.jpeg'); filter: brightness(0.22); }
+#faq-bg     { background-image: url('docs/images/Resized_IMG_5512.jpg.jpeg'); filter: brightness(0.18); }
 
 #social  { background: var(--bg); padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden; }
 #social > *:not(#social-bg) { position: relative; z-index: 1; }
