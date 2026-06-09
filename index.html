@@ -1800,9 +1800,33 @@ audio.addEventListener('ended', playerNext);
     pipContainer.classList.remove('visible');
     pipVisible = false;
     if (activePip) {
+      const pip = activePip;
+      // Capture position before DOM move resets the frame
+      let resumeAt = 0;
+      if (!pause) {
+        try { resumeAt = pip.player.getCurrentTime() || 0; } catch(e) {}
+      }
       if (pause) activePip.player.pauseVideo();
-      returnToHome(activePip);
-      if (pause) activePip = null;
+      returnToHome(pip);
+      if (pause) {
+        activePip = null;
+      } else {
+        // Seek back to captured position and resume in the original player
+        setTimeout(() => {
+          try {
+            pip.player.seekTo(resumeAt, true);
+            pip.player.playVideo();
+          } catch(e) {}
+          try {
+            pip.iframe.contentWindow.postMessage(
+              JSON.stringify({ event: 'command', func: 'seekTo', args: [resumeAt, true] }), '*'
+            );
+            pip.iframe.contentWindow.postMessage(
+              JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*'
+            );
+          } catch(e) {}
+        }, 200);
+      }
     }
   }
 
