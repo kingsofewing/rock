@@ -447,6 +447,11 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .progress-bar { width: 100%; height: 4px; background: rgba(232,223,192,0.15); border-radius: 2px; cursor: pointer; margin-bottom: 0.8rem; }
 .progress-bar:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
 
+/* VIDEO */
+#video { background: var(--bg); padding: 6rem 2rem; text-align: center; }
+.video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 960px; margin: 2rem auto 0; text-align: left; }
+@media (max-width: 768px) { #video { padding: 5rem 1.5rem; } .video-grid { grid-template-columns: 1fr; } }
+
 /* FAQ */
 #faq { background: var(--brown); padding: 7rem 3rem; }
 .faq-inner { max-width: 760px; margin: 0 auto; }
@@ -497,6 +502,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <a href="#hero" class="nav-logo">Kings of Ewing</a>
   <ul class="nav-links">
     <li><a href="#social">Socials</a></li>
+    <li><a href="#video">Watch</a></li>
     <li><a href="#mailing">Mailing List</a></li>
     <li><a href="#shows">Shows</a></li>
     <li><a href="#about">About</a></li>
@@ -511,6 +517,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <a href="#social" data-close-menu>Socials</a>
+  <a href="#video" data-close-menu>Watch</a>
   <a href="#mailing" data-close-menu>Mailing List</a>
   <a href="#shows" data-close-menu>Shows</a>
   <a href="#about" data-close-menu>About</a>
@@ -570,20 +577,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <h2 class="section-title">Socials</h2>
   <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:420px; margin:0 auto; line-height:1.75;">Live clips and show announcements, plus whatever we&rsquo;re up to between gigs.</p>
-  <div style="margin: 2rem auto 0; max-width: 960px; display: flex; flex-wrap: wrap; gap: 1.5rem;">
-    <div style="flex: 1 1 300px;">
-      <p class="section-label" style="margin-bottom:0.75rem;">Live at Goat Village</p>
-      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-        <iframe src="https://www.youtube.com/embed/PhVwRvgKHvQ" title="Kings of Ewing Live at Goat Village" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-      </div>
-    </div>
-    <div style="flex: 1 1 300px;">
-      <p class="section-label" style="margin-bottom:0.75rem;">Live at Chicago Union</p>
-      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-        <iframe src="https://www.youtube.com/embed/mMwmRn1mP-A" title="Kings of Ewing Live at Chicago Union" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-      </div>
-    </div>
-  </div>
   <div class="social-row">
     <a href="https://www.instagram.com/kingsofewing/" target="_blank" rel="noopener noreferrer" class="social-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -608,6 +601,32 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   </div>
 
 
+</section>
+
+<!-- 1b. VIDEO -->
+<section id="video" class="reveal">
+  <p class="section-label">Watch us play</p>
+  <h2 class="section-title">Watch Us Live</h2>
+  <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
+  <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:420px; margin:0 auto; line-height:1.75;">Live footage from recent shows &mdash; see what a Kings of Ewing set looks (and sounds) like.</p>
+  <div class="video-grid">
+    <div>
+      <p class="section-label" style="margin-bottom:0.75rem;">Live at Goat Village</p>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+        <iframe src="https://www.youtube.com/embed/PhVwRvgKHvQ" title="Kings of Ewing Live at Goat Village" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+      </div>
+    </div>
+    <div>
+      <p class="section-label" style="margin-bottom:0.75rem;">Live at Chicago Union</p>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+        <iframe src="https://www.youtube.com/embed/mMwmRn1mP-A" title="Kings of Ewing Live at Chicago Union" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 2.5rem;" class="cta-pair">
+    <a href="#book" class="btn btn-coral">Book Us</a>
+    <a href="https://www.youtube.com/@KingsofEwing" target="_blank" rel="noopener noreferrer" class="btn btn-coral">More on YouTube</a>
+  </div>
 </section>
 
 <!-- 2. MAILING LIST -->
@@ -879,6 +898,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
         <div class="form-field"><label for="location">Event Location</label><input type="text" id="location" name="location" placeholder="Somewhere that can handle the rock"></div>
       </div>
       <div class="form-field"><label for="message">Tell us more</label><textarea id="message" name="message" placeholder="How many paparazzi can we expect?"></textarea></div>
+      <div class="form-field"><label for="song-requests">Song Requests / Must-Plays</label><textarea id="song-requests" name="song_requests" placeholder="Any songs you&#8217;d love to hear? For weddings, we&#8217;re happy to learn a first dance song." style="min-height:80px;"></textarea></div>
       <div class="form-field"><label for="referral">How did you hear about us?</label><input type="text" id="referral" name="referral" placeholder="the Grammys"></div>
       <button type="submit" class="submit-btn">Send Booking Request</button>
       <div class="success-msg" id="success-msg" aria-live="polite">Thanks! We&rsquo;ll be in touch soon. 🎸</div>
