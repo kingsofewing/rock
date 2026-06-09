@@ -684,6 +684,10 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <button id="video-prev-btn" class="video-nav-btn" aria-label="Previous video" title="Previous">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
     </button>
+    <button id="video-play-btn" aria-label="Play" title="Play" style="background:var(--coral); border:none; cursor:pointer; color:var(--brown); border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+      <svg id="video-play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg id="video-pause-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display:none;" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    </button>
     <button id="video-next-btn" class="video-nav-btn" aria-label="Next video" title="Next">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
     </button>
@@ -1024,6 +1028,18 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <div id="video-pip">
   <div id="pip-label"></div>
   <div id="pip-slot"></div>
+  <div id="pip-controls" style="display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:0.4rem 0.75rem 0.5rem;">
+    <button id="pip-prev-btn" style="background:none; border:none; cursor:pointer; color:var(--cream); opacity:0.7; padding:4px; display:flex; align-items:center; transition:opacity 0.2s;" aria-label="Previous video" title="Previous" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
+    </button>
+    <button id="pip-play-btn" aria-label="Play" title="Play" style="background:var(--coral); border:none; cursor:pointer; color:var(--brown); border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+      <svg id="pip-play-icon" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg id="pip-pause-icon" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" style="display:none;" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    </button>
+    <button id="pip-next-btn" style="background:none; border:none; cursor:pointer; color:var(--cream); opacity:0.7; padding:4px; display:flex; align-items:center; transition:opacity 0.2s;" aria-label="Next video" title="Next" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
+    </button>
+  </div>
   <button id="pip-close" aria-label="Close video">&times;</button>
 </div>
 <!-- Scroll-back nudge (mobile only) -->
@@ -1757,8 +1773,8 @@ audio.addEventListener('ended', playerNext);
 // Videos — single player + clickable listing
 // ─────────────────────────────────────────────────────────────
 const VIDEOS = [
-  { id: 'PhVwRvgKHvQ', title: 'Live at Goat Village'   },
-  { id: 'mMwmRn1mP-A', title: 'Live at Chicago Union'  },
+  { id: 'PhVwRvgKHvQ', title: 'Highlights from Goat Village'   },
+  { id: 'mMwmRn1mP-A', title: 'Highlights from Chicago Union'  },
 ];
 let currentVideoIndex = 0;
 
@@ -1815,11 +1831,44 @@ let currentVideoIndex = 0;
     if (pipVisible) pipLabel.textContent = VIDEOS[index].title;
   }
 
+  // Play/pause icon sync helpers
+  const videoPlayIcon  = document.getElementById('video-play-icon');
+  const videoPauseIcon = document.getElementById('video-pause-icon');
+  const pipPlayIcon    = document.getElementById('pip-play-icon');
+  const pipPauseIcon   = document.getElementById('pip-pause-icon');
+
+  function syncVideoPlayIcons(playing) {
+    if (videoPlayIcon)  videoPlayIcon.style.display  = playing ? 'none'  : '';
+    if (videoPauseIcon) videoPauseIcon.style.display = playing ? ''      : 'none';
+    if (pipPlayIcon)    pipPlayIcon.style.display    = playing ? 'none'  : '';
+    if (pipPauseIcon)   pipPauseIcon.style.display   = playing ? ''      : 'none';
+  }
+
   document.getElementById('video-prev-btn').addEventListener('click', () => {
     selectVideo((currentVideoIndex - 1 + VIDEOS.length) % VIDEOS.length);
   });
   document.getElementById('video-next-btn').addEventListener('click', () => {
     selectVideo((currentVideoIndex + 1) % VIDEOS.length);
+  });
+
+  document.getElementById('video-play-btn').addEventListener('click', () => {
+    if (!ytPlayer) return;
+    const state = ytPlayer.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) { ytPlayer.pauseVideo(); }
+    else { ytPlayer.playVideo(); }
+  });
+
+  document.getElementById('pip-prev-btn').addEventListener('click', () => {
+    selectVideo((currentVideoIndex - 1 + VIDEOS.length) % VIDEOS.length);
+  });
+  document.getElementById('pip-next-btn').addEventListener('click', () => {
+    selectVideo((currentVideoIndex + 1) % VIDEOS.length);
+  });
+  document.getElementById('pip-play-btn').addEventListener('click', () => {
+    if (!ytPlayer) return;
+    const state = ytPlayer.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) { ytPlayer.pauseVideo(); }
+    else { ytPlayer.playVideo(); }
   });
 
   // Load YouTube IFrame API
@@ -1833,7 +1882,9 @@ let currentVideoIndex = 0;
     ytPlayer = new YT.Player('yt-player', {
       events: {
         onStateChange(event) {
-          if (event.data === YT.PlayerState.PLAYING) {
+          const playing = event.data === YT.PlayerState.PLAYING;
+          syncVideoPlayIcons(playing);
+          if (playing) {
             audio.pause(); showPause(false);
             if (!displayVisible) showPip();
           } else if (event.data === YT.PlayerState.ENDED) {
