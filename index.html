@@ -1561,12 +1561,12 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 // ─────────────────────────────────────────────────────────────
 const audio = document.getElementById('band-audio');
 const TRACKS = [
-  { src: 'docs/audio/dont_let_me_down.mp3',  name: "Don't Let Me Down" },
-  { src: 'docs/audio/end_of_the_world.mp3',  name: 'End of the World'  },
-  { src: 'docs/audio/head_over_heels.mp3',   name: 'Head Over Heels'   },
-  { src: 'docs/audio/midnight_rider.mp3',    name: 'Midnight Rider'    },
-  { src: 'docs/audio/ohio.mp3',              name: 'Ohio'              },
-  { src: 'docs/audio/whipping_post.mp3',     name: 'Whipping Post'     },
+  { src: 'docs/audio/dont_let_me_down.mp3',  name: "Don't Let Me Down", artist: 'The Beatles'    },
+  { src: 'docs/audio/end_of_the_world.mp3',  name: 'End of the World',  artist: 'Skeeter Davis'  },
+  { src: 'docs/audio/head_over_heels.mp3',   name: 'Head Over Heels',   artist: 'Tears for Fears'},
+  { src: 'docs/audio/midnight_rider.mp3',    name: 'Midnight Rider',    artist: 'Allman Brothers' },
+  { src: 'docs/audio/ohio.mp3',              name: 'Ohio',              artist: 'CSNY'            },
+  { src: 'docs/audio/whipping_post.mp3',     name: 'Whipping Post',     artist: 'Allman Brothers' },
 ];
 
 // Render track list
@@ -1579,11 +1579,11 @@ const TRACKS = [
 
     const num = document.createElement('span');
     num.className = 'track-num';
-    num.textContent = i + 1;
+    num.textContent = (i + 1) + '.';
 
     const name = document.createElement('span');
     name.className = 'track-name';
-    name.textContent = t.name;
+    name.textContent = t.artist ? `${t.name} (${t.artist})` : t.name;
 
     item.appendChild(num);
     item.appendChild(name);
@@ -1770,10 +1770,20 @@ audio.addEventListener('ended', playerNext);
   function showPip() {
     if (!activePip || pipVisible) return;
     pipLabel.textContent = TITLES[activePip.id] || '';
-    pipSlot.appendChild(activePip.iframe);          // move iframe into pip slot
-    activePip.player.playVideo();                   // resume immediately after DOM move
+    const pip = activePip;
+    pipSlot.appendChild(pip.iframe);                // move iframe into pip slot
     pipContainer.classList.add('visible');
     pipVisible = true;
+    // DOM move briefly suspends the frame — wait a tick then resume via both
+    // the player API and a direct postMessage fallback
+    setTimeout(() => {
+      try { pip.player.playVideo(); } catch(e) {}
+      try {
+        pip.iframe.contentWindow.postMessage(
+          JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*'
+        );
+      } catch(e) {}
+    }, 200);
   }
 
   function hidePip(pause) {
