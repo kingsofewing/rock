@@ -75,7 +75,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7rem 2rem 5rem; position: relative; overflow: hidden; }
 
-.hero-bg { position: absolute; inset: 0; background-image: url('docs/images/IMG_5358.jpeg'); background-size: cover; background-position: center 40%; filter: brightness(0.5); z-index: 0; }
+.hero-bg { position: absolute; inset: 0; background-image: url('docs/images/IMG_5358.jpeg'); background-size: cover; background-position: center 40%; filter: brightness(0.65); z-index: 0; }
 
 .hero > * { position: relative; z-index: 1; }
 
@@ -534,7 +534,9 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .progress-bar:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
 
 /* MEDIA */
-#media { background: var(--brown); padding: 6rem 2rem; text-align: center; }
+#media { background: var(--brown); padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden; }
+#media-bg { position: absolute; inset: 0; background-image: url('docs/images/IMG_2445.jpeg'); background-size: cover; background-position: center 30%; filter: brightness(0.18); z-index: 0; }
+#media > *:not(#media-bg) { position: relative; z-index: 1; }
 .video-display { max-width: 680px; margin: 0 auto; }
 .video-ratio { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
 .video-ratio iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
@@ -640,7 +642,8 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 </section>
 
 <!-- 1. MEDIA (audio + video) -->
-<section id="media" class="reveal" style="background:var(--brown); padding:6rem 2rem; text-align:center;">
+<section id="media" class="reveal">
+  <div id="media-bg" aria-hidden="true"></div>
   <h2 class="section-title">Watch &amp; Listen</h2>
   <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:420px; margin:0 auto; line-height:1.75;">Live recordings and footage from recent shows &mdash; see what a Kings of Ewing set looks (and sounds) like.</p>
@@ -731,9 +734,9 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 </section>
 
 <!-- 3. MAILING LIST -->
-<section id="mailing" class="reveal" style="background:var(--brown); padding:5rem 2rem; text-align:center;">
-  <h2 style="font-family:'Pacifico',cursive; font-size:clamp(1.5rem,3vw,2.2rem); color:var(--cream); margin-bottom:0.5rem;">Join the Mailing List</h2>
-  <div style="width:40px;height:2px;background:var(--coral);margin:0.8rem auto 1.5rem;"></div>
+<section id="mailing" class="reveal" style="background:var(--brown); padding:6rem 2rem; text-align:center;">
+  <h2 class="section-title">Join the Mailing List</h2>
+  <div class="divider" style="margin:0.8rem auto 1.8rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:380px; margin:0 auto 1.8rem; line-height:1.75;">Get notified when we announce new shows. No spam, just gigs.</p>
 
   <div id="ml-signup" style="display:flex; flex-direction:column; align-items:center; gap:0.75rem; width:100%; max-width:420px; margin:0 auto;">
@@ -780,7 +783,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <section id="about" class="reveal">
   <div class="about-inner">
     <div class="about-text">
-      <h2 class="section-title"><a href="docs/resources/Kings_of_Ewing_Links.html" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none; border-bottom: 2px solid rgba(79,179,168,0.5); padding-bottom: 2px;">The Kings</a></h2>
+      <h2 class="section-title"><a href="docs/resources/Kings_of_Ewing_Links.html" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">The Kings</a></h2>
       <div class="divider"></div>
       <p>Kings of Ewing is a five-piece band from Evanston, Illinois. We live on the same block on Ewing Ave: hence the name! We started in 2023 to play our own block party and liked it so much we never stopped.</p>
       <p>By day, we hold down regular jobs. By night we play the music we love: six decades of rock, pop, folk, blues, and soul, from Beatles classics and Allman Brothers jams to Tom Petty, Chappell Roan, and everything in between. With four vocalists, a horn player, keys, and a rhythm section that knows how to read a room, we keep the dance floor moving and the crowd singing along.</p>
