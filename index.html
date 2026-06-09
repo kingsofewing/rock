@@ -75,7 +75,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7rem 2rem 5rem; position: relative; overflow: hidden; }
 
-.hero-bg { position: absolute; inset: 0; background-image: url('docs/images/IMG_5358.jpeg'); background-size: cover; background-position: center 40%; filter: brightness(0.65); z-index: 0; }
+.hero-bg { position: absolute; inset: 0; background-image: url('docs/images/IMG_2445.jpeg'); background-size: cover; background-position: center 40%; filter: brightness(0.55); z-index: 0; }
 
 .hero > * { position: relative; z-index: 1; }
 
@@ -113,14 +113,21 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .cta-pair { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
-/* Section order: media(brown) > social(bg) > mailing(brown) > shows(bg) > about(brown) > faq(bg) > book(brown) */
-  #social  { background: var(--bg); padding: 6rem 2rem; text-align: center; }
+/* Section order: hero(photo) > media(bg) > social(photo) > mailing(bg) > shows(photo) > about(bg) > faq(photo) > book(bg) */
+.section-photo-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(0.15); z-index: 0; }
+#social-bg  { background-image: url('docs/images/kings_of_ewing-1.jpg'); background-position: center 20%; }
+#shows-bg   { background-image: url('docs/images/IMG_1810.jpeg'); }
+#faq-bg     { background-image: url('docs/images/Resized_IMG_5512.jpg.jpeg'); }
 
-#shows   { background: var(--bg);    padding: 7rem 3rem; }
+#social  { background: var(--bg); padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden; }
+#social > *:not(#social-bg) { position: relative; z-index: 1; }
 
-#about   { background: var(--brown); padding: 7rem 3rem; }
+#shows   { background: var(--bg); padding: 7rem 3rem; position: relative; overflow: hidden; }
+#shows > *:not(#shows-bg) { position: relative; z-index: 1; }
 
-#book    { background: var(--brown); padding: 7rem 2rem; text-align: center; }
+#about   { background: var(--bg); padding: 7rem 3rem; }
+
+#book    { background: var(--bg); padding: 7rem 2rem; text-align: center; }
 
 footer   { background: var(--bg); border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem 2.5rem calc(2.5rem + 58px); }
 
@@ -279,7 +286,7 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.0
 
 /* Audio wrapper box */
   .audio-box {
-    background: var(--bg);
+    background: var(--brown);
     border: 1px solid rgba(200,98,58,0.4);
     padding: 1.4rem 1.6rem 1.2rem;
     width: 100%;
@@ -534,9 +541,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .progress-bar:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
 
 /* MEDIA */
-#media { background: var(--brown); padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden; }
-#media-bg { position: absolute; inset: 0; background-image: url('docs/images/IMG_2445.jpeg'); background-size: cover; background-position: center 30%; filter: brightness(0.18); z-index: 0; }
-#media > *:not(#media-bg) { position: relative; z-index: 1; }
+#media { background: var(--bg); padding: 6rem 2rem; text-align: center; }
 .video-display { max-width: 680px; margin: 0 auto; }
 .video-ratio { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
 .video-ratio iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
@@ -553,7 +558,8 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 @media (max-width: 768px) { #media { padding: 5rem 1.5rem; } }
 
 /* FAQ */
-#faq { background: var(--bg); padding: 7rem 3rem; }
+#faq { background: var(--bg); padding: 7rem 3rem; position: relative; overflow: hidden; }
+#faq > *:not(#faq-bg) { position: relative; z-index: 1; }
 .faq-inner { max-width: 760px; margin: 0 auto; }
 .faq-list { border-top: 1px solid rgba(79,179,168,0.25); margin-top: 0.5rem; }
 .faq-item { border-bottom: 1px solid rgba(79,179,168,0.15); }
@@ -643,7 +649,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 <!-- 1. MEDIA (audio + video) -->
 <section id="media" class="reveal">
-  <div id="media-bg" aria-hidden="true"></div>
   <h2 class="section-title">Watch &amp; Listen</h2>
   <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:420px; margin:0 auto; line-height:1.75;">Live recordings and footage from recent shows &mdash; see what a Kings of Ewing set looks (and sounds) like.</p>
@@ -706,6 +711,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 <!-- 2. FOLLOW -->
 <section id="social" class="reveal">
+  <div id="social-bg" class="section-photo-bg" aria-hidden="true"></div>
   <h2 class="section-title">Socials</h2>
   <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:420px; margin:0 auto; line-height:1.75;">Live clips and show announcements, plus whatever we&rsquo;re up to between gigs.</p>
@@ -734,7 +740,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 </section>
 
 <!-- 3. MAILING LIST -->
-<section id="mailing" class="reveal" style="background:var(--brown); padding:6rem 2rem; text-align:center;">
+<section id="mailing" class="reveal" style="background:var(--bg); padding:6rem 2rem; text-align:center;">
   <h2 class="section-title">Join the Mailing List</h2>
   <div class="divider" style="margin:0.8rem auto 1.8rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:380px; margin:0 auto 1.8rem; line-height:1.75;">Get notified when we announce new shows. No spam, just gigs.</p>
@@ -755,6 +761,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 <!-- 3. SHOWS -->
 <section id="shows" class="reveal">
+  <div id="shows-bg" class="section-photo-bg" aria-hidden="true"></div>
   <div class="shows-inner">
     <h2 class="section-title">Shows</h2>
     <div class="divider"></div>
@@ -789,14 +796,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
       <p>By day, we hold down regular jobs. By night we play the music we love: six decades of rock, pop, folk, blues, and soul, from Beatles classics and Allman Brothers jams to Tom Petty, Chappell Roan, and everything in between. With four vocalists, a horn player, keys, and a rhythm section that knows how to read a room, we keep the dance floor moving and the crowd singing along.</p>
       <p>We play weddings, block parties, fundraisers, bars, and backyard gatherings throughout North Chicagoland. We&rsquo;re flexible on production too &mdash; we can bring our own PA and mixing board and run our own sound if needed, or plug into whatever a venue has. Either way works for us.</p>
       <p>No rock star egos. No tour bus. Just five friends from the same block who happen to make a really good racket.</p>
-
-      <p class="songs-label">Photos</p>
-      <div class="photo-gallery">
-        <img src="docs/images/IMG_2445.jpeg" alt="Kings of Ewing at The Fat Shallot" loading="lazy" decoding="async">
-        <img src="docs/images/kings_of_ewing-1.jpg" alt="Kings of Ewing at Double Clutch" loading="lazy" decoding="async">
-        <img src="docs/images/IMG_1810.jpeg" alt="Kings of Ewing at Chicago Union" loading="lazy" decoding="async">
-        <img src="docs/images/Resized_IMG_5512.jpg.jpeg" alt="Kings of Ewing at Goat Village" loading="lazy" decoding="async">
-      </div>
 
       <p class="songs-label"><a href="docs/music/music_pdf_links.html" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">A Sample of What We Play</a></p>
       <div class="song-grid">
@@ -924,6 +923,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 <!-- 3b. FAQ -->
 <section id="faq" class="reveal">
+  <div id="faq-bg" class="section-photo-bg" aria-hidden="true"></div>
   <div class="faq-inner">
     <h2 class="section-title">Frequently Asked</h2>
     <div class="divider"></div>
