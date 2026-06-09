@@ -73,21 +73,25 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .mobile-menu a:hover { color: var(--teal); opacity: 1; }
 
-.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7rem 2rem 5rem; position: relative; overflow: hidden; }
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; padding: 7rem 2rem 5rem; position: relative; overflow: hidden; }
 
 .hero-bg { position: absolute; inset: 0; background-image: url('docs/images/IMG_2445.jpeg'); background-size: cover; background-position: center 40%; filter: brightness(0.45); z-index: 0; }
 
-.hero > *:not(.hero-bg) { position: relative; z-index: 1; }
+.hero > *:not(.hero-bg):not(.hero-footer) { position: relative; z-index: 1; }
 
-.hero-tagline { font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 1.4rem; animation: fadeUp 0.9s 0.2s ease both; }
+.hero-title { font-family: 'Pacifico', cursive; font-size: clamp(3rem, 9vw, 7rem); line-height: 1.2; color: var(--cream); margin: 0; animation: fadeUp 0.9s ease both; }
 
-.hero-title { font-family: 'Pacifico', cursive; font-size: clamp(3rem, 9vw, 7rem); line-height: 1.2; color: var(--cream); margin-bottom: 0.5rem; animation: fadeUp 0.9s ease both; }
+.hero-footer { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.78); padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; z-index: 1; }
 
-.hero-sub { font-size: 1rem; color: rgba(232,223,192,0.7); font-weight: 300; max-width: 440px; line-height: 1.7; margin-top: 1.4rem; animation: fadeUp 0.9s 0.35s ease both; }
+.hero-footer-info { text-align: left; }
 
-.hero-cta { margin-top: 0.75rem; display: grid; grid-template-columns: 1fr; gap: 0.75rem; max-width: 280px; width: 100%; animation: fadeUp 0.9s 0.5s ease both; }
+.hero-footer-tagline { font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin: 0 0 0.3rem; }
 
-.hero-cta .btn { text-align: center; width: 100%; }
+.hero-footer-sub { font-size: 0.9rem; color: rgba(232,223,192,0.7); font-weight: 300; margin: 0; }
+
+@media (max-width: 600px) {
+  .hero-footer { flex-direction: column; align-items: flex-start; padding: 1rem 1.5rem; gap: 1rem; }
+}
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -635,16 +639,14 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <main id="main">
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
-  <p class="hero-tagline">Live Music &middot; Mostly Covers</p>
   <h1 class="hero-title">Kings of Ewing</h1>
-  <p class="hero-sub">Five dads from one Evanston block, playing six decades of songs you actually want to hear.</p>
-
-  <!-- Primary CTA — drive booking -->
-  <div class="hero-cta">
+  <div class="hero-footer">
+    <div class="hero-footer-info">
+      <p class="hero-footer-tagline">Live Music &middot; Mostly Covers</p>
+      <p class="hero-footer-sub">Five dads from one Evanston block, playing six decades of songs you actually want to hear.</p>
+    </div>
     <a href="#book" class="btn btn-coral">Book Us</a>
   </div>
-
-
 </section>
 
 <!-- 1. MEDIA (audio + video) -->
