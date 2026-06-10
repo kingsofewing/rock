@@ -490,9 +490,8 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   justify-content: center;
   z-index: 201;
 }
-/* On touch devices, pip is disabled — show a scroll-back nudge instead */
-@media (hover: none) {
-  #video-pip { display: none !important; }
+@media (max-width: 600px) {
+  #video-pip { width: calc(100vw - 2rem); right: 1rem; }
 }
 #video-scroll-back {
   display: none;
@@ -1924,11 +1923,7 @@ let currentVideoIndex = 0;
   new IntersectionObserver(entries => {
     displayVisible = entries[0].isIntersecting;
     if (!displayVisible && ytPlayer && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
-      if (isTouchDevice()) {
-        scrollBackBtn && scrollBackBtn.classList.add('visible');
-      } else {
-        showPip();
-      }
+      showPip();
     } else if (displayVisible) {
       hidePip(false);
       scrollBackBtn && scrollBackBtn.classList.remove('visible');
@@ -1993,20 +1988,22 @@ audio.addEventListener('play', () => {
   });
 });
 
-// Show sticky player when audio box scrolls out of view
+// Show sticky player only when audio box is offscreen AND audio is playing
 const audioBox = document.getElementById('audio-box');
 const stickyPlayer = document.getElementById('sticky-player');
+let audioBoxVisible = true;
+function updateStickyVisibility() {
+  stickyPlayer.classList.toggle('visible', !audioBoxVisible && !audio.paused);
+}
 if (audioBox && stickyPlayer) {
   const audioBoxObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) {
-        stickyPlayer.classList.add('visible');
-      } else {
-        stickyPlayer.classList.remove('visible');
-      }
-    });
+    audioBoxVisible = entries[0].isIntersecting;
+    updateStickyVisibility();
   }, { threshold: 0 });
   audioBoxObserver.observe(audioBox);
+  audio.addEventListener('play',  updateStickyVisibility);
+  audio.addEventListener('pause', updateStickyVisibility);
+  audio.addEventListener('ended', updateStickyVisibility);
 }
 </script>
 </body>
