@@ -22,6 +22,7 @@
 <meta name="twitter:image:alt" content="Kings of Ewing performing live — a five-piece cover band from Evanston, IL">
 <link rel="icon" type="image/png" href="docs/resources/branding/Kings_of_Ewing_Logo.png">
   <link rel="apple-touch-icon" href="docs/resources/branding/Kings_of_Ewing_Logo.png">
+  <link rel="preload" as="image" href="docs/images/IMG_2445.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -53,7 +54,12 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .nav-logo:hover { color: var(--teal); }
 
-.nav-links { display: none; }
+.nav-links { display: none; list-style: none; gap: 1.75rem; align-items: center; }
+
+@media (min-width: 920px) {
+  .nav-links { display: flex; }
+  .hamburger { display: none; }
+}
 
 .nav-links a { text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); opacity: 0.7; transition: opacity 0.2s, color 0.2s; white-space: nowrap; }
 
@@ -214,12 +220,6 @@ footer   { background: var(--brown); border-top: 2px solid var(--teal); text-ali
 
 .about-text p { font-size: 1rem; line-height: 1.85; color: rgba(232,223,192,0.8); font-weight: 300; margin-bottom: 1.2rem; }
 
-.about-photo { position: relative; }
-
-.about-photo img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; }
-
-.about-photo::after { content: ''; position: absolute; inset: 0; border: 3px solid var(--teal); pointer-events: none; transform: translate(8px, 8px); opacity: 0.5; }
-
 /* SONG LIST */
   .songs-label { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin: 2rem 0 0.75rem; }
 
@@ -278,13 +278,6 @@ footer   { background: var(--brown); border-top: 2px solid var(--teal); text-ali
 
 .success-msg { display: none; margin-top: 1rem; padding: 1rem; background: rgba(79,179,168,0.12); border: 1.5px solid rgba(79,179,168,0.35); color: var(--teal); font-size: 0.9rem; text-align: center; }
 
-/* GALLERY */
-  .photo-gallery { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 0.75rem; margin: 2rem 0 1.5rem; }
-
-.photo-gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: opacity 0.2s; }
-
-.photo-gallery img:hover { opacity: 0.85; }
-
 .footer-logo { height: 56px; margin-bottom: 0.8rem; }
 
 footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.08em; }
@@ -310,9 +303,7 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.0
 @media (max-width: 768px) {
   nav { padding: 0.8rem 1.5rem; }
 
-  .about-photo { order: -1; }
   #shows, #about { padding: 5rem 1.5rem; }
-  .photo-gallery { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
 }
 
@@ -690,7 +681,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <!-- Video display (single player + listing) -->
   <div class="video-display">
     <div class="video-ratio">
-      <iframe id="yt-player" src="https://www.youtube.com/embed/PhVwRvgKHvQ?enablejsapi=1" title="Kings of Ewing Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      <iframe id="yt-player" src="https://www.youtube.com/embed/PhVwRvgKHvQ?enablejsapi=1&amp;origin=https%3A%2F%2Fwww.kingsofewing.com" title="Kings of Ewing Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
   <div class="video-nav">
@@ -1029,7 +1020,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <p>&copy; 2026 Kings of Ewing &middot; Evanston, IL</p>
 </footer>
 <div class="chalk-banner">
-  <img src="docs/images/IMG_5358.jpeg" alt="Kings of Ewing performing live" loading="lazy" decoding="async">
+  <img src="docs/images/IMG_5358.jpeg" alt="Kings of Ewing performing live" width="2000" height="547" loading="lazy" decoding="async">
 </div>
 
 <!-- Video PiP floating player (desktop only) -->
