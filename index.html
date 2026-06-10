@@ -1884,8 +1884,8 @@ let currentVideoIndex = 0;
   if (videoPlayBtn) videoPlayBtn.addEventListener('click', () => {
     if (!ytPlayer) return;
     const state = ytPlayer.getPlayerState();
-    if (state === YT.PlayerState.PLAYING) { ytPlayer.pauseVideo(); }
-    else { ytPlayer.playVideo(); }
+    if (state === YT.PlayerState.PLAYING) { ytPlayer.pauseVideo(); syncVideoPlayIcons(false); }
+    else { ytPlayer.playVideo(); syncVideoPlayIcons(true); }
   });
 
   if (pipPrevBtn) pipPrevBtn.addEventListener('click', () => {
@@ -1897,8 +1897,8 @@ let currentVideoIndex = 0;
   if (pipPlayBtn) pipPlayBtn.addEventListener('click', () => {
     if (!ytPlayer) return;
     const state = ytPlayer.getPlayerState();
-    if (state === YT.PlayerState.PLAYING) { ytPlayer.pauseVideo(); }
-    else { ytPlayer.playVideo(); }
+    if (state === YT.PlayerState.PLAYING) { ytPlayer.pauseVideo(); syncVideoPlayIcons(false); }
+    else { ytPlayer.playVideo(); syncVideoPlayIcons(true); }
   });
 
   // Load YouTube IFrame API
