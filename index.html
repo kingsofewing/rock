@@ -274,9 +274,9 @@ footer   { background: linear-gradient(rgba(30,14,8,0.82), rgba(30,14,8,0.82)), 
 
 .success-msg { display: none; margin-top: 1rem; padding: 1rem; background: rgba(79,179,168,0.12); border: 1.5px solid rgba(79,179,168,0.35); color: var(--teal); font-size: 0.9rem; text-align: center; }
 
-.footer-logo { height: 56px; margin-bottom: 0.8rem; }
+.footer-logo { height: 56px; margin-bottom: 0.8rem; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7)); }
 
-footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.08em; }
+footer p { font-size: 0.75rem; color: rgba(232,223,192,0.85); letter-spacing: 0.08em; text-shadow: 0 1px 4px rgba(0,0,0,0.7); }
 
 /* Audio wrapper box */
   .audio-box {
@@ -443,7 +443,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .player-transport-btn:focus-visible { opacity: 1; outline: none; box-shadow: 0 0 0 2px var(--teal); }
 
 /* Footer social icon links */
-.footer-social-link { color: rgba(232,223,192,0.4); transition: color 0.2s; display: inline-flex; }
+.footer-social-link { color: rgba(232,223,192,0.8); transition: color 0.2s; display: inline-flex; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.7)); }
 .footer-social-link:hover, .footer-social-link:focus-visible { color: var(--teal); outline: none; }
 
 /* Video PiP */
@@ -630,7 +630,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <section id="media" class="reveal">
   <h2 class="section-title">Watch &amp; Listen</h2>
   <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
-  <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:420px; margin:0 auto; line-height:1.75;">Live recordings and footage from recent shows &mdash; see what a Kings of Ewing set looks (and sounds) like.</p>
 
   <!-- Audio player -->
   <audio id="band-audio" preload="none"></audio>
@@ -695,7 +694,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <div id="social-bg" class="section-photo-bg" aria-hidden="true"></div>
   <h2 class="section-title">Socials</h2>
   <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
-  <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:420px; margin:0 auto; line-height:1.75;">Live clips and show announcements, plus whatever we&rsquo;re up to between gigs.</p>
   <div class="social-row">
     <a href="https://www.instagram.com/kingsofewing/" target="_blank" rel="noopener noreferrer" class="social-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -724,7 +722,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <section id="mailing" class="reveal" style="background:var(--bg); padding:6rem 2rem; text-align:center;">
   <h2 class="section-title">Join the Mailing List</h2>
   <div class="divider" style="margin:0.8rem auto 1.8rem;"></div>
-  <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:380px; margin:0 auto 1.8rem; line-height:1.75;">Get notified when we announce new shows. No spam, just gigs.</p>
 
   <div id="ml-signup" style="display:flex; flex-direction:column; align-items:center; gap:0.75rem; width:100%; max-width:420px; margin:0 auto;">
     <div id="ml-form-row" style="display:flex; gap:0.5rem; width:100%;">
