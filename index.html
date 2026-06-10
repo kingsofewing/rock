@@ -125,12 +125,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 #social-bg  { background-image: url('docs/images/kings_of_ewing-1.jpg'); background-position: center 55%; filter: brightness(0.28); }
 #shows-bg   { background-image: url('docs/images/IMG_1810.jpeg'); background-position: center 60%; filter: brightness(0.22); }
 #faq-bg     { background-image: url('docs/images/Resized_IMG_5512.jpg.jpeg'); background-position: center 65%; filter: brightness(0.18); }
-#mailing-bg { background-image: url('docs/images/IMG_5358.jpeg'); background-position: center 50%; filter: brightness(0.25); }
 
 #social  { background: var(--bg); padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden; }
 #social > *:not(#social-bg) { position: relative; z-index: 1; }
-
-#mailing > *:not(#mailing-bg) { position: relative; z-index: 1; }
 
 #shows   { background: var(--bg); padding: 7rem 3rem; position: relative; overflow: hidden; }
 #shows > *:not(#shows-bg) { position: relative; z-index: 1; }
@@ -139,7 +136,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 #book    { background: var(--bg); padding: 7rem 2rem; text-align: center; }
 
-footer   { background: var(--brown); border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem 2.5rem calc(2.5rem + 58px); }
+footer   { background: linear-gradient(rgba(30,14,8,0.82), rgba(30,14,8,0.82)), url('docs/images/IMG_5358.jpeg'); background-size: cover; background-position: center; border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem 2.5rem calc(2.5rem + 58px); }
 
 /* SHOWS */
   .shows-inner { max-width: 860px; margin: 0 auto; }
@@ -724,8 +721,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 </section>
 
 <!-- 3. MAILING LIST -->
-<section id="mailing" class="reveal" style="background:var(--bg); padding:6rem 2rem; text-align:center; position:relative; overflow:hidden;">
-  <div id="mailing-bg" class="section-photo-bg"></div>
+<section id="mailing" class="reveal" style="background:var(--bg); padding:6rem 2rem; text-align:center;">
   <h2 class="section-title">Join the Mailing List</h2>
   <div class="divider" style="margin:0.8rem auto 1.8rem;"></div>
   <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:380px; margin:0 auto 1.8rem; line-height:1.75;">Get notified when we announce new shows. No spam, just gigs.</p>
