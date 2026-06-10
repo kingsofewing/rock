@@ -2067,9 +2067,9 @@ audio.addEventListener('play', () => {
   });
 });
 
-// Sticky player: appears once audio has started and the audio box is
-// offscreen. Stays visible while paused (so you can resume without
-// scrolling back) until explicitly closed via ×.
+// Sticky player: appears as soon as audio has started — even while the
+// Watch & Listen section is still onscreen. Stays visible while paused (so
+// you can resume without scrolling back) until explicitly closed via ×.
 const audioBox = document.getElementById('audio-box');
 const stickyPlayer = document.getElementById('sticky-player');
 let audioBoxVisible = true;
@@ -2077,7 +2077,7 @@ let audioStarted = false;     // a track has been started at least once
 let stickyDismissed = false;  // user closed the bar
 function updateStickyVisibility() {
   stickyPlayer.classList.toggle('visible',
-    !audioBoxVisible && audioStarted && !stickyDismissed);
+    audioStarted && !stickyDismissed);
 }
 if (audioBox && stickyPlayer) {
   const audioBoxObserver = new IntersectionObserver(entries => {
