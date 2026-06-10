@@ -1866,6 +1866,11 @@ let currentVideoIndex = 0;
   const videoAnchor    = document.getElementById('video-anchor');
   const videoDisplay   = document.querySelector('.video-display');
   if (!videoDisplay || !videoAnchor) return;
+  // A .reveal ancestor keeps transform:translateY(0) after animating in, and
+  // any non-none transform makes that element the containing block for fixed
+  // descendants — which would pin the floating PiP to the section instead of
+  // the viewport. Neutralize it while floating, restore it after.
+  const revealAncestor = videoDisplay.closest('.reveal');
   const isTouchDevice  = () => window.matchMedia('(hover: none)').matches;
 
   let ytPlayer       = null;
@@ -2006,6 +2011,7 @@ let currentVideoIndex = 0;
     if (pipVisible || !ytPlayer) return;
     pipVisible = true;
 
+    if (revealAncestor) revealAncestor.style.transform = 'none';
     videoAnchor.style.minHeight = videoDisplay.offsetHeight + 'px';
     videoDisplay.dataset.origStyle = videoDisplay.getAttribute('style') || '';
     Object.assign(videoDisplay.style, {
@@ -2036,6 +2042,7 @@ let currentVideoIndex = 0;
 
     videoDisplay.setAttribute('style', videoDisplay.dataset.origStyle || '');
     videoAnchor.style.minHeight = '';
+    if (revealAncestor) revealAncestor.style.transform = '';
     // Return borrowed chrome to its hidden home
     pipContainer.append(pipLabel, pipControls, pipClose);
     if (pause) { try { ytPlayer.pauseVideo(); } catch(e) {} syncVideoPlayIcons(false); }
