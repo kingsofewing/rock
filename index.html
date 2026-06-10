@@ -1806,6 +1806,7 @@ let currentVideoIndex = 0;
 
   let ytPlayer      = null;
   let pipVisible    = false;
+  let pipMobileMode = false;
   let displayVisible = true;
   let pipIframe     = null;
   let pipOrigParent = null;
@@ -1937,41 +1938,81 @@ let currentVideoIndex = 0;
 
   function showPip() {
     if (pipVisible || !ytPlayer || !pipContainer) return;
-    pipLabel.textContent = VIDEOS[currentVideoIndex]?.title || '';
-    const iframe = ytPlayer.getIframe();
-    pipIframe     = iframe;
-    pipOrigParent = iframe.parentNode;
-    let resumeAt = 0;
-    try { resumeAt = ytPlayer.getCurrentTime() || 0; } catch(e) {}
-    pipSlot.appendChild(iframe);
-    pipContainer.classList.add('visible');
     pipVisible = true;
-    setTimeout(() => {
-      try { ytPlayer.seekTo(resumeAt, true); ytPlayer.playVideo(); } catch(e) {}
-      try {
-        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo',   args: [resumeAt, true] }), '*');
-        iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
-      } catch(e) {}
-    }, 200);
+
+    if (isTouchDevice()) {
+      // On mobile: CSS-float the existing .video-display instead of moving the iframe.
+      // Moving an iframe on iOS causes it to reload and lose playback position.
+      pipMobileMode = true;
+      const vd = document.querySelector('.video-display');
+      if (!vd) return;
+      vd.dataset.origStyle = vd.getAttribute('style') || '';
+      Object.assign(vd.style, {
+        position: 'fixed', bottom: '72px', left: '0.75rem', right: 'auto',
+        width: 'calc(100vw - 1.5rem)', maxWidth: '320px', zIndex: '200',
+        margin: '0', background: 'var(--brown)',
+        border: '2px solid var(--coral)',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.65)'
+      });
+      let closeBtn = document.getElementById('pip-mobile-close');
+      if (!closeBtn) {
+        closeBtn = document.createElement('button');
+        closeBtn.id = 'pip-mobile-close';
+        closeBtn.setAttribute('aria-label', 'Close video');
+        closeBtn.innerHTML = '&times;';
+        closeBtn.style.cssText = 'position:absolute;top:-12px;right:-12px;width:26px;height:26px;border-radius:50%;background:var(--coral);color:var(--brown);border:none;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:201;';
+        closeBtn.addEventListener('click', () => hidePip(true));
+        vd.appendChild(closeBtn);
+      }
+      closeBtn.style.display = 'flex';
+    } else {
+      // Desktop: physically move the iframe into the pip container
+      pipMobileMode = false;
+      pipLabel.textContent = VIDEOS[currentVideoIndex]?.title || '';
+      const iframe = ytPlayer.getIframe();
+      pipIframe     = iframe;
+      pipOrigParent = iframe.parentNode;
+      let resumeAt = 0;
+      try { resumeAt = ytPlayer.getCurrentTime() || 0; } catch(e) {}
+      pipSlot.appendChild(iframe);
+      pipContainer.classList.add('visible');
+      setTimeout(() => {
+        try { ytPlayer.seekTo(resumeAt, true); ytPlayer.playVideo(); } catch(e) {}
+        try {
+          iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo',   args: [resumeAt, true] }), '*');
+          iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+        } catch(e) {}
+      }, 200);
+    }
   }
 
   function hidePip(pause) {
     if (!pipVisible || !pipContainer) return;
-    pipContainer.classList.remove('visible');
     pipVisible = false;
-    if (pause) {
-      try { ytPlayer.pauseVideo(); } catch(e) {}
+
+    if (pipMobileMode) {
+      pipMobileMode = false;
+      const vd = document.querySelector('.video-display');
+      if (vd) {
+        vd.setAttribute('style', vd.dataset.origStyle || '');
+        const closeBtn = document.getElementById('pip-mobile-close');
+        if (closeBtn) closeBtn.style.display = 'none';
+      }
+      if (pause) { try { ytPlayer.pauseVideo(); } catch(e) {} syncVideoPlayIcons(false); }
+    } else {
+      pipContainer.classList.remove('visible');
+      if (pause) { try { ytPlayer.pauseVideo(); } catch(e) {} }
+      if (pipIframe && pipOrigParent && pipIframe.parentNode !== pipOrigParent) {
+        let resumeAt = 0;
+        const resumeVideoId = VIDEOS[currentVideoIndex]?.id;
+        if (!pause) try { resumeAt = ytPlayer.getCurrentTime() || 0; } catch(e) {}
+        pipOrigParent.appendChild(pipIframe);
+        if (!pause) setTimeout(() => {
+          try { ytPlayer.loadVideoById({ videoId: resumeVideoId, startSeconds: resumeAt }); } catch(e) {}
+        }, 200);
+      }
+      if (pause) { pipIframe = null; pipOrigParent = null; }
     }
-    if (pipIframe && pipOrigParent && pipIframe.parentNode !== pipOrigParent) {
-      let resumeAt = 0;
-      const resumeVideoId = VIDEOS[currentVideoIndex]?.id;
-      if (!pause) try { resumeAt = ytPlayer.getCurrentTime() || 0; } catch(e) {}
-      pipOrigParent.appendChild(pipIframe);
-      if (!pause) setTimeout(() => {
-        try { ytPlayer.loadVideoById({ videoId: resumeVideoId, startSeconds: resumeAt }); } catch(e) {}
-      }, 200);
-    }
-    if (pause) { pipIframe = null; pipOrigParent = null; }
   }
 
   pipClose && pipClose.addEventListener('click', () => hidePip(true));
