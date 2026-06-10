@@ -337,6 +337,7 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.0
 #sticky-player.visible { display: flex; }
 
 #sticky-track-name {
+    cursor: pointer;
     font-size: 0.72rem;
     letter-spacing: 0.1em;
     color: var(--cream);
@@ -405,6 +406,13 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 @media (max-width: 600px) { .sticky-logo { display: none; } .sticky-book-btn { display: none; } }
 
+#sticky-progress-track {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 10px;
+  cursor: pointer;
+}
+#sticky-progress-track:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--teal); }
 #sticky-progress-bar {
   position: absolute;
   top: 0; left: 0;
@@ -414,6 +422,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   pointer-events: none;
   transition: width 0.25s linear;
 }
+#sticky-progress-track:hover #sticky-progress-bar { height: 4px; }
 
 .skip-link {
   position: absolute;
@@ -470,8 +479,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   color: rgba(232,223,192,0.5);
   padding: 0.35rem 0.75rem 0.25rem;
 }
-#pip-slot { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
-#pip-slot iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 .pip-nav-btn { background: none; border: none; cursor: pointer; color: var(--cream); opacity: 0.7; padding: 4px; display: flex; align-items: center; transition: opacity 0.2s; }
 .pip-nav-btn:hover, .pip-nav-btn:focus-visible { opacity: 1; outline: none; box-shadow: 0 0 0 2px var(--teal); }
 #pip-close {
@@ -670,9 +677,11 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   </div>
 
   <!-- Video display (single player + listing) -->
-  <div class="video-display">
-    <div class="video-ratio">
-      <iframe id="yt-player" src="https://www.youtube.com/embed/PhVwRvgKHvQ?enablejsapi=1" title="Kings of Ewing Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+  <div id="video-anchor">
+    <div class="video-display">
+      <div class="video-ratio">
+        <iframe id="yt-player" src="https://www.youtube.com/embed/PhVwRvgKHvQ?enablejsapi=1" title="Kings of Ewing Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
     </div>
   </div>
   <div class="video-nav">
@@ -1014,10 +1023,9 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <img src="docs/images/IMG_5358.jpeg" alt="Kings of Ewing performing live" width="2000" height="547" loading="lazy" decoding="async">
 </div>
 
-<!-- Video PiP floating player (desktop only) -->
+<!-- Video PiP chrome (label/controls/close get attached to the floating video) -->
 <div id="video-pip">
   <div id="pip-label"></div>
-  <div id="pip-slot"></div>
   <div id="pip-controls" style="display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:0.4rem 0.75rem 0.5rem;">
     <button id="pip-prev-btn" class="pip-nav-btn" aria-label="Previous video" title="Previous">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
@@ -1053,7 +1061,12 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <button class="sticky-btn" id="sticky-next-btn" aria-label="Next track" title="Next">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
     </button>
-    <span id="sticky-track-name">Don't Let Me Down (The Beatles)</span>
+    <span id="sticky-track-name" role="button" tabindex="0" title="Back to player" aria-label="Scroll back to audio player">Don't Let Me Down (The Beatles)</span>
+    <button class="sticky-btn" id="sticky-close-btn" aria-label="Close player" title="Close">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="sticky-progress-track" role="slider" tabindex="0" aria-label="Seek audio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
     <div id="sticky-progress-bar"></div>
   </div>
 </div>
@@ -1695,6 +1708,15 @@ function loadTrack(index, autoplay) {
   });
   updateProgress();
   updateTrackList();
+  // OS-level metadata (lock screen / notification / media keys)
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: t.name,
+      artist: t.artist || 'Kings of Ewing',
+      album: 'Kings of Ewing — Live',
+      artwork: [{ src: 'docs/resources/branding/Kings_of_Ewing_Logo.png', sizes: '500x500', type: 'image/png' }]
+    });
+  }
   if (autoplay) { audio.play().then(() => showPause(true)).catch(() => showPause(false)); }
 }
 
@@ -1744,15 +1766,48 @@ if (playerVolumeEl) playerVolumeEl.addEventListener('input', function() {
   audio.volume = this.value;
 });
 
+// Keep play/pause icons in sync with actual playback state
+// (covers OS media keys, lock-screen controls, and any other source)
+audio.addEventListener('play',  () => showPause(true));
+audio.addEventListener('pause', () => showPause(false));
+
+// Media Session action handlers — lock-screen & hardware media-key control
+if ('mediaSession' in navigator) {
+  const ms = navigator.mediaSession;
+  ms.setActionHandler('play',  () => { playerPlayPause(); });
+  ms.setActionHandler('pause', () => { audio.pause(); });
+  ms.setActionHandler('previoustrack', playerPrev);
+  ms.setActionHandler('nexttrack', playerNext);
+  try {
+    ms.setActionHandler('seekto', d => {
+      if (audio.duration && d.seekTime != null) audio.currentTime = d.seekTime;
+    });
+  } catch(e) {} // 'seekto' unsupported in some browsers
+  audio.addEventListener('play',  () => { ms.playbackState = 'playing'; });
+  audio.addEventListener('pause', () => { ms.playbackState = 'paused'; });
+}
+
 // Progress bar — click to seek
 function updateProgress() {
   const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
   const pb = document.getElementById('player-progress-bar');
   const spb = document.getElementById('sticky-progress-bar');
   const track = document.getElementById('player-progress-track');
+  const strack = document.getElementById('sticky-progress-track');
   if (pb)  pb.style.width  = pct + '%';
   if (spb) spb.style.width = pct + '%';
-  if (track) track.setAttribute('aria-valuenow', Math.round(pct));
+  if (track)  track.setAttribute('aria-valuenow', Math.round(pct));
+  if (strack) strack.setAttribute('aria-valuenow', Math.round(pct));
+  // Lock-screen scrubber position
+  if ('mediaSession' in navigator && navigator.mediaSession.setPositionState && audio.duration) {
+    try {
+      navigator.mediaSession.setPositionState({
+        duration: audio.duration,
+        playbackRate: audio.playbackRate,
+        position: audio.currentTime
+      });
+    } catch(e) {}
+  }
 }
 
 function seekTo(e, el) {
@@ -1761,9 +1816,7 @@ function seekTo(e, el) {
   audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
 }
 
-const progressTrack = document.getElementById('player-progress-track');
-progressTrack.addEventListener('click', e => seekTo(e, progressTrack));
-progressTrack.addEventListener('keydown', e => {
+function seekKeydown(e) {
   if (!audio.duration) return;
   const step = audio.duration * 0.05; // 5% per arrow press
   if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
@@ -1779,7 +1832,17 @@ progressTrack.addEventListener('keydown', e => {
     e.preventDefault();
     audio.currentTime = audio.duration;
   }
-});
+}
+
+const progressTrack = document.getElementById('player-progress-track');
+progressTrack.addEventListener('click', e => seekTo(e, progressTrack));
+progressTrack.addEventListener('keydown', seekKeydown);
+
+const stickyProgressTrack = document.getElementById('sticky-progress-track');
+if (stickyProgressTrack) {
+  stickyProgressTrack.addEventListener('click', e => seekTo(e, stickyProgressTrack));
+  stickyProgressTrack.addEventListener('keydown', seekKeydown);
+}
 
 audio.addEventListener('timeupdate', updateProgress);
 audio.addEventListener('ended', playerNext);
@@ -1797,19 +1860,17 @@ let currentVideoIndex = 0;
   const videoListEl    = document.getElementById('video-track-list');
   const pipContainer   = document.getElementById('video-pip');
   const pipLabel       = document.getElementById('pip-label');
-  const pipSlot        = document.getElementById('pip-slot');
+  const pipControls    = document.getElementById('pip-controls');
   const pipClose       = document.getElementById('pip-close');
   const scrollBackBtn  = document.getElementById('video-scroll-back');
+  const videoAnchor    = document.getElementById('video-anchor');
   const videoDisplay   = document.querySelector('.video-display');
-  if (!videoDisplay) return;
+  if (!videoDisplay || !videoAnchor) return;
   const isTouchDevice  = () => window.matchMedia('(hover: none)').matches;
 
-  let ytPlayer      = null;
-  let pipVisible    = false;
-  let pipMobileMode = false;
+  let ytPlayer       = null;
+  let pipVisible     = false;
   let displayVisible = true;
-  let pipIframe     = null;
-  let pipOrigParent = null;
 
   // Render video listing
   if (videoListEl) {
@@ -1920,7 +1981,8 @@ let currentVideoIndex = 0;
     window._ytPlayers = { 'yt-player': ytPlayer };
   };
 
-  // Watch display visibility for pip
+  // Watch the anchor (stays in document flow) — not the display,
+  // which leaves the flow while floating as PiP.
   new IntersectionObserver(entries => {
     displayVisible = entries[0].isIntersecting;
     if (!displayVisible && ytPlayer && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
@@ -1929,97 +1991,66 @@ let currentVideoIndex = 0;
       hidePip(false);
       scrollBackBtn && scrollBackBtn.classList.remove('visible');
     }
-  }, { threshold: 0 }).observe(videoDisplay);
+  }, { threshold: 0 }).observe(videoAnchor);
 
   scrollBackBtn && scrollBackBtn.addEventListener('click', () => {
-    videoDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    videoAnchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
     scrollBackBtn.classList.remove('visible');
   });
 
+  // PiP = CSS-float the existing .video-display. The iframe never moves in
+  // the DOM, so playback continues seamlessly (reparenting an iframe forces
+  // a reload). The anchor keeps the layout slot; label/controls/close are
+  // borrowed from #video-pip while floating.
   function showPip() {
-    if (pipVisible || !ytPlayer || !pipContainer) return;
+    if (pipVisible || !ytPlayer) return;
     pipVisible = true;
 
+    videoAnchor.style.minHeight = videoDisplay.offsetHeight + 'px';
+    videoDisplay.dataset.origStyle = videoDisplay.getAttribute('style') || '';
+    Object.assign(videoDisplay.style, {
+      position: 'fixed', zIndex: '200', margin: '0',
+      background: 'var(--brown)',
+      border: '2px solid var(--coral)',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.65)'
+    });
     if (isTouchDevice()) {
-      // On mobile: CSS-float the existing .video-display instead of moving the iframe.
-      // Moving an iframe on iOS causes it to reload and lose playback position.
-      pipMobileMode = true;
-      const vd = document.querySelector('.video-display');
-      if (!vd) return;
-      vd.dataset.origStyle = vd.getAttribute('style') || '';
-      Object.assign(vd.style, {
-        position: 'fixed', bottom: '72px', left: '0.75rem', right: 'auto',
-        width: 'calc(100vw - 1.5rem)', maxWidth: '320px', zIndex: '200',
-        margin: '0', background: 'var(--brown)',
-        border: '2px solid var(--coral)',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.65)'
+      Object.assign(videoDisplay.style, {
+        bottom: '72px', left: '0.75rem', right: 'auto',
+        width: 'calc(100vw - 1.5rem)', maxWidth: '320px'
       });
-      let closeBtn = document.getElementById('pip-mobile-close');
-      if (!closeBtn) {
-        closeBtn = document.createElement('button');
-        closeBtn.id = 'pip-mobile-close';
-        closeBtn.setAttribute('aria-label', 'Close video');
-        closeBtn.innerHTML = '&times;';
-        closeBtn.style.cssText = 'position:absolute;top:-12px;right:-12px;width:26px;height:26px;border-radius:50%;background:var(--coral);color:var(--brown);border:none;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:201;';
-        closeBtn.addEventListener('click', () => hidePip(true));
-        vd.appendChild(closeBtn);
-      }
-      closeBtn.style.display = 'flex';
     } else {
-      // Desktop: physically move the iframe into the pip container
-      pipMobileMode = false;
-      pipLabel.textContent = VIDEOS[currentVideoIndex]?.title || '';
-      const iframe = ytPlayer.getIframe();
-      pipIframe     = iframe;
-      pipOrigParent = iframe.parentNode;
-      let resumeAt = 0;
-      try { resumeAt = ytPlayer.getCurrentTime() || 0; } catch(e) {}
-      pipSlot.appendChild(iframe);
-      pipContainer.classList.add('visible');
-      setTimeout(() => {
-        try { ytPlayer.seekTo(resumeAt, true); ytPlayer.playVideo(); } catch(e) {}
-        try {
-          iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'seekTo',   args: [resumeAt, true] }), '*');
-          iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
-        } catch(e) {}
-      }, 200);
+      Object.assign(videoDisplay.style, {
+        bottom: '80px', right: '1.5rem', left: 'auto', width: '300px'
+      });
     }
+    pipLabel.textContent = VIDEOS[currentVideoIndex]?.title || '';
+    videoDisplay.insertBefore(pipLabel, videoDisplay.firstChild);
+    videoDisplay.appendChild(pipControls);
+    videoDisplay.appendChild(pipClose);
   }
 
   function hidePip(pause) {
-    if (!pipVisible || !pipContainer) return;
+    if (!pipVisible) return;
     pipVisible = false;
 
-    if (pipMobileMode) {
-      pipMobileMode = false;
-      const vd = document.querySelector('.video-display');
-      if (vd) {
-        vd.setAttribute('style', vd.dataset.origStyle || '');
-        const closeBtn = document.getElementById('pip-mobile-close');
-        if (closeBtn) closeBtn.style.display = 'none';
-      }
-      if (pause) { try { ytPlayer.pauseVideo(); } catch(e) {} syncVideoPlayIcons(false); }
-    } else {
-      pipContainer.classList.remove('visible');
-      if (pause) { try { ytPlayer.pauseVideo(); } catch(e) {} }
-      if (pipIframe && pipOrigParent && pipIframe.parentNode !== pipOrigParent) {
-        let resumeAt = 0;
-        const resumeVideoId = VIDEOS[currentVideoIndex]?.id;
-        if (!pause) try { resumeAt = ytPlayer.getCurrentTime() || 0; } catch(e) {}
-        pipOrigParent.appendChild(pipIframe);
-        if (!pause) setTimeout(() => {
-          try { ytPlayer.loadVideoById({ videoId: resumeVideoId, startSeconds: resumeAt }); } catch(e) {}
-        }, 200);
-      }
-      if (pause) { pipIframe = null; pipOrigParent = null; }
-    }
+    videoDisplay.setAttribute('style', videoDisplay.dataset.origStyle || '');
+    videoAnchor.style.minHeight = '';
+    // Return borrowed chrome to its hidden home
+    pipContainer.append(pipLabel, pipControls, pipClose);
+    if (pause) { try { ytPlayer.pauseVideo(); } catch(e) {} syncVideoPlayIcons(false); }
   }
 
   pipClose && pipClose.addEventListener('click', () => hidePip(true));
 
-  // Sync video icons when audio starts (pauseVideo fires onStateChange async,
-  // but update icons immediately so there's no lag)
-  audio.addEventListener('play', () => syncVideoPlayIcons(false));
+  // When audio starts: sync icons immediately (pauseVideo's onStateChange is
+  // async) and dismiss the now-paused PiP so it doesn't linger alongside the
+  // sticky audio bar.
+  audio.addEventListener('play', () => {
+    syncVideoPlayIcons(false);
+    hidePip(false);
+    scrollBackBtn && scrollBackBtn.classList.remove('visible');
+  });
 })();
 
 // Pause YouTube when audio player starts
@@ -2029,12 +2060,17 @@ audio.addEventListener('play', () => {
   });
 });
 
-// Show sticky player only when audio box is offscreen AND audio is playing
+// Sticky player: appears once audio has started and the audio box is
+// offscreen. Stays visible while paused (so you can resume without
+// scrolling back) until explicitly closed via ×.
 const audioBox = document.getElementById('audio-box');
 const stickyPlayer = document.getElementById('sticky-player');
 let audioBoxVisible = true;
+let audioStarted = false;     // a track has been started at least once
+let stickyDismissed = false;  // user closed the bar
 function updateStickyVisibility() {
-  stickyPlayer.classList.toggle('visible', !audioBoxVisible && !audio.paused);
+  stickyPlayer.classList.toggle('visible',
+    !audioBoxVisible && audioStarted && !stickyDismissed);
 }
 if (audioBox && stickyPlayer) {
   const audioBoxObserver = new IntersectionObserver(entries => {
@@ -2042,9 +2078,29 @@ if (audioBox && stickyPlayer) {
     updateStickyVisibility();
   }, { threshold: 0 });
   audioBoxObserver.observe(audioBox);
-  audio.addEventListener('play',  updateStickyVisibility);
-  audio.addEventListener('pause', updateStickyVisibility);
-  audio.addEventListener('ended', updateStickyVisibility);
+  audio.addEventListener('play', () => {
+    audioStarted = true;
+    stickyDismissed = false;
+    updateStickyVisibility();
+  });
+
+  // × — pause and dismiss until playback restarts
+  const stickyCloseBtn = document.getElementById('sticky-close-btn');
+  if (stickyCloseBtn) stickyCloseBtn.addEventListener('click', () => {
+    audio.pause();
+    stickyDismissed = true;
+    updateStickyVisibility();
+  });
+
+  // Track name → scroll back to the full player
+  const stickyTrackName = document.getElementById('sticky-track-name');
+  const scrollToAudioBox = () => audioBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (stickyTrackName) {
+    stickyTrackName.addEventListener('click', scrollToAudioBox);
+    stickyTrackName.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToAudioBox(); }
+    });
+  }
 }
 </script>
 </body>
