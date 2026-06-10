@@ -1997,7 +1997,7 @@ let currentVideoIndex = 0;
 // Pause YouTube when audio player starts
 audio.addEventListener('play', () => {
   Object.values(window._ytPlayers || {}).forEach(p => {
-    try { if (p.getPlayerState() === YT.PlayerState.PLAYING) p.pauseVideo(); } catch(e) {}
+    try { p.pauseVideo(); } catch(e) {}
   });
 });
 
