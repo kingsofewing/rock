@@ -7,10 +7,12 @@
 <title>Kings of Ewing</title>
 <meta name="geo.placename" content="Evanston, IL">
 <meta name="geo.region" content="US-IL">
-<meta name="description" content="Kings of Ewing — a five-piece mostly-covers band from Evanston, IL. Six decades of rock, pop, folk, blues, and soul. Available for weddings, block parties, fundraisers and more.">
+<meta name="description" content="Kings of Ewing — a five-piece mostly-covers band from Evanston, IL. Rock, pop, folk, blues, and soul from the '60s to today. Available for weddings, block parties, fundraisers and more.">
 <meta property="og:title" content="Kings of Ewing">
-<meta property="og:description" content="A five-piece mostly-covers band from one block in Evanston, IL. Six decades of rock, pop, folk, blues, and soul. Available for weddings, block parties, fundraisers and more.">
-<meta property="og:image" content="https://www.kingsofewing.com/docs/images/IMG_2445.jpeg">
+<meta property="og:description" content="A five-piece mostly-covers band from one block in Evanston, IL. Rock, pop, folk, blues, and soul from the '60s to today. Available for weddings, block parties, fundraisers and more.">
+<meta property="og:image" content="https://www.kingsofewing.com/docs/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Kings of Ewing performing live — a five-piece cover band from Evanston, IL">
 <meta property="og:url" content="https://www.kingsofewing.com">
 <meta property="og:type" content="website">
@@ -19,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kings of Ewing">
 <meta name="twitter:description" content="A five-piece mostly-covers band from one block in Evanston, IL.">
-<meta name="twitter:image" content="https://www.kingsofewing.com/docs/images/IMG_2445.jpeg">
+<meta name="twitter:image" content="https://www.kingsofewing.com/docs/images/og-image.jpg">
 <meta name="twitter:image:alt" content="Kings of Ewing performing live — a five-piece cover band from Evanston, IL">
 <link rel="icon" type="image/png" href="docs/resources/branding/Kings_of_Ewing_Logo.png">
   <link rel="apple-touch-icon" href="docs/resources/branding/Kings_of_Ewing_Logo.png">
@@ -570,7 +572,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   "name": "Kings of Ewing",
   "url": "https://www.kingsofewing.com",
   "image": "https://www.kingsofewing.com/docs/images/IMG_2445.jpeg",
-  "description": "Kings of Ewing is a five-piece mostly-covers band from Evanston, IL — six decades of rock, pop, folk, blues, and soul. Available for weddings, block parties, fundraisers, and more.",
+  "description": "Kings of Ewing is a five-piece mostly-covers band from Evanston, IL — rock, pop, folk, blues, and soul from the '60s to today. Available for weddings, block parties, fundraisers, and more.",
   "genre": ["Rock","Pop","Folk","Soul","Blues"],
   "email": "Miles@KingsOfEwing.com",
   "contactPoint": {
@@ -766,7 +768,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
       <h2 class="section-title"><a href="docs/resources/Kings_of_Ewing_Links.html" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">The Kings</a></h2>
       <div class="divider"></div>
       <p>Kings of Ewing is a five-piece band from Evanston, Illinois. We live on the same block on Ewing Ave: hence the name! We started in 2023 to play our own block party and liked it so much we never stopped.</p>
-      <p>By day, we hold down regular jobs. By night we play the music we love: six decades of rock, pop, folk, blues, and soul, from Beatles classics and Allman Brothers jams to Tom Petty, Chappell Roan, and everything in between. With four vocalists, a horn player, keys, and a rhythm section that knows how to read a room, we keep the dance floor moving and the crowd singing along.</p>
+      <p>By day, we hold down regular jobs. By night we play the music we love: rock, pop, folk, blues, and soul from the &rsquo;60s to today, from Beatles classics and Allman Brothers jams to Tom Petty, Chappell Roan, and everything in between. All five of us pull double duty &mdash; four sing lead, and between us we cover horn, keys, guitar, bass, and drums. We know how to read a room, keep the dance floor moving, and get the crowd singing along.</p>
       <p>We play weddings, block parties, fundraisers, bars, and backyard gatherings throughout North Chicagoland. We&rsquo;re flexible on production too &mdash; we can bring our own PA and mixing board and run our own sound if needed, or plug into whatever a venue has. Either way works for us.</p>
 
       <p class="songs-label"><a href="docs/music/music_pdf_links.html" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">A Sample of What We Play</a></p>
@@ -1424,7 +1426,7 @@ function injectEventSchema(SHOWS) {
       "@context": "https://schema.org",
       "@type": "MusicEvent",
       "name": "Kings of Ewing at " + venueName,
-      "description": (s.description ? s.description + " " : "") + "Kings of Ewing — a five-piece mostly-covers band from Evanston, IL — performing live at " + venueName + ". Six decades of rock, pop, folk, blues, and soul.",
+      "description": (s.description ? s.description + " " : "") + "Kings of Ewing — a five-piece mostly-covers band from Evanston, IL — performing live at " + venueName + ". Rock, pop, folk, blues, and soul from the '60s to today.",
       "image": "https://www.kingsofewing.com/docs/images/IMG_2445.jpeg",
       "startDate": startDate,
       "endDate": endDate,
@@ -1823,6 +1825,8 @@ audio.addEventListener('ended', playerNext);
 // Videos — single player + clickable listing
 // ─────────────────────────────────────────────────────────────
 const VIDEOS = [
+  { id: 'PhVwRvgKHvQ', title: 'Highlights from Goat Village'  },
+  { id: 'mMwmRn1mP-A', title: 'Highlights from Chicago Union' },
 ];
 let currentVideoIndex = 0;
 
