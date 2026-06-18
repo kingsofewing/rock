@@ -947,7 +947,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <div class="book-inner">
     <h2 class="section-title">Book the Band</h2>
     <div class="divider" style="margin: 0.8rem auto 2rem;"></div>
-    <p style="color:rgba(232,223,192,0.55); font-size:0.95rem; line-height:1.8; margin-bottom:0.75rem; text-align:center;">Fill out the form below and we&rsquo;ll get back to you. Prefer to reach out directly? Email us at <a href="mailto:Miles@KingsOfEwing.com" class="email-link">Miles@KingsOfEwing.com</a>.</p>
+    <p style="color:rgba(232,223,192,0.55); font-size:0.95rem; line-height:1.8; margin-bottom:0.75rem; text-align:center;">Fill out the form below and we&rsquo;ll get back to you. Prefer to reach out directly? Email us at <a href="mailto:Miles@KingsOfEwing.com" class="email-link">Miles@KingsOfEwing.com</a></p>
     <p style="color:rgba(232,223,192,0.35); font-size:0.8rem; line-height:1.7; margin-bottom:2rem; text-align:center; font-style:italic;">Our rates are flexible and vary by event — reach out and we&rsquo;ll send you a quote.</p>
     <form action="https://formspree.io/f/mwvynqoe" method="POST" id="booking-form" novalidate>
       <!-- Honeypot field - bots fill this in, humans don't see it -->
@@ -956,8 +956,8 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
         <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off">
       </div>
       <div class="form-row">
-        <div class="form-field"><label for="name">Your Name *</label><input type="text" id="name" name="name" placeholder="Herbie Hancock" required autocomplete="name"></div>
-        <div class="form-field"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="herbie@hancock.com" required autocomplete="email"></div>
+        <div class="form-field"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="Herbie Hancock" autocomplete="name"></div>
+        <div class="form-field"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="herbie@hancock.com" required autocomplete="email"></div>
       </div>
       <div class="form-row">
         <div class="form-field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(847) 867-5309" autocomplete="tel"></div>
@@ -1570,11 +1570,10 @@ if (bookingForm) bookingForm.addEventListener('submit', async function(e) {
   const errorEl = document.getElementById('booking-error');
   const successEl = document.getElementById('success-msg');
   const emailVal = document.getElementById('email').value.trim();
-  const nameVal  = document.getElementById('name').value.trim();
 
-  if (!nameVal || !EMAIL_RE.test(emailVal)) {
+  if (!EMAIL_RE.test(emailVal)) {
     errorEl.style.display = 'block';
-    errorEl.textContent = 'Please add your name and a valid email.';
+    errorEl.textContent = 'Please add a valid email.';
     return;
   }
   // Honeypot check — if filled, silently "succeed" without sending
