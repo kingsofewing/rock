@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oh Canada — Road Trip Edition 2026</title>
+<style>
+  :root { --ink:#e8eef2; --muted:#9fb1bd; --accent:#3fd0a5; --accent2:#ffb84d;
+    --line:#2a3a44; --bg:#10181d; --card:#182530; --chip:#1f3340; --factink:#ffe6b0; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; -webkit-text-size-adjust:100%; }
+  .wrap { max-width:760px; margin:0 auto; padding:20px 16px 60px; }
+  header { margin-bottom:16px; }
+  .brand { display:inline-block; margin:0 0 8px; font-size:.78rem; font-weight:800;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--bg);
+    background:var(--accent); border-radius:999px; padding:5px 12px; }
+  header h1 { font-size:1.75rem; margin:0 0 4px; line-height:1.1; }
+  .sub { color:var(--muted); font-size:.95rem; margin:0 0 6px; }
+
+  /* Trip by the numbers */
+  .stats { display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 20px; }
+  .stat { flex:1 1 120px; background:var(--card); border:1px solid var(--line);
+    border-radius:12px; padding:12px 14px; }
+  .stat .n { font-size:1.5rem; font-weight:800; color:var(--accent); line-height:1; }
+  .stat .l { font-size:.78rem; color:var(--muted); margin-top:4px; }
+
+  /* Jump nav */
+  .daynav { position:sticky; top:0; z-index:5; background:var(--bg); margin:0 0 18px;
+    padding:10px 0; border-bottom:1px solid var(--line); }
+  .daynav .navlabel { font-size:.72rem; font-weight:800; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--muted); margin:0 0 7px; }
+  .daynav a { display:inline-block; font-size:.82rem; font-weight:700; color:var(--accent);
+    text-decoration:none; background:var(--chip); border:1px solid var(--line); border-radius:8px;
+    padding:5px 9px; margin:0 5px 5px 0; }
+
+  .day { background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:14px 16px; margin:0 0 14px; }
+  .day h2 { font-size:1.12rem; margin:0 0 8px; }
+  .badges { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 10px; }
+  .timer { display:inline-flex; align-items:baseline; gap:6px; font-weight:800;
+    background:var(--chip); border:1px solid var(--line); border-radius:9px; padding:6px 11px; }
+  .timer .big { font-size:1.15rem; color:var(--accent2); }
+  .timer .small { font-size:.8rem; color:var(--muted); font-weight:600; }
+  .dir { display:inline-block; font-size:.85rem; font-weight:700; color:var(--accent);
+    text-decoration:none; padding:6px 11px; background:var(--chip);
+    border:1px solid var(--line); border-radius:9px; }
+  .row { margin:7px 0; font-size:.96rem; }
+  .row .lbl { font-weight:700; color:var(--accent2); }
+  a { color:var(--accent); }
+
+  .facts { background:#1a2630; border:1px solid #2f4250; border-left:4px solid var(--accent2);
+    border-radius:10px; padding:10px 12px 10px 14px; margin:11px 0 2px; }
+  .facts .ftitle { font-weight:800; font-size:.9rem; color:var(--factink); margin:0 0 5px; }
+  .facts ul { margin:0; padding-left:18px; }
+  .facts li { margin:5px 0; font-size:.92rem; color:#d6e2ea; }
+
+  /* Wild Things — animals, plants, geology */
+  .wild { background:#16241b; border:1px solid #2f4a37; border-left:4px solid var(--accent);
+    border-radius:10px; padding:10px 12px 10px 14px; margin:11px 0 2px; }
+  .wild .wtitle { font-weight:800; font-size:.9rem; color:#bdf0c8; margin:0 0 5px; }
+  .wild ul { margin:0; padding-left:18px; }
+  .wild li { margin:6px 0; font-size:.92rem; color:#d6e2ea; }
+  .wild .crit { color:#9be8b6; font-weight:800; }
+  .wild .gross { color:#ff9d9d; font-weight:800; }
+
+  .game { background:#15241f; border:1px dashed var(--accent); border-radius:10px;
+    padding:10px 13px; margin:11px 0 2px; font-size:.92rem; }
+  .game .gtitle { font-weight:800; color:var(--accent); margin:0 0 4px; }
+
+  .notes { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin:0 0 14px; }
+  .notes h2 { font-size:1.05rem; margin:0 0 8px; }
+  .notes li { margin:6px 0; font-size:.92rem; }
+  .footer-brand { text-align:center; color:var(--muted); font-size:.85rem; margin:22px 0 0; }
+  .footer-brand b { color:var(--accent); }
+
+  /* Black-and-white print: convert dark theme to clean high-contrast page */
+  @media print {
+    body { background:#fff !important; color:#000 !important; font-size:11pt; }
+    .wrap { max-width:none; padding:0; }
+    .daynav { display:none !important; }
+    .dir { display:none !important; }
+    header h1 { font-size:20pt; color:#000; }
+    .brand { background:#000 !important; color:#fff !important; border:none; }
+    .sub, .stat .l, .footer-brand { color:#000 !important; }
+    .stats { gap:6px; }
+    .stat { background:#fff !important; border:1.5px solid #000 !important; }
+    .stat .n { color:#000 !important; }
+    .day, .notes { background:#fff !important; border:1.5px solid #000 !important;
+      break-inside:avoid; page-break-inside:avoid; }
+    .day h2, .notes h2 { color:#000 !important; }
+    .timer { background:#fff !important; border:1.5px solid #000 !important; color:#000 !important; }
+    .timer .big, .timer .small { color:#000 !important; }
+    .row .lbl { color:#000 !important; text-decoration:underline; }
+    .facts { background:#fff !important; border:1px solid #000 !important;
+      border-left:5px solid #000 !important; }
+    .facts .ftitle, .facts li { color:#000 !important; }
+    .wild { background:#fff !important; border:1px solid #000 !important;
+      border-left:5px solid #000 !important; }
+    .wild .wtitle, .wild li, .wild .crit, .wild .gross { color:#000 !important; }
+    .game { background:#fff !important; border:1.5px dashed #000 !important; }
+    .game .gtitle { color:#000 !important; }
+    a { color:#000 !important; text-decoration:none; }
+    a[href]::after { content:""; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="brand">Road Trip Edition</p>
+  <h1>🇨🇦 Oh Canada</h1>
+  <p class="sub">Summer 2026 · Jun 25 – Jul 7 · Evanston, IL → Canada → home</p>
+</header>
+
+<div class="stats">
+  <div class="stat"><div class="n">~1,800</div><div class="l">total miles (~2,900 km)</div></div>
+  <div class="stat"><div class="n">13</div><div class="l">days on the road</div></div>
+  <div class="stat"><div class="n">3+2</div><div class="l">US states + CA provinces</div></div>
+  <div class="stat"><div class="n">10%</div><div class="l">of Earth's fresh water you'll drive past (Lake Superior)</div></div>
+</div>
+
+<nav class="daynav">
+  <p class="navlabel">Jump to a day</p>
+  <a href="#d0625">Jun 25</a>
+  <a href="#d0626">Jun 26</a>
+  <a href="#d0627">Jun 27</a>
+  <a href="#d0628">Jun 28</a>
+  <a href="#d0629">Jun 29–Jul 2</a>
+  <a href="#d0703">Jul 3</a>
+  <a href="#d0704">Jul 4</a>
+  <a href="#d0705">Jul 5</a>
+  <a href="#d0706">Jul 6</a>
+  <a href="#d0707">Jul 7</a>
+  <a href="#critters">🏆 Quest</a>
+  <a href="#games">🎮 Games</a>
+</nav>
+
+<div class="day" id="d0625">
+  <h2>Thu, Jun 25 — Home → Cornell, WI</h2>
+  <div class="badges">
+    <span class="timer"><span class="big">~5 hr</span><span class="small">≈290 mi · I-90/94</span></span>
+    <a class="dir" href="https://www.google.com/maps/dir/Evanston,+IL/Brunet+Island+State+Park,+Cornell,+WI">🗺️ Route</a>
+  </div>
+  <div class="row"><span class="lbl">Eat:</span> Norske Nook in Osseo — award-winning Norwegian pie right off the highway. Get a slice (or a whole pie) for the road.</div>
+  <div class="row"><span class="lbl">Dinner:</span> Moonridge Brewing pizza in Cornell.</div>
+  <div class="wild">
+    <p class="wtitle">🦫 Wild Things — Chippewa River country</p>
+    <ul>
+      <li><span class="crit">Beaver:</span> the second-biggest rodent on Earth. Its orange front teeth are coated in <b>iron</b> (that's why they're orange) and <b>never stop growing</b> — if it didn't gnaw wood daily, its teeth would curl into its own skull. It eats bark and the soft layer underneath, not fish, and its lodge door is <b>underwater</b> so predators can't get in. <span class="gross">Gross bonus:</span> beavers mark territory with <b>castoreum</b>, a goo squeezed from sacs next to the butt — it smells like vanilla, and people used to put it in perfume and food flavoring.</li>
+      <li><span class="crit">River otter:</span> can hold its breath ~<b>8 minutes</b> and close its nose and ears underwater. The whole family shares one bathroom spot on the bank called a <span class="gross">"latrine"</span> — they poop in the same place on purpose to leave messages for other otters.</li>
+      <li><span class="crit">Bald eagle:</span> nests right on Brunet Island. Eagles build the <b>biggest tree nest of any North American bird</b> — up to <b>2 tons</b>, reused for years. They're also thieves: they'll dive-bomb an osprey and make it drop its fish in mid-air.</li>
+      <li><span class="crit">Lake sturgeon:</span> a living fossil swimming the Chippewa — armored in bony plates instead of scales, can live <b>100+ years</b> and grow over <b>6 feet</b>, and vacuums food off the river bottom with a tube-like mouth that has no teeth.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Chippewa Valley, WI</p>
+    <ul>
+      <li>Wisconsin is the <b>"Badger State"</b> — named not for the animal but for 1800s lead miners who dug into hillsides like badgers (the real badger is a stocky, bad-tempered digger that can tunnel out of sight in under a minute).</li>
+      <li>Cornell has the <b>world's only surviving "pulpwood stacker"</b> — a 175-foot tower built in 1912 to pile logs for a paper mill.</li>
+      <li>Nearby Chippewa Falls is home of <b>Leinenkugel's</b>, the 7th-oldest brewery in the US (1867), and the birthplace of <b>Seymour Cray</b>, the "father of the supercomputer."</li>
+    </ul>
+  </div>
+  <div class="game">
+    <p class="gtitle">🎮 Day 1 challenge — License Plate Bingo</p>
+    Start your list. How many different states/provinces can you spot by the time you hit camp? First leg usually nets 8–12.
+  </div>
+</div>
+
+<div class="day" id="d0626">
+  <h2>Fri, Jun 26 — Cornell → Ely, MN (through Duluth)</h2>
+  <div class="badges">
+    <span class="timer"><span class="big">~4 hr</span><span class="small">≈210 mi</span></span>
+    <a class="dir" href="https://www.google.com/maps/dir/Brunet+Island+State+Park,+Cornell,+WI/Bear+Head+Lake+State+Park,+Ely,+MN">🗺️ Route</a>
+  </div>
+  <div class="row"><span class="lbl">Stop:</span> Duluth Canal Park — eat with a Lake Superior view and watch the giant Aerial Lift Bridge raise for ships. Bonus climb: Enger Tower.</div>
+  <div class="row"><span class="lbl">Near camp:</span> the International Wolf Center &amp; North American Bear Center in Ely — real wolves and bears.</div>
+  <div class="wild">
+    <p class="wtitle">🐺 Wild Things — Northwoods &amp; Boundary Waters</p>
+    <ul>
+      <li><span class="crit">Gray wolf:</span> Ely sits at the edge of the lower-48's biggest wolf country. A wolf can smell prey from <b>over 1.5 miles</b> away and gulp <b>~20 pounds of meat</b> in one sitting — that's where "wolfing it down" comes from. <span class="gross">Gross bonus:</span> parents can't carry groceries, so they swallow meat, trot back to the den, and <b>vomit it up</b> for the pups to eat. Their poop ("scat") is full of hair and crushed bone.</li>
+      <li><span class="crit">Moose:</span> the largest deer alive — taller than a horse. It eats <b>40–60 pounds of plants a day</b> and will <b>dive completely underwater</b>, closing its nostrils, to rip up plants from the lake bottom and hold its breath ~30 seconds. That flap of skin swinging under its throat is called a <b>"bell."</b></li>
+      <li><span class="crit">Black bear:</span> before winter it eats up to <b>20,000 calories a day</b> (like 40 burgers). Then it dens for months without eating, drinking, peeing, or pooping — its body <b>recycles its own pee</b>, and a hard <span class="gross">"fecal plug"</span> seals its rear end shut the whole winter. Its nose is about <b>7× sharper than a bloodhound's.</b></li>
+      <li><span class="crit">Common loon (MN state bird):</span> unlike most birds its bones are <b>solid, not hollow</b>, so it sinks and can dive <b>200 feet</b>. Its legs are set so far back it can barely walk on land and needs a <b>quarter-mile "runway"</b> of flapping across the water to take off. It swallows fish whole — and swallows small pebbles to grind food up in its gut.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Lake Superior &amp; the Northwoods</p>
+    <ul>
+      <li><b>Lake Superior is the largest freshwater lake on Earth by surface area</b> — it holds about <b>10% of all the planet's surface fresh water</b>, stays near <b>40°F</b> year-round, and is so big it makes its own fog and weather.</li>
+      <li>Because it's so cold and deep, the lake <b>preserves shipwrecks</b> almost perfectly — sailors used to say "Superior never gives up her dead."</li>
+      <li>Duluth is the <b>farthest-inland seaport in North America</b> — ocean ships sail <b>2,300+ miles</b> from the Atlantic to get there.</li>
+    </ul>
+  </div>
+  <div class="game">
+    <p class="gtitle">🎮 Spot it</p>
+    Watch the water in Duluth for a "laker" — a freighter up to <b>1,000 feet long</b>. Call it out first and you win the round.
+  </div>
+</div>
+
+<div class="day" id="d0627">
+  <h2>Sat, Jun 27 — Ely, MN → Sioux Narrows, ON 🇨🇦</h2>
+  <div class="badges">
+    <span class="timer"><span class="big">~5 hr</span><span class="small">≈230 mi + border</span></span>
+    <a class="dir" href="https://www.google.com/maps/dir/Bear+Head+Lake+State+Park,+Ely,+MN/Sioux+Narrows+Provincial+Park,+ON">🗺️ Route</a>
+  </div>
+  <div class="row"><span class="lbl">Photo stop:</span> the giant Smokey Bear statue in International Falls before we cross.</div>
+  <div class="row"><span class="lbl">Eat:</span> Snackhouse in Sioux Narrows — burgers and fries.</div>
+  <div class="wild">
+    <p class="wtitle">🐟 Wild Things — Lake of the Woods &amp; the Canadian Shield</p>
+    <ul>
+      <li><span class="crit">American white pelican:</span> one of the biggest birds in North America, with a <b>9-foot wingspan</b> and a throat pouch that holds <b>3 gallons</b> of water. It doesn't dive — a whole line of pelicans <b>herds fish into the shallows</b> and scoops them up like nets. <span class="gross">Gross bonus:</span> a chick eats by shoving its <b>entire head down the parent's throat</b> to slurp out half-digested fish soup.</li>
+      <li><span class="crit">Walleye:</span> the fish this whole region is obsessed with. Its eyes have a mirror layer (like a cat's) that glows and lets it <b>hunt in the dark and in murky water</b> — which is exactly why its name is "wall-eye."</li>
+      <li><span class="crit">Snapping turtle:</span> too big to pull fully into its shell, so it defends itself by <b>biting</b> — a beak strong enough to take a finger. It eats almost anything, including dead stuff rotting on the lake bottom (nature's garbage crew).</li>
+      <li><span class="crit">Jack pine:</span> the scrappy tree clinging to the bare Shield rock. Its cones are <b>glued shut with resin and only pop open in a wildfire's heat</b> — so the tree literally needs forest fires to make baby trees.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — The Border &amp; the Shield</p>
+    <ul>
+      <li>Crossing into Ontario you roll onto the <b>Canadian Shield</b> — bedrock up to a few <b>billion</b> years old, some of the oldest rock on Earth, scraped bare by glaciers so the soil is paper-thin.</li>
+      <li><b>Lake of the Woods has 14,522 islands.</b> Walk around all of them and you'd cover about <b>65,000 miles</b> of shoreline — more than twice around the planet.</li>
+      <li>International Falls is nicknamed the <b>"Icebox of the Nation"</b> for some of the coldest winter temps in the continental US.</li>
+    </ul>
+  </div>
+  <div class="game">
+    <p class="gtitle">🎮 Border bonus</p>
+    First country flip of the trip. New game: start spotting <b>Ontario</b> plates and Canadian road signs in <b>kilometres</b> — quick, what's 100 km/h in mph? (~62)
+  </div>
+</div>
+
+<div class="day" id="d0628">
+  <h2>Sun, Jun 28 — Sioux Narrows → Victoria Beach, MB 🇨🇦</h2>
+  <div class="badges">
+    <span class="timer"><span class="big">~3.5 hr</span><span class="small">≈250 km · all in Canada</span></span>
+    <a class="dir" href="https://www.google.com/maps/dir/Sioux+Narrows,+ON/Victoria+Beach,+MB">🗺️ Route</a>
+  </div>
+  <div class="row"><span class="lbl">Stop:</span> lunch in Kenora on the way — big dog-friendly patio at Yesterday's.</div>
+  <div class="row"><span class="lbl">Arrive:</span> the cottage! Stock up at the Victoria Beach general store. Treats: Le Gouter.</div>
+  <div class="wild">
+    <p class="wtitle">🐍 Wild Things — where the forest becomes prairie</p>
+    <ul>
+      <li><span class="crit">Red-sided garter snake:</span> a couple hours from the cottage, near Narcisse, is the <span class="gross">biggest snake gathering on the planet</span> — limestone pits where up to <b>tens of thousands</b> of garter snakes pile up to survive winter. Every spring the males swarm each female into a writhing <span class="gross">"mating ball"</span> of dozens of snakes. By the time you visit in summer they've slithered out across the marshes to hunt frogs and worms.</li>
+      <li><span class="crit">Richardson's ground squirrel:</span> the "gophers" standing like little posts in the prairie fields. They <b>sleep through winter AND through the hottest part of summer</b> (that double nap is called estivation + hibernation), spending up to <b>9 months a year asleep underground.</b></li>
+      <li><span class="crit">Red-tailed hawk:</span> watch the fence posts and sky over the open fields. It hunts by hovering, then drops on mice and gophers — and its eyesight is roughly <b>8× sharper than yours.</b></li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Victoria Beach &amp; Lake Winnipeg</p>
+    <ul>
+      <li>Out the window the rocky Canadian Shield <b>flattens into wide-open prairie</b> — the bottom of a giant Ice-Age lake (Lake Agassiz) that was once bigger than all the Great Lakes combined.</li>
+      <li>Victoria Beach is the <b>only community in North America that bans private cars in July and August</b> — you park outside and walk, bike, or cab in.</li>
+      <li>It sits on <b>Lake Winnipeg</b>, one of the <b>ten largest freshwater lakes in the world</b> — shallow, so it actually warms up enough to swim.</li>
+    </ul>
+  </div>
+  <div class="game">
+    <p class="gtitle">🎮 Landscape watch</p>
+    Call the exact moment the rocky, tree-covered Shield turns into flat, treeless prairie. Whoever nails it gets shotgun next leg.
+  </div>
+</div>
+
+<div class="day" id="d0629">
+  <h2>Mon Jun 29 – Thu Jul 2 — Cottage life, Victoria Beach 🇨🇦</h2>
+  <div class="badges">
+    <span class="timer"><span class="big">0 hr</span><span class="small">no driving — base camp</span></span>
+  </div>
+  <div class="row"><span class="lbl">Do:</span> beach days, swimming, biking the car-free streets, and day trips — The Forks in Winnipeg (~1.5 hr) or Whiteshell/Pinawa hikes.</div>
+  <div class="row"><span class="lbl">Treats:</span> Le Gouter, Village Green Bakery, Salty's Drive-Inn.</div>
+  <div class="wild">
+    <p class="wtitle">🐸 Wild Things — lake, marsh &amp; boreal forest</p>
+    <ul>
+      <li><span class="crit">Great blue heron:</span> stalks the shallows on stilt legs, then <b>spears or snatches a fish and swallows it whole, headfirst</b> — sometimes a fish is so big it gets stuck and you can watch the lump go down its neck. <span class="gross">Gross bonus:</span> herons blast their poop backward away from the nest in a white "whitewash," and cough up <b>pellets</b> of bones and scales they can't digest.</li>
+      <li><span class="crit">Wood frog:</span> living in these woods is a frog with a superpower — in winter it lets <b>two-thirds of its body freeze solid. Its heart stops, it stops breathing,</b> and it pumps its blood full of natural antifreeze (sugar). In spring it thaws out and hops away, alive.</li>
+      <li><span class="crit">Common loon &amp; muskrat:</span> listen at dusk for the loon's wail across the lake. In the reeds, muskrats build dome huts of mud and cattails and can <b>swim backward</b> and chew underwater without flooding their mouths.</li>
+      <li><span class="crit">The rock itself:</span> the pink-and-gray granite around the Whiteshell is <b>billion-year-old Shield bedrock</b> flecked with sparkly quartz and dark red garnet crystals — worth a close look on a bored afternoon.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Manitoba</p>
+    <ul>
+      <li><b>Winnie-the-Pooh is named after Winnipeg.</b> In 1914 a Canadian soldier, Harry Colebourn, bought a real <b>black bear cub</b>, named her "Winnie" after his hometown, and gave her to the London Zoo — where she inspired the stories.</li>
+      <li>The nearby <b>Whiteshell</b> has ancient Indigenous <b>petroforms</b> — rocks laid out into shapes of snakes, turtles, and people, some thousands of years old.</li>
+      <li>Manitoba is nicknamed the <b>"Land of 100,000 Lakes"</b> — even more than Minnesota claims.</li>
+    </ul>
+  </div>
+  <div class="game">
+    <p class="gtitle">🎮 Cottage challenge</p>
+    Four days, no car. Goals: swim every day, find a chunk of garnet-flecked granite, and hear a loon call after dark.
+  </div>
+</div>
+
+<div class="day" id="d0703">
+  <h2>Fri, Jul 3 — Victoria Beach → Williams, MN 🇺🇸</h2>
+  <div class="badges">
+    <span class="timer"><span class="big">~4 hr</span><span class="small">≈250 km · back to the USA</span></span>
+    <a class="dir" href="https://www.google.com/maps/dir/Victoria+Beach,+MB/Zippel+Bay+State+Park,+Williams,+MN">🗺️ Route</a>
+  </div>
+  <div class="row"><span class="lbl">Eat:</span> Lake of the Woods Pizza Company in Baudette.</div>
+  <div class="wild">
+    <p class="wtitle">🦅 Wild Things — Zippel Bay &amp; Lake of the Woods</p>
+    <ul>
+      <li><span class="crit">Piping plover:</span> Zippel Bay's white-sand beach is one of only <b>four places in the whole region</b> this tiny endangered shorebird still nests. When a fox or gull gets near its eggs, the parent fakes a <span class="gross">"broken wing,"</span> flopping away pretending to be hurt to lure the predator off — then flies away fine.</li>
+      <li><span class="crit">Sandhill crane:</span> nests on the north side of the bay and stands over <b>4 feet tall</b>. <span class="gross">Gross bonus:</span> cranes <b>paint themselves</b> — they smear mud and rusty iron from the soil onto their feathers to dye gray into camouflage-brown. Their bugling call carries <b>2.5 miles</b>, and they'll happily eat other birds' eggs.</li>
+      <li><span class="crit">Also watch for:</span> white pelicans, bald eagles, river otters, and — back in the woods — timber wolves and moose, all of which live around this park.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Warroad, Roseau &amp; Baudette</p>
+    <ul>
+      <li>Baudette is the <b>"Walleye Capital of the World,"</b> guarded by <b>Willie the Walleye</b>, a 40-foot, 2½-ton fish statue.</li>
+      <li><b>Warroad is "Hockeytown USA"</b> — a tiny town that's sent players to multiple Olympics — and <b>Roseau is the birthplace of the snowmobile.</b></li>
+      <li>Just east is the <b>Northwest Angle</b> — the only piece of the lower-48 US north of the Canada line, and you can only drive to it <b>through Canada</b>.</li>
+    </ul>
+  </div>
+  <div class="game">
+    <p class="gtitle">🎮 Statue selfie</p>
+    Willie the Walleye is begging for a photo. Bonus points for the most dramatic "I caught it" pose.
+  </div>
+</div>
+
+<div class="day" id="d0704">
+  <h2>Sat, Jul 4 — Williams → Two Harbors, MN</h2>
+  <div class="badges">
+    <span class="timer"><span class="big">~4.5 hr</span><span class="small">≈250 mi · 🎆 July 4th</span></span>
+    <a class="dir" href="https://www.google.com/maps/dir/Zippel+Bay+State+Park,+Williams,+MN/Gooseberry+Falls+State+Park,+Two+Harbors,+MN">🗺️ Route</a>
+  </div>
+  <div class="row"><span class="lbl">Stop:</span> Bemidji — photo with the giant Paul Bunyan &amp; Babe the Blue Ox.</div>
+  <div class="row"><span class="lbl">Eat:</span> Black Woods Grill or Lake Superior Burger Co. Sweet: Betty's Pies.</div>
+  <div class="wild">
+    <p class="wtitle">🦅 Wild Things — North Shore cliffs</p>
+    <ul>
+      <li><span class="crit">Peregrine falcon:</span> nests on the North Shore's lava cliffs and is the <b>fastest animal alive</b> — it folds its wings and dives ("stoops") at over <b>200 mph</b>, then punches its prey out of the air. To keep that 200-mph wind from blowing its lungs apart, it has tiny bony cones inside its nostrils that slow the air down — the same idea engineers later copied for jet engines.</li>
+      <li><span class="crit">Lake Superior agate:</span> Minnesota's state gem — banded red-and-orange stones that formed as <b>quartz filled gas bubbles</b> inside the cooling lava a billion years ago, then got tumbled smooth by glaciers. Finding one is a real trophy. Hunt the gravel beach at Gooseberry.</li>
+      <li><span class="crit">Black bear:</span> common all along the North Shore. <span class="gross">Gross bonus:</span> a bear's poop changes color with the season — dark from meat and bugs in spring, then purple and seedy from gorging on berries in late summer.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Bemidji &amp; the North Shore</p>
+    <ul>
+      <li>Bemidji calls itself the <b>"first city on the Mississippi River"</b> — here the giant river is just a shallow stream you could wade across.</li>
+      <li>The North Shore cliffs are <b>~1.1-billion-year-old lava flows</b> from a time when North America almost ripped in half (the Midcontinent Rift).</li>
+      <li>Bemidji built the Paul Bunyan &amp; Babe statues back in <b>1937</b>.</li>
+    </ul>
+  </div>
+  <div class="game">
+    <p class="gtitle">🎮 Agate hunt</p>
+    Gooseberry Falls drops over ancient lava ledges. While you're there, hunt the shoreline — first to find a real banded agate wins.
+  </div>
+</div>
+
+<div class="day" id="d0705">
+  <h2>Sun, Jul 5 — Two Harbors → Brule, WI</h2>
+  <div class="badges">
+    <span class="timer"><span class="big">~1.5 hr</span><span class="small">≈75 mi · short day!</span></span>
+    <a class="dir" href="https://www.google.com/maps/dir/Gooseberry+Falls+State+Park,+Two+Harbors,+MN/Brule+River+State+Forest,+Brule,+WI">🗺️ Route</a>
+  </div>
+  <div class="row"><span class="lbl">Stop:</span> Split Rock Lighthouse — one of the most photographed spots on Lake Superior, perched on a 130-foot cliff.</div>
+  <div class="row"><span class="lbl">Eat:</span> Kro Bar in Brule, or a Culver's/A&amp;W run in Superior.</div>
+  <div class="wild">
+    <p class="wtitle">🐟 Wild Things — the Brule River</p>
+    <ul>
+      <li><span class="crit">Brook trout:</span> the Brule is spring-fed and ice-cold, which is exactly what trout need — they can only survive in <b>clean, cold, oxygen-rich water</b>, so a healthy trout stream is proof the water is pure. They eat drifting bugs and will leap clear out of the water to grab a fly.</li>
+      <li><span class="crit">Leech:</span> yes, the northwoods lakes have them. <span class="gross">Gross bonus:</span> a leech has <b>three jaws with ~100 tiny teeth</b>, and its spit contains a chemical that <b>stops blood from clotting</b> so it can keep feeding — doctors still use real leeches in surgery today. (Cold-blooded fact: most lake leeches actually eat snails and bugs, not people.)</li>
+      <li><span class="crit">Crayfish:</span> the mini-lobsters under the rocks. They can <b>drop a claw to escape a predator</b> and grow it back, and they swim <b>backward</b> by flipping their tail. Flip a rock in the shallows and you'll find one.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Split Rock &amp; the Brule</p>
+    <ul>
+      <li><b>Split Rock Lighthouse</b> exists because a single furious storm in November <b>1905 wrecked or damaged 29 ships</b> on Lake Superior in one night.</li>
+      <li>The spring-fed Brule drops <b>420 feet</b> on its way to Lake Superior, making tons of rapids — and it's the <b>"River of Presidents,"</b> where five US presidents fished.</li>
+      <li>Watch the Split Rock cliffs for nesting <b>peregrine falcons and ravens</b> riding the wind off the lake.</li>
+    </ul>
+  </div>
+  <div class="game">
+    <p class="gtitle">🎮 Free time</p>
+    Shortest drive of the trip = most goofing-off time. Lighthouse photo, skip rocks, hunt more agates, flip rocks for crayfish.
+  </div>
+</div>
+
+<div class="day" id="d0706">
+  <h2>Mon, Jul 6 — Brule → Wisconsin Dells</h2>
+  <div class="badges">
+    <span class="timer"><span class="big">~4 hr</span><span class="small">≈240 mi south</span></span>
+    <a class="dir" href="https://www.google.com/maps/dir/Brule,+WI/Mirror+Lake+State+Park,+Baraboo,+WI">🗺️ Route</a>
+  </div>
+  <div class="row"><span class="lbl">Eat:</span> a second Norske Nook pie hit in Osseo is fair game.</div>
+  <div class="row"><span class="lbl">Afternoon:</span> Wisconsin Dells — the "Waterpark Capital of the World." Dinner: Grateful Shed food hall or Brat House Grill.</div>
+  <div class="wild">
+    <p class="wtitle">🦤 Wild Things — Baraboo &amp; the Dells gorge</p>
+    <ul>
+      <li><span class="crit">Cranes:</span> nearby Baraboo has the <b>International Crane Foundation — the only place on Earth you can see all 15 species of crane.</b> The whooping crane, the tallest bird in North America, dropped to about <b>15 birds left alive in 1941</b>, and this place helped bring it back from the edge.</li>
+      <li><span class="crit">The gorge:</span> the Dells is a 5-mile canyon of <b>500-million-year-old sandstone</b> — packed sand from an ancient sea — that got blasted open <b>~15,000 years ago</b> when a glacier-dammed lake burst and a wall of meltwater tore through in days.</li>
+      <li><span class="crit">Little brown bat:</span> Wisconsin's caves and bluffs are full of them. One bat eats up to <b>1,000 mosquito-sized bugs an hour</b> at night, finding them in total darkness by <b>echolocation</b> — screaming and listening for the echo.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Wisconsin Dells &amp; Baraboo</p>
+    <ul>
+      <li>The land along the Dells is sacred to the <b>Ho-Chunk Nation</b>, whose ancient burial mounds — many shaped like animals — remain nearby.</li>
+      <li>Next-door <b>Baraboo is the birthplace of the Ringling Brothers Circus</b> (1884) — now a museum with <b>260+ antique circus wagons</b>.</li>
+      <li>The sandstone here is soft enough to carve with a fingernail, which is why the river cut it into such crazy cliffs and pillars.</li>
+    </ul>
+  </div>
+  <div class="game">
+    <p class="gtitle">🎮 Final tally</p>
+    Pull out the license-plate list — how many states/provinces did you bag over 13 days? Beat 25 and it's an all-timer.
+  </div>
+</div>
+
+<div class="day" id="d0707">
+  <h2>Tue, Jul 7 — Dells → Home</h2>
+  <div class="badges">
+    <span class="timer"><span class="big">~2.5 hr</span><span class="small">≈170 mi · last leg</span></span>
+    <a class="dir" href="https://www.google.com/maps/dir/Mirror+Lake+State+Park,+Baraboo,+WI/Evanston,+IL">🗺️ Route</a>
+  </div>
+  <div class="row"><span class="lbl">Eat:</span> Madison for a real lunch, or grab-and-go.</div>
+  <div class="wild">
+    <p class="wtitle">🌾 Wild Things — prairie &amp; farm country home</p>
+    <ul>
+      <li><span class="crit">Sandhill crane:</span> scan the cut farm fields of southern Wisconsin — flocks of these tall gray cranes feed here, and they're one of the <b>oldest bird types on Earth</b>, basically unchanged for millions of years.</li>
+      <li><span class="crit">Turkey vulture:</span> the dark V-winged bird rocking side to side over the highway. It finds dead animals by <b>smell from a mile up</b>, and pulls two of the grossest defense moves around: it <span class="gross">pees down its own legs to cool off</span>, and when threatened it <span class="gross">projectile-vomits</span> a foul, half-digested slurry at the attacker.</li>
+      <li><span class="crit">Home stretch:</span> as the prairie returns, you're crossing the flat bed of an ancient glacial lake again — the same kind of landscape that started flattening out back in Manitoba.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Madison &amp; home</p>
+    <ul>
+      <li>Wisconsin's capital, <b>Madison, is built on a narrow isthmus</b> — a skinny strip of land squeezed between two lakes.</li>
+      <li>The State Capitol dome is the <b>only granite dome in the US</b>, and by law no downtown building may be taller than it.</li>
+      <li>Cross back into Illinois — the <b>"Prairie State"</b> — and you're almost home.</li>
+    </ul>
+  </div>
+  <div class="game">
+    <p class="gtitle">🎮 Last call</p>
+    Each person names their #1 animal sighting AND #1 moment of the whole trip. No repeats.
+  </div>
+</div>
+
+<div class="notes" id="critters">
+  <h2>🏆 Trip-long Creature Quest</h2>
+  <ul>
+    <li><b>Spot-it scorecard:</b> 1 pt for a chipmunk/squirrel, 2 for a deer, 3 for a bald eagle or great blue heron, 5 for a loon, beaver, otter, or pelican, 10 for a moose, bear, wolf, fox, or sandhill crane. Keep a running tally per person.</li>
+    <li><b>Gross-out leaderboard:</b> each day, whoever finds the grossest <i>real</i> nature fact (scat, vomit, parasites, etc.) wins the round. The whitewash heron, the bear's fecal plug, and the puking vulture are the ones to beat.</li>
+    <li><b>Track &amp; sign hunt:</b> you don't need to see the animal — score for finding tracks, chewed beaver sticks, an owl pellet, a feather, or fresh scat.</li>
+    <li><b>Agate trophy:</b> first to find a real banded Lake Superior agate (Jul 4–5) is the trip's official Rock Champion.</li>
+  </ul>
+</div>
+
+<div class="notes" id="games">
+  <h2>🎮 Road-trip games for the long stretches</h2>
+  <ul>
+    <li><b>License Plate Bingo:</b> log every state/province you spot. Goal for the trip: 25+. Ontario and Manitoba plates count double.</li>
+    <li><b>20 Questions / Animal-Mineral-Vegetable:</b> classic, works anywhere, no signal needed.</li>
+    <li><b>The Alphabet Game:</b> find A→Z in order on road signs, plates, and billboards. Q and X are brutal.</li>
+    <li><b>Padiddle:</b> first to spot a car with one headlight out (after dark) calls it.</li>
+    <li><b>Would You Rather — Canada edition:</b> wrestle a moose or out-swim a muskie? Get chased by a wolf pack or a swarm of mating garter snakes? Defend your answer.</li>
+    <li><b>Fact-off:</b> use this page. Quiz each other on the "Wild Things" facts — loser picks the next snack stop's playlist.</li>
+    <li><b>Two Truths and a Lie:</b> make one up using a trip fact and see who gets fooled.</li>
+  </ul>
+</div>
+
+<p class="footer-brand">🚐 <b>The Shultzertons</b> · Oh Canada 2026 · let's roll!</p>
+
+</div>
+</body>
+</html>

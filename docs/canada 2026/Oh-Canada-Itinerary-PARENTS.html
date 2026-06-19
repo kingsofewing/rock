@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oh Canada — Daily Itinerary 2026 (Parents' copy)</title>
+<style>
+  :root { --ink:#1d2b24; --muted:#5c6b63; --accent:#0a6b4a; --line:#e2e8e3; --bg:#fbfaf6; --card:#ffffff; --fact:#fff7e6; --factline:#f0dfb8; --factink:#6b4e16; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; -webkit-text-size-adjust:100%; }
+  .wrap { max-width:760px; margin:0 auto; padding:20px 16px 60px; }
+  header { margin-bottom:18px; }
+  .brand { display:inline-block; margin:0 0 8px; font-size:.78rem; font-weight:800;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--accent);
+    background:#eaf5ef; border:1px solid #cfe6da; border-radius:999px; padding:5px 12px; }
+  header h1 { font-size:1.6rem; margin:0 0 4px; }
+  .sub { color:var(--muted); font-size:.95rem; margin:0 0 6px; }
+  .footer-brand { text-align:center; color:var(--muted); font-size:.85rem; margin:22px 0 0; }
+  .footer-brand b { color:var(--accent); }
+  .legend { background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:12px 14px; font-size:.9rem; color:var(--muted); margin-bottom:20px; }
+  .legend b { color:var(--ink); }
+  .day { background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:14px 16px; margin:0 0 14px; box-shadow:0 1px 2px rgba(0,0,0,.03); }
+  .day h2 { font-size:1.12rem; margin:0 0 2px; }
+  .dir { display:inline-block; margin:6px 0 10px; font-size:.92rem; font-weight:600;
+    color:var(--accent); text-decoration:none; padding:7px 11px; background:#eaf5ef;
+    border-radius:9px; }
+  .dir:active { background:#d8ece2; }
+  .drive { color:var(--muted); font-size:.86rem; font-weight:400; }
+  .row { margin:7px 0; font-size:.96rem; }
+  .row .lbl { font-weight:700; }
+  .camp { margin-top:9px; padding-top:9px; border-top:1px dashed var(--line);
+    font-size:.9rem; color:var(--muted); }
+  a { color:var(--accent); }
+  .stay { background:#f1f6f2; }
+  .facts { background:var(--fact); border:1px solid var(--factline); border-radius:11px;
+    padding:10px 12px 10px 14px; margin:11px 0 2px; }
+  .facts .ftitle { font-weight:800; font-size:.9rem; color:var(--factink); margin:0 0 5px; letter-spacing:.02em; }
+  .facts ul { margin:0; padding-left:18px; }
+  .facts li { margin:5px 0; font-size:.92rem; color:#41391f; }
+
+  /* Wild Things — animals, plants, geology (shared with the boys' copy) */
+  .wild { background:#eef6f0; border:1px solid #cfe6da; border-left:4px solid var(--accent);
+    border-radius:11px; padding:10px 12px 10px 14px; margin:11px 0 2px; }
+  .wild .wtitle { font-weight:800; font-size:.9rem; color:#0a5a3f; margin:0 0 5px; }
+  .wild ul { margin:0; padding-left:18px; }
+  .wild li { margin:6px 0; font-size:.92rem; color:#27352c; }
+  .wild .crit { color:#0a6b4a; font-weight:800; }
+  .wild .gross { color:#9a2b2b; font-weight:800; }
+
+  /* Heads-up — real safety hazards (amber) */
+  .heads { background:#fff3e0; border:1px solid #f0d6a8; border-left:4px solid #d98a00;
+    border-radius:11px; padding:10px 12px 10px 14px; margin:11px 0 2px; }
+  .heads .htitle { font-weight:800; font-size:.9rem; color:#8a4b00; margin:0 0 5px; }
+  .heads ul { margin:0; padding-left:18px; }
+  .heads li { margin:6px 0; font-size:.92rem; color:#5a3a12; }
+  .heads .danger { color:#8a2330; font-weight:800; }
+
+  .notes { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px 16px; }
+  .notes h2 { font-size:1.05rem; margin:0 0 8px; }
+  .notes li { margin:5px 0; font-size:.92rem; }
+  .flag { color:#9a5b00; }
+
+  /* Jump-to-day nav */
+  .daynav { position:sticky; top:0; z-index:5; background:var(--bg); margin:0 0 18px;
+    padding:10px 0; border-bottom:1px solid var(--line); }
+  .daynav .navlabel { font-size:.72rem; font-weight:800; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--muted); margin:0 0 7px; }
+  .daynav a { display:inline-block; font-size:.82rem; font-weight:700; color:var(--accent);
+    text-decoration:none; background:#eaf5ef; border:1px solid #cfe6da; border-radius:8px;
+    padding:5px 9px; margin:0 5px 5px 0; }
+  .daynav a:active { background:#d8ece2; }
+
+  /* Summary card */
+  .summary { background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:14px 16px; margin:0 0 20px; box-shadow:0 1px 2px rgba(0,0,0,.03); }
+  .summary h2 { font-size:1.05rem; margin:0 0 10px; }
+  .summary table { width:100%; border-collapse:collapse; font-size:.84rem; }
+  .summary th, .summary td { text-align:left; padding:6px 8px; vertical-align:top;
+    border-bottom:1px solid var(--line); }
+  .summary th { color:var(--muted); font-size:.72rem; text-transform:uppercase;
+    letter-spacing:.06em; }
+  .summary td.conf { font-variant-numeric:tabular-nums; color:var(--muted); }
+  .summary tr:last-child td { border-bottom:none; }
+
+  /* Emergency / practical */
+  .emerg { background:#fdeef0; border:1px solid #f3cdd3; border-radius:14px;
+    padding:14px 16px; margin:0 0 20px; }
+  .emerg h2 { font-size:1.05rem; margin:0 0 8px; color:#8a2330; }
+  .emerg .row { color:#5a2630; }
+  .emerg .row .lbl { color:#8a2330; }
+  .emerg a { color:#8a2330; }
+  .coverage { color:#8a2330; font-weight:600; }
+
+  /* Trip safety overview (amber, sits with the emergency block) */
+  .safety { background:#fff3e0; border:1px solid #f0d6a8; border-radius:14px;
+    padding:14px 16px; margin:0 0 20px; }
+  .safety h2 { font-size:1.05rem; margin:0 0 8px; color:#8a4b00; }
+  .safety .row { color:#5a3a12; font-size:.93rem; }
+  .safety .row .lbl { color:#8a4b00; }
+  .safety .danger { color:#8a2330; font-weight:800; }
+
+  /* Print: clean black-and-white glovebox copy */
+  @media print {
+    body { background:#fff; color:#000; font-size:11pt; }
+    .wrap { max-width:none; padding:0; }
+    .daynav { display:none; }
+    .dir { display:none; }
+    header h1 { font-size:20pt; }
+    .brand { background:#000; color:#fff; border:none; }
+    .sub, .drive, .camp, .legend { color:#000 !important; }
+    .summary td.conf, .summary .sub { color:#000 !important; }
+    .day, .summary, .emerg, .safety, .notes { break-inside:avoid; page-break-inside:avoid;
+      box-shadow:none; border:1.5px solid #000; background:#fff; }
+    .day.stay { background:#fff; }
+    .day h2, .summary h2, .emerg h2, .safety h2, .notes h2 { color:#000; }
+    .row .lbl, .facts .ftitle, .facts li, .emerg .row, .emerg .row .lbl,
+    .coverage, .flag { color:#000; }
+    .facts { background:#fff; border:1px solid #000; border-left:5px solid #000; }
+    .wild { background:#fff; border:1px solid #000; border-left:5px solid #000; }
+    .wild .wtitle, .wild li, .wild .crit, .wild .gross { color:#000; }
+    .heads, .safety { background:#fff; border:1.5px solid #000; }
+    .heads { border-left:5px solid #000; }
+    .heads .htitle, .heads li, .heads .danger, .safety .row, .safety .row .lbl, .safety .danger { color:#000; }
+    .summary th { color:#000; }
+    .summary th, .summary td { border-bottom:1px solid #000; }
+    a { color:#000; text-decoration:none; }
+    a[href]::after { content:""; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="brand">The Shultzertons</p>
+  <h1>🇨🇦 Oh Canada — Daily Itinerary</h1>
+  <p class="sub">Summer 2026 · Jun 25 – Jul 7 · road trip from Evanston, IL</p>
+  <p class="sub" style="font-weight:700; color:var(--accent);">Parents' copy — full logistics + confirmations + emergency info + nature &amp; safety</p>
+</header>
+
+<nav class="daynav">
+  <p class="navlabel">Jump to a day</p>
+  <a href="#d0625">Jun 25</a>
+  <a href="#d0626">Jun 26</a>
+  <a href="#d0627">Jun 27</a>
+  <a href="#d0628">Jun 28</a>
+  <a href="#d0629">Jun 29 – Jul 2</a>
+  <a href="#d0703">Jul 3</a>
+  <a href="#d0704">Jul 4</a>
+  <a href="#d0705">Jul 5</a>
+  <a href="#d0706">Jul 6</a>
+  <a href="#d0707">Jul 7</a>
+  <a href="#safety">⚠ Safety</a>
+  <a href="#emerg">⚕ Emergency</a>
+</nav>
+
+<div class="summary">
+  <h2>📋 At a glance — stays &amp; confirmations</h2>
+  <table>
+    <tr><th>Dates</th><th>Stay</th><th>Site / check-in</th><th>Confirmation</th></tr>
+    <tr><td>Jun 25</td><td>Brunet Island SP, Cornell, WI</td><td>Site #39</td><td class="conf">INWI26-1293044B1</td></tr>
+    <tr><td>Jun 26</td><td>Bear Head Lake SP, Ely, MN</td><td>Site #2</td><td class="conf">#12635093</td></tr>
+    <tr><td>Jun 27</td><td>Sioux Narrows PP, ON 🇨🇦</td><td>Site #27</td><td class="conf">INOP26-4271890B1</td></tr>
+    <tr><td>Jun 28 – Jul 2</td><td>Tom &amp; Carol's Cottage, Victoria Beach, MB 🇨🇦</td><td>5 nights</td><td class="conf">—</td></tr>
+    <tr><td>Jul 3</td><td>Zippel Bay SP, Williams, MN</td><td>Anglers #48</td><td class="conf">#12639147</td></tr>
+    <tr><td>Jul 4</td><td>Gooseberry Falls SP, Two Harbors, MN</td><td>Site #68</td><td class="conf">#12637943</td></tr>
+    <tr><td>Jul 5</td><td>Brule River State Forest, Brule, WI</td><td>Brule Cmpgd</td><td class="conf">INWI26-1743772B1</td></tr>
+    <tr><td>Jul 6</td><td>Mirror Lake SP, Baraboo, WI</td><td>check-in 3p</td><td class="conf">INWI26-1744723B1</td></tr>
+    <tr><td>Jul 7</td><td>→ Home, Evanston, IL</td><td>checkout 1p</td><td class="conf">—</td></tr>
+  </table>
+  <p class="sub" style="margin:10px 0 0; font-size:.82rem;">MN parks: state permit #12658950 covers Bear Head, Zippel Bay &amp; Gooseberry. Distances below in <b>mi</b> on US legs / <b>km</b> on Canada legs. Sunsets run late up north — daylight to ~9:10 PM (Northwoods/North Shore) and ~9:35 PM (Victoria Beach, MB), with usable light until ~10 PM.</p>
+</div>
+
+<div class="safety" id="safety">
+  <h2>⚠️ Trip safety — read once before you go</h2>
+  <div class="row"><span class="danger">🐕 Blue-green algae (the #1 dog danger):</span> Lake Winnipeg (and other warm lakes) bloom with toxic cyanobacteria in summer. <b>A tiny amount can kill a dog within hours — there is no antidote.</b> If water looks like pea soup, spilled paint, or has a blue-green scum, keep the dog out and don't let him drink lake water near shore.</div>
+  <div class="row"><span class="danger">🌊 Lake Superior:</span> ~40°F year-round → cold-water shock in minutes, plus rip currents that drown people every year. Treat it like an ocean: wade, don't swim out; no one in the water during wind/wave warnings.</div>
+  <div class="row"><span class="lbl">🪳 Ticks &amp; Lyme:</span> WI/MN northwoods are among the highest Lyme/anaplasmosis areas in the country. Repellent, long pants in brush, and a full tick check (people + dog) every night.</div>
+  <div class="row"><span class="lbl">🐻 Bears &amp; 🫎 moose:</span> store all food/scented items in the car (never the tent); keep distance. Moose injure more people than bears — never get between a cow and her calf.</div>
+  <div class="row"><span class="lbl">🦌 Dawn/dusk driving:</span> moose and deer on the road are a real collision risk on the northern legs — slow down at low light, especially Ely → Sioux Narrows and the Canada legs.</div>
+  <div class="row"><span class="lbl">🌿 Plants:</span> poison ivy is everywhere; <b>wild parsnip</b> (yellow roadside flower) sap + sun causes blistering burns; never let kids chew unknown plants near water (<b>water hemlock</b>, the most poisonous plant in North America, grows in wet ditches here).</div>
+  <div class="row"><span class="lbl">🦟 Bugs &amp; water critters:</span> mosquitoes and black flies peak in late June; leeches and "swimmer's itch" turn up in warm shallow lakes (rinse/towel off after swimming).</div>
+  <div class="row"><span class="lbl">⛈️ Weather &amp; signal:</span> prairie and Great-Lakes storms blow up fast — check radar. Cell signal is spotty around Ely/Boundary Waters, the Shield near Sioux Narrows, and the Whiteshell; download offline maps + this page.</div>
+</div>
+
+<div class="emerg" id="emerg">
+  <h2>⚕ Emergency &amp; practical</h2>
+  <div class="row"><span class="lbl">24-hr vet — MN Northwoods/North Shore:</span> <a href="https://bluepearlvet.com/hospital/duluth-mn/">BluePearl Pet Hospital</a>, 2314 W Michigan St, Duluth · (218) 302-8000 (open 24h)</div>
+  <div class="row"><span class="lbl">24-hr vet — Canada leg (ON + MB):</span> <a href="https://www.winnipeganimalemergency.ca/">Winnipeg Animal Emergency Hospital</a> · (204) 474-0298 (open 24h)</div>
+  <div class="row"><span class="lbl">24-hr vet — Wisconsin Dells leg:</span> nearest is Madison — <a href="https://uwveterinarycare.wisc.edu/emergency/">UW Veterinary Care</a> · (608) 263-7600, or VEG Madison (walk-in 24/7)</div>
+  <div class="row"><span class="lbl">Park offices:</span> Brunet Island (715) 239-6888 · Bear Head Lake (218) 235-2520 · Zippel Bay (218) 783-6252 · Gooseberry Falls (218) 595-7100 · Mirror Lake (608) 254-2333</div>
+  <div class="row"><span class="coverage">📵 Spotty/no cell signal:</span> Bear Head Lake &amp; the Ely/Boundary Waters area, stretches of the Canadian Shield near Sioux Narrows, and parts of the Whiteshell. Download offline maps + this page before those legs.</div>
+</div>
+
+<div class="day" id="d0625">
+  <h2>Thu, Jun 25 — Home → Brunet Island State Park, WI</h2>
+  <a class="dir" href="https://www.google.com/maps/dir/Evanston,+IL/Brunet+Island+State+Park,+Cornell,+WI">🗺️ Directions</a>
+  <span class="drive">~5 hr (≈290 mi), I-90/94</span>
+  <div class="row"><span class="lbl">Fuel/snacks:</span> Kwik Trips near Tomah or Eau Claire</div>
+  <div class="row"><span class="lbl">Lunch + cool stop:</span> <a href="https://www.yelp.com/biz/norske-nook-osseo">Norske Nook, Osseo</a> — legendary award-winning Norwegian pie right off I-94. Grab a slice (or whole pie) for the road.</div>
+  <div class="row"><span class="lbl">Dinner (takeout):</span> <a href="https://www.bringfido.com/restaurant/city/cornell-wi-us/">Moonridge Brewing Co.</a>, Cornell — specialty pizzas + brews, dog-friendly patio. Backup: <a href="https://www.bringfido.com/restaurant/city/cornell-wi-us/">Sam's Place &amp; Diner</a>.</div>
+  <div class="wild">
+    <p class="wtitle">🦫 Wild Things — Chippewa River country</p>
+    <ul>
+      <li><span class="crit">Beaver:</span> second-biggest rodent on Earth; orange front teeth are iron-coated and <b>never stop growing</b>. <span class="gross">Gross:</span> marks territory with <b>castoreum</b>, a goo squeezed from sacs next to the butt that smells like vanilla — once used in perfume and food flavoring.</li>
+      <li><span class="crit">River otter:</span> holds its breath ~8 min; the whole family shares one bathroom spot on the bank called a <span class="gross">"latrine."</span></li>
+      <li><span class="crit">Bald eagle:</span> builds the biggest tree nest of any N. American bird (up to 2 tons). <span class="gross">Darker side:</span> it's a scavenger and a thief — it dive-bombs ospreys to rob their fish and rips into rotting deer carcasses and roadkill.</li>
+      <li><span class="crit">Lake sturgeon:</span> a living fossil, armored in bony plates, can live 100+ years and top 6 feet, vacuuming food off the river bottom.</li>
+    </ul>
+  </div>
+  <div class="heads">
+    <p class="htitle">⚠️ Heads-up — Chippewa Valley</p>
+    <ul>
+      <li><span class="danger">Ticks &amp; Lyme:</span> first night in northwoods brush — repellent + a full tick check on everyone (and the dog) before bed.</li>
+      <li><b>Wild parsnip</b> lines these roadsides (tall yellow flower); its sap + sunlight = blistering chemical burns. Look, don't touch.</li>
+      <li>Poison ivy along the river trails — "leaves of three, let it be."</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Chippewa Valley, WI</p>
+    <ul>
+      <li>Cornell has the <b>world's only surviving "pulpwood stacker"</b> — a 175-foot tower built in 1912 to pile logs for a paper mill.</li>
+      <li>Nearby Chippewa Falls is home to <b>Leinenkugel's</b>, the 7th-oldest brewery in the U.S. (1867), and the birthplace of <b>Seymour Cray</b>, the "father of the supercomputer."</li>
+      <li>Wisconsin is the <b>"Badger State"</b> — named not for the animal but for 1800s lead miners who dug into hillsides like badgers.</li>
+      <li>You'll follow the <b>Chippewa River</b>, one of the longest rivers entirely inside Wisconsin.</li>
+    </ul>
+  </div>
+  <div class="camp">⛺ Brunet Island SP, Site #39 · conf INWI26-1293044B1</div>
+</div>
+
+<div class="day" id="d0626">
+  <h2>Fri, Jun 26 — Brunet Island → Bear Head Lake State Park, MN</h2>
+  <a class="dir" href="https://www.google.com/maps/dir/Brunet+Island+State+Park,+Cornell,+WI/Bear+Head+Lake+State+Park,+Ely,+MN">🗺️ Directions</a>
+  <span class="drive">~4 hr (≈210 mi) through Duluth</span>
+  <div class="row"><span class="lbl">Fuel/snacks:</span> top off in Duluth (last big Kwik Trip cluster before the Northwoods)</div>
+  <div class="row"><span class="lbl">Lunch + cool stop:</span> <a href="https://www.google.com/maps/search/Canal+Park+Duluth+MN">Duluth Canal Park</a> — eat with a Lake Superior view + the Aerial Lift Bridge; quick add-on is <a href="https://www.google.com/maps/search/Enger+Tower+Duluth+MN">Enger Tower</a>.</div>
+  <div class="row"><span class="lbl">Dinner (takeout):</span> <a href="https://www.tripadvisor.com/RestaurantsNear-g43044-d103894-Bear_Head_Lake_State_Park-Ely_Minnesota.html">Junction Bar &amp; Grill, Babbitt</a> (~10 min from camp), or pick up in Ely.</div>
+  <div class="row"><span class="lbl">Cool stop near camp (Ely):</span> <a href="https://www.tripadvisor.com/Attraction_Review-g43044-d103896-Reviews-International_Wolf_Center-Ely_Minnesota.html">International Wolf Center</a> &amp; <a href="https://www.tripadvisor.com/Attraction_Review-g43044-d674902-Reviews-North_American_Bear_Center-Ely_Minnesota.html">North American Bear Center</a> — both highly rated.</div>
+  <div class="wild">
+    <p class="wtitle">🐺 Wild Things — Northwoods &amp; Boundary Waters</p>
+    <ul>
+      <li><span class="crit">Gray wolf:</span> smells prey 1.5+ miles off and gulps ~20 lbs of meat at once ("wolfing it down"). <span class="gross">Gross:</span> parents swallow meat, trot to the den, and <b>vomit it back up</b> for the pups; scat is full of hair and bone. <span class="gross">Darker side:</span> a pack kills by running prey to exhaustion and often starts eating the gut and organs before the animal is dead.</li>
+      <li><span class="crit">Moose:</span> largest deer alive; eats 40–60 lbs of plants a day and <b>dives fully underwater</b> (nostrils closed) to feed off the lake bottom. The flap under its throat is a <b>"bell."</b></li>
+      <li><span class="crit">Black bear:</span> eats up to 20,000 calories/day before winter, then dens for months without eating, drinking, peeing, or pooping — a hard <span class="gross">"fecal plug"</span> seals its rear all winter. Nose ~7× a bloodhound's.</li>
+      <li><span class="crit">Common loon:</span> solid (not hollow) bones let it dive 200 ft; legs set so far back it needs a <b>quarter-mile water "runway"</b> to take off; swallows pebbles to grind fish in its gut.</li>
+    </ul>
+  </div>
+  <div class="heads">
+    <p class="htitle">⚠️ Heads-up — bear &amp; moose country, cold lake</p>
+    <ul>
+      <li><span class="danger">Bear protocol at camp:</span> all food, trash, and scented items locked in the car — never in the tent. A fed bear is a dangerous bear.</li>
+      <li><span class="danger">Moose &gt; bears for injuries:</span> give any moose a very wide berth, especially a cow with a calf; back away if ears pin back or hackles rise.</li>
+      <li>Lake Superior at Duluth/Canal Park: ~40°F, cold-water shock and rip currents — kids and dog stay out of the surf.</li>
+      <li>Dusk drive into Ely: peak moose/deer-on-road hours; slow down. Cell signal drops near camp.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Lake Superior &amp; the Northwoods</p>
+    <ul>
+      <li><b>Lake Superior is the largest freshwater lake on Earth by surface area</b> — it holds about 10% of all the planet's surface fresh water and is so big it makes its own weather.</li>
+      <li>Duluth is the <b>farthest-inland seaport in North America</b> — ocean ships sail 2,300+ miles to reach it from the Atlantic.</li>
+      <li>You're crossing the <b>Iron Range</b>, where much of America's iron ore was mined for steel.</li>
+      <li>Ely is the gateway to the <b>Boundary Waters</b>, home to the largest <b>wolf</b> population in the lower 48 states — plus moose, black bears, and loons.</li>
+    </ul>
+  </div>
+  <div class="camp">⛺ Bear Head Lake SP, Site #2 · conf #12635093 · <em>MN park permit #12658950 covers this, Zippel Bay &amp; Gooseberry</em></div>
+</div>
+
+<div class="day" id="d0627">
+  <h2>Sat, Jun 27 — Bear Head Lake → Sioux Narrows Provincial Park, ON 🇨🇦</h2>
+  <a class="dir" href="https://www.google.com/maps/dir/Bear+Head+Lake+State+Park,+Ely,+MN/Sioux+Narrows+Provincial+Park,+ON">🗺️ Directions</a>
+  <span class="drive">~5 hr (≈230 mi) + border at International Falls / Fort Frances</span>
+  <div class="row"><span class="flag">Border: passports ready, no fresh produce/meat across.</span></div>
+  <div class="row"><span class="lbl">Fuel/snacks:</span> last Kwik Trip fill-up before Canada at International Falls (cheaper US-side, none in Ontario)</div>
+  <div class="row"><span class="lbl">Lunch + quick photo:</span> International Falls — lunch + the <a href="https://www.google.com/maps/search/Smokey+Bear+Statue+International+Falls+MN">Smokey Bear statue</a> before crossing</div>
+  <div class="row"><span class="lbl">Dinner (takeout):</span> <a href="https://snackhouserestaurant.square.site/">Snackhouse Restaurant</a>, Sioux Narrows (burgers, fries) — 807-226-9753. Backup: The Cornerstone.</div>
+  <div class="wild">
+    <p class="wtitle">🐟 Wild Things — Lake of the Woods &amp; the Canadian Shield</p>
+    <ul>
+      <li><span class="crit">American white pelican:</span> 9-ft wingspan, throat pouch holds 3 gallons; a line of them herds fish into the shallows to scoop. <span class="gross">Gross:</span> a chick eats by shoving its <b>whole head down the parent's throat</b> for regurgitated fish soup.</li>
+      <li><span class="crit">Muskie &amp; walleye:</span> the muskie ("fish of 10,000 casts") is a toothy ambush predator that eats ducklings and other fish whole. Walleye have mirror-backed eyes that <b>glow and hunt in the dark.</b></li>
+      <li><span class="crit">Snapping turtle:</span> too big to hide in its shell, so it bites — a beak that can take a finger. <span class="gross">Darker side:</span> it's the lake's cleanup crew, eating drowned and rotting animals off the bottom.</li>
+      <li><span class="crit">Jack pine:</span> its cones are glued shut with resin and only <b>pop open in a wildfire's heat</b> — the tree needs fire to reproduce.</li>
+    </ul>
+  </div>
+  <div class="heads">
+    <p class="htitle">⚠️ Heads-up — border &amp; remote Shield</p>
+    <ul>
+      <li><span class="danger">Border:</span> passports out; no fresh produce, plants, or meat across. Fuel up US-side (cheaper, and gas/cell thin out in Ontario).</li>
+      <li>Long remote stretches with little signal — top off the tank and download maps.</li>
+      <li>Biting black flies and mosquitoes are at their worst now; bug spray + long sleeves at dusk.</li>
+      <li>Watch for moose on the road through the Shield, especially low light.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — The Border &amp; Lake of the Woods</p>
+    <ul>
+      <li>International Falls is nicknamed the <b>"Icebox of the Nation"</b> for some of the coldest winter temperatures in the continental U.S.</li>
+      <li>Crossing into Ontario, you roll onto the <b>Canadian Shield</b> — bedrock up to a few <b>billion</b> years old, some of the oldest rock on the planet.</li>
+      <li><b>Lake of the Woods has 14,522 islands</b> — and if you walked around every island, you'd cover about 65,000 miles of shoreline.</li>
+      <li>Watch for <b>bald eagles, loons, and muskie</b> in these waters.</li>
+    </ul>
+  </div>
+  <div class="camp">⛺ Sioux Narrows PP, Site #27 · conf INOP26-4271890B1</div>
+</div>
+
+<div class="day" id="d0628">
+  <h2>Sun, Jun 28 — Sioux Narrows → Tom &amp; Carol's Cottage, Victoria Beach, MB 🇨🇦</h2>
+  <a class="dir" href="https://www.google.com/maps/dir/Sioux+Narrows,+ON/Victoria+Beach,+MB">🗺️ Directions</a>
+  <span class="drive">~3.5 hr (≈250 km), all within Canada (no border today)</span>
+  <div class="row"><span class="lbl">Fuel/snacks:</span> Petro-Canada / Esso (no Kwik Trip); Kenora on Hwy 17 has full services</div>
+  <div class="row"><span class="lbl">Lunch (Kenora):</span> <a href="https://www.tripadvisor.com/Restaurant_Review-g181749-d978799-Reviews-Yesterday_s_Restaurant-Kenora_Kenora_District_Ontario.html">Yesterday's Restaurant</a> — big dog-friendly patio + takeout. Backup: Timber Garden (Keewatin). More: <a href="https://www.visitkenora.ca/eat-and-drink/">Visit Kenora</a>.</div>
+  <div class="row"><span class="lbl">Arrive cottage</span> evening; stock up at <a href="https://411.ca/business/profile/673415">Victoria Beach Grocery &amp; General Store</a> (111 Birch Ave, 8a–8p).</div>
+  <div class="row"><span class="lbl">Dinner:</span> first cottage night — cook in, or takeout from <a href="https://www.tripadvisor.ca/Restaurant_Review-g4434559-d4420598-Reviews-Le_Gouter-Victoria_Beach_Manitoba.html">Le Gouter</a> (seasonal).</div>
+  <div class="wild">
+    <p class="wtitle">🐍 Wild Things — where the forest becomes prairie</p>
+    <ul>
+      <li><span class="crit">Red-sided garter snake:</span> a couple hours away near Narcisse is the <span class="gross">biggest snake gathering on the planet</span> — limestone pits holding tens of thousands. Each spring males swarm each female into a writhing <span class="gross">"mating ball."</span> <span class="gross">Gross:</span> they give birth to live young (no eggs) and smear a foul musk on you when grabbed. By summer they've spread out to hunt frogs and worms.</li>
+      <li><span class="crit">Richardson's ground squirrel:</span> the "gophers" of the fields — they sleep through both the cold AND the hottest weeks, up to <b>9 months a year underground.</b></li>
+      <li><span class="crit">Red-tailed hawk:</span> hunts the fields with eyesight ~8× sharper than yours.</li>
+    </ul>
+  </div>
+  <div class="heads">
+    <p class="htitle">⚠️ Heads-up — arriving at Lake Winnipeg</p>
+    <ul>
+      <li><span class="danger">🐕 Blue-green algae — biggest dog risk of the trip.</span> Lake Winnipeg blooms with toxic cyanobacteria in summer; <b>a tiny amount can kill a dog within hours, no antidote.</b> Before letting him near the water, check it's clear — no pea-soup green, scum, or paint-like streaks — and don't let him drink lakewater at the shoreline. Nearest 24-hr vet is in Winnipeg (~1.5 hr).</li>
+      <li>Swimmer's itch can show up in warm shallows; towel off after swimming.</li>
+      <li>Prairie thunderstorms build fast in the afternoon — keep an eye on the radar.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Victoria Beach &amp; Lake Winnipeg</p>
+    <ul>
+      <li>Victoria Beach is the <b>only community in North America that bans private cars in July and August</b> — you park outside and walk, bike, or take a cab to the cottage.</li>
+      <li>Its winter population of about <b>227 swells to roughly 10,000</b> people in summer.</li>
+      <li>It sits on <b>Lake Winnipeg</b>, one of the <b>ten largest freshwater lakes in the world</b> — shallow, so it warms up nicely for swimming.</li>
+      <li>You're crossing from rocky Canadian Shield into flat <b>prairie</b> — the bed of an Ice-Age lake bigger than all the Great Lakes combined.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="day stay" id="d0629">
+  <h2>Mon Jun 29 – Thu Jul 2 — Cottage, Victoria Beach, MB 🇨🇦</h2>
+  <div class="row"><span class="lbl">Base camp</span> — kitchen means cook most meals (pancakes still easy!).</div>
+  <div class="row"><span class="lbl">Groceries:</span> Victoria Beach store; bigger runs at Campbell's Foods, Lac du Bonnet.</div>
+  <div class="row"><span class="lbl">Takeout / treats:</span> <a href="https://www.tripadvisor.ca/Restaurant_Review-g4434559-d4420598-Reviews-Le_Gouter-Victoria_Beach_Manitoba.html">Le Gouter</a>, Village Green Bakery, Salty's Drive-Inn.</div>
+  <div class="row"><span class="lbl">Day trips:</span> beach days with the dog · <a href="https://www.google.com/maps/dir/Victoria+Beach,+MB/The+Forks,+Winnipeg,+MB">The Forks, Winnipeg</a> (~1.5 hr) · <a href="https://www.google.com/maps/dir/Victoria+Beach,+MB/Pinawa,+MB">Whiteshell / Pinawa</a> hikes.</div>
+  <div class="wild">
+    <p class="wtitle">🐸 Wild Things — lake, marsh &amp; boreal forest</p>
+    <ul>
+      <li><span class="crit">Great blue heron:</span> spears fish and swallows them whole, headfirst — sometimes you can watch a too-big lump slide down its neck. <span class="gross">Gross:</span> it blasts its poop backward away from the nest ("whitewash") and coughs up <b>pellets</b> of undigested bones and scales.</li>
+      <li><span class="crit">Wood frog:</span> survives winter by letting <b>two-thirds of its body freeze solid — heart stopped, not breathing</b> — then thaws alive in spring using sugar as antifreeze.</li>
+      <li><span class="crit">Leeches:</span> in the warm shallows. <span class="gross">Gross:</span> a leech has <b>three jaws and ~100 tiny teeth</b> and spit that stops blood from clotting so it can keep feeding (most lake leeches actually eat snails, not people — but check ankles after wading).</li>
+      <li><span class="crit">The rock:</span> the pink-and-gray Whiteshell granite is billion-year-old Shield bedrock flecked with sparkly quartz and dark-red garnet.</li>
+    </ul>
+  </div>
+  <div class="heads">
+    <p class="htitle">⚠️ Heads-up — five days on the lake</p>
+    <ul>
+      <li><span class="danger">🐕 Keep checking the water for algae</span> every beach day — blooms come and go with wind and heat. When in doubt, keep the dog out and rinse him if he's been in.</li>
+      <li>Ticks in the Whiteshell woods (Lyme) — nightly checks on hikers and the dog.</li>
+      <li>Black bears live in the Whiteshell — secure food and garbage at the cottage and on picnics.</li>
+      <li>Long, intense sun on open water — sunscreen and shade, especially midday.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Manitoba</p>
+    <ul>
+      <li><b>Winnie-the-Pooh is named after Winnipeg!</b> In 1914 a Canadian soldier, Harry Colebourn, bought a bear cub, named her "Winnie" after his hometown, and gave her to the London Zoo — where she inspired the stories.</li>
+      <li>The nearby <b>Whiteshell</b> has ancient Indigenous <b>petroforms</b> — rocks laid out into shapes of snakes, turtles, and people, some thousands of years old.</li>
+      <li>Winnipeg's <b>The Forks</b> has been a meeting place where two rivers join for <b>6,000+ years</b>.</li>
+      <li>Manitoba is nicknamed the <b>"Land of 100,000 Lakes"</b> — even more lakes than Minnesota claims!</li>
+    </ul>
+  </div>
+</div>
+
+<div class="day" id="d0703">
+  <h2>Fri, Jul 3 — Victoria Beach → Zippel Bay State Park, MN 🇺🇸</h2>
+  <a class="dir" href="https://www.google.com/maps/dir/Victoria+Beach,+MB/Zippel+Bay+State+Park,+Williams,+MN">🗺️ Directions</a>
+  <span class="drive">~4 hr (≈250 km) via Sprague → Warroad/Roseau</span>
+  <div class="row"><span class="lbl">Fuel/snacks:</span> first Kwik Trip back in the US at Warroad or Roseau</div>
+  <div class="row"><span class="lbl">Lunch:</span> Warroad or Roseau</div>
+  <div class="row"><span class="lbl">Dinner (takeout):</span> <a href="https://lakeofthewoodspizzacompany.com/">Lake of the Woods Pizza Company</a>, Baudette. Fast backup: McDonald's/Subway in Baudette.</div>
+  <div class="wild">
+    <p class="wtitle">🦅 Wild Things — Zippel Bay &amp; Lake of the Woods</p>
+    <ul>
+      <li><span class="crit">Piping plover:</span> Zippel Bay's white-sand beach is one of only <b>four places in the region</b> this endangered shorebird still nests. When a predator nears the eggs, the parent fakes a <span class="gross">"broken wing,"</span> flopping away to lure it off, then flies away fine.</li>
+      <li><span class="crit">Sandhill crane:</span> nests on the bay's north side, stands 4+ ft tall, and <span class="gross">paints itself</span> by smearing rusty mud onto its feathers for camouflage. <span class="gross">Darker side:</span> it's an omnivore that stabs and eats ducklings, frogs, and rodents, and will raid other birds' nests for eggs. Its bugle carries 2.5 miles.</li>
+      <li><span class="crit">Also here:</span> white pelicans, bald eagles, river otters, and — in the woods — timber wolves and moose.</li>
+    </ul>
+  </div>
+  <div class="heads">
+    <p class="htitle">⚠️ Heads-up — protected beach &amp; border</p>
+    <ul>
+      <li><span class="danger">Piping plover nesting:</span> stay out of posted/fenced beach zones and keep the dog leashed away from them — disturbing nests is illegal and the birds are barely hanging on.</li>
+      <li>Border back into the US: passports, no produce/meat. Reset the dog's food plan after the crossing.</li>
+      <li>Ticks in the grass-backed beach and woods — nightly checks.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Warroad, Roseau &amp; Baudette</p>
+    <ul>
+      <li><b>Warroad is "Hockeytown USA"</b> — a tiny town that has sent players to multiple Olympics, and it's the home of Marvin Windows.</li>
+      <li><b>Roseau is the birthplace of the snowmobile</b> and of Polaris — every Polaris sled in the world is still assembled there.</li>
+      <li>Baudette is the self-declared <b>"Walleye Capital of the World,"</b> guarded by <b>Willie the Walleye</b>, a 40-foot, 2½-ton fish statue.</li>
+      <li>Just east is the <b>Northwest Angle</b> — the only piece of the lower-48 U.S. north of the Canada line, and you can only drive there <b>through Canada</b>.</li>
+    </ul>
+  </div>
+  <div class="camp">⛺ Zippel Bay SP, Anglers Campground Site #48 · conf #12639147</div>
+</div>
+
+<div class="day" id="d0704">
+  <h2>Sat, Jul 4 — Zippel Bay → Gooseberry Falls State Park, MN</h2>
+  <a class="dir" href="https://www.google.com/maps/dir/Zippel+Bay+State+Park,+Williams,+MN/Gooseberry+Falls+State+Park,+Two+Harbors,+MN">🗺️ Directions</a>
+  <span class="drive">~4.5 hr (≈250 mi)</span>
+  <div class="row"><span class="lbl">Fuel/snacks:</span> Kwik Trip in Bemidji or Grand Rapids/Duluth</div>
+  <div class="row"><span class="lbl">Lunch + cool stop:</span> <a href="https://www.google.com/maps/search/Paul+Bunyan+and+Babe+Bemidji+MN">Bemidji</a> — photo with Paul Bunyan &amp; Babe, then eat on the road</div>
+  <div class="row"><span class="lbl">Dinner (takeout):</span> <a href="https://www.bringfido.com/restaurant/city/two_harbors_mn_us/">Black Woods Grill &amp; Bar</a>, Two Harbors, or <a href="https://www.tripadvisor.com/Restaurant_Review-g43583-d33261215-Reviews-Lake_Superior_Burger_Company-Two_Harbors_Minnesota.html">Lake Superior Burger Co.</a>, Castle Danger. Sweet: <a href="https://www.tripadvisor.com/ShowUserReviews-g43583-d481818-r760820731-Betty_s_Pies-Two_Harbors_Minnesota.html">Betty's Pies</a>.</div>
+  <div class="wild">
+    <p class="wtitle">🦅 Wild Things — North Shore cliffs</p>
+    <ul>
+      <li><span class="crit">Peregrine falcon:</span> nests on the North Shore's lava cliffs and is the <b>fastest animal alive</b> — it dives ("stoops") over <b>200 mph</b>, with bony cones in its nostrils so the wind doesn't blow its lungs apart. <span class="gross">Darker side:</span> it strikes prey in mid-air with a closed fist of talons and can knock the head clean off a pigeon, then plucks and eats it.</li>
+      <li><span class="crit">Lake Superior agate:</span> Minnesota's state gem — quartz that filled gas bubbles in the billion-year-old lava, then tumbled smooth by glaciers. Hunt the gravel beach at Gooseberry.</li>
+      <li><span class="crit">Black bear:</span> common all along the shore. <span class="gross">Gross:</span> its poop changes color with the season — dark from meat and bugs, then purple and seedy after gorging on berries.</li>
+    </ul>
+  </div>
+  <div class="heads">
+    <p class="htitle">⚠️ Heads-up — July 4 on the North Shore</p>
+    <ul>
+      <li><span class="danger">Lake Superior again:</span> cold-water shock + rip currents are deadly serious here — wade only, no swimming out, and watch the kids near the surf.</li>
+      <li><span class="danger">Waterfall edges:</span> Gooseberry's wet rock ledges are slick with no railings — keep kids back from the lip and the gorge.</li>
+      <li>Holiday crowds = bolder, food-conditioned bears near busy campgrounds; lock up all food. Order dinner early.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Bemidji &amp; the North Shore</p>
+    <ul>
+      <li>Bemidji calls itself the <b>"first city on the Mississippi River"</b> and built the giant <b>Paul Bunyan &amp; Babe the Blue Ox</b> statues back in 1937.</li>
+      <li>The North Shore's dramatic cliffs are <b>~1.1-billion-year-old lava flows</b> from a time when North America almost ripped in half (the Midcontinent Rift).</li>
+      <li>Scan the beaches for <b>Lake Superior agates</b> — Minnesota's state gemstone, banded red-and-white and polished by glaciers.</li>
+      <li>Gooseberry Falls drops over those ancient lava ledges in a series of waterfalls you can walk right up to.</li>
+    </ul>
+  </div>
+  <div class="camp">⛺ Gooseberry Falls SP, Site #68 · conf #12637943 · <span class="flag">July 4 — order dinner early, North Shore is busy</span></div>
+</div>
+
+<div class="day" id="d0705">
+  <h2>Sun, Jul 5 — Gooseberry Falls → Brule River State Forest, WI</h2>
+  <a class="dir" href="https://www.google.com/maps/dir/Gooseberry+Falls+State+Park,+Two+Harbors,+MN/Brule+River+State+Forest,+Brule,+WI">🗺️ Directions</a>
+  <span class="drive">short day, ~1.5 hr (≈75 mi) — lots of slack for sightseeing</span>
+  <div class="row"><span class="lbl">Cool stop (8 min from camp):</span> <a href="https://www.dnr.state.mn.us/state_parks/split_rock_lighthouse/things_to_do.html">Split Rock Lighthouse</a> — iconic view, dog-friendly grounds + paved <a href="https://www.tripadvisor.com/ShowUserReviews-g28944-d325173-r809453692-Gitchi_Gami_Trail-Minnesota.html">Gitchi-Gami Trail</a>.</div>
+  <div class="row"><span class="lbl">Fuel/snacks:</span> big Kwik Trip selection in Duluth/Superior</div>
+  <div class="row"><span class="lbl">Lunch:</span> Duluth (Canal Park) or Superior</div>
+  <div class="row"><span class="lbl">Dinner (takeout):</span> <a href="https://www.tripadvisor.com/RestaurantsNear-g59739-d577998-Brule_River_Motel_and_Campground-Brule_Wisconsin.html">Kro Bar &amp; Grill</a>, Brule; Culver's / <a href="https://www.bringfido.com/restaurant/city/superior_wi_us/">A&amp;W in Superior</a> are dog-friendly fallbacks.</div>
+  <div class="wild">
+    <p class="wtitle">🐟 Wild Things — the Brule River</p>
+    <ul>
+      <li><span class="crit">Brook trout:</span> the spring-fed Brule is ice-cold, which is exactly what trout need — they only survive in clean, cold, oxygen-rich water, so a healthy trout stream proves the water is pure.</li>
+      <li><span class="crit">Sea lamprey:</span> <span class="gross">the river-and-lake horror story</span> — an invasive jawless eel that clamps onto a fish with a suction mouth full of rasping teeth, files a hole, and <b>drinks its blood and body fluids</b> until the fish dies. It nearly wiped out Lake Superior's trout.</li>
+      <li><span class="crit">Crayfish:</span> the mini-lobsters under the rocks — they can <b>drop a claw to escape</b> and regrow it, and swim backward by flipping their tail.</li>
+    </ul>
+  </div>
+  <div class="heads">
+    <p class="htitle">⚠️ Heads-up — cliffs &amp; cold current</p>
+    <ul>
+      <li><span class="danger">Split Rock cliff:</span> 130-ft drop with open, unfenced edges in spots — keep a hand on the kids near the overlooks.</li>
+      <li>The Brule is a fast, cold river with real current — life jackets if anyone's near the water; it's not a wade-in swimming hole.</li>
+      <li>Lake Superior shoreline at Duluth/Superior: still ~40°F and current-prone.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Split Rock &amp; the Brule</p>
+    <ul>
+      <li><b>Split Rock Lighthouse</b> was built because a single furious storm in November <b>1905 wrecked or damaged 29 ships</b> on Lake Superior in one night.</li>
+      <li>The <b>Brule River is the "River of Presidents"</b> — five U.S. presidents (Grant, Cleveland, Coolidge, Hoover, Eisenhower) fished here; <b>Coolidge ran his "Summer White House" from the Brule in 1928</b>.</li>
+      <li>The spring-fed Brule drops <b>420 feet</b> on its way to Lake Superior, making lots of rapids — it's a famous trout and salmon river.</li>
+    </ul>
+  </div>
+  <div class="camp">⛺ Brule River State Forest, Brule Campground · conf INWI26-1743772B1</div>
+</div>
+
+<div class="day" id="d0706">
+  <h2>Mon, Jul 6 — Brule River → Wisconsin Dells / Mirror Lake State Park</h2>
+  <a class="dir" href="https://www.google.com/maps/dir/Brule,+WI/Mirror+Lake+State+Park,+Baraboo,+WI">🗺️ Directions</a>
+  <span class="drive">~4 hr (≈240 mi) south</span>
+  <div class="row"><span class="lbl">Fuel/snacks:</span> Kwik Trips all along the way</div>
+  <div class="row"><span class="lbl">Lunch:</span> Eau Claire or Tomah (or a second <a href="https://www.yelp.com/biz/norske-nook-osseo">Norske Nook</a> hit in Osseo!)</div>
+  <div class="row"><span class="lbl">Afternoon:</span> Wisconsin Dells (calendar has ~noon–6pm)</div>
+  <div class="row"><span class="lbl">Dinner (takeout):</span> <a href="https://www.bringfido.com/restaurant/city/wisconsin_dells_wi_us/">Grateful Shed</a> (dog-friendly food hall) or <a href="https://www.bringfido.com/restaurant/city/wisconsin_dells_wi_us/">Brat House Grill</a>. Patio: <a href="https://www.bringfido.com/restaurant/city/wisconsin_dells_wi_us/">Ravina Bay</a>.</div>
+  <div class="wild">
+    <p class="wtitle">🦤 Wild Things — Baraboo &amp; the Dells gorge</p>
+    <ul>
+      <li><span class="crit">Cranes:</span> nearby Baraboo has the <b>International Crane Foundation — the only place on Earth to see all 15 crane species.</b> The whooping crane dropped to about <b>15 birds alive in 1941</b>, and this place helped bring it back.</li>
+      <li><span class="crit">The gorge:</span> a 5-mile canyon of 500-million-year-old sandstone, blasted open ~15,000 years ago when a glacier-dammed lake burst and tore through in days.</li>
+      <li><span class="crit">Little brown bat:</span> eats up to <b>1,000 bugs an hour</b> by echolocation. <span class="gross">Darker side:</span> a fungus called white-nose syndrome has killed <b>millions</b> of these bats — it grows on their faces while they hibernate and starves them awake.</li>
+    </ul>
+  </div>
+  <div class="heads">
+    <p class="htitle">⚠️ Heads-up — crowds, water &amp; storms</p>
+    <ul>
+      <li>The Dells is packed in July — typical tourist-crowd stuff (watch the kids in the throngs, mind water-park hygiene and water safety).</li>
+      <li>Severe afternoon thunderstorms are common in southern WI in summer — check radar before/after the water parks.</li>
+      <li>Ticks in the Mirror Lake SP woods; quick check at camp.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Wisconsin Dells &amp; Baraboo</p>
+    <ul>
+      <li>The "Dells" is a 5-mile gorge of <b>500-million-year-old sandstone</b>, carved when a glacial lake <b>burst its ice dam ~15,000 years ago</b> in a giant flood.</li>
+      <li>The land is sacred to the <b>Ho-Chunk Nation</b>, whose ancient burial mounds remain nearby.</li>
+      <li>Next-door <b>Baraboo is the birthplace of the Ringling Brothers Circus</b> (1884) — now the Circus World Museum with 260+ antique circus wagons.</li>
+      <li>Wisconsin Dells is also the self-proclaimed <b>"Waterpark Capital of the World."</b></li>
+    </ul>
+  </div>
+  <div class="camp">⛺ Mirror Lake SP · conf INWI26-1744723B1 (check-in 3p)</div>
+</div>
+
+<div class="day" id="d0707">
+  <h2>Tue, Jul 7 — Mirror Lake → Home</h2>
+  <a class="dir" href="https://www.google.com/maps/dir/Mirror+Lake+State+Park,+Baraboo,+WI/Evanston,+IL">🗺️ Directions</a>
+  <span class="drive">~2.5 hr (≈170 mi) · checkout 1p</span>
+  <div class="row"><span class="lbl">Fuel/snacks:</span> one last Kwik Trip run for the road</div>
+  <div class="row"><span class="lbl">Lunch:</span> Madison for a real stop, or grab-and-go</div>
+  <div class="wild">
+    <p class="wtitle">🌾 Wild Things — prairie &amp; farm country home</p>
+    <ul>
+      <li><span class="crit">Sandhill crane:</span> flocks feed in southern Wisconsin's cut fields — one of the oldest bird types on Earth, barely changed in millions of years.</li>
+      <li><span class="crit">Turkey vulture:</span> the V-winged bird teetering over the highway finds carcasses by smell from a mile up. <span class="gross">Gross:</span> it <b>pees down its own legs to cool off</b> and <b>projectile-vomits</b> rotten slurry at attackers — and its stomach acid is strong enough to destroy anthrax, cholera, and botulism in the rotten meat it eats.</li>
+      <li><span class="crit">Home stretch:</span> the returning prairie is the flat bed of an ancient glacial lake — same story that started flattening out back in Manitoba.</li>
+    </ul>
+  </div>
+  <div class="heads">
+    <p class="htitle">⚠️ Heads-up — last leg</p>
+    <ul>
+      <li>Summer storm season on the drive south — sudden downpours and crosswinds; build in buffer.</li>
+      <li>Deer near dawn/dusk on the rural stretches before home.</li>
+    </ul>
+  </div>
+  <div class="facts">
+    <p class="ftitle">🧭 Did you know? — Madison &amp; home</p>
+    <ul>
+      <li>Wisconsin's capital, <b>Madison, is built on a narrow isthmus</b> — a skinny strip of land squeezed between two lakes, Mendota and Monona.</li>
+      <li>The Wisconsin State Capitol dome is the <b>only granite dome in the U.S.</b> and, by law, no building downtown may be taller than it.</li>
+      <li>Crossing back into Illinois, you're entering the <b>"Prairie State"</b> — almost home!</li>
+    </ul>
+  </div>
+</div>
+
+<div class="notes">
+  <h2>Quick notes</h2>
+  <ul>
+    <li><b>Kwik Trip</b> covers the entire US portion (WI + MN) — set for fuel and snacks except the Canada days.</li>
+    <li><b>Canada fuel:</b> Petro-Canada / Esso; stock up at the Victoria Beach store.</li>
+    <li><b>No gaps:</b> you reach the cottage Sun Jun 28 and stay through Jul 3 — every night covered.</li>
+    <li>Dog-friendly picks favor takeout or patios; confirm seasonal hours by phone.</li>
+    <li>Detours add little driving time. <b>Jul 5</b> is short — your best window for a longer wander (Split Rock + Duluth).</li>
+    <li><b>Pack for the safety list:</b> tick repellent + fine-tip tweezers, dog life jacket, leashes, sunscreen, a small first-aid kit, and a way to check water before the dog swims.</li>
+  </ul>
+</div>
+
+<p class="footer-brand">🚐 <b>The Shultzertons</b> · Oh Canada 2026 · adventure on!</p>
+
+</div>
+</body>
+</html>
