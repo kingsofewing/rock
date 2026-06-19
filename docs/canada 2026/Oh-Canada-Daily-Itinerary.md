@@ -7,7 +7,7 @@ Jun 25 – Jul 7 · road trip from Evanston, IL
 ---
 
 ## Thu, Jun 25 — Home → [Brunet Island State Park, WI](https://dnr.wisconsin.gov/topic/parks/brunetisland)
-🗺️ [Directions: Evanston → Cornell, WI](https://www.google.com/maps/dir/Evanston,+IL/Brunet+Island+State+Park,+Cornell,+WI) · ~5 hr (≈290 mi)
+🗺️ [Directions: Evanston → Cornell, WI](https://www.google.com/maps/dir/Ewing+Ave+%26+Central+St,+Evanston,+IL/Brunet+Island+State+Park,+Cornell,+WI) · ~5 hr (≈290 mi)
 **Fuel/snacks:** Kwik Trips thick along I-90/94 near Tomah or Eau Claire
 **Lunch + cool stop (worth the 5-min detour):** [**Norske Nook**, Osseo](https://www.yelp.com/biz/norske-nook-osseo) — legendary award-winning Norwegian pie right off I-94, open till mid-afternoon. Grab a slice (or a whole pie) for the road.
 **Dinner (takeout):** [**Moonridge Brewing Co.**, Cornell](https://www.bringfido.com/restaurant/city/cornell-wi-us/) — specialty pizzas + house brews, dog-friendly patio. Backup: [**Sam's Place & Diner**](https://www.bringfido.com/restaurant/city/cornell-wi-us/).
@@ -74,7 +74,7 @@ Jun 25 – Jul 7 · road trip from Evanston, IL
 **Camp:** Mirror Lake SP · conf INWI26-1744723B1 (check-in 3p)
 
 ## Tue, Jul 7 — [Mirror Lake](https://dnr.wisconsin.gov/topic/parks/mirrorlake) → Home
-🗺️ [Directions: Mirror Lake → Evanston](https://www.google.com/maps/dir/Mirror+Lake+State+Park,+Baraboo,+WI/Evanston,+IL) · ~2.5 hr (≈170 mi) · checkout 1p
+🗺️ [Directions: Mirror Lake → Evanston](https://www.google.com/maps/dir/Mirror+Lake+State+Park,+Baraboo,+WI/Ewing+Ave+%26+Central+St,+Evanston,+IL) · ~2.5 hr (≈170 mi) · checkout 1p
 **Fuel/snacks:** one last Kwik Trip run for the road
 **Lunch (on the road):** Madison if you want a real stop, or grab-and-go
 
