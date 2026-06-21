@@ -198,6 +198,7 @@ footer   { background: linear-gradient(rgba(30,14,8,0.82), rgba(30,14,8,0.82)), 
 .cal-btn .cal-time { text-transform: none; font-weight: 400; opacity: 0.75; letter-spacing: 0.03em; }
 
 .cancelled { font-size: 0.7rem; color: var(--coral); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
+.cancelled-show .show-info h3, .cancelled-show .show-info h3 a { text-decoration: line-through; text-decoration-thickness: 2px; }
 
 .past .show-date { border-color: rgba(232,223,192,0.15); }
 
@@ -1286,6 +1287,7 @@ function renderShow(s, isPast) {
   const d = new Date(s.date + 'T00:00:00');
   const wrap = document.createElement('div');
   wrap.className = isPast ? 'show-item past' : 'show-item';
+  if (s.cancelled) wrap.classList.add('cancelled-show');
 
   // Date card
   const dateBox = document.createElement('div');
