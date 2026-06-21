@@ -157,6 +157,11 @@ footer   { background: linear-gradient(rgba(30,14,8,0.82), rgba(30,14,8,0.82)), 
 
 .show-list { border-top: 1px solid rgba(79,179,168,0.25); }
 
+/* Past shows: single column on mobile, two columns on wider screens to save vertical space */
+@media (min-width: 700px) {
+  #past-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 2.5rem; align-items: start; }
+}
+
 .show-item { display: grid; grid-template-columns: 90px 1fr; align-items: center; gap: 2rem; padding: 1.4rem 0; border-bottom: 1px solid rgba(79,179,168,0.15); transition: background 0.15s; }
 
 .show-item:hover { background: rgba(79,179,168,0.07); }
