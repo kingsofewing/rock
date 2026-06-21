@@ -1125,6 +1125,8 @@ function normalizeShow(s) {
   if (s.detail)      show.detail      = s.detail;
   if (s.description) show.description = s.description;
   if (s.cancelled)   show.cancelled   = true;
+  if (s.cancel_reason) show.cancel_reason = s.cancel_reason;
+  if (s.private)     show.private     = true;
   if (s.detail_link_name || s.detail_link_url) {
     const sfx = (s.detail_link_suffix || '').replace(/^ /, '');
     show.detailLink = {
@@ -1398,8 +1400,8 @@ function renderShow(s, isPast) {
     info.appendChild(desc);
   }
 
-  // Add-to-calendar button — upcoming shows only
-  if (!isPast && !s.cancelled) {
+  // Add-to-calendar button — upcoming, non-cancelled, public shows only
+  if (!isPast && !s.cancelled && !s.private) {
     const cal = document.createElement('button');
     cal.type = 'button';
     cal.className = 'cal-btn';
@@ -1458,7 +1460,9 @@ function renderShow(s, isPast) {
   if (s.cancelled) {
     const c = document.createElement('p');
     c.className = 'cancelled';
-    c.textContent = '⛈ Cancelled due to weather';
+    const reason = s.cancel_reason || 'weather';
+    const isWeather = /weather/i.test(reason);
+    c.textContent = (isWeather ? '⛈ ' : '') + 'Cancelled due to ' + reason;
     info.appendChild(c);
   }
 
@@ -1490,7 +1494,9 @@ function buildShows(SHOWS) {
 // ─────────────────────────────────────────────────────────────
 function injectEventSchema(SHOWS) {
   const today = new Date(); today.setHours(0,0,0,0);
-  const upcoming = SHOWS.filter(s => new Date(s.date + 'T00:00:00') >= today && !s.cancelled);
+  // Include cancelled shows (marked EventCancelled per Google guidance);
+  // exclude private bookings — they aren't public events.
+  const upcoming = SHOWS.filter(s => new Date(s.date + 'T00:00:00') >= today && !s.private);
 
   upcoming.forEach(s => {
     const venueName = s.venue.name || 'TBA';
@@ -1503,7 +1509,7 @@ function injectEventSchema(SHOWS) {
       "image": "https://www.kingsofewing.com/docs/images/IMG_2445.jpeg",
       "startDate": startDate,
       "endDate": endDate,
-      "eventStatus": "https://schema.org/EventScheduled",
+      "eventStatus": s.cancelled ? "https://schema.org/EventCancelled" : "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "performer": {
         "@type": "MusicGroup",

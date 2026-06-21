@@ -40,6 +40,8 @@ COL_DETAIL_LINK_URL  = 10
 COL_DETAIL_LINK_SUFFIX = 11
 COL_DESCRIPTION      = 12
 COL_CANCELLED        = 13
+COL_CANCEL_REASON    = 14
+COL_PRIVATE          = 15
 
 DATA_START_ROW = 3  # row 1 = instructions, row 2 = headers
 
@@ -110,6 +112,14 @@ def build_shows():
         cancelled = cell_val(row, COL_CANCELLED).upper()
         if cancelled == "TRUE":
             show["cancelled"] = True
+
+        cancel_reason = cell_val(row, COL_CANCEL_REASON)
+        if cancel_reason:
+            show["cancel_reason"] = cancel_reason
+
+        private = cell_val(row, COL_PRIVATE).upper()
+        if private == "TRUE":
+            show["private"] = True
 
         shows.append(show)
 
