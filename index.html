@@ -193,6 +193,12 @@ footer   { background: linear-gradient(rgba(30,14,8,0.82), rgba(30,14,8,0.82)), 
 
 .cal-btn:hover { background: var(--teal); color: var(--brown); border-color: var(--teal); }
 
+.cal-wrap { position: relative; display: inline-block; }
+.cal-menu { position: absolute; left: 0; top: calc(100% + 0.4rem); z-index: 20; min-width: 190px; background: var(--brown); border: 1px solid rgba(79,179,168,0.5); border-radius: 4px; box-shadow: 0 6px 20px rgba(0,0,0,0.45); overflow: hidden; }
+.cal-menu-item { display: block; width: 100%; box-sizing: border-box; text-align: left; padding: 0.6rem 0.9rem; background: none; border: none; color: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 0.72rem; cursor: pointer; text-decoration: none; transition: background 0.15s, color 0.15s; }
+.cal-menu-item + .cal-menu-item { border-top: 1px solid rgba(79,179,168,0.2); }
+.cal-menu-item:hover { background: var(--teal); color: var(--brown); }
+
 .cal-btn svg { flex-shrink: 0; }
 
 .cal-btn .cal-time { text-transform: none; font-weight: 400; opacity: 0.75; letter-spacing: 0.03em; }
@@ -1282,6 +1288,35 @@ function downloadICS(s) {
   URL.revokeObjectURL(url);
 }
 
+// ─── Google Calendar "add event" template link (web) ───
+function buildGoogleCalUrl(s) {
+  const venueName = (s.venue && s.venue.name) || 'TBA';
+  const { start, end, hasTime } = showStartEnd(s);
+
+  let dates;
+  if (hasTime) {
+    dates = icsUTC(start) + '/' + icsUTC(end);
+  } else {
+    const nd = new Date(s.date + 'T00:00:00'); nd.setDate(nd.getDate() + 1);
+    const endDate = `${nd.getFullYear()}${pad2(nd.getMonth() + 1)}${pad2(nd.getDate())}`;
+    dates = s.date.replace(/-/g, '') + '/' + endDate;
+  }
+
+  const locText = s.location || stripTime(s.detail);
+  const locParts = [venueName];
+  if (locText) locParts.push(locText);
+  if (s.address) locParts.push(s.address);
+
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: 'Kings of Ewing at ' + venueName,
+    dates: dates,
+    location: locParts.join(', '),
+    details: [s.description, 'More info: https://www.kingsofewing.com'].filter(Boolean).join('\n\n')
+  });
+  return 'https://calendar.google.com/calendar/render?' + params.toString();
+}
+
 
 function renderShow(s, isPast) {
   const d = new Date(s.date + 'T00:00:00');
@@ -1383,8 +1418,41 @@ function renderShow(s, isPast) {
     const calSpan = document.createElement('span');
     calSpan.textContent = 'Add to Calendar';
     cal.append(calSvg, calSpan);
-    cal.addEventListener('click', () => downloadICS(s));
-    info.appendChild(cal);
+    cal.setAttribute('aria-haspopup', 'true');
+    cal.setAttribute('aria-expanded', 'false');
+
+    const calWrap = document.createElement('div');
+    calWrap.className = 'cal-wrap';
+
+    const menu = document.createElement('div');
+    menu.className = 'cal-menu';
+    menu.hidden = true;
+
+    const gLink = document.createElement('a');
+    gLink.className = 'cal-menu-item';
+    gLink.href = buildGoogleCalUrl(s);
+    gLink.target = '_blank';
+    gLink.rel = 'noopener noreferrer';
+    gLink.textContent = 'Google Calendar';
+
+    const icsBtn = document.createElement('button');
+    icsBtn.type = 'button';
+    icsBtn.className = 'cal-menu-item';
+    icsBtn.textContent = 'Apple / Outlook (.ics)';
+
+    menu.append(gLink, icsBtn);
+
+    const closeMenu = () => { menu.hidden = true; cal.setAttribute('aria-expanded', 'false'); };
+    const openMenu  = () => { menu.hidden = false; cal.setAttribute('aria-expanded', 'true'); };
+
+    cal.addEventListener('click', (e) => { e.stopPropagation(); menu.hidden ? openMenu() : closeMenu(); });
+    gLink.addEventListener('click', closeMenu);
+    icsBtn.addEventListener('click', () => { downloadICS(s); closeMenu(); });
+    document.addEventListener('click', (e) => { if (!calWrap.contains(e.target)) closeMenu(); });
+    cal.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+    calWrap.append(cal, menu);
+    info.appendChild(calWrap);
   }
 
   if (s.cancelled) {
