@@ -163,5 +163,13 @@
     "end_time": "6:00 PM",
     "address": "Ewing Ave & Payne St, Evanston, IL 60201",
     "description": "The greatest block party on our street!"
+  },
+  {
+    "date": "2027-09-11",
+    "venue_name": "Ewing Block Party",
+    "start_time": "4:00 PM",
+    "end_time": "6:00 PM",
+    "address": "Ewing Ave & Payne St, Evanston, IL 60201",
+    "description": "The greatest block party on our street!"
   }
 ]
