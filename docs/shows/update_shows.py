@@ -27,7 +27,10 @@ THIS_DIR  = Path(__file__).resolve().parent   # docs/shows/
 XLSX_PATH = THIS_DIR / "shows.xlsx"
 JSON_PATH = THIS_DIR / "shows.json"
 ICS_DIR   = THIS_DIR / "calendar"             # hosted per-gig .ics files
+PROMO_DIR = THIS_DIR / "promos"               # hosted per-gig promo images
+SOCIAL_DIR = THIS_DIR.parent / "social media" # source gig folders (YYYYMMDD Venue)
 SITE_URL  = "https://www.kingsofewing.com"
+IMG_EXTS  = (".png", ".jpg", ".jpeg", ".webp")
 
 # Column positions (1-based) in the Shows sheet
 COL_DATE             = 1
@@ -254,6 +257,48 @@ def write_ics_files(shows):
     return count
 
 
+# ─────────────────────────────────────────────────────────────
+# Promo images — copy each gig's promo graphic from its social-media
+# folder (docs/social media/YYYYMMDD Venue/) to a clean hosted path
+# (docs/shows/promos/YYYY-MM-DD.<ext>) so gig emails can embed it inline
+# at {SITE_URL}/docs/shows/promos/YYYY-MM-DD.<ext>. Promos are designed
+# by hand and dropped in the gig folder; this just publishes them to a
+# tidy, space-free URL keyed by date.
+# ─────────────────────────────────────────────────────────────
+
+def _find_promo(date_str):
+    """Find the promo image in the social-media folder for this date, if any."""
+    if not SOCIAL_DIR.is_dir():
+        return None
+    stamp = date_str.replace("-", "")   # YYYYMMDD — matches folder name prefix
+    for folder in SOCIAL_DIR.iterdir():
+        if not folder.is_dir() or not folder.name.startswith(stamp):
+            continue
+        imgs = [p for p in folder.iterdir()
+                if p.suffix.lower() in IMG_EXTS and not p.name.startswith(".")]
+        if not imgs:
+            return None
+        # Prefer the largest image (the promo, not an icon/thumbnail)
+        return max(imgs, key=lambda p: p.stat().st_size)
+    return None
+
+
+def write_promo_files(shows):
+    """Publish each public gig's promo to docs/shows/promos/<date>.<ext>."""
+    PROMO_DIR.mkdir(exist_ok=True)
+    count = 0
+    for s in shows:
+        if s.get("private"):
+            continue
+        src = _find_promo(s["date"])
+        if not src:
+            continue
+        dest = PROMO_DIR / (s["date"] + src.suffix.lower())
+        dest.write_bytes(src.read_bytes())
+        count += 1
+    return count
+
+
 def main():
     if not XLSX_PATH.exists():
         sys.exit(f"Cannot find {XLSX_PATH}\nMake sure you're running from the repo root.")
@@ -263,6 +308,8 @@ def main():
     print(f"Wrote {len(shows)} shows to {JSON_PATH.name}")
     n = write_ics_files(shows)
     print(f"Wrote {n} calendar files to {ICS_DIR.relative_to(THIS_DIR.parent.parent)}/")
+    p = write_promo_files(shows)
+    print(f"Published {p} promo images to {PROMO_DIR.relative_to(THIS_DIR.parent.parent)}/")
 
 
 if __name__ == "__main__":
