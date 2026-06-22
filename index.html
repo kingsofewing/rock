@@ -168,6 +168,14 @@ footer   { background: linear-gradient(rgba(30,14,8,0.82), rgba(30,14,8,0.82)), 
 
 .show-date { text-align: center; border: 2px solid rgba(200,98,58,0.55); padding: 0.5rem; }
 
+/* Date card linked to the show's Instagram post */
+a.show-date-link { position: relative; display: block; text-decoration: none; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s; }
+a.show-date-link:hover { border-color: var(--coral); background: rgba(200,98,58,0.12); transform: translateY(-2px); }
+a.show-date-link:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.show-ig-badge { position: absolute; top: 3px; right: 3px; color: var(--coral); opacity: 0.6; transition: opacity 0.2s; }
+a.show-date-link:hover .show-ig-badge { opacity: 1; }
+.past a.show-date-link:hover { border-color: rgba(232,223,192,0.45); }
+
 .show-month { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--coral); font-weight: 600; }
 
 .show-day { font-family: 'Damion', cursive; font-size: 1.9rem; color: var(--cream); line-height: 1.1; }
@@ -1135,6 +1143,7 @@ function normalizeShow(s) {
   if (s.description) show.description = s.description;
   if (s.cancelled)   show.cancelled   = true;
   if (s.cancel_reason) show.cancel_reason = s.cancel_reason;
+  if (s.instagram_link) show.instagram_link = s.instagram_link;
   if (s.private)     show.private     = true;
   if (s.detail_link_name || s.detail_link_url) {
     const sfx = (s.detail_link_suffix || '').replace(/^ /, '');
@@ -1335,13 +1344,34 @@ function renderShow(s, isPast) {
   wrap.className = isPast ? 'show-item past' : 'show-item';
   if (s.cancelled) wrap.classList.add('cancelled-show');
 
-  // Date card
-  const dateBox = document.createElement('div');
+  // Date card — becomes a link to the show's Instagram post when one exists
+  const dateBox = document.createElement(s.instagram_link ? 'a' : 'div');
   dateBox.className = 'show-date';
   const mo = document.createElement('div'); mo.className = 'show-month'; mo.textContent = MONTHS[d.getMonth()];
   const da = document.createElement('div'); da.className = 'show-day';   da.textContent = d.getDate();
   const yr = document.createElement('div'); yr.className = 'show-year';  yr.textContent = d.getFullYear();
   dateBox.append(mo, da, yr);
+  if (s.instagram_link) {
+    dateBox.classList.add('show-date-link');
+    dateBox.href = s.instagram_link;
+    dateBox.target = '_blank';
+    dateBox.rel = 'noopener noreferrer';
+    const vName = s.venue && s.venue.name ? s.venue.name + ' ' : '';
+    dateBox.setAttribute('aria-label', 'View Instagram post for the ' + vName + 'show');
+    // Small Instagram glyph badge in the corner
+    const ig = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    ig.setAttribute('class', 'show-ig-badge');
+    ig.setAttribute('viewBox', '0 0 24 24'); ig.setAttribute('width', '13'); ig.setAttribute('height', '13');
+    ig.setAttribute('fill', 'none'); ig.setAttribute('stroke', 'currentColor');
+    ig.setAttribute('stroke-width', '2'); ig.setAttribute('stroke-linecap', 'round');
+    ig.setAttribute('stroke-linejoin', 'round'); ig.setAttribute('aria-hidden', 'true');
+    [['rect','x=2 y=2 width=20 height=20 rx=5'],['circle','cx=12 cy=12 r=4'],['line','x1=17.5 y1=6.5 x2=17.5 y2=6.5']].forEach(([tag, attrs]) => {
+      const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+      attrs.split(' ').forEach(a => { const [k, v] = a.split('='); el.setAttribute(k, v); });
+      ig.appendChild(el);
+    });
+    dateBox.appendChild(ig);
+  }
 
   // Info block
   const info = document.createElement('div');

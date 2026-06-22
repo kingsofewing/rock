@@ -42,6 +42,7 @@ COL_DESCRIPTION      = 12
 COL_CANCELLED        = 13
 COL_CANCEL_REASON    = 14
 COL_PRIVATE          = 15
+COL_INSTAGRAM_LINK   = 16
 
 DATA_START_ROW = 3  # row 1 = instructions, row 2 = headers
 
@@ -120,6 +121,10 @@ def build_shows():
         private = cell_val(row, COL_PRIVATE).upper()
         if private == "TRUE":
             show["private"] = True
+
+        instagram_link = cell_val(row, COL_INSTAGRAM_LINK)
+        if instagram_link:
+            show["instagram_link"] = instagram_link
 
         shows.append(show)
 

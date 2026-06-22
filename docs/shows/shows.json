@@ -19,13 +19,15 @@
     "date": "2024-06-07",
     "venue_name": "Fat Shallot",
     "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
-    "address": "2902 Central St, Evanston, IL 60201"
+    "address": "2902 Central St, Evanston, IL 60201",
+    "instagram_link": "https://www.instagram.com/reel/C7coe2QPFQF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2024-07-21",
     "venue_name": "Chicago Union",
     "venue_url": "https://watchufa.com/union",
-    "address": "2311 N Campus Dr, Evanston, IL 60201"
+    "address": "2311 N Campus Dr, Evanston, IL 60201",
+    "instagram_link": "https://www.instagram.com/p/C9iscZ5MzLm/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2024-08-17",
@@ -35,7 +37,8 @@
     "date": "2024-08-24",
     "venue_name": "Fat Shallot",
     "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
-    "address": "2902 Central St, Evanston, IL 60201"
+    "address": "2902 Central St, Evanston, IL 60201",
+    "instagram_link": "https://www.instagram.com/p/C-LoSYTSWso/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2024-09-07",
@@ -52,7 +55,8 @@
     "address": "2902 Central St, Evanston, IL 60201",
     "detail_link_name": "Covenant Nursery School",
     "detail_link_url": "https://www.covenantnurseryschool.org/",
-    "detail_link_suffix": "Dining for Dollars"
+    "detail_link_suffix": "Dining for Dollars",
+    "instagram_link": "https://www.instagram.com/p/DA6TLQuO_mT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2025-04-03",
@@ -60,19 +64,22 @@
     "start_time": "12:00 PM",
     "end_time": "1:30 PM",
     "address": "2600 Colfax St, Evanston, IL 60201",
-    "detail": "PTA Spring Fling"
+    "detail": "PTA Spring Fling",
+    "instagram_link": "https://www.instagram.com/p/DIr2Yxrzxee/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2025-06-07",
     "venue_name": "Fat Shallot",
     "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
-    "address": "2902 Central St, Evanston, IL 60201"
+    "address": "2902 Central St, Evanston, IL 60201",
+    "instagram_link": "https://www.instagram.com/p/DKAon1wzrMa/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2025-06-25",
     "venue_name": "American Legion Post 42",
     "venue_url": "https://www.evanstonpost42.com/",
-    "address": "1030 Central St, Evanston, IL 60201"
+    "address": "1030 Central St, Evanston, IL 60201",
+    "instagram_link": "https://www.instagram.com/p/DK0HoLGPiq-/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2025-09-06",
@@ -93,7 +100,8 @@
     "venue_url": "https://www.macksbikeandgoods.com/",
     "address": "2948 Central St, Evanston, IL 60201",
     "detail": "Fall Fest",
-    "cancelled": true
+    "cancelled": true,
+    "instagram_link": "https://www.instagram.com/p/DPEyQR-jrBD/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2025-11-16",
@@ -109,7 +117,8 @@
     "venue_url": "https://www.goatvillage777.com/",
     "start_time": "9:00 PM",
     "end_time": "12:00 PM",
-    "address": "4701 N Cumberland Ave Suite 33, Norridge, IL 60706"
+    "address": "4701 N Cumberland Ave Suite 33, Norridge, IL 60706",
+    "instagram_link": "https://www.instagram.com/p/DTTn8VhEqXf/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2026-04-24",
@@ -118,7 +127,17 @@
     "start_time": "7:30 PM",
     "end_time": "8:45 PM",
     "address": "1030 Central St, Evanston, IL 60201",
-    "detail": "D65 One Fund Spring Cha Ching"
+    "detail": "D65 One Fund Spring Cha Ching",
+    "instagram_link": "https://www.instagram.com/p/DXRwcHZDnA8/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+  },
+  {
+    "date": "2026-05-02",
+    "venue_name": "Lincolnwood Spring Fling",
+    "start_time": "12:00 PM",
+    "end_time": "1:30 PM",
+    "address": "2600 Colfax St, Evanston, IL 60201",
+    "detail": "PTA Spring Fling",
+    "instagram_link": "https://www.instagram.com/p/DXxgmm4j-ow/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2026-05-14",
@@ -129,7 +148,8 @@
     "address": "2902 Central St, Evanston, IL 60201",
     "detail_link_name": "Covenant Nursery School",
     "detail_link_url": "https://www.covenantnurseryschool.org/",
-    "detail_link_suffix": "Dining for Dollars"
+    "detail_link_suffix": "Dining for Dollars",
+    "instagram_link": "https://www.instagram.com/p/DYFfRttlKsz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2026-05-16",
@@ -145,7 +165,8 @@
     "location": "ETHS Lazier Field",
     "address": "2285 Church St, Evanston, IL 60201",
     "description": "Pre-game set before the Chicago Union (our pro Ultimate Frisbee Association team) takes the field!",
-    "cancelled": true
+    "cancelled": true,
+    "instagram_link": "https://www.instagram.com/p/DZyFuoKmsiz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2026-06-24",
@@ -154,7 +175,8 @@
     "start_time": "6:00 PM",
     "end_time": "8:00 PM",
     "address": "908 Seward St, Evanston, IL 60202",
-    "description": "Part of the Ridgeville Parks District \"Concerts on the Ridge\" summer series."
+    "description": "Part of the Ridgeville Parks District \"Concerts on the Ridge\" summer series.",
+    "instagram_link": "https://www.instagram.com/p/DZ2hJvMDgf9/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
   },
   {
     "date": "2026-09-12",
