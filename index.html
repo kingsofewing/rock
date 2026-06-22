@@ -1431,8 +1431,8 @@ function renderShow(s, isPast) {
     }
   }
 
-  // Optional descriptive blurb
-  if (s.description) {
+  // Optional descriptive blurb — upcoming shows only (hidden on past shows)
+  if (s.description && !isPast) {
     const desc = document.createElement('p');
     desc.className = 'show-desc';
     desc.textContent = s.description;
