@@ -1,0 +1,131 @@
+<!--
+  ============================================================================
+  KINGS OF EWING — REUSABLE GIG EMAIL TEMPLATE  (manual fill-in)
+  ============================================================================
+
+  HOW TO USE
+  ----------
+  1. Copy this file to the gig's folder, e.g.
+       docs/social media/YYYYMMDD Venue Name/YYYYMMDD Venue Name - email.html
+  2. Find/replace every {{PLACEHOLDER}} below with the gig's details.
+  3. Open the saved file in a browser, Select All (Cmd+A), Copy (Cmd+C).
+  4. Paste into a Gmail compose window. Put the subject in Gmail's Subject field.
+  5. Send via BCC to the mailing list + the event organizer(s).
+     (Organizer emails are in the "Gig Tracker" sheet — Venue / Event /
+     Sound Person Email columns.)
+
+  WIDTH FIX (why this template exists)
+  ------------------------------------
+  Gmail strips `max-width` off outer <div> wrappers when you paste, which made
+  past emails sprawl across the full window. This template wraps the body in a
+  centered fixed-width <table width="600"> instead — Gmail preserves table
+  widths on paste, so the body stays a comfortable ~600px wide.
+
+  The signature is NOT part of this file — it is inserted automatically by
+  Gmail from Settings > General > Signature. See the note at the very bottom.
+
+  PLACEHOLDERS TO REPLACE
+  -----------------------
+  {{SUBJECT}}          Subject line (also paste into Gmail's Subject field)
+  {{INTRO_LINE}}       One-sentence hook, e.g. "We're playing outside this Wednesday..."
+  {{EVENT_NAME}}       Linked event/series name, e.g. "Concerts on the Ridge"
+  {{EVENT_URL}}        URL the event name + promo image link to
+  {{DATE_LINE}}        e.g. "Wednesday, June 24"
+  {{TIME_LINE}}        e.g. "6:00–8:00 PM"
+  {{VENUE_LINE}}       e.g. "Ridgeville Park — 908 Seward St, Evanston"
+  {{GCAL_URL}}         Google Calendar add-event URL
+  {{ICS_URL}}          Apple/Outlook .ics URL on kingsofewing.com
+  {{DIRECTIONS_URL}}   Google Maps directions URL
+  {{PROMO_IMG_URL}}    Promo image URL, e.g. https://www.kingsofewing.com/docs/shows/promos/YYYY-MM-DD.png
+  {{PROMO_ALT}}        Alt text for the promo image
+  {{BLURB}}            Closing paragraph describing the vibe of the show
+-->
+
+<!-- Subject: {{SUBJECT}} -->
+
+<!-- ===== HELPER BARS — do NOT include these two boxes in the body paste ===== -->
+<div style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; max-width: 600px; margin: 0 auto 12px; padding: 10px 14px; background: #fbe9e2; border: 1px dashed #d85a30; border-radius: 6px; font-size: 13px; color: #993c1d;">
+  <strong>⚠️ Before sending:</strong> BCC the event organizer(s) for this gig along with the mailing list (emails are in the "Gig Tracker" sheet — Venue / Event / Sound Person Email columns).
+</div>
+<div style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; max-width: 600px; margin: 0 auto 20px; padding: 10px 14px; background: #f1efe8; border: 1px dashed #b4b2a9; border-radius: 6px; font-size: 13px; color: #5f5e5a;">
+  <strong style="color: #1e0e08;">Subject (copy into Gmail):</strong>&nbsp; {{SUBJECT}}
+</div>
+
+<!-- ===== EMAIL BODY — select-all & copy everything from here down ===== -->
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" width="600" style="width: 600px; max-width: 600px; border-collapse: collapse; margin: 0 auto;">
+  <tr>
+    <td style="font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 16px; line-height: 1.6; color: #1e0e08;">
+
+      <p>{{INTRO_LINE}}</p>
+
+      <p>Come spend the evening with us at
+        <a href="{{EVENT_URL}}" style="color: #c8623a; font-weight: bold; text-decoration: underline;">{{EVENT_NAME}}</a>:</p>
+
+      <!-- Details card -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 16px;">
+        <tr><td style="background: #faf3e9; border: 1px solid #ecd9c4; border-radius: 10px; padding: 18px 20px;">
+          <div style="font-size: 18px; font-weight: bold; color: #1e0e08;">{{DATE_LINE}}</div>
+          <div style="font-size: 15px; color: #5a4a40; margin-top: 3px;">{{TIME_LINE}}</div>
+          <div style="font-size: 15px; color: #5a4a40; margin-top: 3px;">{{VENUE_LINE}}</div>
+          <div style="margin-top: 15px; font-size: 0;">
+
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="display: inline-block; margin: 0 6px 6px 0; vertical-align: top;">
+              <tr><td bgcolor="#c8623a" style="border-radius: 6px;">
+                <a href="{{GCAL_URL}}" style="display: inline-block; padding: 9px 16px; font-size: 13px; font-weight: bold; color: #ffffff; text-decoration: none; border-radius: 6px;">📅 Google Calendar</a>
+              </td></tr>
+            </table>
+
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="display: inline-block; margin: 0 6px 6px 0; vertical-align: top;">
+              <tr><td bgcolor="#ffffff" style="border: 1px solid #c8623a; border-radius: 6px;">
+                <a href="{{ICS_URL}}" style="display: inline-block; padding: 8px 15px; font-size: 13px; font-weight: bold; color: #c8623a; text-decoration: none; border-radius: 6px;">📅 Apple / Outlook</a>
+              </td></tr>
+            </table>
+
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="display: inline-block; margin: 0; vertical-align: top;">
+              <tr><td bgcolor="#ffffff" style="border: 1px solid #c8623a; border-radius: 6px;">
+                <a href="{{DIRECTIONS_URL}}" style="display: inline-block; padding: 8px 15px; font-size: 13px; font-weight: bold; color: #c8623a; text-decoration: none; border-radius: 6px;">📍 Directions</a>
+              </td></tr>
+            </table>
+
+          </div>
+        </td></tr>
+      </table>
+
+      <!-- Promo image -->
+      <div style="text-align: left; margin: 4px 0 18px;">
+        <a href="{{EVENT_URL}}"><img src="{{PROMO_IMG_URL}}" width="380" alt="{{PROMO_ALT}}" style="display: block; width: 100%; max-width: 380px; height: auto; border-radius: 10px; border: 0;"></a>
+      </div>
+
+      <p>{{BLURB}}</p>
+
+      <!-- Mailing-list CTA -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin: 0 0 16px;">
+        <tr><td style="background: #faf3e9; border: 1px solid #ecd9c4; border-radius: 10px; padding: 16px 20px; text-align: center; font-size: 14px; line-height: 1.6; color: #5a4a40;">
+          Know someone who'd love our shows? Forward this along and tell them to
+          <a href="https://kingsofewing.com/#mailing" style="color: #c8623a; font-weight: bold; text-decoration: underline;">sign up now</a>
+          so they never miss a gig!
+        </td></tr>
+      </table>
+
+      <p style="margin-bottom: 4px;">See you there!</p>
+
+    </td>
+  </tr>
+</table>
+<!-- ===== END EMAIL BODY ===== -->
+
+<!--
+  SIGNATURE NOTE
+  --------------
+  Do NOT paste a signature into the body. Gmail appends your signature
+  automatically to new emails (Settings > General > Signature), so adding one
+  here would produce two.
+
+  The canonical signature lives at:
+    docs/resources/branding/kings_of_ewing_email_signature.html
+  It uses a 72px logo (hosted at kingsofewing.com) and full-width dividers
+  (width:100%) so the divider lines span the whole block. If your Gmail
+  signature ever drifts (e.g. divider lines look short because the logo is
+  wider than the dividers), re-install the canonical file: open it in a
+  browser, Select All > Copy, then paste into Gmail Settings > Signature.
+-->
