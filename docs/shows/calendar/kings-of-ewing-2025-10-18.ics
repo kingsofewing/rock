@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kings of Ewing//Website//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2025-10-18-mack-s-bike-goods@kingsofewing.com
+DTSTAMP:20260622T202214Z
+DTSTART;VALUE=DATE:20251018
+DTEND;VALUE=DATE:20251019
+SUMMARY:Kings of Ewing at Mack's Bike & Goods
+LOCATION:Mack's Bike & Goods\, 2948 Central St\, Evanston\, IL 60201
+DESCRIPTION:More info: https://www.kingsofewing.com
+URL:https://www.macksbikeandgoods.com/
+END:VEVENT
+END:VCALENDAR

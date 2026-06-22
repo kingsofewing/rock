@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kings of Ewing//Website//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2025-06-25-american-legion-post-42@kingsofewing.com
+DTSTAMP:20260622T202214Z
+DTSTART;VALUE=DATE:20250625
+DTEND;VALUE=DATE:20250626
+SUMMARY:Kings of Ewing at American Legion Post 42
+LOCATION:American Legion Post 42\, 1030 Central St\, Evanston\, IL 60201
+DESCRIPTION:More info: https://www.kingsofewing.com
+URL:https://www.evanstonpost42.com/
+END:VEVENT
+END:VCALENDAR

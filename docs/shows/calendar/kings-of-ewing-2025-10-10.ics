@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kings of Ewing//Website//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2025-10-10-ackerman-park@kingsofewing.com
+DTSTAMP:20260622T202214Z
+DTSTART;VALUE=DATE:20251010
+DTEND;VALUE=DATE:20251011
+SUMMARY:Kings of Ewing at Ackerman Park
+LOCATION:Ackerman Park\, Ackerman Park\, Evanston\, IL 60201
+DESCRIPTION:More info: https://www.kingsofewing.com
+URL:https://www.kingsofewing.com
+END:VEVENT
+END:VCALENDAR

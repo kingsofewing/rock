@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kings of Ewing//Website//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2025-06-07-fat-shallot@kingsofewing.com
+DTSTAMP:20260622T202214Z
+DTSTART;VALUE=DATE:20250607
+DTEND;VALUE=DATE:20250608
+SUMMARY:Kings of Ewing at Fat Shallot
+LOCATION:Fat Shallot\, 2902 Central St\, Evanston\, IL 60201
+DESCRIPTION:More info: https://www.kingsofewing.com
+URL:https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon
+ /
+END:VEVENT
+END:VCALENDAR

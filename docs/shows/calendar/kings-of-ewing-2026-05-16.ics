@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kings of Ewing//Website//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2026-05-16-private-party@kingsofewing.com
+DTSTAMP:20260622T202214Z
+DTSTART:20260517T000000Z
+DTEND:20260517T020000Z
+SUMMARY:Kings of Ewing at Private Party
+LOCATION:Private Party
+DESCRIPTION:More info: https://www.kingsofewing.com
+URL:https://www.kingsofewing.com
+END:VEVENT
+END:VCALENDAR

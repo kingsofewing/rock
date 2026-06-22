@@ -14,6 +14,7 @@ Requires openpyxl:  pip3 install openpyxl
 
 import datetime
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -25,6 +26,8 @@ except ImportError:
 THIS_DIR  = Path(__file__).resolve().parent   # docs/shows/
 XLSX_PATH = THIS_DIR / "shows.xlsx"
 JSON_PATH = THIS_DIR / "shows.json"
+ICS_DIR   = THIS_DIR / "calendar"             # hosted per-gig .ics files
+SITE_URL  = "https://www.kingsofewing.com"
 
 # Column positions (1-based) in the Shows sheet
 COL_DATE             = 1
@@ -131,6 +134,126 @@ def build_shows():
     return shows
 
 
+# ─────────────────────────────────────────────────────────────
+# Calendar (.ics) generation — universal format that Apple
+# Calendar, Outlook, and Google all open. Mirrors the buildICS
+# logic in index.html so the email links and the website button
+# stay consistent. Files are hosted at:
+#   {SITE_URL}/docs/shows/calendar/kings-of-ewing-YYYY-MM-DD.ics
+# ─────────────────────────────────────────────────────────────
+
+def _parse_time(s):
+    """Parse 'H:MM AM/PM' -> (hour24, minute) or None."""
+    if not s:
+        return None
+    m = re.search(r"(\d{1,2}):(\d{2})\s*(AM|PM)", s, re.I)
+    if not m:
+        return None
+    h = int(m.group(1)) % 12
+    if m.group(3).upper() == "PM":
+        h += 12
+    return h, int(m.group(2))
+
+
+def _chicago_offset(date_str):
+    """UTC offset (timedelta) for America/Chicago on the given date (handles CST/CDT)."""
+    try:
+        from zoneinfo import ZoneInfo
+        d = datetime.datetime.fromisoformat(date_str + "T12:00:00").replace(
+            tzinfo=ZoneInfo("America/Chicago"))
+        return d.utcoffset()
+    except Exception:
+        return datetime.timedelta(hours=-6)
+
+
+def _start_end(show):
+    """Return (start_dt_utc, end_dt_utc, has_time). ~2hr default set length."""
+    date_str = show["date"]
+    t = _parse_time(show.get("start_time")) or _parse_time(show.get("detail"))
+    if not t:
+        return None, None, False
+    off = _chicago_offset(date_str)
+    y, mo, da = (int(x) for x in date_str.split("-"))
+    start_local = datetime.datetime(y, mo, da, t[0], t[1])
+    te = _parse_time(show.get("end_time"))
+    if te:
+        end_local = datetime.datetime(y, mo, da, te[0], te[1])
+        if end_local <= start_local:
+            end_local += datetime.timedelta(days=1)
+    else:
+        end_local = start_local + datetime.timedelta(hours=2)
+    tz = datetime.timezone(off)
+    return (start_local.replace(tzinfo=tz).astimezone(datetime.timezone.utc),
+            end_local.replace(tzinfo=tz).astimezone(datetime.timezone.utc),
+            True)
+
+
+def _ics_esc(txt):
+    return (str(txt).replace("\\", "\\\\").replace(";", "\\;")
+            .replace(",", "\\,").replace("\r\n", "\\n").replace("\n", "\\n"))
+
+
+def _fold(line):
+    """RFC 5545 line folding at 75 octets."""
+    if len(line) <= 74:
+        return line
+    out, rest = line[:74], line[74:]
+    while len(rest) > 73:
+        out += "\r\n " + rest[:73]
+        rest = rest[73:]
+    return out + "\r\n " + rest
+
+
+def build_ics(show):
+    venue = show.get("venue_name") or "TBA"
+    start, end, has_time = _start_end(show)
+    if has_time:
+        fmt = lambda d: d.strftime("%Y%m%dT%H%M%SZ")
+        dt_start = "DTSTART:" + fmt(start)
+        dt_end   = "DTEND:" + fmt(end)
+    else:
+        d0 = datetime.date.fromisoformat(show["date"])
+        d1 = d0 + datetime.timedelta(days=1)
+        dt_start = "DTSTART;VALUE=DATE:" + d0.strftime("%Y%m%d")
+        dt_end   = "DTEND;VALUE=DATE:" + d1.strftime("%Y%m%d")
+
+    loc_parts = [venue]
+    if show.get("location"):
+        loc_parts.append(show["location"])
+    if show.get("address"):
+        loc_parts.append(show["address"])
+    location = ", ".join(loc_parts)
+    desc = "\n\n".join(filter(None, [show.get("description"), f"More info: {SITE_URL}"]))
+    uid = f"{show['date']}-" + re.sub(r"[^a-z0-9]+", "-", venue.lower()) + "@kingsofewing.com"
+    stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+    lines = [
+        "BEGIN:VCALENDAR", "VERSION:2.0",
+        "PRODID:-//Kings of Ewing//Website//EN",
+        "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "BEGIN:VEVENT",
+        "UID:" + uid, "DTSTAMP:" + stamp, dt_start, dt_end,
+        "SUMMARY:" + _ics_esc("Kings of Ewing at " + venue),
+        "LOCATION:" + _ics_esc(location),
+        "DESCRIPTION:" + _ics_esc(desc),
+        "URL:" + (show.get("venue_url") or SITE_URL),
+        "END:VEVENT", "END:VCALENDAR",
+    ]
+    return "\r\n".join(_fold(l) for l in lines) + "\r\n"
+
+
+def write_ics_files(shows):
+    """Generate one .ics per public (non-private) show into ICS_DIR."""
+    ICS_DIR.mkdir(exist_ok=True)
+    count = 0
+    for s in shows:
+        if s.get("private"):
+            continue
+        path = ICS_DIR / f"kings-of-ewing-{s['date']}.ics"
+        path.write_text(build_ics(s), newline="")
+        count += 1
+    return count
+
+
 def main():
     if not XLSX_PATH.exists():
         sys.exit(f"Cannot find {XLSX_PATH}\nMake sure you're running from the repo root.")
@@ -138,6 +261,8 @@ def main():
     shows = build_shows()
     JSON_PATH.write_text(json.dumps(shows, indent=2, ensure_ascii=False))
     print(f"Wrote {len(shows)} shows to {JSON_PATH.name}")
+    n = write_ics_files(shows)
+    print(f"Wrote {n} calendar files to {ICS_DIR.relative_to(THIS_DIR.parent.parent)}/")
 
 
 if __name__ == "__main__":

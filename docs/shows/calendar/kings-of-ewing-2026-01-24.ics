@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kings of Ewing//Website//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2026-01-24-goat-village@kingsofewing.com
+DTSTAMP:20260622T202214Z
+DTSTART:20260125T030000Z
+DTEND:20260125T180000Z
+SUMMARY:Kings of Ewing at Goat Village
+LOCATION:Goat Village\, 4701 N Cumberland Ave Suite 33\, Norridge\, IL 607
+ 06
+DESCRIPTION:More info: https://www.kingsofewing.com
+URL:https://www.goatvillage777.com/
+END:VEVENT
+END:VCALENDAR

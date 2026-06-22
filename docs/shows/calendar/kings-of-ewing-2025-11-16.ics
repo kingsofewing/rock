@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kings of Ewing//Website//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2025-11-16-double-clutch@kingsofewing.com
+DTSTAMP:20260622T202214Z
+DTSTART:20251117T010000Z
+DTEND:20251117T020000Z
+SUMMARY:Kings of Ewing at Double Clutch
+LOCATION:Double Clutch\, 2121 Ashland Ave\, Evanston\, IL 60201
+DESCRIPTION:More info: https://www.kingsofewing.com
+URL:https://www.doubleclutchbrewing.com/
+END:VEVENT
+END:VCALENDAR

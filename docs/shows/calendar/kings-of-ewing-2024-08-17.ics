@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kings of Ewing//Website//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2024-08-17-private-party@kingsofewing.com
+DTSTAMP:20260622T202214Z
+DTSTART;VALUE=DATE:20240817
+DTEND;VALUE=DATE:20240818
+SUMMARY:Kings of Ewing at Private Party
+LOCATION:Private Party
+DESCRIPTION:More info: https://www.kingsofewing.com
+URL:https://www.kingsofewing.com
+END:VEVENT
+END:VCALENDAR

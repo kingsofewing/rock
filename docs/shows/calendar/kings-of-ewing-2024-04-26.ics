@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kings of Ewing//Website//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2024-04-26-lincolnwood-spring-fling@kingsofewing.com
+DTSTAMP:20260622T202214Z
+DTSTART:20240426T170000Z
+DTEND:20240426T183000Z
+SUMMARY:Kings of Ewing at Lincolnwood Spring Fling
+LOCATION:Lincolnwood Spring Fling\, 2600 Colfax St\, Evanston\, IL 60201
+DESCRIPTION:More info: https://www.kingsofewing.com
+URL:https://www.kingsofewing.com
+END:VEVENT
+END:VCALENDAR

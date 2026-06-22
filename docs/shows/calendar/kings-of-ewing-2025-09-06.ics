@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kings of Ewing//Website//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2025-09-06-ewing-block-party@kingsofewing.com
+DTSTAMP:20260622T202214Z
+DTSTART;VALUE=DATE:20250906
+DTEND;VALUE=DATE:20250907
+SUMMARY:Kings of Ewing at Ewing Block Party
+LOCATION:Ewing Block Party\, Ewing Ave & Payne St\, Evanston\, IL 60201
+DESCRIPTION:The party that accidentally started a band.\n\nMore info: http
+ s://www.kingsofewing.com
+URL:https://www.kingsofewing.com
+END:VEVENT
+END:VCALENDAR
