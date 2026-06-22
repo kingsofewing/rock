@@ -313,8 +313,13 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.85); letter-spacing: 0.
 @media (max-width: 768px) {
   nav { padding: 0.8rem 1.5rem; }
 
-  #shows, #about { padding: 5rem 1.5rem; }
+  #social, #mailing, #shows, #about, #book { padding: 5rem 1.5rem; }
   .form-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .social-row { grid-template-columns: 1fr; max-width: 280px; margin-left: auto; margin-right: auto; }
+  .social-btn { justify-content: center; }
 }
 
 /* ── Sticky mini player ───────────────────────────────── */
