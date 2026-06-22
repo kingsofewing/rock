@@ -22,10 +22,11 @@
   <!-- Coral divider line -->
   <line x1="40" y1="556" x2="518" y2="556" stroke="#c8623a" stroke-width="1.5"/>
 
-  <!-- KingsOfEwing.com label -->
-  <text x="279" y="584" text-anchor="middle"
-    font-family="Georgia, serif" font-style="italic" font-size="26"
-    fill="#e8dfc0">KingsOfEwing.com</text>
+  <!-- Kings of Ewing wordmark in Damion (loads Google Fonts) -->
+  <style>@import url('https://fonts.googleapis.com/css2?family=Damion&amp;display=swap');</style>
+  <text x="279" y="582" text-anchor="middle"
+    font-family="'Damion', cursive" font-size="40"
+    fill="#e8dfc0">Kings of Ewing</text>
 
   <!-- Teal underline -->
   <line x1="169" y1="592" x2="389" y2="592"

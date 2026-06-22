@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="680" viewBox="0 0 1020 680" font-family="Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1277" height="680" viewBox="0 0 1277 680" font-family="Arial, sans-serif">
 
   <!-- Background -->
-  <rect width="1020" height="680" fill="#ffffff"/>
+  <rect width="1277" height="680" fill="#ffffff"/>
 
   <!-- Title -->
-  <text x="510" y="36" text-anchor="middle" font-size="19" font-weight="bold" fill="#000000" letter-spacing="3">KINGS OF EWING — STAGE DIAGRAM</text>
-  <line x1="60" y1="46" x2="960" y2="46" stroke="#000000" stroke-width="1.5"/>
+  <text x="638" y="36" text-anchor="middle" font-size="19" font-weight="bold" fill="#000000" letter-spacing="3">KINGS OF EWING — STAGE DIAGRAM</text>
+  <line x1="60" y1="46" x2="1222" y2="46" stroke="#000000" stroke-width="1.5"/>
 
   <!-- Stage box -->
   <rect x="100" y="58" width="820" height="540" rx="6" fill="#ffffff" stroke="#000000" stroke-width="2"/>
@@ -24,8 +24,8 @@
   <text x="152" y="170" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">AMP</text>
   <text x="152" y="184" text-anchor="middle" font-size="8" fill="#000000">Lead Gtr</text>
 
-  <rect x="330" y="108" width="65" height="36" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
-  <text x="362" y="123" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">AMP</text>
+  <rect x="312" y="108" width="100" height="36" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="362" y="123" text-anchor="middle" font-size="8" fill="#000000" font-weight="bold">AMP (w/ XLR out)</text>
   <text x="362" y="137" text-anchor="middle" font-size="8" fill="#000000">Keys</text>
 
   <rect x="625" y="108" width="65" height="36" rx="3" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
@@ -75,35 +75,35 @@
   <text x="152" y="411" text-anchor="middle" font-size="10" fill="#000000" font-weight="bold">LEAD</text>
   <text x="152" y="425" text-anchor="middle" font-size="10" fill="#000000" font-weight="bold">GUITAR</text>
   <!-- Vocal mic — diamond shape -->
-  <polygon points="152,447 160,461 152,475 144,461" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <polygon points="152,447 162,461 152,475 142,461" fill="#ffffff" stroke="#000000" stroke-width="2"/>
 
   <!-- ══ POS 2 — Keys / Vocals (center left) ══ -->
   <circle cx="390" cy="330" r="32" fill="#ffffff" stroke="#000000" stroke-width="2"/>
   <text x="390" y="334" text-anchor="middle" font-size="10" fill="#000000" font-weight="bold">KEYS</text>
   <!-- Vocal mic — diamond -->
-  <polygon points="390,362 398,376 390,390 382,376" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <polygon points="390,362 400,376 390,390 380,376" fill="#ffffff" stroke="#000000" stroke-width="2"/>
 
   <!-- ══ POS 4 — Bass / Vocals (center right) ══ -->
   <circle cx="630" cy="330" r="32" fill="#ffffff" stroke="#000000" stroke-width="2"/>
   <text x="630" y="334" text-anchor="middle" font-size="10" fill="#000000" font-weight="bold">BASS</text>
   <!-- Vocal mic — diamond -->
-  <polygon points="630,362 638,376 630,390 622,376" fill="#ffffff" stroke="#000000" stroke-width="2"/>
-  <!-- DI opt -->
-  <rect x="656" y="318" width="76" height="22" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
-  <text x="694" y="332" text-anchor="middle" font-size="8" fill="#000000">DI — Bass (opt)</text>
+  <polygon points="630,362 640,376 630,390 620,376" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <!-- DI — Bass (in front of Bass amp) -->
+  <rect x="619" y="155" width="76" height="20" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="657" y="168" text-anchor="middle" font-size="8" fill="#000000">DI — Bass</text>
 
   <!-- ══ POS 5 — Gtr / Aux Keys / Trombone / Vocals (Stage Left) ══ -->
   <circle cx="867" cy="415" r="32" fill="#ffffff" stroke="#000000" stroke-width="2"/>
-  <text x="867" y="405" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">GTR</text>
+  <text x="867" y="405" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">RHY GTR</text>
   <text x="867" y="418" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">AUX KEYS</text>
   <text x="867" y="431" text-anchor="middle" font-size="9" fill="#000000" font-weight="bold">TROMBONE</text>
   <!-- Vocal mic — diamond -->
-  <polygon points="867,447 875,461 867,475 859,461" fill="#ffffff" stroke="#000000" stroke-width="2"/>
-  <!-- DI boxes — two separate, moved left -->
-  <rect x="730" y="398" width="76" height="18" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
-  <text x="768" y="411" text-anchor="middle" font-size="7" fill="#000000">DI — Aux Keys</text>
-  <rect x="730" y="420" width="76" height="18" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
-  <text x="768" y="433" text-anchor="middle" font-size="7" fill="#000000">DI — Acoustic Gtr</text>
+  <polygon points="867,447 877,461 867,475 857,461" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <!-- DI boxes — in front of Rhythm Gtr amp -->
+  <rect x="827" y="214" width="80" height="18" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="867" y="227" text-anchor="middle" font-size="7" fill="#000000">DI — Aux Keys</text>
+  <rect x="827" y="236" width="80" height="18" rx="2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="867" y="249" text-anchor="middle" font-size="7" fill="#000000">DI — Acoustic Gtr</text>
 
   <!-- ── FLOOR MONITORS ── -->
   <polygon points="228,515 288,515 276,543 240,543" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
@@ -111,6 +111,41 @@
 
   <polygon points="732,515 792,515 780,543 744,543" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
   <text x="762" y="533" text-anchor="middle" font-size="8" fill="#000000">MON</text>
+
+  <!-- ── DRUM MONITOR (behind drummer) ── -->
+  <polygon points="480,93 540,93 528,115 492,115" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+  <text x="510" y="109" text-anchor="middle" font-size="8" fill="#000000">MON</text>
+
+  <!-- ── PLAYER NAMES ── -->
+  <g font-weight="bold" fill="#000000" text-anchor="middle">
+    <text x="152" y="378" font-size="10">Drew</text>
+    <text x="390" y="293" font-size="10">Matt</text>
+    <text x="510" y="133" font-size="10">Jim</text>
+    <text x="630" y="293" font-size="10">Jack</text>
+    <text x="867" y="378" font-size="10">Miles</text>
+  </g>
+
+  <!-- ── CHANNEL BADGES (match input list) ── -->
+  <g font-weight="bold">
+    <circle cx="510" cy="312" r="8" fill="#000000"/><text x="510" y="315" text-anchor="middle" font-size="9" fill="#ffffff">1</text>
+    <circle cx="455" cy="283" r="8" fill="#000000"/><text x="455" y="286" text-anchor="middle" font-size="9" fill="#ffffff">2</text>
+    <circle cx="392" cy="190" r="8" fill="#000000"/><text x="392" y="193" text-anchor="middle" font-size="9" fill="#ffffff">3</text>
+    <circle cx="628" cy="190" r="8" fill="#000000"/><text x="628" y="193" text-anchor="middle" font-size="9" fill="#ffffff">4</text>
+    <circle cx="609" cy="165" r="8" fill="#000000"/><text x="609" y="168" text-anchor="middle" font-size="9" fill="#ffffff">5</text>
+    <circle cx="152" cy="210" r="8" fill="#000000"/><text x="152" y="213" text-anchor="middle" font-size="9" fill="#ffffff">6</text>
+    <circle cx="362" cy="99" r="8" fill="#000000"/><text x="362" y="102" text-anchor="middle" font-size="9" fill="#ffffff">7</text>
+    <circle cx="817" cy="223" r="8" fill="#000000"/><text x="817" y="226" text-anchor="middle" font-size="9" fill="#ffffff">8</text>
+    <circle cx="817" cy="245" r="8" fill="#000000"/><text x="817" y="248" text-anchor="middle" font-size="9" fill="#ffffff">9</text>
+    <circle cx="867" cy="201" r="8" fill="#000000"/><text x="867" y="204" text-anchor="middle" font-size="8" fill="#ffffff">10</text>
+  </g>
+
+  <!-- channel #s inside vocal diamonds -->
+  <g font-weight="bold" fill="#000000" text-anchor="middle" font-size="8">
+    <text x="152" y="464">11</text>
+    <text x="390" y="379">12</text>
+    <text x="630" y="379">13</text>
+    <text x="867" y="464">14</text>
+  </g>
 
   <!-- ── Legend ── -->
   <line x1="100" y1="572" x2="920" y2="572" stroke="#000000" stroke-width="0.5"/>
@@ -127,5 +162,79 @@
   <text x="510" y="592" font-size="10" fill="#000000">Floor monitor</text>
   <text x="918" y="582" text-anchor="end" font-size="10" fill="#000000" font-weight="bold">Miles Shultz · (734) 883-7119 · Miles@KingsOfEwing.com</text>
   <text x="918" y="594" text-anchor="end" font-size="10" fill="#000000" font-weight="bold">KingsOfEwing.com</text>
+
+  <!-- ══════════ INPUT LIST / POWER PANEL ══════════ -->
+  <rect x="965" y="58" width="257" height="540" rx="6" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+  <text x="1093" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#000000" letter-spacing="2">INPUT LIST</text>
+  <line x1="965" y1="90" x2="1222" y2="90" stroke="#000000" stroke-width="1"/>
+
+  <!-- column headers -->
+  <text x="978" y="106" font-size="8" fill="#000000" font-weight="bold">CH</text>
+  <text x="1006" y="106" font-size="8" fill="#000000" font-weight="bold">SOURCE</text>
+  <text x="1210" y="106" text-anchor="end" font-size="8" fill="#000000" font-weight="bold">MIC / DI</text>
+  <line x1="965" y1="110" x2="1222" y2="110" stroke="#000000" stroke-width="0.5"/>
+
+  <!-- rows -->
+  <circle cx="982" cy="124" r="8" fill="#000000"/><text x="982" y="127" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">1</text>
+  <text x="1006" y="127" font-size="9" fill="#000000">Kick Drum</text>
+  <text x="1210" y="127" text-anchor="end" font-size="9" fill="#000000">mic</text>
+
+  <circle cx="982" cy="143" r="8" fill="#000000"/><text x="982" y="146" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">2</text>
+  <text x="1006" y="146" font-size="9" fill="#000000">Snare</text>
+  <text x="1210" y="146" text-anchor="end" font-size="9" fill="#000000">mic</text>
+
+  <circle cx="982" cy="162" r="8" fill="#000000"/><text x="982" y="165" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">3</text>
+  <text x="1006" y="165" font-size="9" fill="#000000">Overhead L</text>
+  <text x="1210" y="165" text-anchor="end" font-size="9" fill="#000000">mic</text>
+
+  <circle cx="982" cy="181" r="8" fill="#000000"/><text x="982" y="184" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">4</text>
+  <text x="1006" y="184" font-size="9" fill="#000000">Overhead R</text>
+  <text x="1210" y="184" text-anchor="end" font-size="9" fill="#000000">mic</text>
+
+  <circle cx="982" cy="200" r="8" fill="#000000"/><text x="982" y="203" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">5</text>
+  <text x="1006" y="203" font-size="9" fill="#000000">Bass</text>
+  <text x="1210" y="203" text-anchor="end" font-size="9" fill="#000000">DI</text>
+
+  <circle cx="982" cy="219" r="8" fill="#000000"/><text x="982" y="222" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">6</text>
+  <text x="1006" y="222" font-size="9" fill="#000000">Lead Gtr</text>
+  <text x="1210" y="222" text-anchor="end" font-size="9" fill="#000000">amp mic</text>
+
+  <circle cx="982" cy="238" r="8" fill="#000000"/><text x="982" y="241" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">7</text>
+  <text x="1006" y="241" font-size="9" fill="#000000">Keys</text>
+  <text x="1210" y="241" text-anchor="end" font-size="9" fill="#000000">XLR from amp</text>
+
+  <circle cx="982" cy="257" r="8" fill="#000000"/><text x="982" y="260" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">8</text>
+  <text x="1006" y="260" font-size="9" fill="#000000">Aux Keys</text>
+  <text x="1210" y="260" text-anchor="end" font-size="9" fill="#000000">DI</text>
+
+  <circle cx="982" cy="276" r="8" fill="#000000"/><text x="982" y="279" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">9</text>
+  <text x="1006" y="279" font-size="9" fill="#000000">Acoustic Gtr</text>
+  <text x="1210" y="279" text-anchor="end" font-size="9" fill="#000000">DI</text>
+
+  <circle cx="982" cy="295" r="8" fill="#000000"/><text x="982" y="298" text-anchor="middle" font-size="8" fill="#ffffff" font-weight="bold">10</text>
+  <text x="1006" y="298" font-size="9" fill="#000000">Rhythm Gtr</text>
+  <text x="1210" y="298" text-anchor="end" font-size="9" fill="#000000">amp mic</text>
+
+  <circle cx="982" cy="314" r="8" fill="#000000"/><text x="982" y="317" text-anchor="middle" font-size="8" fill="#ffffff" font-weight="bold">11</text>
+  <text x="1006" y="317" font-size="9" fill="#000000">Vox — Drew (Lead Gtr)</text>
+  <text x="1210" y="317" text-anchor="end" font-size="9" fill="#000000">mic</text>
+
+  <circle cx="982" cy="333" r="8" fill="#000000"/><text x="982" y="336" text-anchor="middle" font-size="8" fill="#ffffff" font-weight="bold">12</text>
+  <text x="1006" y="336" font-size="9" fill="#000000">Vox — Matt (Keys)</text>
+  <text x="1210" y="336" text-anchor="end" font-size="9" fill="#000000">mic</text>
+
+  <circle cx="982" cy="352" r="8" fill="#000000"/><text x="982" y="355" text-anchor="middle" font-size="8" fill="#ffffff" font-weight="bold">13</text>
+  <text x="1006" y="355" font-size="9" fill="#000000">Vox — Jack (Bass)</text>
+  <text x="1210" y="355" text-anchor="end" font-size="9" fill="#000000">mic</text>
+
+  <circle cx="982" cy="371" r="8" fill="#000000"/><text x="982" y="374" text-anchor="middle" font-size="8" fill="#ffffff" font-weight="bold">14</text>
+  <text x="1006" y="374" font-size="9" fill="#000000">Vox/Tbn — Miles (Rhy Gtr)</text>
+  <text x="1210" y="374" text-anchor="end" font-size="9" fill="#000000">mic</text>
+
+  <!-- notes -->
+  <line x1="965" y1="394" x2="1222" y2="394" stroke="#000000" stroke-width="0.5"/>
+  <circle cx="984" cy="413" r="8" fill="#000000"/><text x="984" y="416" text-anchor="middle" font-size="9" fill="#ffffff" font-weight="bold">#</text>
+  <text x="998" y="416" font-size="8" fill="#000000" font-style="italic">= channel # marked on stage plot</text>
+  <text x="978" y="436" font-size="8" fill="#000000" font-style="italic">Stage L/R as seen by the band facing audience.</text>
 
 </svg>
