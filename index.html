@@ -82,7 +82,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .mobile-menu a:hover { color: var(--teal); opacity: 1; }
 
-.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; padding: 4.5rem 2rem 8rem; position: relative; overflow: hidden; }
+.hero { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; padding: 4.5rem 2rem 8rem; position: relative; overflow: hidden; }
 
 .hero-bg { position: absolute; inset: 0; background-image: url('docs/images/IMG_2445.jpeg'); background-size: cover; background-position: center 40%; filter: brightness(0.45); z-index: 0; }
 
@@ -138,7 +138,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 #book    { background: var(--bg); padding: 7rem 2rem; text-align: center; }
 
-footer   { background: linear-gradient(rgba(30,14,8,0.82), rgba(30,14,8,0.82)), url('docs/images/IMG_5358.jpeg'); background-size: cover; background-position: center; border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem 2.5rem calc(2.5rem + 58px); }
+footer   { background: linear-gradient(rgba(30,14,8,0.82), rgba(30,14,8,0.82)), url('docs/images/IMG_5358.jpeg'); background-size: cover; background-position: center; border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem; }
 
 /* SHOWS */
   .shows-inner { max-width: 860px; margin: 0 auto; }
@@ -363,6 +363,9 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.85); letter-spacing: 0.
 
 #sticky-player.visible { display: flex; }
 
+/* When the sticky bar is showing, reserve space so it never covers content */
+body.sticky-active { padding-bottom: 58px; }
+
 #sticky-track-name {
     cursor: pointer;
     font-size: 0.72rem;
@@ -513,27 +516,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 }
 @media (max-width: 600px) {
   #video-pip { width: calc(100vw - 2rem); right: 1rem; }
-}
-#video-scroll-back {
-  display: none;
-  position: fixed;
-  bottom: 80px;
-  right: 1rem;
-  background: var(--brown);
-  border: 2px solid var(--coral);
-  color: var(--cream);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.5rem 0.85rem;
-  cursor: pointer;
-  z-index: 200;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-}
-#video-scroll-back.visible { display: block; }
-@media (hover: any-hover) {
-  #video-scroll-back { display: none !important; }
 }
 /* Audio track list inside the player box */
 .audio-track-list { margin-top: 0.8rem; border-top: 1px solid rgba(232,223,192,0.1); padding-top: 0.6rem; }
@@ -1042,8 +1024,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   </div>
   <button id="pip-close" aria-label="Close video">&times;</button>
 </div>
-<!-- Scroll-back nudge (mobile only) -->
-<button id="video-scroll-back" aria-label="Scroll back to video">▶ Now Playing</button>
 
 <!-- Sticky mini player -->
 <div id="sticky-player" aria-label="Now playing">
@@ -1954,7 +1934,6 @@ let currentVideoIndex = 0;
   const pipLabel       = document.getElementById('pip-label');
   const pipControls    = document.getElementById('pip-controls');
   const pipClose       = document.getElementById('pip-close');
-  const scrollBackBtn  = document.getElementById('video-scroll-back');
   const videoAnchor    = document.getElementById('video-anchor');
   const videoDisplay   = document.querySelector('.video-display');
   if (!videoDisplay || !videoAnchor) return;
@@ -2070,7 +2049,6 @@ let currentVideoIndex = 0;
             if (!displayVisible) showPip();
           } else if (event.data === YT.PlayerState.ENDED) {
             hidePip(false);
-            scrollBackBtn && scrollBackBtn.classList.remove('visible');
           }
         }
       }
@@ -2086,14 +2064,8 @@ let currentVideoIndex = 0;
       showPip();
     } else if (displayVisible) {
       hidePip(false);
-      scrollBackBtn && scrollBackBtn.classList.remove('visible');
     }
   }, { threshold: 0 }).observe(videoAnchor);
-
-  scrollBackBtn && scrollBackBtn.addEventListener('click', () => {
-    videoAnchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    scrollBackBtn.classList.remove('visible');
-  });
 
   // PiP = CSS-float the existing .video-display. The iframe never moves in
   // the DOM, so playback continues seamlessly (reparenting an iframe forces
@@ -2148,7 +2120,6 @@ let currentVideoIndex = 0;
   audio.addEventListener('play', () => {
     syncVideoPlayIcons(false);
     hidePip(false);
-    scrollBackBtn && scrollBackBtn.classList.remove('visible');
   });
 })();
 
@@ -2164,19 +2135,14 @@ audio.addEventListener('play', () => {
 // you can resume without scrolling back) until explicitly closed via ×.
 const audioBox = document.getElementById('audio-box');
 const stickyPlayer = document.getElementById('sticky-player');
-let audioBoxVisible = true;
 let audioStarted = false;     // a track has been started at least once
 let stickyDismissed = false;  // user closed the bar
 function updateStickyVisibility() {
-  stickyPlayer.classList.toggle('visible',
-    audioStarted && !stickyDismissed);
+  const show = audioStarted && !stickyDismissed;
+  stickyPlayer.classList.toggle('visible', show);
+  document.body.classList.toggle('sticky-active', show);
 }
 if (audioBox && stickyPlayer) {
-  const audioBoxObserver = new IntersectionObserver(entries => {
-    audioBoxVisible = entries[0].isIntersecting;
-    updateStickyVisibility();
-  }, { threshold: 0 });
-  audioBoxObserver.observe(audioBox);
   audio.addEventListener('play', () => {
     audioStarted = true;
     stickyDismissed = false;
