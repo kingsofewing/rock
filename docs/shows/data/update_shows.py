@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-# Run with: python3 docs/shows/update_shows.py
+# Run with: python3 docs/shows/data/update_shows.py
 """
 update_shows.py
 ---------------
-Reads shows.xlsx and writes shows.json (both in docs/shows/).
+Reads shows.xlsx and writes shows.json (both in docs/shows/data/).
 Run this whenever you update the spreadsheet:
 
-    python3 docs/shows/update_shows.py
+    python3 docs/shows/data/update_shows.py
 
 Then commit shows.xlsx and shows.json via GitHub Desktop and push.
 Requires openpyxl:  pip3 install openpyxl
@@ -23,12 +23,14 @@ try:
 except ImportError:
     sys.exit("Missing dependency. Run:  pip3 install openpyxl")
 
-THIS_DIR  = Path(__file__).resolve().parent   # docs/shows/
-XLSX_PATH = THIS_DIR / "shows.xlsx"
-JSON_PATH = THIS_DIR / "shows.json"
-ICS_DIR   = THIS_DIR / "calendar"             # hosted per-gig .ics files
-PROMO_DIR = THIS_DIR / "promos"               # hosted per-gig promo images
-SOCIAL_DIR = THIS_DIR.parent / "social media" # source gig folders (YYYYMMDD Venue)
+THIS_DIR   = Path(__file__).resolve().parent      # docs/shows/data/
+SHOWS_DIR  = THIS_DIR.parent                       # docs/shows/
+REPO_ROOT  = SHOWS_DIR.parent.parent               # repo root
+XLSX_PATH  = SHOWS_DIR / "data" / "shows.xlsx"
+JSON_PATH  = SHOWS_DIR / "data" / "shows.json"
+ICS_DIR    = SHOWS_DIR / "calendar"               # hosted per-gig .ics files
+PROMO_DIR  = SHOWS_DIR / "promos"                 # hosted per-gig promo images
+SOCIAL_DIR = SHOWS_DIR.parent / "social media"    # source gig folders (YYYYMMDD Venue)
 SITE_URL  = "https://www.kingsofewing.com"
 IMG_EXTS  = (".png", ".jpg", ".jpeg", ".webp")
 
@@ -307,9 +309,9 @@ def main():
     JSON_PATH.write_text(json.dumps(shows, indent=2, ensure_ascii=False))
     print(f"Wrote {len(shows)} shows to {JSON_PATH.name}")
     n = write_ics_files(shows)
-    print(f"Wrote {n} calendar files to {ICS_DIR.relative_to(THIS_DIR.parent.parent)}/")
+    print(f"Wrote {n} calendar files to {ICS_DIR.relative_to(REPO_ROOT)}/")
     p = write_promo_files(shows)
-    print(f"Published {p} promo images to {PROMO_DIR.relative_to(THIS_DIR.parent.parent)}/")
+    print(f"Published {p} promo images to {PROMO_DIR.relative_to(REPO_ROOT)}/")
 
 
 if __name__ == "__main__":
