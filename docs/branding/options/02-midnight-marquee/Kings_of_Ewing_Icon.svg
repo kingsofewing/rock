@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+
+  <!-- Kings of Ewing — Midnight Marquee icon / submark (2026) -->
+  <!-- Square crops cleanly to a circle for avatars -->
+  <style>@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&amp;display=swap');</style>
+
+  <!-- Midnight rounded tile -->
+  <rect x="0" y="0" width="240" height="240" rx="44" fill="#10243f"/>
+
+  <!-- Marquee bulbs -->
+  <g fill="#f0a830">
+    <circle cx="66" cy="62" r="6"/><circle cx="104" cy="62" r="6"/><circle cx="142" cy="62" r="6"/><circle cx="180" cy="62" r="6"/>
+  </g>
+
+  <!-- KOE monogram -->
+  <text x="120" y="178" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="96" letter-spacing="2" fill="#f5e9df">KOE</text>
+
+</svg>

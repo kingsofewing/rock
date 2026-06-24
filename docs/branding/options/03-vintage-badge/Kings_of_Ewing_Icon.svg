@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+
+  <!-- Kings of Ewing — Vintage Badge favicon / tiny icon (2026). Simplified for legibility at small sizes. -->
+
+  <circle cx="120" cy="120" r="116" fill="#b5532a"/>
+  <circle cx="120" cy="120" r="98" fill="none" stroke="#f2e8d5" stroke-width="5"/>
+
+  <g transform="translate(120,126) scale(1.95)">
+    <path d="M0,-30 L-7.05,-9.71 L-28.53,-9.27 L-11.41,3.71 L-17.63,24.27 L0,12 L17.63,24.27 L11.41,3.71 L28.53,-9.27 L7.05,-9.71 Z"
+      fill="#d9a441" stroke="#f2e8d5" stroke-width="2" stroke-linejoin="round"/>
+  </g>
+
+</svg>

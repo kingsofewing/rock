@@ -17,6 +17,3 @@ docs/sources/mailing_list.xlsx
 # Oh Canada folder — only publish the HTML pages, keep md/pdf/xlsx/etc local
 docs/canada 2026/*
 !docs/canada 2026/*.html
-
-# Branding logo concepts — keep local, don't publish
-docs/branding/options/

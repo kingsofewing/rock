@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+
+  <!-- Kings of Ewing icon / submark (2026) — avatars, favicons, stickers -->
+  <!-- Square crops cleanly to a circle for Instagram/profile avatars -->
+  <style>@import url('https://fonts.googleapis.com/css2?family=Anton&amp;display=swap');</style>
+
+  <!-- Ink-black rounded tile -->
+  <rect x="0" y="0" width="240" height="240" rx="44" fill="#141414"/>
+
+  <!-- KOE monogram -->
+  <text x="120" y="150" text-anchor="middle" font-family="'Anton', sans-serif" font-size="96" fill="#ededea">KOE</text>
+
+  <!-- Signal-red bar accent -->
+  <rect x="78" y="172" width="84" height="11" rx="2" fill="#e23b2e"/>
+
+</svg>

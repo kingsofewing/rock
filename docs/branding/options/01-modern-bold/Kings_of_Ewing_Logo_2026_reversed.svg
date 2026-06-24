@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="188" viewBox="0 0 300 188">
+
+  <!-- Kings of Ewing primary logo (2026) — REVERSED, for DARK backgrounds -->
+  <!-- Display face: Anton (loads from Google Fonts) -->
+  <style>@import url('https://fonts.googleapis.com/css2?family=Anton&amp;display=swap');</style>
+
+  <!-- Signal-red bar accent -->
+  <rect x="24" y="34" width="11" height="120" fill="#e23b2e"/>
+
+  <!-- KINGS -->
+  <text x="50" y="112" font-family="'Anton', sans-serif" font-size="90" fill="#ededea">KINGS</text>
+
+  <!-- OF EWING -->
+  <text x="52" y="166" font-family="'Anton', sans-serif" font-size="52" letter-spacing="1" fill="#e23b2e">OF EWING</text>
+
+</svg>

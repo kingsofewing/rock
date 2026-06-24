@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" viewBox="0 0 300 150">
+
+  <!-- Kings of Ewing — Midnight Marquee primary logo (2026), for LIGHT backgrounds -->
+  <style>@import url('https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Oswald:wght@700&amp;display=swap');</style>
+
+  <!-- Marquee bulbs -->
+  <g fill="#f0a830">
+    <circle cx="70" cy="26" r="4"/><circle cx="102" cy="26" r="4"/><circle cx="134" cy="26" r="4"/>
+    <circle cx="166" cy="26" r="4"/><circle cx="198" cy="26" r="4"/><circle cx="230" cy="26" r="4"/>
+  </g>
+
+  <!-- Kings (script) -->
+  <text x="150" y="98" text-anchor="middle" font-family="'Pacifico', cursive" font-size="64" fill="#10243f">Kings</text>
+
+  <!-- OF EWING -->
+  <text x="150" y="130" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="20" letter-spacing="8" fill="#c8851f">OF EWING</text>
+
+</svg>
