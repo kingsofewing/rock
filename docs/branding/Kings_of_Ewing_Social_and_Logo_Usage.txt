@@ -16,17 +16,40 @@ SoundCloud:  soundcloud.com/kingsofewing
 Website:     KingsOfEwing.com
 
 
-TAGGING THE BAND
-----------------
+BAND MEMBER HANDLES (Instagram)
+-------------------------------
 
-When posting about a Kings of Ewing show or event, please tag the band and
-its members as follows:
+Tag all four in every post — in the caption AND in the photo itself:
 
-  Instagram
-    Mention in caption:   @kingsofewing
+  @acri.jim   @professorfreak   @jhwestwood   @mattstork1
 
-    Photo tags surface the post on each member's "Tagged" tab and significantly
-    expand reach, so both caption mentions and photo tags are appreciated.
+
+TAGGING A SHOW POST (Instagram)
+-------------------------------
+
+1. PHOTO TAGS — tag the band members and the venue/organizer directly in
+   the photo. This surfaces the post on each member's "Tagged" tab and on
+   the venue's, which significantly expands reach:
+
+     @acri.jim, @professorfreak, @jhwestwood, @mattstork1, plus the
+     venue/organizer handle (e.g. @ridgevilleparks).
+
+2. CAPTION MENTIONS — repeat the same handles at the bottom of the caption:
+
+     @acri.jim @professorfreak @jhwestwood @mattstork1 @venuehandle
+
+3. MAILING-LIST CTA — include the signup line in every post:
+
+     📬 Never miss a show — join our mailing list at kingsofewing.com
+
+4. HASHTAGS — always lead with #KingsOfEwing, then mix in location and
+   event tags, e.g.:
+
+     #KingsOfEwing #Evanston #LiveMusic #ConcertsOnTheRidge
+
+
+OTHER PLATFORMS
+---------------
 
   YouTube
     Mention in video title or description: Kings of Ewing
@@ -37,4 +60,10 @@ its members as follows:
     Link to the website when possible: KingsOfEwing.com
 
 
+LOGO USAGE
+----------
 
+  Use the official logo from docs/branding/Kings_of_Ewing_Logo.png.
+  Keep clear space around the logo and don't stretch, recolor, or add
+  effects. On busy photos, place it on a solid or semi-transparent panel
+  so it stays legible.

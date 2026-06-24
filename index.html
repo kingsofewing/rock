@@ -1323,7 +1323,7 @@ function renderShow(s, isPast) {
   const d = new Date(s.date + 'T00:00:00');
   const wrap = document.createElement('div');
   wrap.className = isPast ? 'show-item past' : 'show-item';
-  if (s.cancelled) wrap.classList.add('cancelled-show');
+  if (s.cancelled && !isPast) wrap.classList.add('cancelled-show');
 
   // Date card — becomes a link to the show's Instagram post when one exists
   const dateBox = document.createElement(s.instagram_link ? 'a' : 'div');
