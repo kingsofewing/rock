@@ -27,8 +27,9 @@
   <link rel="apple-touch-icon" href="docs/branding/Kings_of_Ewing_Logo.png">
   <link rel="preload" as="image" href="docs/images/IMG_2445.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preload" as="font" href="docs/sources/font/kings/kings_black.otf" type="font/otf" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -47,13 +48,19 @@
     --brown: #1e0e08;
   }
 
+@font-face { font-family:'KingsOfEwing'; src:url('docs/sources/font/kings/kings_Regular.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:'KingsOfEwing'; src:url('docs/sources/font/kings/kings_Bold.otf') format('opentype'); font-weight:700; font-style:normal; font-display:swap; }
+@font-face { font-family:'KingsOfEwing'; src:url('docs/sources/font/kings/kings_black.otf') format('opentype'); font-weight:900; font-style:normal; font-display:swap; }
+@font-face { font-family:'KingsOfEwingSmallCaps'; src:url('docs/sources/font/kings/kings_SmallCaps.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:'KingsOfEwingOrnaments'; src:url('docs/sources/font/kings/kings_Ornaments.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+
 html { scroll-behavior: smooth; }
 
 body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--cream); overflow-x: hidden; }
 
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; background: rgba(30,14,8,0.97); backdrop-filter: blur(8px); border-bottom: 2px solid var(--teal); }
 
-.nav-logo { font-family: 'Lobster', cursive; font-size: 1.3rem; color: var(--cream); text-decoration: none; transition: color 0.2s; }
+.nav-logo { font-family: 'KingsOfEwing', cursive; font-weight: 700; font-size: 1.3rem; color: var(--cream); text-decoration: none; transition: color 0.2s; }
 
 .nav-logo:hover { color: var(--teal); }
 
@@ -88,7 +95,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .hero > *:not(.hero-bg):not(.hero-book-btn) { position: relative; z-index: 1; }
 
-.hero-title { font-family: 'Lobster', cursive; font-size: clamp(3rem, 9vw, 7rem); line-height: 1.2; color: var(--cream); margin: 0; animation: fadeUp 0.9s ease both; }
+.hero-title { font-family: 'KingsOfEwing', cursive; font-weight: 900; font-size: clamp(3rem, 9vw, 7rem); line-height: 1.2; color: var(--cream); margin: 0; animation: fadeUp 0.9s ease both; }
 
 .hero-book-btn { position: absolute; bottom: 0; right: 0; z-index: 2; border-radius: 4px 0 0 0; display: none; }
 
@@ -114,9 +121,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .btn-coral:hover { background: var(--cream); color: var(--brown); border-color: var(--cream); }
 
-.section-label { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 0.5rem; }
+.section-label { font-family: 'KingsOfEwingSmallCaps', 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); font-weight: 400; margin-bottom: 0.5rem; }
 
-.section-title { font-family: 'Lobster', cursive; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--cream); margin-bottom: 1.6rem; }
+.section-title { font-family: 'KingsOfEwing', cursive; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--cream); margin-bottom: 1.6rem; }
 
 .divider { width: 40px; height: 2px; background: var(--coral); margin: 0.8rem 0 1.8rem; }
 
@@ -178,7 +185,7 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 
 .show-month { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--coral); font-weight: 600; }
 
-.show-day { font-family: 'Pacifico', cursive; font-size: 1.9rem; color: var(--cream); line-height: 1.1; }
+.show-day { font-family: 'KingsOfEwing', cursive; font-weight: 400; font-size: 1.9rem; color: var(--cream); line-height: 1.1; }
 
 .show-year { font-size: 0.6rem; letter-spacing: 0.18em; color: rgba(232,223,192,0.4); font-weight: 500; margin-top: 0.2rem; }
 
@@ -290,7 +297,7 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 
 .form-field textarea { resize: vertical; min-height: 110px; }
 
-.submit-btn { width: 100%; padding: 1rem; background: var(--coral); color: var(--brown); border: 2px solid var(--coral); font-family: 'Pacifico', cursive; font-size: 1.1rem; letter-spacing: 0.08em; cursor: pointer; transition: background 0.2s, color 0.2s; }
+.submit-btn { width: 100%; padding: 1rem; background: var(--coral); color: var(--brown); border: 2px solid var(--coral); font-family: 'KingsOfEwing', cursive; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.04em; cursor: pointer; transition: background 0.2s, color 0.2s; }
 
 .submit-btn:hover { background: var(--cream); border-color: var(--cream); color: var(--brown); }
 
