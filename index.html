@@ -1,42 +1,23 @@
 <!DOCTYPE html>
-<!-- deploy -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kings of Ewing</title>
-<meta name="geo.placename" content="Evanston, IL">
-<meta name="geo.region" content="US-IL">
-<meta name="description" content="Kings of Ewing — a five-piece mostly-covers band from Evanston, IL. Rock, pop, folk, blues, and soul from the '60s to today. Available for weddings, block parties, fundraisers and more.">
+<meta name="description" content="Kings of Ewing — a five-piece mostly-covers band from Evanston, IL. Six decades of rock, pop, folk and soul. Available for weddings, block parties, fundraisers and more.">
 <meta property="og:title" content="Kings of Ewing">
-<meta property="og:description" content="A five-piece mostly-covers band from one block in Evanston, IL. Rock, pop, folk, blues, and soul from the '60s to today. Available for weddings, block parties, fundraisers and more.">
-<meta property="og:image" content="https://www.kingsofewing.com/docs/images/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Kings of Ewing performing live — a five-piece cover band from Evanston, IL">
+<meta property="og:description" content="A five-piece mostly-covers band from one block in Evanston, IL. Six decades of rock, pop, folk and soul. Available for weddings, block parties, fundraisers and more.">
+<meta property="og:image" content="https://www.kingsofewing.com/images/IMG_2445.jpeg">
 <meta property="og:url" content="https://www.kingsofewing.com">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Kings of Ewing">
-<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kings of Ewing">
 <meta name="twitter:description" content="A five-piece mostly-covers band from one block in Evanston, IL.">
-<meta name="twitter:image" content="https://www.kingsofewing.com/docs/images/og-image.jpg">
-<meta name="twitter:image:alt" content="Kings of Ewing performing live — a five-piece cover band from Evanston, IL">
-<link rel="icon" type="image/png" href="docs/branding/Kings_of_Ewing_Logo.png">
-  <link rel="apple-touch-icon" href="docs/branding/Kings_of_Ewing_Logo.png">
-  <link rel="preload" as="image" href="docs/images/IMG_2445.jpeg">
+<meta name="twitter:image" content="https://www.kingsofewing.com/images/IMG_2445.jpeg">
+<link rel="icon" type="image/png" href="docs/Kings_of_Ewing_Logo.png">
+  <link rel="apple-touch-icon" href="docs/Kings_of_Ewing_Logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Damion&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Kings of Ewing",
-  "url": "https://www.kingsofewing.com"
-}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -53,55 +34,47 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--c
 
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; background: rgba(30,14,8,0.97); backdrop-filter: blur(8px); border-bottom: 2px solid var(--teal); }
 
-.nav-logo { font-family: 'Damion', cursive; font-size: 1.3rem; color: var(--cream); text-decoration: none; transition: color 0.2s; }
+.nav-logo img { height: 48px; width: auto; display: block; }
 
-.nav-logo:hover { color: var(--teal); }
-
-.nav-links { display: none; list-style: none; gap: 1.75rem; align-items: center; }
-
-@media (min-width: 920px) {
-  .nav-links { display: flex; }
-  .hamburger { display: none; }
-}
+.nav-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
 
 .nav-links a { text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); opacity: 0.7; transition: opacity 0.2s, color 0.2s; white-space: nowrap; }
 
 .nav-links a:hover { opacity: 1; color: var(--teal); }
 
-.hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
 
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--cream); }
 
-.mobile-menu { position: fixed; top: 70px; right: 1rem; width: 200px; background: rgba(30,14,8,0.98); border: 1px solid var(--teal); border-radius: 6px; z-index: 99; padding: 0.5rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.5); opacity: 0; transform: translateY(-8px); pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; }
+.mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: rgba(30,14,8,0.98); border-bottom: 2px solid var(--teal); z-index: 99; padding: 1rem 0; }
 
-.mobile-menu.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.mobile-menu.open { display: block; }
 
-.mobile-menu a { display: block; padding: 0.65rem 1.25rem; text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); opacity: 0.8; border-bottom: 1px solid rgba(79,179,168,0.1); transition: color 0.2s; }
+.mobile-menu a { display: block; padding: 0.75rem 2rem; text-decoration: none; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream); opacity: 0.8; border-bottom: 1px solid rgba(79,179,168,0.1); transition: color 0.2s; }
 
 .mobile-menu a:last-child { border-bottom: none; }
 
 .mobile-menu a:hover { color: var(--teal); opacity: 1; }
 
-.hero { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; padding: 4.5rem 2rem 8rem; position: relative; overflow: hidden; }
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 7rem 2rem 5rem; position: relative; overflow: hidden; }
 
-.hero-bg { position: absolute; inset: 0; background-image: url('docs/images/IMG_2445.jpeg'); background-size: cover; background-position: center 40%; filter: brightness(0.45); z-index: 0; }
+.hero-bg { position: absolute; inset: 0; background-image: url('images/IMG_5358.jpeg'); background-size: cover; background-position: center 40%; filter: brightness(0.5); z-index: 0; }
 
-.hero > *:not(.hero-bg):not(.hero-book-btn) { position: relative; z-index: 1; }
+.hero > * { position: relative; z-index: 1; }
 
-.hero-title { font-family: 'Damion', cursive; font-size: clamp(3rem, 9vw, 7rem); line-height: 1.2; color: var(--cream); margin: 0; animation: fadeUp 0.9s ease both; }
+.hero-tagline { font-size: 0.78rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 1.4rem; animation: fadeUp 0.9s 0.2s ease both; }
 
-.hero-book-btn { position: absolute; bottom: 0; right: 0; z-index: 2; border-radius: 4px 0 0 0; display: none; }
+.hero-title { font-family: 'Lobster', cursive; font-size: clamp(3rem, 9vw, 7rem); line-height: 1.2; color: var(--cream); animation: fadeUp 0.9s ease both; }
 
-@media (max-width: 600px) {
-  .hero { padding-bottom: 3rem; }
-  .hero-book-btn { bottom: 0; right: 0; border-radius: 4px 0 0 0; display: block; }
-  .hero-title { position: absolute !important; top: 6.5rem; left: 0; right: 0; width: 100%; margin: 0; padding: 0 0.5rem; font-size: clamp(2rem, 8.5vw, 3rem); white-space: nowrap; text-shadow: 0 2px 14px rgba(0,0,0,0.65); animation: none; opacity: 1; }
-}
+.hero-sub { font-size: 1rem; color: rgba(232,223,192,0.7); font-weight: 300; max-width: 440px; line-height: 1.7; margin-top: 1.4rem; animation: fadeUp 0.9s 0.35s ease both; }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+.hero-cta { margin-top: 0.75rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; max-width: 420px; width: 100%; animation: fadeUp 0.9s 0.5s ease both; }
+
+.hero-cta .btn { text-align: center; width: 100%; }
+
+from { opacity: 0; transform: translateY(20px); }
+
+to { opacity: 1; transform: translateY(0); }
 
 /* Scroll entrance */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -116,29 +89,22 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; j
 
 .section-label { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 0.5rem; }
 
-.section-title { font-family: 'Damion', cursive; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--cream); margin-bottom: 1.6rem; }
+.section-title { font-family: 'Lobster', cursive; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; color: var(--cream); margin-bottom: 1.6rem; }
 
 .divider { width: 40px; height: 2px; background: var(--coral); margin: 0.8rem 0 1.8rem; }
 
 .cta-pair { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
-/* Section order: hero(photo) > media(bg) > social(photo) > mailing(bg) > shows(photo) > about(bg) > faq(photo) > book(bg) */
-.section-photo-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
-#social-bg  { background-image: url('docs/images/kings_of_ewing-1.jpg'); background-position: center 55%; filter: brightness(0.28); }
-#shows-bg   { background-image: url('docs/images/IMG_1810.jpeg'); background-position: center 60%; filter: brightness(0.22); }
-#faq-bg     { background-image: url('docs/images/Resized_IMG_5512.jpg.jpeg'); background-position: center 65%; filter: brightness(0.18); }
+/* Section order: follow(brown) > shows(bg) > about(brown) > book(bg) */
+  #social  { background: var(--brown); padding: 6rem 2rem; text-align: center; }
 
-#social  { background: var(--bg); padding: 6rem 2rem; text-align: center; position: relative; overflow: hidden; }
-#social > *:not(#social-bg) { position: relative; z-index: 1; }
+#shows   { background: var(--brown); padding: 7rem 3rem; }
 
-#shows   { background: var(--bg); padding: 7rem 3rem; position: relative; overflow: hidden; }
-#shows > *:not(#shows-bg) { position: relative; z-index: 1; }
+#about   { background: var(--bg);    padding: 7rem 3rem; }
 
-#about   { background: var(--bg); padding: 7rem 3rem; }
+#book    { background: var(--brown); padding: 7rem 2rem; text-align: center; }
 
-#book    { background: var(--bg); padding: 7rem 2rem; text-align: center; }
-
-footer   { background: linear-gradient(rgba(30,14,8,0.82), rgba(30,14,8,0.82)), url('docs/images/IMG_5358.jpeg'); background-size: cover; background-position: center; border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem; }
+footer   { background: var(--brown); border-top: 2px solid var(--teal); text-align: center; padding: 2.5rem; }
 
 /* SHOWS */
   .shows-inner { max-width: 860px; margin: 0 auto; }
@@ -157,30 +123,15 @@ footer   { background: linear-gradient(rgba(30,14,8,0.82), rgba(30,14,8,0.82)), 
 
 .show-list { border-top: 1px solid rgba(79,179,168,0.25); }
 
-/* Past shows: single column on mobile, two columns on wider screens to save vertical space */
-@media (min-width: 700px) {
-  #past-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 2.5rem; align-items: start; }
-}
-
 .show-item { display: grid; grid-template-columns: 90px 1fr; align-items: center; gap: 2rem; padding: 1.4rem 0; border-bottom: 1px solid rgba(79,179,168,0.15); transition: background 0.15s; }
 
 .show-item:hover { background: rgba(79,179,168,0.07); }
 
 .show-date { text-align: center; border: 2px solid rgba(200,98,58,0.55); padding: 0.5rem; }
 
-/* Date card linked to the show's Instagram post */
-a.show-date-link { position: relative; display: block; text-decoration: none; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s; }
-a.show-date-link:hover { border-color: var(--coral); background: rgba(200,98,58,0.12); transform: translateY(-2px); }
-a.show-date-link:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
-.show-ig-badge { position: absolute; top: 3px; right: 3px; color: var(--coral); opacity: 0.6; transition: opacity 0.2s; }
-a.show-date-link:hover .show-ig-badge { opacity: 1; }
-.past a.show-date-link:hover { border-color: rgba(232,223,192,0.45); }
-
 .show-month { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--coral); font-weight: 600; }
 
-.show-day { font-family: 'Damion', cursive; font-size: 1.9rem; color: var(--cream); line-height: 1.1; }
-
-.show-year { font-size: 0.6rem; letter-spacing: 0.18em; color: rgba(232,223,192,0.4); font-weight: 500; margin-top: 0.2rem; }
+.show-day { font-family: 'Pacifico', cursive; font-size: 1.9rem; color: var(--cream); line-height: 1.1; }
 
 .show-info h3 { font-size: 0.95rem; font-weight: 600; color: var(--cream); margin-bottom: 0.25rem; }
 
@@ -194,38 +145,13 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 
 .show-info p a:hover { color: var(--teal); border-color: var(--teal); }
 
-.show-desc { font-size: 0.78rem; font-style: italic; color: rgba(232,223,192,0.55); margin-top: 0.4rem; line-height: 1.5; max-width: 46ch; }
-
-.show-address { display: block; font-size: 0.78rem; color: var(--teal); margin-top: 0.15rem; text-decoration: none; transition: color 0.2s; }
-
-.show-address::before { content: '📍 '; font-style: normal; }
-
-.show-address:hover { color: var(--coral); }
-
-.cal-btn { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 0.7rem; padding: 0.4rem 0.85rem; background: none; border: 1px solid rgba(79,179,168,0.5); color: var(--teal); font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; }
-
-.cal-btn:hover { background: var(--teal); color: var(--brown); border-color: var(--teal); }
-
-.cal-wrap { position: relative; display: inline-block; }
-.cal-menu { position: absolute; left: 0; top: calc(100% + 0.4rem); z-index: 20; min-width: 190px; background: var(--brown); border: 1px solid rgba(79,179,168,0.5); border-radius: 4px; box-shadow: 0 6px 20px rgba(0,0,0,0.45); overflow: hidden; }
-.cal-menu-item { display: block; width: 100%; box-sizing: border-box; text-align: left; padding: 0.6rem 0.9rem; background: none; border: none; color: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 0.72rem; cursor: pointer; text-decoration: none; transition: background 0.15s, color 0.15s; }
-.cal-menu-item + .cal-menu-item { border-top: 1px solid rgba(79,179,168,0.2); }
-.cal-menu-item:hover { background: var(--teal); color: var(--brown); }
-
-.cal-btn svg { flex-shrink: 0; }
-
-.cal-btn .cal-time { text-transform: none; font-weight: 400; opacity: 0.75; letter-spacing: 0.03em; }
-
 .cancelled { font-size: 0.7rem; color: var(--coral); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
-.cancelled-show .show-info h3, .cancelled-show .show-info h3 a { text-decoration: line-through; text-decoration-thickness: 2px; }
 
 .past .show-date { border-color: rgba(232,223,192,0.15); }
 
 .past .show-month { color: rgba(232,223,192,0.35); }
 
 .past .show-day { color: rgba(232,223,192,0.4); }
-
-.past .show-year { color: rgba(232,223,192,0.2); }
 
 .past .show-info h3 { color: rgba(232,223,192,0.5); }
 
@@ -238,11 +164,16 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 
 .about-text p { font-size: 1rem; line-height: 1.85; color: rgba(232,223,192,0.8); font-weight: 300; margin-bottom: 1.2rem; }
 
-/* SONG LIST */
-  .songs-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: #6fd0c5; font-weight: 600; margin: 2rem 0 0.75rem; text-align: center; }
+.about-photo { position: relative; }
 
-.song-grid { border: 1px solid rgba(79,179,168,0.2); margin-bottom: 0.75rem; }
-.song-grid-decade { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; background-image: linear-gradient(to right, transparent calc(50% - 0.5px), rgba(79,179,168,0.2) calc(50% - 0.5px), rgba(79,179,168,0.2) calc(50% + 0.5px), transparent calc(50% + 0.5px)); grid-auto-flow: column; }
+.about-photo img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; }
+
+.about-photo::after { content: ''; position: absolute; inset: 0; border: 3px solid var(--teal); pointer-events: none; transform: translate(8px, 8px); opacity: 0.5; }
+
+/* SONG LIST */
+  .songs-label { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin: 2rem 0 0.75rem; }
+
+.song-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: 1px solid rgba(79,179,168,0.2); margin-bottom: 0.75rem; background-image: linear-gradient(to right, transparent calc(50% - 0.5px), rgba(79,179,168,0.2) calc(50% - 0.5px), rgba(79,179,168,0.2) calc(50% + 0.5px), transparent calc(50% + 0.5px)); }
 
 .song-item { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(79,179,168,0.12); }
 
@@ -256,10 +187,10 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 
 .download-btn:hover { background: rgba(79,179,168,0.1); border-color: var(--teal); }
 
-.song-header { display: block; padding: 0.5rem 1rem; background: rgba(79,179,168,0.12); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: none; color: var(--teal); font-weight: 600; border-bottom: 1px solid rgba(79,179,168,0.2); }
+.song-header { grid-column: 1 / -1; padding: 0.5rem 1rem; background: rgba(79,179,168,0.12); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: none; color: var(--teal); font-weight: 600; border-bottom: 1px solid rgba(79,179,168,0.2); }
 
 /* SOCIAL */
-  .social-row { display: grid; grid-template-columns: repeat(3, auto); gap: 1rem; justify-content: center; margin-top: 2rem; }
+  .social-row { display: flex; gap: 1.2rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
 
 .social-btn { display: flex; align-items: center; gap: 0.65rem; padding: 0.85rem 2rem; border: 2px solid rgba(79,179,168,0.5); text-decoration: none; color: var(--cream); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.22s; }
 
@@ -270,7 +201,7 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 /* BOOK */
   .book-inner { max-width: 680px; margin: 0 auto; }
 
-.email-link { display: inline-block; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: clamp(1rem, 2vw, 1.3rem); color: var(--teal); text-decoration: none; border-bottom: 2px solid rgba(79,179,168,0.4); padding-bottom: 0.2rem; transition: color 0.2s, border-color 0.2s; }
+.email-link { display: inline-block; font-family: 'Lobster', cursive; font-size: clamp(1rem, 2vw, 1.3rem); color: var(--teal); text-decoration: none; border-bottom: 2px solid rgba(79,179,168,0.4); padding-bottom: 0.2rem; transition: color 0.2s, border-color 0.2s; }
 
 .email-link:hover { color: var(--coral); border-color: var(--coral); }
 
@@ -290,25 +221,37 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 
 .form-field textarea { resize: vertical; min-height: 110px; }
 
-.submit-btn { width: 100%; padding: 1rem; background: var(--coral); color: var(--brown); border: 2px solid var(--coral); font-family: 'Damion', cursive; font-size: 1.1rem; letter-spacing: 0.08em; cursor: pointer; transition: background 0.2s, color 0.2s; }
+.submit-btn { width: 100%; padding: 1rem; background: var(--coral); color: var(--brown); border: 2px solid var(--coral); font-family: 'Pacifico', cursive; font-size: 1.1rem; letter-spacing: 0.08em; cursor: pointer; transition: background 0.2s, color 0.2s; }
 
 .submit-btn:hover { background: var(--cream); border-color: var(--cream); color: var(--brown); }
 
 .success-msg { display: none; margin-top: 1rem; padding: 1rem; background: rgba(79,179,168,0.12); border: 1.5px solid rgba(79,179,168,0.35); color: var(--teal); font-size: 0.9rem; text-align: center; }
 
-.footer-logo { height: 56px; margin-bottom: 0.8rem; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7)); }
+/* GALLERY */
+  .photo-gallery { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 0.75rem; margin: 2rem 0 1.5rem; }
 
-footer p { font-size: 0.75rem; color: rgba(232,223,192,0.85); letter-spacing: 0.08em; text-shadow: 0 1px 4px rgba(0,0,0,0.7); }
+.photo-gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: opacity 0.2s; }
+
+.photo-gallery img:hover { opacity: 0.85; }
+
+.footer-logo { height: 56px; margin-bottom: 0.8rem; }
+
+footer p { font-size: 0.75rem; color: rgba(232,223,192,0.3); letter-spacing: 0.08em; }
 
 /* Audio wrapper box */
   .audio-box {
-    background: var(--brown);
+    margin-top: 1.5rem;
+    background: rgba(30,14,8,0.5);
     border: 1px solid rgba(200,98,58,0.4);
     padding: 1.4rem 1.6rem 1.2rem;
     width: 100%;
     max-width: 320px;
     text-align: center;
+    animation: fadeUp 0.9s 0.55s ease both;
+    opacity: 0;
   }
+
+.audio-box.loaded { opacity: 1; transition: opacity 0.4s; }
 
 #player-track-name {
     font-size: 0.78rem;
@@ -318,17 +261,21 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.85); letter-spacing: 0.
     margin-bottom: 0.9rem;
   }
 
-@media (max-width: 768px) {
-  nav { padding: 0.8rem 1.5rem; }
+nav { padding: 0.8rem 1.5rem; }
 
-  #social, #mailing, #shows, #about, #book { padding: 5rem 1.5rem; }
-  .form-row { grid-template-columns: 1fr; }
-}
+.nav-links { display: none; }
 
-@media (max-width: 600px) {
-  .social-row { grid-template-columns: 1fr; max-width: 280px; margin-left: auto; margin-right: auto; }
-  .social-btn { justify-content: center; }
-}
+.hamburger { display: flex; }
+
+.about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+
+.about-photo { order: -1; }
+
+#shows, #about { padding: 5rem 1.5rem; }
+
+.photo-gallery { grid-template-columns: 1fr; }
+
+.form-row { grid-template-columns: 1fr; }
 
 /* ── Sticky mini player ───────────────────────────────── */
   #sticky-player {
@@ -357,38 +304,33 @@ footer p { font-size: 0.75rem; color: rgba(232,223,192,0.85); letter-spacing: 0.
     padding: 0 70px;
     min-width: 0;
   }
+  .sticky-seek {
+    width: 90px; height: 3px;
+    background: rgba(232,223,192,0.2);
+    border-radius: 2px; cursor: pointer; flex-shrink: 0;
+  }
+  #sticky-volume { width: 60px; accent-color: var(--teal); cursor: pointer; flex-shrink: 0; }
+  .sticky-vol-icon { opacity: 0.5; flex-shrink: 0; }
   @media (max-width: 540px) {
     .sticky-controls { padding: 0 8px; gap: 0.5rem; }
+    .sticky-logo { display: none; }
+    .sticky-seek { width: 50px; }
+    #sticky-volume { width: 50px; }
+    .sticky-vol-icon { display: none; }
   }
 
 #sticky-player.visible { display: flex; }
 
-/* When the sticky bar is showing, reserve space so it never covers content */
-body.sticky-active { padding-bottom: 58px; }
-
 #sticky-track-name {
-    cursor: pointer;
     font-size: 0.72rem;
     letter-spacing: 0.1em;
     color: var(--cream);
     min-width: 120px;
-    max-width: 260px;
+    max-width: 200px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
     text-align: center;
-  }
-  #sticky-track-name.scrolling {
-    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  }
-  #sticky-track-name.scrolling span {
-    display: inline-block;
-    padding-right: 3rem;
-    animation: marquee-scroll 10s linear infinite;
-  }
-  @keyframes marquee-scroll {
-    0%   { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
   }
 
 .sticky-btn {
@@ -407,6 +349,13 @@ body.sticky-active { padding-bottom: 58px; }
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
+
+#sticky-volume {
+    width: 70px; accent-color: var(--teal); cursor: pointer;
+  }
+
+#sticky-track-name { max-width: 110px; }
+}
 
 input[type="date"] { color-scheme: dark; color: var(--cream) !important; }
 
@@ -432,333 +381,174 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 
 .sticky-logo-right { right: 0; }
 
-.sticky-book-btn { position: absolute; right: 66px; top: 50%; transform: translateY(-50%); font-size: 0.72rem; padding: 0.35rem 0.9rem; letter-spacing: 0.08em; }
-
-@media (max-width: 600px) { .sticky-logo { display: none; } .sticky-book-btn { display: none; } }
-
-#sticky-progress-track {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 10px;
-  cursor: pointer;
-}
-#sticky-progress-track:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--teal); }
-#sticky-progress-bar {
-  position: absolute;
-  top: 0; left: 0;
-  height: 2px;
-  width: 0%;
-  background: var(--teal);
-  pointer-events: none;
-  transition: width 0.25s linear;
-}
-#sticky-progress-track:hover #sticky-progress-bar { height: 4px; }
-
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: #4fb3a8;
-  color: #1e0e08;
-  padding: 8px 12px;
-  z-index: 1000;
-}
-.skip-link:focus {
-  top: 0;
-}
-
-/* Audio transport buttons (prev/next in main player) */
-.player-transport-btn { background: none; border: none; cursor: pointer; color: var(--cream); opacity: 0.7; padding: 4px; transition: opacity 0.2s; display: flex; align-items: center; }
-.player-transport-btn:hover { opacity: 1; }
-.player-transport-btn:focus-visible { opacity: 1; outline: none; box-shadow: 0 0 0 2px var(--teal); }
-
-/* Footer social icon links */
-.footer-social-link { color: rgba(232,223,192,0.8); transition: color 0.2s; display: inline-flex; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.7)); }
-.footer-social-link:hover, .footer-social-link:focus-visible { color: var(--teal); outline: none; }
-
-/* Video PiP */
-#video-pip {
-  display: none;
-  position: fixed;
-  bottom: 80px;
-  right: 1.5rem;
-  width: 300px;
-  z-index: 200;
-  background: var(--brown);
-  border: 2px solid var(--coral);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.65);
-}
-#video-pip.visible { display: block; }
-#pip-label {
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(232,223,192,0.5);
-  padding: 0.35rem 0.75rem 0.25rem;
-}
-.pip-nav-btn { background: none; border: none; cursor: pointer; color: var(--cream); opacity: 0.7; padding: 4px; display: flex; align-items: center; transition: opacity 0.2s; }
-.pip-nav-btn:hover, .pip-nav-btn:focus-visible { opacity: 1; outline: none; box-shadow: 0 0 0 2px var(--teal); }
-#pip-close {
-  position: absolute;
-  top: -12px; right: -12px;
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  background: var(--coral);
-  color: var(--brown);
-  border: none;
-  font-size: 1.1rem;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 201;
-}
-@media (max-width: 600px) {
-  #video-pip { width: calc(100vw - 2rem); right: 1rem; }
-}
-/* Audio track list inside the player box */
-.audio-track-list { margin-top: 0.8rem; border-top: 1px solid rgba(232,223,192,0.1); padding-top: 0.6rem; }
-.track-item { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.18rem 0; cursor: pointer; }
-.track-item:hover .track-name, .track-item:hover .track-num { color: var(--teal); }
-.track-item.now-playing .track-name { color: var(--teal); }
-.track-item.now-playing .track-num { color: var(--coral); }
-.track-num { font-size: 0.6rem; color: rgba(232,223,192,0.25); min-width: 1rem; text-align: right; flex-shrink: 0; }
-.track-name { font-size: 0.72rem; color: rgba(232,223,192,0.45); transition: color 0.2s; }
-
-/* Song requests placeholder — crossed-out "Free Bird" gag */
-#song-requests::placeholder { text-decoration: line-through; }
-
-/* Honeypot — visually hidden, still accessible to bots */
-.honeypot { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
-
-/* Progress bar keyboard focus */
-.progress-bar { width: 100%; height: 4px; background: rgba(232,223,192,0.15); border-radius: 2px; cursor: pointer; margin-bottom: 0.8rem; }
-.progress-bar:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
-
-/* MEDIA */
-#media { background: var(--bg); padding: 6rem 2rem; text-align: center; }
-.video-display { max-width: 680px; margin: 0 auto; }
-.video-ratio { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
-.video-ratio iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-.video-nav { display: flex; justify-content: center; gap: 1.5rem; margin: 0.75rem auto 0; max-width: 680px; }
-.video-nav-btn { background: none; border: none; cursor: pointer; color: var(--cream); opacity: 0.6; padding: 4px; display: flex; align-items: center; transition: opacity 0.2s; }
-.video-nav-btn:hover, .video-nav-btn:focus-visible { opacity: 1; outline: none; box-shadow: 0 0 0 2px var(--teal); }
-.video-track-list { max-width: 680px; margin: 0.6rem auto 0; border-top: 1px solid rgba(232,223,192,0.1); padding-top: 0.6rem; }
-.video-track-item { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.22rem 0; cursor: pointer; }
-.video-track-item:hover .video-track-name, .video-track-item:hover .video-track-num { color: var(--teal); }
-.video-track-item.now-playing .video-track-name { color: var(--teal); }
-.video-track-item.now-playing .video-track-num { color: var(--coral); }
-.video-track-num { font-size: 0.6rem; color: rgba(232,223,192,0.25); min-width: 1rem; text-align: right; flex-shrink: 0; }
-.video-track-name { font-size: 0.78rem; color: rgba(232,223,192,0.5); transition: color 0.2s; letter-spacing: 0.05em; }
-@media (max-width: 768px) { #media { padding: 5rem 1.5rem; } }
-
-/* FAQ */
-#faq { background: var(--bg); padding: 7rem 3rem; position: relative; overflow: hidden; }
-#faq > *:not(#faq-bg) { position: relative; z-index: 1; }
-.faq-inner { max-width: 760px; margin: 0 auto; }
-.faq-list { border-top: 1px solid rgba(79,179,168,0.25); margin-top: 0.5rem; }
-.faq-item { border-bottom: 1px solid rgba(79,179,168,0.15); }
-.faq-item summary { list-style: none; padding: 1.3rem 0; cursor: pointer; font-size: 1rem; font-weight: 500; color: var(--cream); display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; transition: color 0.2s; }
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary:hover, .faq-item summary:focus-visible { color: var(--teal); outline: none; }
-.faq-item summary::after { content: '+'; font-family: 'DM Sans', sans-serif; font-size: 1.6rem; color: var(--coral); font-weight: 300; line-height: 1; flex-shrink: 0; transition: transform 0.2s; }
-.faq-item[open] summary::after { content: '−'; }
-.faq-answer { padding: 0 0 1.4rem; color: rgba(232,223,192,0.75); font-size: 0.92rem; line-height: 1.75; max-width: 640px; }
-.faq-answer a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(79,179,168,0.4); transition: color 0.2s, border-color 0.2s; }
-.faq-answer a:hover { color: var(--coral); border-color: var(--coral); }
-
-@media (max-width: 768px) {
-  #faq { padding: 5rem 1.5rem; }
-  .faq-item summary { font-size: 0.95rem; gap: 1rem; }
-}</style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  "name": "Kings of Ewing",
-  "url": "https://www.kingsofewing.com",
-  "image": "https://www.kingsofewing.com/docs/images/IMG_2445.jpeg",
-  "description": "Kings of Ewing is a five-piece mostly-covers band from Evanston, IL — rock, pop, folk, blues, and soul from the '60s to today. Available for weddings, block parties, fundraisers, and more.",
-  "genre": ["Rock","Pop","Folk","Soul","Blues"],
-  "email": "Miles@KingsOfEwing.com",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "Miles@KingsOfEwing.com",
-    "telephone": "+17348837119",
-    "contactType": "booking",
-    "url": "https://www.kingsofewing.com/#book"
-  },
-  "sameAs": [
-    "https://www.instagram.com/kingsofewing/",
-    "https://www.youtube.com/@KingsofEwing",
-    "https://soundcloud.com/kingsofewing"
-  ]
-}
-</script>
+@media (max-width: 600px) { .sticky-logo { display: none; } }</style>
 </head>
 <body>
-<a href="#main" class="skip-link">Skip to main content</a>
-<nav role="navigation" aria-label="Primary">
-  <a href="#hero" class="nav-logo">Kings of Ewing</a>
+
+
+<nav>
+  <a href="#hero" class="nav-logo"><img src="docs/Kings_of_Ewing_Logo.png" alt="Kings of Ewing" style="filter:brightness(0) invert(1);"></a>
   <ul class="nav-links">
-    <li><a href="#media">Media</a></li>
     <li><a href="#social">Socials</a></li>
     <li><a href="#mailing">Mailing List</a></li>
     <li><a href="#shows">Shows</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#faq">FAQ</a></li>
     <li><a href="#book">Book</a></li>
     <li><a href="mailto:Miles@KingsOfEwing.com">Contact</a></li>
   </ul>
-  <button class="hamburger" id="hamburger-btn" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false">
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <a href="#media" data-close-menu>Media</a>
-  <a href="#social" data-close-menu>Socials</a>
-  <a href="#mailing" data-close-menu>Mailing List</a>
-  <a href="#shows" data-close-menu>Shows</a>
-  <a href="#about" data-close-menu>About</a>
-  <a href="#faq" data-close-menu>FAQ</a>
-  <a href="#book" data-close-menu>Book</a>
-  <a href="#presskit" data-close-menu>Press Kit</a>
-  <a href="mailto:Miles@KingsOfEwing.com" data-close-menu>Contact</a>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#social" onclick="closeMenu()">Socials</a>
+  <a href="#mailing" onclick="closeMenu()">Mailing List</a>
+  <a href="#shows" onclick="closeMenu()">Shows</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#book" onclick="closeMenu()">Book</a>
+  <a href="mailto:Miles@KingsOfEwing.com" onclick="closeMenu()">Contact</a>
 </div>
 
-<main id="main">
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
+  <p class="hero-tagline">Live Music &middot; Covers &amp; Originals</p>
   <h1 class="hero-title">Kings of Ewing</h1>
-  <a href="#book" class="btn btn-coral hero-book-btn">Book Us</a>
-</section>
+  <p class="hero-sub">A Dad Band from North Chicagoland</p>
 
-<!-- 1. MEDIA (audio + video) -->
-<section id="media" class="reveal">
-  <h2 class="section-title">Watch &amp; Listen</h2>
-  <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
+  <!-- Nav links -->
+  <div class="hero-cta">
+    <a href="#social" class="btn btn-coral">Socials</a>
+    <a href="#mailing" class="btn btn-coral">Mailing List</a>
+    <a href="#shows" class="btn btn-coral">Shows</a>
+    <a href="#about" class="btn btn-coral">About</a>
+    <a href="#book" class="btn btn-coral">Book</a>
+    <a href="mailto:Miles@KingsOfEwing.com" class="btn btn-coral">Contact</a>
+  </div>
 
   <!-- Audio player -->
   <audio id="band-audio" preload="none"></audio>
-  <div style="display:flex; justify-content:center; margin:1rem 0 3rem;">
-    <div class="audio-box" id="audio-box">
-      <span style="font-family:'DM Sans',sans-serif; font-weight:500; font-size:1.1rem; color:var(--teal); letter-spacing:0.02em; display:block; margin-bottom:0.5rem;">&#9835; Play Us While You Scroll</span>
-      <div id="player-track-name" style="font-size:0.8rem; letter-spacing:0.1em; color:var(--cream); min-height:1.2em; margin-bottom:0.6rem; text-align:center;">Midnight Rider (The Allman Brothers Band)</div>
-      <div id="player-progress-track" class="progress-bar" role="slider" tabindex="0" aria-label="Seek audio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <div id="player-progress-bar" style="height:100%; width:0%; background:var(--teal); border-radius:2px; pointer-events:none;"></div>
-      </div>
-      <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:0.8rem;">
-        <button id="player-prev-btn" class="player-transport-btn" aria-label="Previous track" title="Previous">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
-        </button>
-        <button id="player-play-btn" aria-label="Play" title="Play" style="background:var(--coral); border:none; cursor:pointer; color:var(--brown); border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center;">
-          <svg id="player-play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
-          <svg id="player-pause-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="display:none;" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-        </button>
-        <button id="player-next-btn" class="player-transport-btn" aria-label="Next track" title="Next">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
-        </button>
-      </div>
-      <div style="display:flex; align-items:center; justify-content:center; gap:0.6rem;">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;" aria-hidden="true"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-        <input type="range" id="player-volume" min="0" max="1" step="0.05" value="0.8" aria-label="Volume" style="width:90px; accent-color:var(--teal); cursor:pointer;">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;" aria-hidden="true"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-      </div>
-      <div id="audio-track-list" class="audio-track-list"></div>
+  <div class="audio-box" id="audio-box">
+    <span style="font-family:'Lobster',cursive; font-size:1.1rem; color:var(--teal); letter-spacing:0.02em; display:block; margin-bottom:0.5rem;">&#9835; Play Us While You Scroll</span>
+    <span style="display:block; font-size:0.68rem; letter-spacing:0.15em; color:rgba(232,223,192,0.45); margin-bottom:1rem; text-transform:uppercase;">All Live Covers</span>
+    <div id="player-track-name" style="font-size:0.8rem; letter-spacing:0.1em; color:var(--cream); min-height:1.2em; margin-bottom:0.6rem; text-align:center;">—</div>
+    <!-- Progress bar -->
+    <div onclick="seekTo(event,this)" style="width:100%; height:4px; background:rgba(232,223,192,0.15); border-radius:2px; cursor:pointer; margin-bottom:0.8rem;">
+      <div id="player-progress-bar" style="height:100%; width:0%; background:var(--teal); border-radius:2px; pointer-events:none;"></div>
     </div>
-  </div>
+    <!-- Transport controls -->
+    <div style="display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:0.8rem;">
+      <button onclick="playerPrev()" title="Previous" style="background:none; border:none; cursor:pointer; color:var(--cream); opacity:0.7; padding:4px;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
+      </button>
+      <button onclick="playerPlayPause()" id="player-play-btn" title="Play" style="background:var(--coral); border:none; cursor:pointer; color:var(--brown); border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center;">
+        <svg id="player-play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+        <svg id="player-pause-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="display:none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      </button>
+      <button onclick="playerNext()" title="Next" style="background:none; border:none; cursor:pointer; color:var(--cream); opacity:0.7; padding:4px;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
+      </button>
+    </div>
+    <!-- Volume -->
+    <div style="display:flex; align-items:center; justify-content:center; gap:0.6rem;">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      <input type="range" id="player-volume" min="0" max="1" step="0.05" value="0.8" oninput="document.getElementById('band-audio').volume=this.value; document.getElementById('sticky-volume').value=this.value" style="width:90px; accent-color:var(--teal); cursor:pointer;">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    </div>
+  </div><!-- end audio-box -->
 
-  <!-- Video display (single player + listing) -->
-  <div id="video-anchor">
-    <div class="video-display">
-      <div class="video-ratio">
-        <iframe id="yt-player" src="https://www.youtube.com/embed/PhVwRvgKHvQ?enablejsapi=1" title="Kings of Ewing Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-  </div>
-  <div class="video-nav">
-    <button id="video-prev-btn" class="video-nav-btn" aria-label="Previous video" title="Previous">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
-    </button>
-    <button id="video-play-btn" aria-label="Play" title="Play" style="background:var(--coral); border:none; cursor:pointer; color:var(--brown); border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-      <svg id="video-play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg id="video-pause-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display:none;" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button>
-    <button id="video-next-btn" class="video-nav-btn" aria-label="Next video" title="Next">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
-    </button>
-  </div>
-  <div id="video-track-list" class="video-track-list"></div>
-  <div style="margin-top: 2.5rem;" class="cta-pair">
-    <a href="#book" class="btn btn-coral">Book</a>
-    <a href="mailto:Miles@KingsOfEwing.com" class="btn btn-coral">Contact</a>
-  </div>
 </section>
 
-<!-- 2. FOLLOW -->
+<!-- 1. FOLLOW -->
 <section id="social" class="reveal">
-  <div id="social-bg" class="section-photo-bg" aria-hidden="true"></div>
+  <p class="section-label">Stay connected</p>
   <h2 class="section-title">Socials</h2>
   <div class="divider" style="margin: 0.8rem auto 1.8rem;"></div>
+  <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:420px; margin:0 auto; line-height:1.75;">Catch behind-the-scenes moments, live clips, and show announcements on our socials.</p>
+  <div style="margin: 2rem auto 0; max-width: 960px; display: flex; flex-wrap: wrap; gap: 1.5rem;">
+    <div style="flex: 1 1 300px;">
+      <p class="section-label" style="margin-bottom:0.75rem;">Live at Goat Village</p>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+        <iframe src="https://www.youtube.com/embed/PhVwRvgKHvQ" title="Kings of Ewing Live at Goat Village" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+      </div>
+    </div>
+    <div style="flex: 1 1 300px;">
+      <p class="section-label" style="margin-bottom:0.75rem;">Live at Chicago Union</p>
+      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+        <iframe src="https://www.youtube.com/embed/mMwmRn1mP-A" title="Kings of Ewing Live at Chicago Union" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+      </div>
+    </div>
+  </div>
   <div class="social-row">
-    <a href="https://www.instagram.com/kingsofewing/" target="_blank" rel="noopener noreferrer" class="social-btn">
+    <a href="https://www.instagram.com/kingsofewing/" target="_blank" class="social-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
       Instagram
     </a>
-    <a href="https://www.youtube.com/@KingsofEwing" target="_blank" rel="noopener noreferrer" class="social-btn">
+    <a href="https://www.youtube.com/@KingsofEwing" target="_blank" class="social-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
       YouTube
     </a>
-    <a href="https://soundcloud.com/kingsofewing" target="_blank" rel="noopener noreferrer" class="social-btn">
+    <a href="https://soundcloud.com/kingsofewing" target="_blank" class="social-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 17c0 1.1.9 2 2 2h16.5c1.4 0 2.5-1.1 2.5-2.5 0-1.3-1-2.4-2.3-2.5 0-.2.1-.3.1-.5 0-2.2-1.8-4-4-4-.4 0-.8.1-1.2.2C13.8 7.5 11.9 6 9.7 6 7 6 4.8 8.2 4.8 11c0 .1 0 .3.1.4C2.7 11.9 1 14.3 1 17z"/></svg>
       SoundCloud
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61589244524113" target="_blank" class="social-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      Facebook
     </a>
   </div>
   <div style="margin-top: 2.5rem;" class="cta-pair">
     <a href="#book" class="btn btn-coral">Book</a>
     <a href="mailto:Miles@KingsOfEwing.com" class="btn btn-coral">Contact</a>
   </div>
+
+
 </section>
 
-<!-- 3. MAILING LIST -->
-<section id="mailing" class="reveal" style="background:var(--bg); padding:6rem 2rem; text-align:center;">
-  <h2 class="section-title">Join the Mailing List</h2>
-  <div class="divider" style="margin:0.8rem auto 1.8rem;"></div>
+<!-- 2. MAILING LIST -->
+<section id="mailing" style="background:var(--bg); padding:5rem 2rem; text-align:center;">
+  <p class="section-label">Stay in the loop</p>
+  <h2 style="font-family:'Lobster',cursive; font-size:clamp(1.5rem,3vw,2.2rem); color:var(--cream); margin-bottom:0.5rem;">Join the Mailing List</h2>
+  <div style="width:40px;height:2px;background:var(--coral);margin:0.8rem auto 1.5rem;"></div>
+  <p style="color:rgba(232,223,192,0.55); font-size:0.92rem; max-width:380px; margin:0 auto 1.8rem; line-height:1.75;">Get notified when we announce new shows. No spam, just gigs.</p>
+
+  <!-- MailerLite embed -->
+  
 
   <div id="ml-signup" style="display:flex; flex-direction:column; align-items:center; gap:0.75rem; width:100%; max-width:420px; margin:0 auto;">
     <div id="ml-form-row" style="display:flex; gap:0.5rem; width:100%;">
-      <input type="email" id="ml-email" placeholder="herbie@hancock.com" autocomplete="email" aria-label="Email address"
+      <input type="email" id="ml-email" placeholder="herbie@hancock.com" autocomplete="email"
         style="flex:1; padding:0.65rem 1rem; background:rgba(255,255,255,0.08); border:1px solid rgba(232,223,192,0.3); color:var(--cream); font-size:0.9rem; border-radius:0; outline:none;">
-      <button type="button" id="ml-submit-btn" style="padding:0.65rem 1.4rem; background:var(--coral); border:none; color:var(--brown); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; cursor:pointer;">
+      <button onclick="mlSignup()" style="padding:0.65rem 1.4rem; background:var(--coral); border:none; color:var(--brown); font-size:0.85rem; font-weight:700; letter-spacing:0.08em; cursor:pointer;">
         SIGN ME UP
       </button>
     </div>
-    <p id="ml-success" style="display:none; color:var(--teal); font-size:0.85rem; letter-spacing:0.05em;" aria-live="polite">Thanks! You're on the list. 🎸</p>
-    <p id="ml-error" style="display:none; color:var(--coral); font-size:0.8rem;" aria-live="polite">Something went wrong. Try again!</p>
+    <p id="ml-success" style="display:none; color:var(--teal); font-size:0.85rem; letter-spacing:0.05em;">Thanks! You're on the list. 🎸</p>
+    <p id="ml-error" style="display:none; color:var(--coral); font-size:0.8rem;">Something went wrong. Try again!</p>
   </div>
+  
+
 
 </section>
 
 <!-- 3. SHOWS -->
 <section id="shows" class="reveal">
-  <div id="shows-bg" class="section-photo-bg" aria-hidden="true"></div>
   <div class="shows-inner">
+    <p class="section-label">On the calendar</p>
     <h2 class="section-title">Shows</h2>
     <div class="divider"></div>
-    <div class="shows-tabs" role="tablist" aria-label="Shows">
-      <button class="tab-btn active" id="tab-btn-upcoming" data-tab="upcoming" role="tab" aria-selected="true" aria-controls="tab-upcoming" tabindex="0">Upcoming</button>
-      <button class="tab-btn" id="tab-btn-past" data-tab="past" role="tab" aria-selected="false" aria-controls="tab-past" tabindex="-1">Past</button>
+    <div class="shows-tabs">
+      <button class="tab-btn active" onclick="switchTab('upcoming', this)">Upcoming</button>
+      <button class="tab-btn" onclick="switchTab('past', this)">Past Gigs</button>
     </div>
-    <div class="tab-panel active" id="tab-upcoming" role="tabpanel" aria-labelledby="tab-btn-upcoming">
+    <div class="tab-panel active" id="tab-upcoming">
       <div class="show-list" id="upcoming-list"></div>
       <div style="margin-top: 2.5rem;" class="cta-pair">
         <a href="#book" class="btn btn-coral">Book</a>
         <a href="mailto:Miles@KingsOfEwing.com" class="btn btn-coral">Contact</a>
       </div>
     </div>
-    <div class="tab-panel" id="tab-past" role="tabpanel" aria-labelledby="tab-btn-past" hidden>
+    <div class="tab-panel" id="tab-past">
       <div class="show-list" id="past-list"></div>
       <div style="margin-top: 2.5rem;" class="cta-pair">
         <a href="#book" class="btn btn-coral">Book</a>
@@ -772,121 +562,97 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 <section id="about" class="reveal">
   <div class="about-inner">
     <div class="about-text">
-      <h2 class="section-title"><a href="docs/links/Kings_of_Ewing_Links.html" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">The Kings</a></h2>
+      <p class="section-label">About the band</p>
+      <h2 class="section-title">The Kings</h2>
       <div class="divider"></div>
-      <p>Kings of Ewing is a five-piece band from Evanston, Illinois. We live on the same block on Ewing Ave: hence the name! We started in 2023 to play our own block party and liked it so much we never stopped.</p>
-      <p>By day, we hold down regular jobs. By night we play the music we love: rock, pop, folk, blues, and soul from the &rsquo;60s to today, from Beatles classics and Allman Brothers jams to Tom Petty, Chappell Roan, and everything in between. All five of us pull double duty &mdash; four sing lead, and between us we cover horn, keys, guitar, bass, and drums. We know how to read a room, keep the dance floor moving, and get the crowd singing along.</p>
-      <p>We play weddings, block parties, fundraisers, bars, and backyard gatherings throughout North Chicagoland. We&rsquo;re flexible on production too &mdash; we can bring our own PA and mixing board and run our own sound if needed, or plug into whatever a venue has. Either way works for us.</p>
+      <p>Kings of Ewing are a five-piece mostly-covers band from Evanston, Illinois &mdash; living on one block of Ewing Avenue and built for a good time. We started in 2023 to play our own block party and liked it so much we never stopped.</p>
+      <p>By day we hold down regular jobs like everyone else. By night we play the music we love &mdash; six decades of rock, pop, folk, blues, and soul, from Beatles classics and Allman Brothers jams to Tom Petty, Chappell Roan, and everything in between. With four vocalists, a horn player, keys, and a rhythm section that knows how to read a room, we keep the dance floor moving and the crowd singing along.</p>
+      <p>We play weddings, block parties, fundraisers, bars, and backyard gatherings across the North Chicagoland area. We&rsquo;re flexible on production too &mdash; we can bring our own PA and mixing board and run our own sound if needed, or plug into whatever a venue has. Either way works for us.</p>
+      <p>No rock star egos. No tour bus. Just five friends from the same block who happen to make a really good racket.</p>
 
-      <p class="songs-label"><a href="docs/music/music_pdf_links.html" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">A Sample of What We Play</a></p>
-      <div class="song-grid">
-
-        <!-- 1960s: 10 songs → 5 rows per column -->
-        <div class="song-header">1960s</div>
-        <div class="song-grid-decade" style="grid-template-rows: repeat(5, auto);">
-          <div class="song-item"><div class="song-title">Come Together</div><div class="song-artist">Beatles</div></div>
-          <div class="song-item"><div class="song-title">Crossroads</div><div class="song-artist">Cream</div></div>
-          <div class="song-item"><div class="song-title">Dedicated Follower of Fashion</div><div class="song-artist">The Kinks</div></div>
-          <div class="song-item"><div class="song-title">Don&rsquo;t Let Me Down</div><div class="song-artist">Beatles</div></div>
-          <div class="song-item"><div class="song-title">For What It&rsquo;s Worth</div><div class="song-artist">Buffalo Springfield</div></div>
-          <div class="song-item"><div class="song-title">Fortunate Son</div><div class="song-artist">CCR</div></div>
-          <div class="song-item"><div class="song-title">I&rsquo;ve Got A Feeling</div><div class="song-artist">Beatles</div></div>
-          <div class="song-item"><div class="song-title">Octopus&rsquo;s Garden</div><div class="song-artist">Beatles</div></div>
-          <div class="song-item"><div class="song-title">Sympathy For The Devil</div><div class="song-artist">Rolling Stones</div></div>
-          <div class="song-item"><div class="song-title">Voodoo Child</div><div class="song-artist">Jimi Hendrix</div></div>
-        </div>
-
-        <!-- 1970s: 14 songs → 7 rows per column -->
-        <div class="song-header">1970s</div>
-        <div class="song-grid-decade" style="grid-template-rows: repeat(7, auto);">
-          <div class="song-item"><div class="song-title">Angel From Montgomery</div><div class="song-artist">John Prine</div></div>
-          <div class="song-item"><div class="song-title">Heroes</div><div class="song-artist">David Bowie</div></div>
-          <div class="song-item"><div class="song-title">Just What I Needed</div><div class="song-artist">The Cars</div></div>
-          <div class="song-item"><div class="song-title">Let Me Roll It</div><div class="song-artist">Wings</div></div>
-          <div class="song-item"><div class="song-title">Midnight Rider</div><div class="song-artist">The Allman Brothers Band</div></div>
-          <div class="song-item"><div class="song-title">No One To Depend On</div><div class="song-artist">Santana</div></div>
-          <div class="song-item"><div class="song-title">Ohio</div><div class="song-artist">CSNY</div></div>
-          <div class="song-item"><div class="song-title">Riders On The Storm</div><div class="song-artist">The Doors</div></div>
-          <div class="song-item"><div class="song-title">Teach Your Children</div><div class="song-artist">CSNY</div></div>
-          <div class="song-item"><div class="song-title">The Seeker</div><div class="song-artist">The Who</div></div>
-          <div class="song-item"><div class="song-title">Walk On</div><div class="song-artist">Neil Young</div></div>
-          <div class="song-item"><div class="song-title">War Pigs</div><div class="song-artist">Black Sabbath</div></div>
-          <div class="song-item"><div class="song-title">Whipping Post</div><div class="song-artist">The Allman Brothers Band</div></div>
-          <div class="song-item"><div class="song-title">Who&rsquo;s That Lady</div><div class="song-artist">The Isley Brothers</div></div>
-        </div>
-
-        <!-- 1980s: 7 songs → 4 rows left, 3 rows right -->
-        <div class="song-header">1980s</div>
-        <div class="song-grid-decade" style="grid-template-rows: repeat(4, auto);">
-          <div class="song-item"><div class="song-title">End Of The World</div><div class="song-artist">R.E.M.</div></div>
-          <div class="song-item"><div class="song-title">Head Over Heels</div><div class="song-artist">Tears for Fears</div></div>
-          <div class="song-item"><div class="song-title">Just Like Heaven</div><div class="song-artist">The Cure</div></div>
-          <div class="song-item"><div class="song-title">Message In A Bottle</div><div class="song-artist">The Police</div></div>
-          <div class="song-item"><div class="song-title">Rockin&rsquo; In The Free World</div><div class="song-artist">Neil Young</div></div>
-          <div class="song-item"><div class="song-title">Smooth Operator</div><div class="song-artist">Sade</div></div>
-          <div class="song-item"><div class="song-title">Won&rsquo;t Back Down</div><div class="song-artist">Tom Petty</div></div>
-        </div>
-
-        <!-- 1990s: 4 songs → 2 rows per column -->
-        <div class="song-header">1990s</div>
-        <div class="song-grid-decade" style="grid-template-rows: repeat(2, auto);">
-          <div class="song-item"><div class="song-title">Black</div><div class="song-artist">Pearl Jam</div></div>
-          <div class="song-item"><div class="song-title">Don&rsquo;t Look Back In Anger</div><div class="song-artist">Oasis</div></div>
-          <div class="song-item"><div class="song-title">Found Out About You</div><div class="song-artist">Gin Blossoms</div></div>
-          <div class="song-item"><div class="song-title">Laid</div><div class="song-artist">James</div></div>
-        </div>
-
-        <!-- 2000s: 4 songs → 2 rows per column -->
-        <div class="song-header">2000s</div>
-        <div class="song-grid-decade" style="grid-template-rows: repeat(2, auto);">
-          <div class="song-item"><div class="song-title">Bohemian Like You</div><div class="song-artist">Dandy Warhols</div></div>
-          <div class="song-item"><div class="song-title">Little By Little</div><div class="song-artist">Oasis</div></div>
-          <div class="song-item"><div class="song-title">Seven Nation Army</div><div class="song-artist">The White Stripes</div></div>
-          <div class="song-item"><div class="song-title">Starlight</div><div class="song-artist">Muse</div></div>
-        </div>
-
-        <!-- 2010s: 1 song → single column -->
-        <div class="song-header">2010s</div>
-        <div class="song-grid-decade" style="grid-template-rows: repeat(1, auto);">
-          <div class="song-item"><div class="song-title">Follow Your Arrow</div><div class="song-artist">Kacey Musgraves</div></div>
-        </div>
-
-        <!-- 2020s: 4 songs → 2 rows per column -->
-        <div class="song-header">2020s</div>
-        <div class="song-grid-decade" style="grid-template-rows: repeat(2, auto);">
-          <div class="song-item"><div class="song-title">From The Start</div><div class="song-artist">Laufey</div></div>
-          <div class="song-item"><div class="song-title">Guess Again</div><div class="song-artist">Jeff Tweedy</div></div>
-          <div class="song-item"><div class="song-title">Pink Pony Club</div><div class="song-artist">Chappell Roan</div></div>
-          <div class="song-item"><div class="song-title">That&rsquo;s What I Love</div><div class="song-artist">Leon Bridges</div></div>
-        </div>
-
-        <!-- Originals: 2 songs → 1 row per column -->
-        <div class="song-header">Originals</div>
-        <div class="song-grid-decade" style="grid-template-rows: repeat(1, auto);">
-          <div class="song-item"><div class="song-title">Beautiful Boy</div><div class="song-artist">Kings of Ewing</div></div>
-          <div class="song-item"><div class="song-title">Kings Of Ewing</div><div class="song-artist">Kings of Ewing</div></div>
-        </div>
-
+      <p class="songs-label">Photos</p>
+      <div class="photo-gallery">
+        <img src="images/kings_of_ewing-1.jpg" alt="Kings of Ewing at Double Clutch">
+        <img src="images/IMG_2445.jpeg" alt="Kings of Ewing at The Fat Shallot">
+        <img src="images/IMG_1810.jpeg" alt="Kings of Ewing at Chicago Union">
+        <img src="images/Resized_IMG_5512.jpg.jpeg" alt="Kings of Ewing at Goat Village">
       </div>
-      <p class="songs-note">Plus more. Sets are customized for each crowd and event.</p>
 
-      <div class="download-links" id="presskit">
+      <p class="songs-label">A Sample of What We Play</p>
+      <div class="song-grid">
+        <div class="song-header">1960s</div>
+        <div class="song-item"><div class="song-title">Come Together</div><div class="song-artist">Beatles</div></div>
+        <div class="song-item"><div class="song-title">Crossroads</div><div class="song-artist">Cream</div></div>
+        <div class="song-item"><div class="song-title">Dedicated Follower of Fashion</div><div class="song-artist">The Kinks</div></div>
+        <div class="song-item"><div class="song-title">Don&rsquo;t Let Me Down</div><div class="song-artist">Beatles</div></div>
+        <div class="song-item"><div class="song-title">For What It&rsquo;s Worth</div><div class="song-artist">Buffalo Springfield</div></div>
+        <div class="song-item"><div class="song-title">Fortunate Son</div><div class="song-artist">CCR</div></div>
+        <div class="song-item"><div class="song-title">I&rsquo;ve Got A Feeling</div><div class="song-artist">The Beatles</div></div>
+        <div class="song-item"><div class="song-title">Octopus&rsquo;s Garden</div><div class="song-artist">Beatles</div></div>
+        <div class="song-item"><div class="song-title">Sympathy For The Devil</div><div class="song-artist">Rolling Stones</div></div>
+        <div class="song-item"><div class="song-title">Voodoo Child</div><div class="song-artist">Jimi Hendrix</div></div>
+        <div class="song-header">1970s</div>
+        <div class="song-item"><div class="song-title">Angel From Montgomery</div><div class="song-artist">John Prine</div></div>
+        <div class="song-item"><div class="song-title">Heroes</div><div class="song-artist">David Bowie</div></div>
+        <div class="song-item"><div class="song-title">Just What I Needed</div><div class="song-artist">The Cars</div></div>
+        <div class="song-item"><div class="song-title">Let Me Roll It</div><div class="song-artist">Wings</div></div>
+        <div class="song-item"><div class="song-title">Midnight Rider</div><div class="song-artist">The Allman Brothers Band</div></div>
+        <div class="song-item"><div class="song-title">No One To Depend On</div><div class="song-artist">Santana</div></div>
+        <div class="song-item"><div class="song-title">Ohio</div><div class="song-artist">CSNY</div></div>
+        <div class="song-item"><div class="song-title">Riders On The Storm</div><div class="song-artist">The Doors</div></div>
+        <div class="song-item"><div class="song-title">Teach Your Children</div><div class="song-artist">CSNY</div></div>
+        <div class="song-item"><div class="song-title">The Seeker</div><div class="song-artist">The Who</div></div>
+        <div class="song-item"><div class="song-title">Walk On</div><div class="song-artist">Neil Young</div></div>
+        <div class="song-item"><div class="song-title">War Pigs</div><div class="song-artist">Black Sabbath</div></div>
+        <div class="song-item"><div class="song-title">Whipping Post</div><div class="song-artist">The Allman Brothers Band</div></div>
+        <div class="song-item"><div class="song-title">Who&rsquo;s That Lady</div><div class="song-artist">The Isley Brothers</div></div>
+        <div class="song-header">1980s</div>
+        <div class="song-item"><div class="song-title">End Of The World</div><div class="song-artist">R.E.M.</div></div>
+        <div class="song-item"><div class="song-title">Head Over Heels</div><div class="song-artist">Tears for Fears</div></div>
+        <div class="song-item"><div class="song-title">Just Like Heaven</div><div class="song-artist">The Cure</div></div>
+        <div class="song-item"><div class="song-title">Message In A Bottle</div><div class="song-artist">The Police</div></div>
+        <div class="song-item"><div class="song-title">Rockin&rsquo; In The Free World</div><div class="song-artist">Neil Young</div></div>
+        <div class="song-item"><div class="song-title">Smooth Operator</div><div class="song-artist">Sade</div></div>
+        <div class="song-item"><div class="song-title">Won&rsquo;t Back Down</div><div class="song-artist">Tom Petty</div></div>
+        <div class="song-header">1990s</div>
+        <div class="song-item"><div class="song-title">Black</div><div class="song-artist">Pearl Jam</div></div>
+        <div class="song-item"><div class="song-title">Don&rsquo;t Look Back In Anger</div><div class="song-artist">Oasis</div></div>
+        <div class="song-item"><div class="song-title">Found Out About You</div><div class="song-artist">Gin Blossoms</div></div>
+        <div class="song-item"><div class="song-title">Laid</div><div class="song-artist">James</div></div>
+        <div class="song-header">2000s</div>
+        <div class="song-item"><div class="song-title">Bohemian Like You</div><div class="song-artist">Dandy Warhols</div></div>
+        <div class="song-item"><div class="song-title">Little By Little</div><div class="song-artist">Oasis</div></div>
+        <div class="song-item"><div class="song-title">Seven Nation Army</div><div class="song-artist">The White Stripes</div></div>
+        <div class="song-item"><div class="song-title">Starlight</div><div class="song-artist">Muse</div></div>
+        <div class="song-header">2010s</div>
+        <div class="song-item"><div class="song-title">Follow Your Arrow</div><div class="song-artist">Kacey Musgraves</div></div>
+        <div class="song-header">2020s</div>
+        <div class="song-item"><div class="song-title">From The Start</div><div class="song-artist">Laufey</div></div>
+        <div class="song-item"><div class="song-title">Guess Again</div><div class="song-artist">Jeff Tweedy</div></div>
+        <div class="song-item"><div class="song-title">Pink Pony Club</div><div class="song-artist">Chappell Roan</div></div>
+        <div class="song-item"><div class="song-title">That&rsquo;s What I Love</div><div class="song-artist">Leon Bridges</div></div>
+        <div class="song-header">Originals</div>
+        <div class="song-item"><div class="song-title">Kings Of Ewing</div><div class="song-artist">Kings of Ewing</div></div>
+      </div>
+      <p class="songs-note">Plus more. Set varies by event.</p>
+
+      <div class="download-links">
         <p class="songs-label" style="margin-top:1.8rem; margin-bottom:0.75rem;">Downloads</p>
         <!-- Press Kit highlight -->
-        <a href="docs/press-kit/Kings_of_Ewing_Press_Kit.zip" download class="download-btn" style="display:inline-flex; margin-bottom:0.75rem; border-color:var(--coral); color:var(--coral);">
+        <a href="docs/Kings_of_Ewing_Press_Kit.zip" download class="download-btn" style="display:inline-flex; margin-bottom:0.75rem; border-color:var(--coral); color:var(--coral);">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:0.4rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          &#128230; Electronic Press Kit
+          &#128230; Download Full Press Kit
         </a>
         <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-          <a href="docs/press-kit/Kings_of_Ewing_Bio.txt" download class="download-btn">
+          <a href="docs/Kings_of_Ewing_Bio.txt" download class="download-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:0.4rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Band Bio
           </a>
-          <a href="docs/press-kit/Kings_of_Ewing_Stage_Diagram.svg" download class="download-btn">
+          <a href="docs/Kings_of_Ewing_Stage_Diagram.svg" download class="download-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:0.4rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Stage Diagram
           </a>
-          <a href="docs/branding/Kings_of_Ewing_Logo.png" download class="download-btn">
+          <a href="docs/Kings_of_Ewing_Logo.png" download class="download-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:0.4rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Logo (PNG)
           </a>
@@ -902,595 +668,138 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   </div>
 </section>
 
-<!-- 3b. FAQ -->
-<section id="faq" class="reveal">
-  <div id="faq-bg" class="section-photo-bg" aria-hidden="true"></div>
-  <div class="faq-inner">
-    <h2 class="section-title">Frequently Asked</h2>
-    <div class="divider"></div>
-    <div class="faq-list">
-      <details class="faq-item">
-        <summary>How long do you play?</summary>
-        <div class="faq-answer">Typical events are 2–3 hours of live music, split into a few sets with short breaks. We&rsquo;re flexible — tell us what you have in mind and we&rsquo;ll work it out.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Do you bring your own sound system?</summary>
-        <div class="faq-answer">Yes. We can bring our own PA and mixing board and run our own sound, or plug into whatever the venue provides. Either way works for us.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Indoor or outdoor — do you do both?</summary>
-        <div class="faq-answer">Both. We&rsquo;ve played backyards, brewery patios, fundraiser tents, club rooms, and street block parties. For outdoor events, we just ask for a rain plan or covered backup space.</div>
-      </details>
-      <details class="faq-item">
-        <summary>How much space do you need?</summary>
-        <div class="faq-answer">A 12&prime;&times;8&prime; area is comfortable for the full five-piece. We&rsquo;ve squeezed into smaller spots and spread out across bigger stages too. <a href="docs/press-kit/Kings_of_Ewing_Stage_Diagram.svg" target="_blank" rel="noopener noreferrer">Stage diagram here</a>.</div>
-      </details>
-      <details class="faq-item">
-        <summary>How far do you travel?</summary>
-        <div class="faq-answer">We&rsquo;re based in Evanston and play throughout North Chicagoland — Evanston, Wilmette, Lincolnwood, Skokie, Glenview, Northbrook, and into Chicago. Reach out about events further afield; we&rsquo;ll let you know.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Can we request specific songs?</summary>
-        <div class="faq-answer">Usually yes. Send us your must-plays with your booking inquiry and we&rsquo;ll let you know what we can do. For weddings, we&rsquo;re happy to learn a first-dance song or other special request.</div>
-      </details>
-      <details class="faq-item">
-        <summary>How much setup and breakdown time do you need?</summary>
-        <div class="faq-answer">We arrive about 90 minutes before showtime for load-in and soundcheck, and need around 45 minutes to break down at the end.</div>
-      </details>
-      <details class="faq-item">
-        <summary>What kinds of events do you play?</summary>
-        <div class="faq-answer">Weddings, block parties, fundraisers, backyard gatherings, breweries, bars, and corporate events. If it has a dance floor or could have one, we&rsquo;re probably a fit.</div>
-      </details>
-    </div>
-    <div class="cta-pair" style="margin-top: 2.5rem;">
-      <a href="#book" class="btn btn-coral">Book</a>
-      <a href="mailto:Miles@KingsOfEwing.com" class="btn btn-coral">Contact</a>
-    </div>
-  </div>
-</section>
-
 <!-- 4. BOOK -->
 <section id="book" class="reveal">
   <div class="book-inner">
+    <p class="section-label">Hire us</p>
     <h2 class="section-title">Book the Band</h2>
     <div class="divider" style="margin: 0.8rem auto 2rem;"></div>
-    <p style="color:rgba(232,223,192,0.55); font-size:0.95rem; line-height:1.8; margin-bottom:0.75rem; text-align:center;">Fill out the form below and we&rsquo;ll get back to you. Prefer to reach out directly? Email us at <a href="mailto:Miles@KingsOfEwing.com" class="email-link">Miles@KingsOfEwing.com</a></p>
-    <p style="color:rgba(232,223,192,0.35); font-size:0.8rem; line-height:1.7; margin-bottom:2rem; text-align:center; font-style:italic;">Our rates are flexible and vary by event — reach out and we&rsquo;ll send you a quote.</p>
-    <form action="https://formspree.io/f/mwvynqoe" method="POST" id="booking-form" novalidate>
-      <!-- Honeypot field - bots fill this in, humans don't see it -->
-      <div class="honeypot" aria-hidden="true">
-        <label for="website">Leave this field empty</label>
-        <input type="text" id="website" name="_gotcha" tabindex="-1" autocomplete="off">
+    <p style="color:rgba(232,223,192,0.55); font-size:0.95rem; line-height:1.8; margin-bottom:2rem; text-align:center;">Fill out the form below and we&rsquo;ll get back to you. Prefer to reach out directly? Email us at <a href="mailto:Miles@KingsOfEwing.com" class="email-link">Miles@KingsOfEwing.com</a>.</p>
+    <form action="https://formspree.io/f/mwvynqoe" method="POST" id="booking-form">
+      <div class="form-row">
+        <div class="form-field"><label for="name">Your Name *</label><input type="text" id="name" name="name" placeholder="Herbie Hancock" required></div>
+        <div class="form-field"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="herbie@hancock.com" required></div>
       </div>
       <div class="form-row">
-        <div class="form-field"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="Herbie Hancock" autocomplete="name"></div>
-        <div class="form-field"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="herbie@hancock.com" required autocomplete="email"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(847) 867-5309" autocomplete="tel"></div>
+        <div class="form-field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="(847) 867-5309"></div>
         <div class="form-field"><label for="event-date">Event Date</label><input type="date" id="event-date" name="event_date"></div>
       </div>
       <div class="form-row">
         <div class="form-field">
           <label for="event-type">Event Type</label>
-          <input type="text" id="event-type" name="event_type" placeholder="Wedding, backyard party, fundraiser, bar gig...">
+          <input type="text" id="event-type" name="event_type" placeholder="How likely are your neighbors to complain?">
         </div>
         <div class="form-field"><label for="location">Event Location</label><input type="text" id="location" name="location" placeholder="Somewhere that can handle the rock"></div>
       </div>
       <div class="form-field"><label for="message">Tell us more</label><textarea id="message" name="message" placeholder="How many paparazzi can we expect?"></textarea></div>
-      <div class="form-field"><label for="song-requests">Song Requests / Must-Plays</label><textarea id="song-requests" name="song_requests" placeholder="Free Bird" style="min-height:80px;"></textarea></div>
-      <div class="form-field"><label for="referral">How did you hear about us?</label><input type="text" id="referral" name="referral" placeholder="the Grammys"></div>
       <button type="submit" class="submit-btn">Send Booking Request</button>
-      <div class="success-msg" id="success-msg" aria-live="polite">Thanks! We&rsquo;ll be in touch soon. 🎸</div>
-      <div id="booking-error" style="display:none; color:var(--coral); font-size:0.85rem; margin-top:0.75rem;" aria-live="polite"></div>
+      <div class="success-msg" id="success-msg">Thanks! We&rsquo;ll be in touch soon. 🎸</div>
     </form>
   </div>
 </section>
-</main>
 
 <footer>
-  <a href="docs/canada%202026/" target="_blank" rel="noopener noreferrer" aria-label="Kings of Ewing" style="display:inline-block;">
-    <img src="docs/branding/Kings_of_Ewing_Logo.png" alt="Kings of Ewing" class="footer-logo" loading="lazy" decoding="async">
-  </a>
+  <img src="docs/Kings_of_Ewing_Logo.png" alt="Kings of Ewing" class="footer-logo">
   <div style="display:flex; gap:1.5rem; justify-content:center; margin:1rem 0;">
-    <a href="https://www.instagram.com/kingsofewing/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    <a href="https://www.instagram.com/kingsofewing/" target="_blank" style="color:rgba(232,223,192,0.4); transition:color 0.2s;" onmouseover="this.style.color='#4fb3a8'" onmouseout="this.style.color='rgba(232,223,192,0.4)'">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
     </a>
-    <a href="https://www.youtube.com/@KingsofEwing" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="YouTube">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+    <a href="https://www.youtube.com/@KingsofEwing" target="_blank" style="color:rgba(232,223,192,0.4); transition:color 0.2s;" onmouseover="this.style.color='#4fb3a8'" onmouseout="this.style.color='rgba(232,223,192,0.4)'">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
     </a>
-    <a href="https://soundcloud.com/kingsofewing" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="SoundCloud">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 17c0 1.1.9 2 2 2h16.5c1.4 0 2.5-1.1 2.5-2.5 0-1.3-1-2.4-2.3-2.5 0-.2.1-.3.1-.5 0-2.2-1.8-4-4-4-.4 0-.8.1-1.2.2C13.8 7.5 11.9 6 9.7 6 7 6 4.8 8.2 4.8 11c0 .1 0 .3.1.4C2.7 11.9 1 14.3 1 17z"/></svg>
+    <a href="https://soundcloud.com/kingsofewing" target="_blank" style="color:rgba(232,223,192,0.4); transition:color 0.2s;" onmouseover="this.style.color='#4fb3a8'" onmouseout="this.style.color='rgba(232,223,192,0.4)'">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 17c0 1.1.9 2 2 2h16.5c1.4 0 2.5-1.1 2.5-2.5 0-1.3-1-2.4-2.3-2.5 0-.2.1-.3.1-.5 0-2.2-1.8-4-4-4-.4 0-.8.1-1.2.2C13.8 7.5 11.9 6 9.7 6 7 6 4.8 8.2 4.8 11c0 .1 0 .3.1.4C2.7 11.9 1 14.3 1 17z"/></svg>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61589244524113" target="_blank" style="color:rgba(232,223,192,0.4); transition:color 0.2s;" onmouseover="this.style.color='#4fb3a8'" onmouseout="this.style.color='rgba(232,223,192,0.4)'">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
     </a>
   </div>
-  <p>&copy; <span id="copyright-year">2026</span> Kings of Ewing &middot; Evanston, IL</p>
-  <script>document.getElementById('copyright-year').textContent = new Date().getFullYear();</script>
+  <p>&copy; 2026 Kings of Ewing &middot; Evanston, IL</p>
 </footer>
 
-<!-- Video PiP chrome (label/controls/close get attached to the floating video) -->
-<div id="video-pip">
-  <div id="pip-label"></div>
-  <div id="pip-controls" style="display:flex; align-items:center; justify-content:center; gap:0.75rem; padding:0.4rem 0.75rem 0.5rem;">
-    <button id="pip-prev-btn" class="pip-nav-btn" aria-label="Previous video" title="Previous">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
-    </button>
-    <button id="pip-play-btn" aria-label="Play" title="Play" style="background:var(--coral); border:none; cursor:pointer; color:var(--brown); border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-      <svg id="pip-play-icon" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg id="pip-pause-icon" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" style="display:none;" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-    </button>
-    <button id="pip-next-btn" class="pip-nav-btn" aria-label="Next video" title="Next">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
-    </button>
-  </div>
-  <button id="pip-close" aria-label="Close video">&times;</button>
-</div>
-
 <!-- Sticky mini player -->
-<div id="sticky-player" aria-label="Now playing">
+<div id="sticky-player">
   <!-- Logos flush to edges -->
-  <img src="docs/branding/Kings_of_Ewing_Logo.png" class="sticky-logo sticky-logo-left" alt="" aria-hidden="true">
-  <img src="docs/branding/Kings_of_Ewing_Logo.png" class="sticky-logo sticky-logo-right" alt="" aria-hidden="true">
-  <a href="#book" class="btn btn-coral sticky-book-btn">Book Us</a>
+  <img src="docs/Kings_of_Ewing_Logo.png" class="sticky-logo sticky-logo-left" alt="">
+  <img src="docs/Kings_of_Ewing_Logo.png" class="sticky-logo sticky-logo-right" alt="">
   <!-- Controls wrapper — centered, won't overlap logos -->
   <div class="sticky-controls">
-    <button class="sticky-btn" id="sticky-prev-btn" aria-label="Previous track" title="Previous">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
+    <button class="sticky-btn" onclick="playerPrev()" title="Previous">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
     </button>
-    <button id="sticky-play-btn" aria-label="Play" title="Play/Pause">
-      <svg id="sticky-play-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
-      <svg id="sticky-pause-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="display:none;" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    <button id="sticky-play-btn" onclick="playerPlayPause()" title="Play/Pause">
+      <svg id="sticky-play-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+      <svg id="sticky-pause-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" style="display:none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
     </button>
-    <button class="sticky-btn" id="sticky-next-btn" aria-label="Next track" title="Next">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
+    <button class="sticky-btn" onclick="playerNext()" title="Next">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
     </button>
-    <span id="sticky-track-name" role="button" tabindex="0" title="Back to player" aria-label="Scroll back to audio player">Midnight Rider (The Allman Brothers Band)</span>
-    <button class="sticky-btn" id="sticky-close-btn" aria-label="Close player" title="Close">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-    </button>
-  </div>
-  <div id="sticky-progress-track" role="slider" tabindex="0" aria-label="Seek audio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-    <div id="sticky-progress-bar"></div>
+    <span id="sticky-track-name">—</span>
+    <div onclick="seekTo(event, this)" class="sticky-seek">
+      <div id="sticky-progress-bar" style="height:100%; width:0%; background:var(--teal); border-radius:2px; pointer-events:none;"></div>
+    </div>
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="var(--cream)" class="sticky-vol-icon"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+    <input type="range" id="sticky-volume" min="0" max="1" step="0.05" value="0.8"
+      oninput="document.getElementById('band-audio').volume=this.value; document.getElementById('player-volume').value=this.value"
+      title="Volume">
+    <svg viewBox="0 0 24 24" width="12" height="12" fill="var(--cream)" class="sticky-vol-icon"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
   </div>
 </div>
 <script>
-// ─────────────────────────────────────────────────────────────
-// Mailing list (MailerLite custom fetch — not the embed widget)
-// ─────────────────────────────────────────────────────────────
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+</script>
+<script>
 function mlSignup() {
-  const emailEl = document.getElementById('ml-email');
-  const errEl   = document.getElementById('ml-error');
-  const okEl    = document.getElementById('ml-success');
-  const rowEl   = document.getElementById('ml-form-row');
-  const email   = emailEl.value.trim();
-
-  if (!EMAIL_RE.test(email)) {
-    errEl.textContent = 'Please enter a valid email.';
-    errEl.style.display = 'block';
-    return;
-  }
-
-  const fd = new FormData();
-  fd.append('fields[email]', email);
-  fd.append('ml-submit', '1');
-  fd.append('anticsrf', 'true');
-
-  fetch('https://assets.mailerlite.com/jsonp/2332985/forms/187010863696184576/subscribe', {
-    method: 'POST', body: fd
-  }).then(async r => {
-    let json = null;
-    try { json = await r.json(); } catch(e) { /* non-JSON response */ }
-    const success = r.ok && (json === null || json.success !== false);
-    if (success) {
-      rowEl.style.display = 'none';
-      okEl.style.display = 'block';
-      errEl.style.display = 'none';
-    } else {
-      console.error('MailerLite signup failed:', r.status, json);
-      errEl.textContent = 'Something went wrong. Please try again.';
-      errEl.style.display = 'block';
+    var email = document.getElementById('ml-email').value;
+    if (!email || !email.includes('@')) {
+      document.getElementById('ml-error').style.display = 'block';
+      document.getElementById('ml-error').textContent = 'Please enter a valid email.';
+      return;
     }
-  }).catch(err => {
-    console.error('MailerLite fetch error:', err);
-    errEl.textContent = 'Something went wrong. Please try again.';
-    errEl.style.display = 'block';
-  });
-}
-
-const mlSubmitBtn = document.getElementById('ml-submit-btn');
-const mlEmailEl   = document.getElementById('ml-email');
-if (mlSubmitBtn) mlSubmitBtn.addEventListener('click', mlSignup);
-if (mlEmailEl)   mlEmailEl.addEventListener('keydown', e => {
-  if (e.key === 'Enter') { e.preventDefault(); mlSignup(); }
-});
-
-// ─────────────────────────────────────────────────────────────
-// Shows — loaded from shows.json (edit that file via shows.xlsx
-// + docs/shows/data/update_shows.py; no HTML changes needed).
-// ─────────────────────────────────────────────────────────────
-// Converts the flat spreadsheet row shape into the nested shape
-// the rest of the code expects.
-function normalizeShow(s) {
-  const show = {
-    date:  s.date,
-    venue: { name: s.venue_name || '', url: s.venue_url || '' },
-  };
-  if (s.start_time)  show.start_time  = s.start_time;
-  if (s.end_time)    show.end_time    = s.end_time;
-  if (s.location)    show.location    = s.location;
-  if (s.address)     show.address     = s.address;
-  if (s.detail)      show.detail      = s.detail;
-  if (s.description) show.description = s.description;
-  if (s.cancelled)   show.cancelled   = true;
-  if (s.cancel_reason) show.cancel_reason = s.cancel_reason;
-  if (s.instagram_link) show.instagram_link = s.instagram_link;
-  if (s.private)     show.private     = true;
-  if (s.detail_link_name || s.detail_link_url) {
-    const sfx = (s.detail_link_suffix || '').replace(/^ /, '');
-    show.detailLink = {
-      name:   s.detail_link_name || '',
-      url:    s.detail_link_url  || '',
-      suffix: sfx ? ' ' + sfx : '',  // always one space before suffix text
-    };
+    var fd = new FormData();
+    fd.append('fields[email]', email);
+    fd.append('ml-submit', '1');
+    fd.append('anticsrf', 'true');
+    fetch('https://assets.mailerlite.com/jsonp/2332985/forms/187010863696184576/subscribe', {
+      method: 'POST', body: fd
+    }).then(function(r) {
+      document.getElementById('ml-form-row').style.display = 'none';
+      document.getElementById('ml-success').style.display = 'block';
+    }).catch(function() {
+      document.getElementById('ml-error').style.display = 'block';
+    });
   }
-  return show;
-}
+  document.getElementById('ml-email').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') mlSignup();
+  });
+
+const SHOWS = [
+  { date: '2026-05-14', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a>', detail: '5:30 PM &middot; <a href="https://www.covenantnurseryschool.org/" target="_blank">Covenant Nursery School</a> Dining for Dollars' },
+  { date: '2026-05-16', venue: 'Private Party', detail: '2026' },
+  { date: '2026-06-21', venue: '<a href="https://watchufa.com/union" target="_blank">Chicago Union</a>', detail: '5:00 PM &middot; 2026' },
+  { date: '2026-06-24', venue: '<a href="https://ridgevilleparks.myrec.com/info/activities/program_details.aspx?ProgramID=29893" target="_blank">Ridgeville Parks District</a>', detail: '6:00 PM &middot; 2026' },
+  { date: '2026-09-12', venue: 'Ewing Block Party', detail: '2026' },
+  { date: '2026-04-24', venue: '<a href="https://www.evanstonpost42.com/" target="_blank">American Legion Post 42</a>', detail: 'April 2026 &middot; D65 One Fund Spring Cha Ching' },
+  { date: '2026-01-24', venue: '<a href="https://www.goatvillage777.com/" target="_blank">Goat Village</a>', detail: 'January 2026' },
+  { date: '2025-11-16', venue: '<a href="https://www.doubleclutchbrewing.com/" target="_blank">Double Clutch</a>', detail: 'November 2025' },
+  { date: '2025-10-18', venue: '<a href="https://www.macksbikeandgoods.com/" target="_blank">Mack\'s Bike &amp; Goods</a>', detail: 'October 2025 &middot; Fall Fest', cancelled: true },
+  { date: '2025-10-10', venue: 'Ackerman Park', detail: 'October 2025 &middot; <a href="https://www.investinevanston.com/" target="_blank">Invest in Neighborhood Schools</a>' },
+  { date: '2025-09-06', venue: 'Ewing Block Party', detail: 'September 2025' },
+  { date: '2025-06-25', venue: '<a href="https://www.evanstonpost42.com/" target="_blank">American Legion Post 42</a>', detail: 'June 2025' },
+  { date: '2025-06-07', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a>', detail: 'June 2025' },
+  { date: '2025-04-03', venue: 'Lincolnwood Spring Fling', detail: 'April 2025 &middot; PTA Spring Fling' },
+  { date: '2024-10-09', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a>', detail: 'October 2024 &middot; <a href="https://www.covenantnurseryschool.org/" target="_blank">Covenant Nursery School</a> Dining for Dollars' },
+  { date: '2024-09-07', venue: 'Ewing Block Party', detail: 'September 2024' },
+  { date: '2024-08-24', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a>', detail: 'August 2024' },
+  { date: '2024-08-17', venue: 'Private Party', detail: 'August 2024' },
+  { date: '2024-07-21', venue: '<a href="https://watchufa.com/union" target="_blank">Chicago Union</a>', detail: 'July 2024' },
+  { date: '2024-06-07', venue: '<a href="https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/" target="_blank">Fat Shallot</a>', detail: 'June 2024' },
+  { date: '2024-04-26', venue: 'Lincolnwood Spring Fling', detail: 'April 2024 &middot; PTA Spring Fling' },
+  { date: '2023-09-09', venue: 'Ewing Block Party', detail: 'September 2023' },
+];
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-// Safe link builder — never inserts HTML strings
-function makeLink(name, url) {
-  const a = document.createElement('a');
-  a.href = url;
-  a.textContent = name;
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  return a;
-}
-
-// Strip a "H:MM AM/PM" start time (and any orphaned · separator) from a
-// detail string — used so past shows drop the time but keep any location.
-function stripTime(detail) {
-  if (!detail) return detail;
-  return detail
-    .replace(/\b\d{1,2}:\d{2}\s*(AM|PM)\b/i, '')
-    .replace(/^\s*·\s*/, '')
-    .replace(/\s*·\s*$/, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-// ─── Shared date/time helpers (used by calendar invites + JSON-LD) ───
-const pad2 = n => String(n).padStart(2, '0');
-
-// Pull a leading "H:MM AM/PM" time out of the detail string, if present
-function parseTime(detail) {
-  if (!detail) return null;
-  const m = detail.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
-  if (!m) return null;
-  let h = parseInt(m[1], 10) % 12;
-  if (/pm/i.test(m[3])) h += 12;
-  return { h, min: parseInt(m[2], 10) };
-}
-
-// Correct America/Chicago UTC offset for a given date (handles CST/CDT)
-function chicagoOffset(dateStr) {
-  try {
-    const d = new Date(dateStr + 'T12:00:00Z');
-    const name = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'America/Chicago', timeZoneName: 'shortOffset'
-    }).formatToParts(d).find(p => p.type === 'timeZoneName').value;
-    const m = name.match(/GMT([+-]\d{1,2})/);
-    if (!m) return '-06:00';
-    const h = parseInt(m[1], 10);
-    return (h < 0 ? '-' : '+') + pad2(Math.abs(h)) + ':00';
-  } catch (e) { return '-06:00'; }
-}
-
-// Start/end for a show as ISO strings w/ Chicago offset; ~2 hr set assumed.
-// When no time is known, returns the bare date and hasTime:false.
-function showStartEnd(s) {
-  // Prefer explicit start_time field; fall back to parsing legacy detail string
-  const t = parseTime(s.start_time) || parseTime(s.detail);
-  if (!t) return { start: s.date, end: s.date, hasTime: false };
-  const offset = chicagoOffset(s.date);
-  const start = `${s.date}T${pad2(t.h)}:${pad2(t.min)}:00${offset}`;
-
-  // Use explicit end_time if present, otherwise assume ~2 hr set
-  const te = parseTime(s.end_time);
-  let endH, endMin, endDay;
-  if (te) {
-    endH = te.h; endMin = te.min; endDay = s.date;
-  } else {
-    endH = t.h + 2; endMin = t.min; endDay = s.date;
-    if (endH > 23) {
-      endH -= 24;
-      const nd = new Date(s.date + 'T00:00:00');
-      nd.setDate(nd.getDate() + 1);
-      endDay = nd.toISOString().slice(0, 10);
-    }
-  }
-  const end = `${endDay}T${pad2(endH)}:${pad2(endMin)}:00${offset}`;
-  return { start, end, hasTime: true };
-}
-
-// ─── Calendar invite (.ics) builder + download ───
-function icsUTC(iso) {
-  const d = new Date(iso);
-  return d.getUTCFullYear() + pad2(d.getUTCMonth() + 1) + pad2(d.getUTCDate()) + 'T' +
-         pad2(d.getUTCHours()) + pad2(d.getUTCMinutes()) + pad2(d.getUTCSeconds()) + 'Z';
-}
-
-function buildICS(s) {
-  const venueName = (s.venue && s.venue.name) || 'TBA';
-  const { start, end, hasTime } = showStartEnd(s);
-
-  const esc = txt => String(txt)
-    .replace(/\\/g, '\\\\').replace(/;/g, '\\;')
-    .replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
-
-  // RFC 5545 line folding at 75 octets
-  const fold = line => {
-    if (line.length <= 74) return line;
-    let out = line.slice(0, 74), rest = line.slice(74);
-    while (rest.length > 73) { out += '\r\n ' + rest.slice(0, 73); rest = rest.slice(73); }
-    return out + '\r\n ' + rest;
-  };
-
-  let dtStart, dtEnd;
-  if (hasTime) {
-    dtStart = 'DTSTART:' + icsUTC(start);
-    dtEnd   = 'DTEND:'   + icsUTC(end);
-  } else {
-    const nd = new Date(s.date + 'T00:00:00'); nd.setDate(nd.getDate() + 1);
-    dtStart = 'DTSTART;VALUE=DATE:' + s.date.replace(/-/g, '');
-    dtEnd   = 'DTEND;VALUE=DATE:' + `${nd.getFullYear()}${pad2(nd.getMonth() + 1)}${pad2(nd.getDate())}`;
-  }
-
-  const locText = s.location || stripTime(s.detail);
-  const locParts = [venueName];
-  if (locText) locParts.push(locText);
-  if (s.address) locParts.push(s.address);
-  const location = locParts.join(', ');
-  const description = [s.description, 'More info: https://www.kingsofewing.com']
-    .filter(Boolean).join('\n\n');
-  const uid = `${s.date}-${venueName.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}@kingsofewing.com`;
-
-  return [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Kings of Ewing//Website//EN',
-    'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
-    'BEGIN:VEVENT',
-    'UID:' + uid,
-    'DTSTAMP:' + icsUTC(new Date().toISOString()),
-    dtStart,
-    dtEnd,
-    'SUMMARY:' + esc('Kings of Ewing at ' + venueName),
-    'LOCATION:' + esc(location),
-    'DESCRIPTION:' + esc(description),
-    'URL:' + ((s.venue && s.venue.url) || 'https://www.kingsofewing.com'),
-    'END:VEVENT',
-    'END:VCALENDAR'
-  ].map(fold).join('\r\n');
-}
-
-function downloadICS(s) {
-  const blob = new Blob([buildICS(s)], { type: 'text/calendar;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `kings-of-ewing-${s.date}.ics`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-// ─── Google Calendar "add event" template link (web) ───
-function buildGoogleCalUrl(s) {
-  const venueName = (s.venue && s.venue.name) || 'TBA';
-  const { start, end, hasTime } = showStartEnd(s);
-
-  let dates;
-  if (hasTime) {
-    dates = icsUTC(start) + '/' + icsUTC(end);
-  } else {
-    const nd = new Date(s.date + 'T00:00:00'); nd.setDate(nd.getDate() + 1);
-    const endDate = `${nd.getFullYear()}${pad2(nd.getMonth() + 1)}${pad2(nd.getDate())}`;
-    dates = s.date.replace(/-/g, '') + '/' + endDate;
-  }
-
-  const locText = s.location || stripTime(s.detail);
-  const locParts = [venueName];
-  if (locText) locParts.push(locText);
-  if (s.address) locParts.push(s.address);
-
-  const params = new URLSearchParams({
-    action: 'TEMPLATE',
-    text: 'Kings of Ewing at ' + venueName,
-    dates: dates,
-    location: locParts.join(', '),
-    details: [s.description, 'More info: https://www.kingsofewing.com'].filter(Boolean).join('\n\n')
-  });
-  return 'https://calendar.google.com/calendar/render?' + params.toString();
-}
-
-
-function renderShow(s, isPast) {
-  const d = new Date(s.date + 'T00:00:00');
-  const wrap = document.createElement('div');
-  wrap.className = isPast ? 'show-item past' : 'show-item';
-  if (s.cancelled && !isPast) wrap.classList.add('cancelled-show');
-
-  // Date card — becomes a link to the show's Instagram post when one exists
-  const dateBox = document.createElement(s.instagram_link ? 'a' : 'div');
-  dateBox.className = 'show-date';
-  const mo = document.createElement('div'); mo.className = 'show-month'; mo.textContent = MONTHS[d.getMonth()];
-  const da = document.createElement('div'); da.className = 'show-day';   da.textContent = d.getDate();
-  const yr = document.createElement('div'); yr.className = 'show-year';  yr.textContent = d.getFullYear();
-  dateBox.append(mo, da, yr);
-  if (s.instagram_link) {
-    dateBox.classList.add('show-date-link');
-    dateBox.href = s.instagram_link;
-    dateBox.target = '_blank';
-    dateBox.rel = 'noopener noreferrer';
-    const vName = s.venue && s.venue.name ? s.venue.name + ' ' : '';
-    dateBox.setAttribute('aria-label', 'View Instagram post for the ' + vName + 'show');
-    // Small Instagram glyph badge in the corner
-    const ig = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    ig.setAttribute('class', 'show-ig-badge');
-    ig.setAttribute('viewBox', '0 0 24 24'); ig.setAttribute('width', '13'); ig.setAttribute('height', '13');
-    ig.setAttribute('fill', 'none'); ig.setAttribute('stroke', 'currentColor');
-    ig.setAttribute('stroke-width', '2'); ig.setAttribute('stroke-linecap', 'round');
-    ig.setAttribute('stroke-linejoin', 'round'); ig.setAttribute('aria-hidden', 'true');
-    [['rect','x=2 y=2 width=20 height=20 rx=5'],['circle','cx=12 cy=12 r=4'],['line','x1=17.5 y1=6.5 x2=17.5 y2=6.5']].forEach(([tag, attrs]) => {
-      const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
-      attrs.split(' ').forEach(a => { const [k, v] = a.split('='); el.setAttribute(k, v); });
-      ig.appendChild(el);
-    });
-    dateBox.appendChild(ig);
-  }
-
-  // Info block
-  const info = document.createElement('div');
-  info.className = 'show-info';
-
-  const h3 = document.createElement('h3');
-  if (s.venue && s.venue.url) {
-    h3.appendChild(makeLink(s.venue.name, s.venue.url));
-  } else {
-    h3.textContent = s.venue ? s.venue.name : '';
-  }
-  info.appendChild(h3);
-
-  // Location — own line, before time
-  if (s.location) {
-    const p = document.createElement('p');
-    p.className = 'show-meta';
-    p.textContent = s.location;
-    info.appendChild(p);
-  }
-
-  // Address — Maps link, only when present
-  if (s.address) {
-    const a = document.createElement('a');
-    a.className = 'show-address';
-    a.href = 'https://maps.google.com/?q=' + encodeURIComponent(s.address);
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.textContent = s.address;
-    info.appendChild(a);
-  }
-
-  // Time — own line, upcoming shows only (past shows drop the time)
-  {
-    const timeText = (!isPast && s.start_time)
-      ? (s.end_time ? `${s.start_time} – ${s.end_time}` : s.start_time)
-      : null;
-    // Legacy: detail may hold a time string on old rows — strip it for past shows
-    const legacyDetail = isPast ? stripTime(s.detail) : s.detail;
-    const parts = [];
-    if (timeText)     parts.push({ text: timeText });
-    if (legacyDetail) parts.push({ text: legacyDetail });
-    if (s.detailLink) parts.push({ link: s.detailLink });
-    if (parts.length) {
-      const p = document.createElement('p');
-      p.className = 'show-meta';
-      parts.forEach((part, i) => {
-        if (i > 0) p.appendChild(document.createTextNode(' · '));
-        if (part.text) {
-          p.appendChild(document.createTextNode(part.text));
-        } else if (part.link) {
-          p.appendChild(makeLink(part.link.name, part.link.url));
-          if (part.link.suffix) p.appendChild(document.createTextNode(part.link.suffix));
-        }
-      });
-      info.appendChild(p);
-    }
-  }
-
-  // Optional descriptive blurb — upcoming shows only (hidden on past shows)
-  if (s.description && !isPast) {
-    const desc = document.createElement('p');
-    desc.className = 'show-desc';
-    desc.textContent = s.description;
-    info.appendChild(desc);
-  }
-
-  // Add-to-calendar button — upcoming, non-cancelled, public shows only
-  if (!isPast && !s.cancelled && !s.private) {
-    const cal = document.createElement('button');
-    cal.type = 'button';
-    cal.className = 'cal-btn';
-    const vName = s.venue && s.venue.name ? s.venue.name + ' ' : '';
-    cal.setAttribute('aria-label', 'Add ' + vName + 'show to your calendar');
-    const calSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    calSvg.setAttribute('viewBox', '0 0 24 24'); calSvg.setAttribute('width', '13'); calSvg.setAttribute('height', '13');
-    calSvg.setAttribute('fill', 'none'); calSvg.setAttribute('stroke', 'currentColor');
-    calSvg.setAttribute('stroke-width', '2'); calSvg.setAttribute('stroke-linecap', 'round');
-    calSvg.setAttribute('stroke-linejoin', 'round'); calSvg.setAttribute('aria-hidden', 'true');
-    [['rect','x=3 y=4 width=18 height=18 rx=2'],['line','x1=16 y1=2 x2=16 y2=6'],['line','x1=8 y1=2 x2=8 y2=6'],['line','x1=3 y1=10 x2=21 y2=10']].forEach(([tag, attrs]) => {
-      const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
-      attrs.split(' ').forEach(a => { const [k,v] = a.split('='); el.setAttribute(k, v); });
-      calSvg.appendChild(el);
-    });
-    const calSpan = document.createElement('span');
-    calSpan.textContent = 'Add to Calendar';
-    cal.append(calSvg, calSpan);
-    cal.setAttribute('aria-haspopup', 'true');
-    cal.setAttribute('aria-expanded', 'false');
-
-    const calWrap = document.createElement('div');
-    calWrap.className = 'cal-wrap';
-
-    const menu = document.createElement('div');
-    menu.className = 'cal-menu';
-    menu.hidden = true;
-
-    const gLink = document.createElement('a');
-    gLink.className = 'cal-menu-item';
-    gLink.href = buildGoogleCalUrl(s);
-    gLink.target = '_blank';
-    gLink.rel = 'noopener noreferrer';
-    gLink.textContent = 'Google Calendar';
-
-    const icsBtn = document.createElement('button');
-    icsBtn.type = 'button';
-    icsBtn.className = 'cal-menu-item';
-    icsBtn.textContent = 'Apple / Outlook (.ics)';
-
-    menu.append(gLink, icsBtn);
-
-    const closeMenu = () => { menu.hidden = true; cal.setAttribute('aria-expanded', 'false'); };
-    const openMenu  = () => { menu.hidden = false; cal.setAttribute('aria-expanded', 'true'); };
-
-    cal.addEventListener('click', (e) => { e.stopPropagation(); menu.hidden ? openMenu() : closeMenu(); });
-    gLink.addEventListener('click', closeMenu);
-    icsBtn.addEventListener('click', () => { downloadICS(s); closeMenu(); });
-    document.addEventListener('click', (e) => { if (!calWrap.contains(e.target)) closeMenu(); });
-    cal.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-
-    calWrap.append(cal, menu);
-    info.appendChild(calWrap);
-  }
-
-  if (s.cancelled) {
-    const c = document.createElement('p');
-    c.className = 'cancelled';
-    const reason = s.cancel_reason || 'weather';
-    const isWeather = /weather/i.test(reason);
-    c.textContent = (isWeather ? '⛈ ' : '') + 'Cancelled due to ' + reason;
-    info.appendChild(c);
-  }
-
-  wrap.append(dateBox, info);
-  return wrap;
-}
-
-function buildShows(SHOWS) {
+function buildShows() {
   const today = new Date(); today.setHours(0,0,0,0);
   const upcoming = [], past = [];
   SHOWS.forEach(s => {
@@ -1498,298 +807,89 @@ function buildShows(SHOWS) {
     (d >= today ? upcoming : past).push(s);
   });
 
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
   upcoming.sort((a,b) => new Date(a.date) - new Date(b.date));
   past.sort((a,b) => new Date(b.date) - new Date(a.date));
 
-  const upEl = document.getElementById('upcoming-list');
-  const pastEl = document.getElementById('past-list');
-  upEl.replaceChildren(...upcoming.map(s => renderShow(s, false)));
-  pastEl.replaceChildren(...past.map(s => renderShow(s, true)));
+  function render(s, isPast) {
+    const d = new Date(s.date + 'T00:00:00');
+    const cancelled = s.cancelled ? '<p class="cancelled">⛈ Cancelled due to weather</p>' : '';
+    return `<div class="${isPast ? 'show-item past' : 'show-item'}">
+      <div class="show-date"><div class="show-month">${MONTHS[d.getMonth()]}</div><div class="show-day">${d.getDate()}</div></div>
+      <div class="show-info"><h3>${s.venue}</h3><p>${s.detail}</p>${cancelled}</div>
+    </div>`;
+  }
+
+  document.getElementById('upcoming-list').innerHTML = upcoming.map(s => render(s, false)).join('');
+  document.getElementById('past-list').innerHTML = past.map(s => render(s, true)).join('');
 }
 
-// ─────────────────────────────────────────────────────────────
-// MusicEvent JSON-LD schema for upcoming shows
-// Google reads dynamically-injected JSON-LD; this keeps the
-// structured data in sync with shows.json without duplication.
-// ─────────────────────────────────────────────────────────────
-function injectEventSchema(SHOWS) {
-  const today = new Date(); today.setHours(0,0,0,0);
-  // Include cancelled shows (marked EventCancelled per Google guidance);
-  // exclude private bookings — they aren't public events.
-  const upcoming = SHOWS.filter(s => new Date(s.date + 'T00:00:00') >= today && !s.private);
+buildShows();
 
-  upcoming.forEach(s => {
-    const venueName = s.venue.name || 'TBA';
-    const { start: startDate, end: endDate } = showStartEnd(s);
-    const event = {
-      "@context": "https://schema.org",
-      "@type": "MusicEvent",
-      "name": "Kings of Ewing at " + venueName,
-      "description": (s.description ? s.description + " " : "") + "Kings of Ewing — a five-piece mostly-covers band from Evanston, IL — performing live at " + venueName + ". Rock, pop, folk, blues, and soul from the '60s to today.",
-      "image": "https://www.kingsofewing.com/docs/images/IMG_2445.jpeg",
-      "startDate": startDate,
-      "endDate": endDate,
-      "eventStatus": s.cancelled ? "https://schema.org/EventCancelled" : "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "performer": {
-        "@type": "MusicGroup",
-        "name": "Kings of Ewing",
-        "url": "https://www.kingsofewing.com"
-      },
-      "location": {
-        "@type": "Place",
-        "name": s.location ? `${venueName}, ${s.location}` : venueName,
-        "address": s.address ? {
-          "@type": "PostalAddress",
-          "streetAddress": s.address,
-          "addressRegion": "IL",
-          "addressCountry": "US"
-        } : {
-          "@type": "PostalAddress",
-          "addressRegion": "IL",
-          "addressCountry": "US"
-        }
-      },
-      "organizer": {
-        "@type": "MusicGroup",
-        "name": "Kings of Ewing",
-        "url": "https://www.kingsofewing.com"
-      },
-      "offers": {
-        "@type": "Offer",
-        "url": s.venue.url || "https://www.kingsofewing.com",
-        "price": "0",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock",
-        "validFrom": new Date().toISOString().slice(0, 10)
-      }
-    };
-    if (s.venue.url) event.location.url = s.venue.url;
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(event);
-    document.head.appendChild(script);
-  });
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  btn.classList.add('active');
 }
 
-// ─────────────────────────────────────────────────────────────
-// Load shows from shows.json (generated by docs/shows/data/update_shows.py)
-// ─────────────────────────────────────────────────────────────
-fetch('docs/shows/data/shows.json')
-  .then(r => {
-    if (!r.ok) throw new Error(`shows.json fetch failed: ${r.status}`);
-    return r.json();
-  })
-  .then(data => {
-    if (!Array.isArray(data) || data.length === 0) {
-      console.warn('shows.json returned empty or non-array data');
-      buildShows([]);
-      return;
-    }
-    const shows = data.map(normalizeShow);
-    buildShows(shows);
-    injectEventSchema(shows);
-  })
-  .catch(err => {
-    console.error('Could not load shows:', err);
-    const msg = document.createElement('p');
-    msg.style.cssText = 'color:rgba(232,223,192,0.5);padding:1rem 0;';
-    msg.textContent = 'Shows coming soon.';
-    const upEl = document.getElementById('upcoming-list');
-    if (upEl) upEl.appendChild(msg);
-  });
+function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+function closeMenu()  { document.getElementById('mobile-menu').classList.remove('open'); }
 
-// ─────────────────────────────────────────────────────────────
-// Tabs (ARIA)
-// ─────────────────────────────────────────────────────────────
-const tabButtons = document.querySelectorAll('.shows-tabs .tab-btn');
-
-function switchTab(tabName) {
-  tabButtons.forEach(b => {
-    const active = b.dataset.tab === tabName;
-    b.classList.toggle('active', active);
-    b.setAttribute('aria-selected', active ? 'true' : 'false');
-    b.setAttribute('tabindex', active ? '0' : '-1');
-  });
-  document.querySelectorAll('.tab-panel').forEach(p => {
-    const active = p.id === 'tab-' + tabName;
-    p.classList.toggle('active', active);
-    if (active) p.removeAttribute('hidden'); else p.setAttribute('hidden', '');
-  });
-}
-
-tabButtons.forEach(btn => {
-  btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-  btn.addEventListener('keydown', e => {
-    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-    e.preventDefault();
-    const list = Array.from(tabButtons);
-    const idx = list.indexOf(btn);
-    const next = e.key === 'ArrowRight' ? (idx + 1) % list.length : (idx - 1 + list.length) % list.length;
-    list[next].focus();
-    switchTab(list[next].dataset.tab);
-  });
-});
-
-// ─────────────────────────────────────────────────────────────
-// Mobile menu (open/close, Escape, outside click)
-// ─────────────────────────────────────────────────────────────
-const mobileMenu = document.getElementById('mobile-menu');
-const hamburger  = document.getElementById('hamburger-btn');
-
-function setMenu(open) {
-  mobileMenu.classList.toggle('open', open);
-  mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
-  hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
-}
-function toggleMenu() { setMenu(!mobileMenu.classList.contains('open')); }
-function closeMenu()  { setMenu(false); }
-
-hamburger.addEventListener('click', toggleMenu);
-mobileMenu.querySelectorAll('[data-close-menu]').forEach(a => {
-  a.addEventListener('click', closeMenu);
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
-});
-document.addEventListener('click', e => {
-  if (!mobileMenu.classList.contains('open')) return;
-  if (mobileMenu.contains(e.target) || hamburger.contains(e.target)) return;
-  closeMenu();
-});
-
-// ─────────────────────────────────────────────────────────────
-// Booking form
-// ─────────────────────────────────────────────────────────────
-const bookingForm = document.getElementById('booking-form');
-if (bookingForm) bookingForm.addEventListener('submit', async function(e) {
+document.getElementById('booking-form').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const errorEl = document.getElementById('booking-error');
-  const successEl = document.getElementById('success-msg');
-  const emailVal = document.getElementById('email').value.trim();
-
-  if (!EMAIL_RE.test(emailVal)) {
-    errorEl.style.display = 'block';
-    errorEl.textContent = 'Please add a valid email.';
-    return;
-  }
-  // Honeypot check — if filled, silently "succeed" without sending
-  if (document.getElementById('website').value) {
-    successEl.style.display = 'block';
-    e.target.reset();
-    return;
-  }
-
   try {
-    const res = await fetch(e.target.action, {
-      method: 'POST',
-      body: new FormData(e.target),
-      headers: { 'Accept': 'application/json' }
-    });
-    if (res.ok) {
-      successEl.style.display = 'block';
-      errorEl.style.display = 'none';
-      e.target.reset();
-    } else {
-      errorEl.style.display = 'block';
-      errorEl.textContent = 'Something went wrong. Please email us at Miles@KingsOfEwing.com';
-    }
-  } catch {
-    errorEl.style.display = 'block';
-    errorEl.textContent = 'Something went wrong. Please email us at Miles@KingsOfEwing.com';
-  }
+    const res = await fetch(e.target.action, { method: 'POST', body: new FormData(e.target), headers: { 'Accept': 'application/json' } });
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    if (res.ok) { document.getElementById('success-msg').style.display = 'block'; e.target.reset(); }
+  } catch { alert('Something went wrong. Please email us at Miles@KingsOfEwing.com'); }
 });
 
-// ─────────────────────────────────────────────────────────────
 // Scroll reveal
-// ─────────────────────────────────────────────────────────────
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
 }, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-// ─────────────────────────────────────────────────────────────
-// Audio Player
-// ─────────────────────────────────────────────────────────────
+
+// Audio player
+// ── Audio Player ──────────────────────────────────────────────
 const audio = document.getElementById('band-audio');
 const TRACKS = [
-  { src: 'docs/audio/midnight_rider.mp3',    name: 'Midnight Rider',    artist: 'The Allman Brothers Band' },
-  { src: 'docs/audio/head_over_heels.mp3',   name: 'Head Over Heels',   artist: 'Tears for Fears'},
-  { src: 'docs/audio/ohio.mp3',              name: 'Ohio',              artist: 'CSNY'            },
-  { src: 'docs/audio/dont_let_me_down.mp3',  name: "Don't Let Me Down", artist: 'The Beatles'    },
-  { src: 'docs/audio/end_of_the_world.mp3',  name: 'End of the World',  artist: 'R.E.M.'          },
-  { src: 'docs/audio/whipping_post.mp3',     name: 'Whipping Post',     artist: 'The Allman Brothers Band' },
+  { src: 'docs/dont_let_me_down.mp3',  name: "Don't Let Me Down" },
+  { src: 'docs/end_of_the_world.mp3',  name: 'End of the World'  },
+  { src: 'docs/head_over_heels.mp3',   name: 'Head Over Heels'   },
+  { src: 'docs/midnight_rider.mp3',    name: 'Midnight Rider'    },
+  { src: 'docs/ohio.mp3',              name: 'Ohio'              },
+  { src: 'docs/whipping_post.mp3',     name: 'Whipping Post'     },
 ];
 
-// Render track list
-(function() {
-  const listEl = document.getElementById('audio-track-list');
-  if (!listEl) return;
-  TRACKS.forEach((t, i) => {
-    const item = document.createElement('div');
-    item.className = 'track-item';
-
-    const num = document.createElement('span');
-    num.className = 'track-num';
-    num.textContent = (i + 1) + '.';
-
-    const name = document.createElement('span');
-    name.className = 'track-name';
-    name.textContent = t.artist ? `${t.name} (${t.artist})` : t.name;
-
-    item.appendChild(num);
-    item.appendChild(name);
-    item.addEventListener('click', () => {
-      currentPos = i;
-      loadTrack(i, true);
-    });
-    listEl.appendChild(item);
-  });
-})();
-
-let currentPos = 0;
-
-function currentTrackIndex() { return currentPos; }
-
-// Called after currentPos is declared — safe
-function updateTrackList() {
-  document.querySelectorAll('.track-item').forEach((el, i) => {
-    el.classList.toggle('now-playing', i === currentTrackIndex());
-  });
+let shuffleOrder = [...Array(TRACKS.length).keys()];
+for (let i = shuffleOrder.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [shuffleOrder[i], shuffleOrder[j]] = [shuffleOrder[j], shuffleOrder[i]];
 }
+let shufflePos = 0;
+
+function currentTrackIndex() { return shuffleOrder[shufflePos]; }
 
 function loadTrack(index, autoplay) {
   const t = TRACKS[index];
   audio.src = t.src;
   audio.volume = document.getElementById('player-volume').value;
-  const trackLabel = t.artist ? `${t.name} (${t.artist})` : t.name;
-  document.getElementById('player-track-name').textContent = trackLabel;
-  // Sticky player: scroll text if it overflows, else show static
-  const stn = document.getElementById('sticky-track-name');
-  stn.classList.remove('scrolling');
-  stn.textContent = trackLabel;
-  requestAnimationFrame(() => {
-    if (stn.scrollWidth > stn.clientWidth) {
-      stn.classList.add('scrolling');
-      // Duplicate text so the loop appears seamless
-      const span = document.createElement('span');
-      span.textContent = `${trackLabel}    ${trackLabel}`;
-      stn.replaceChildren(span);
-    }
-  });
+  document.getElementById('player-track-name').textContent = t.name;
+  document.getElementById('sticky-track-name').textContent = t.name;
   updateProgress();
-  updateTrackList();
-  // OS-level metadata (lock screen / notification / media keys)
-  if ('mediaSession' in navigator) {
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: t.name,
-      artist: t.artist || 'Kings of Ewing',
-      album: 'Kings of Ewing — Live',
-      artwork: [{ src: 'docs/branding/Kings_of_Ewing_Logo.png', sizes: '500x500', type: 'image/png' }]
-    });
-  }
-  if (autoplay) { audio.play().then(() => showPause(true)).catch(() => showPause(false)); }
+  if (autoplay) { audio.play(); showPause(true); }
 }
 
 function showPause(playing) {
@@ -1797,9 +897,6 @@ function showPause(playing) {
   document.getElementById('player-pause-icon').style.display = playing ? 'block' : 'none';
   document.getElementById('sticky-play-icon').style.display  = playing ? 'none'  : 'block';
   document.getElementById('sticky-pause-icon').style.display = playing ? 'block' : 'none';
-  const label = playing ? 'Pause' : 'Play';
-  document.getElementById('player-play-btn').setAttribute('aria-label', label);
-  document.getElementById('sticky-play-btn').setAttribute('aria-label', label);
 }
 
 function playerPlayPause() {
@@ -1807,79 +904,27 @@ function playerPlayPause() {
     loadTrack(currentTrackIndex(), true);
     return;
   }
-  if (audio.paused) { audio.play().then(() => showPause(true)).catch(() => showPause(false)); }
+  if (audio.paused) { audio.play(); showPause(true); }
   else              { audio.pause(); showPause(false); }
 }
 
 function playerNext() {
-  currentPos = (currentPos + 1) % TRACKS.length;
-  loadTrack(currentPos, true);
+  shufflePos = (shufflePos + 1) % shuffleOrder.length;
+  loadTrack(currentTrackIndex(), true);
 }
 
 function playerPrev() {
-  currentPos = (currentPos - 1 + TRACKS.length) % TRACKS.length;
-  loadTrack(currentPos, !audio.paused);
+  shufflePos = (shufflePos - 1 + shuffleOrder.length) % shuffleOrder.length;
+  loadTrack(currentTrackIndex(), !audio.paused);
 }
 
-// Wire up audio controls
-[
-  ['player-prev-btn',  'click', playerPrev],
-  ['player-next-btn',  'click', playerNext],
-  ['player-play-btn',  'click', playerPlayPause],
-  ['sticky-prev-btn',  'click', playerPrev],
-  ['sticky-next-btn',  'click', playerNext],
-  ['sticky-play-btn',  'click', playerPlayPause],
-].forEach(([id, evt, fn]) => {
-  const el = document.getElementById(id);
-  if (el) el.addEventListener(evt, fn);
-});
-const playerVolumeEl = document.getElementById('player-volume');
-if (playerVolumeEl) playerVolumeEl.addEventListener('input', function() {
-  audio.volume = this.value;
-});
-
-// Keep play/pause icons in sync with actual playback state
-// (covers OS media keys, lock-screen controls, and any other source)
-audio.addEventListener('play',  () => showPause(true));
-audio.addEventListener('pause', () => showPause(false));
-
-// Media Session action handlers — lock-screen & hardware media-key control
-if ('mediaSession' in navigator) {
-  const ms = navigator.mediaSession;
-  ms.setActionHandler('play',  () => { playerPlayPause(); });
-  ms.setActionHandler('pause', () => { audio.pause(); });
-  ms.setActionHandler('previoustrack', playerPrev);
-  ms.setActionHandler('nexttrack', playerNext);
-  try {
-    ms.setActionHandler('seekto', d => {
-      if (audio.duration && d.seekTime != null) audio.currentTime = d.seekTime;
-    });
-  } catch(e) {} // 'seekto' unsupported in some browsers
-  audio.addEventListener('play',  () => { ms.playbackState = 'playing'; });
-  audio.addEventListener('pause', () => { ms.playbackState = 'paused'; });
-}
-
-// Progress bar — click to seek
+// Progress bars
 function updateProgress() {
   const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
   const pb = document.getElementById('player-progress-bar');
   const spb = document.getElementById('sticky-progress-bar');
-  const track = document.getElementById('player-progress-track');
-  const strack = document.getElementById('sticky-progress-track');
   if (pb)  pb.style.width  = pct + '%';
   if (spb) spb.style.width = pct + '%';
-  if (track)  track.setAttribute('aria-valuenow', Math.round(pct));
-  if (strack) strack.setAttribute('aria-valuenow', Math.round(pct));
-  // Lock-screen scrubber position
-  if ('mediaSession' in navigator && navigator.mediaSession.setPositionState && audio.duration) {
-    try {
-      navigator.mediaSession.setPositionState({
-        duration: audio.duration,
-        playbackRate: audio.playbackRate,
-        position: audio.currentTime
-      });
-    } catch(e) {}
-  }
 }
 
 function seekTo(e, el) {
@@ -1888,285 +933,28 @@ function seekTo(e, el) {
   audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
 }
 
-function seekKeydown(e) {
-  if (!audio.duration) return;
-  const step = audio.duration * 0.05; // 5% per arrow press
-  if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
-    e.preventDefault();
-    audio.currentTime = Math.min(audio.duration, audio.currentTime + step);
-  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
-    e.preventDefault();
-    audio.currentTime = Math.max(0, audio.currentTime - step);
-  } else if (e.key === 'Home') {
-    e.preventDefault();
-    audio.currentTime = 0;
-  } else if (e.key === 'End') {
-    e.preventDefault();
-    audio.currentTime = audio.duration;
-  }
-}
-
-const progressTrack = document.getElementById('player-progress-track');
-progressTrack.addEventListener('click', e => seekTo(e, progressTrack));
-progressTrack.addEventListener('keydown', seekKeydown);
-
-const stickyProgressTrack = document.getElementById('sticky-progress-track');
-if (stickyProgressTrack) {
-  stickyProgressTrack.addEventListener('click', e => seekTo(e, stickyProgressTrack));
-  stickyProgressTrack.addEventListener('keydown', seekKeydown);
-}
-
 audio.addEventListener('timeupdate', updateProgress);
 audio.addEventListener('ended', playerNext);
 
-// ─────────────────────────────────────────────────────────────
-// Videos — single player + clickable listing
-// ─────────────────────────────────────────────────────────────
-const VIDEOS = [
-  { id: 'PhVwRvgKHvQ', title: 'Highlights from Goat Village'  },
-  { id: 'mMwmRn1mP-A', title: 'Highlights from Chicago Union' },
-];
-let currentVideoIndex = 0;
+setTimeout(() => { document.getElementById('audio-box').classList.add('loaded'); }, 800);
 
-(function videoInit() {
-  const videoListEl    = document.getElementById('video-track-list');
-  const pipContainer   = document.getElementById('video-pip');
-  const pipLabel       = document.getElementById('pip-label');
-  const pipControls    = document.getElementById('pip-controls');
-  const pipClose       = document.getElementById('pip-close');
-  const videoAnchor    = document.getElementById('video-anchor');
-  const videoDisplay   = document.querySelector('.video-display');
-  if (!videoDisplay || !videoAnchor) return;
-  // A .reveal ancestor keeps transform:translateY(0) after animating in, and
-  // any non-none transform makes that element the containing block for fixed
-  // descendants — which would pin the floating PiP to the section instead of
-  // the viewport. Neutralize it while floating, restore it after.
-  const revealAncestor = videoDisplay.closest('.reveal');
-  const isTouchDevice  = () => window.matchMedia('(hover: none)').matches;
-
-  let ytPlayer       = null;
-  let pipVisible     = false;
-  let displayVisible = true;
-
-  // Render video listing
-  if (videoListEl) {
-    VIDEOS.forEach((v, i) => {
-      const item = document.createElement('div');
-      item.className = 'video-track-item' + (i === 0 ? ' now-playing' : '');
-      item.dataset.index = i;
-
-      const num = document.createElement('span');
-      num.className = 'video-track-num';
-      num.textContent = (i + 1) + '.';
-
-      const name = document.createElement('span');
-      name.className = 'video-track-name';
-      name.textContent = v.title;
-
-      item.appendChild(num);
-      item.appendChild(name);
-      item.addEventListener('click', () => selectVideo(i));
-      videoListEl.appendChild(item);
-    });
-  }
-
-  function updateVideoList() {
-    document.querySelectorAll('.video-track-item').forEach((el, i) => {
-      el.classList.toggle('now-playing', i === currentVideoIndex);
-    });
-  }
-
-  function selectVideo(index) {
-    if (!ytPlayer) return;
-    currentVideoIndex = index;
-    updateVideoList();
-    ytPlayer.loadVideoById(VIDEOS[index].id);
-    if (pipVisible) pipLabel.textContent = VIDEOS[index].title;
-  }
-
-  // Play/pause icon sync helpers
-  const videoPlayIcon  = document.getElementById('video-play-icon');
-  const videoPauseIcon = document.getElementById('video-pause-icon');
-  const pipPlayIcon    = document.getElementById('pip-play-icon');
-  const pipPauseIcon   = document.getElementById('pip-pause-icon');
-
-  function syncVideoPlayIcons(playing) {
-    if (videoPlayIcon)  videoPlayIcon.style.display  = playing ? 'none'  : '';
-    if (videoPauseIcon) videoPauseIcon.style.display = playing ? ''      : 'none';
-    if (pipPlayIcon)    pipPlayIcon.style.display    = playing ? 'none'  : '';
-    if (pipPauseIcon)   pipPauseIcon.style.display   = playing ? ''      : 'none';
-  }
-
-  const videoPrevBtn = document.getElementById('video-prev-btn');
-  const videoNextBtn = document.getElementById('video-next-btn');
-  const videoPlayBtn = document.getElementById('video-play-btn');
-  const pipPrevBtn   = document.getElementById('pip-prev-btn');
-  const pipNextBtn   = document.getElementById('pip-next-btn');
-  const pipPlayBtn   = document.getElementById('pip-play-btn');
-
-  if (videoPrevBtn) videoPrevBtn.addEventListener('click', () => {
-    selectVideo((currentVideoIndex - 1 + VIDEOS.length) % VIDEOS.length);
-  });
-  if (videoNextBtn) videoNextBtn.addEventListener('click', () => {
-    selectVideo((currentVideoIndex + 1) % VIDEOS.length);
-  });
-
-  if (videoPlayBtn) videoPlayBtn.addEventListener('click', () => {
-    if (!ytPlayer) return;
-    const state = ytPlayer.getPlayerState();
-    if (state === YT.PlayerState.PLAYING) { ytPlayer.pauseVideo(); syncVideoPlayIcons(false); }
-    else { ytPlayer.playVideo(); syncVideoPlayIcons(true); }
-  });
-
-  if (pipPrevBtn) pipPrevBtn.addEventListener('click', () => {
-    selectVideo((currentVideoIndex - 1 + VIDEOS.length) % VIDEOS.length);
-  });
-  if (pipNextBtn) pipNextBtn.addEventListener('click', () => {
-    selectVideo((currentVideoIndex + 1) % VIDEOS.length);
-  });
-  if (pipPlayBtn) pipPlayBtn.addEventListener('click', () => {
-    if (!ytPlayer) return;
-    const state = ytPlayer.getPlayerState();
-    if (state === YT.PlayerState.PLAYING) { ytPlayer.pauseVideo(); syncVideoPlayIcons(false); }
-    else { ytPlayer.playVideo(); syncVideoPlayIcons(true); }
-  });
-
-  // Load YouTube IFrame API
-  const tag = document.createElement('script');
-  tag.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(tag);
-
-  const prevReady = window.onYouTubeIframeAPIReady;
-  window.onYouTubeIframeAPIReady = function() {
-    if (typeof prevReady === 'function') prevReady();
-    ytPlayer = new YT.Player('yt-player', {
-      events: {
-        onStateChange(event) {
-          const playing = event.data === YT.PlayerState.PLAYING;
-          syncVideoPlayIcons(playing);
-          if (playing) {
-            audio.pause(); showPause(false);
-            if (!displayVisible) showPip();
-          } else if (event.data === YT.PlayerState.ENDED) {
-            hidePip(false);
-          }
+// Show sticky player when audio box scrolls out of view
+document.addEventListener('DOMContentLoaded', function() {
+  const audioBox = document.getElementById('audio-box');
+  const stickyPlayer = document.getElementById('sticky-player');
+  if (audioBox && stickyPlayer) {
+    const audioBoxObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          stickyPlayer.classList.add('visible');
+        } else {
+          stickyPlayer.classList.remove('visible');
         }
-      }
-    });
-    window._ytPlayers = { 'yt-player': ytPlayer };
-  };
-
-  // Watch the anchor (stays in document flow) — not the display,
-  // which leaves the flow while floating as PiP.
-  new IntersectionObserver(entries => {
-    displayVisible = entries[0].isIntersecting;
-    if (!displayVisible && ytPlayer && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
-      showPip();
-    } else if (displayVisible) {
-      hidePip(false);
-    }
-  }, { threshold: 0 }).observe(videoAnchor);
-
-  // PiP = CSS-float the existing .video-display. The iframe never moves in
-  // the DOM, so playback continues seamlessly (reparenting an iframe forces
-  // a reload). The anchor keeps the layout slot; label/controls/close are
-  // borrowed from #video-pip while floating.
-  function showPip() {
-    if (pipVisible || !ytPlayer) return;
-    pipVisible = true;
-
-    if (revealAncestor) revealAncestor.style.transform = 'none';
-    videoAnchor.style.minHeight = videoDisplay.offsetHeight + 'px';
-    videoDisplay.dataset.origStyle = videoDisplay.getAttribute('style') || '';
-    Object.assign(videoDisplay.style, {
-      position: 'fixed', zIndex: '200', margin: '0',
-      background: 'var(--brown)',
-      border: '2px solid var(--coral)',
-      boxShadow: '0 8px 32px rgba(0,0,0,0.65)'
-    });
-    if (isTouchDevice()) {
-      Object.assign(videoDisplay.style, {
-        bottom: '72px', left: '0.75rem', right: 'auto',
-        width: 'calc(100vw - 1.5rem)', maxWidth: '320px'
       });
-    } else {
-      Object.assign(videoDisplay.style, {
-        bottom: '80px', right: '1.5rem', left: 'auto', width: '300px'
-      });
-    }
-    pipLabel.textContent = VIDEOS[currentVideoIndex]?.title || '';
-    videoDisplay.insertBefore(pipLabel, videoDisplay.firstChild);
-    videoDisplay.appendChild(pipControls);
-    videoDisplay.appendChild(pipClose);
+    }, { threshold: 0 });
+    audioBoxObserver.observe(audioBox);
   }
-
-  function hidePip(pause) {
-    if (!pipVisible) return;
-    pipVisible = false;
-
-    videoDisplay.setAttribute('style', videoDisplay.dataset.origStyle || '');
-    videoAnchor.style.minHeight = '';
-    if (revealAncestor) revealAncestor.style.transform = '';
-    // Return borrowed chrome to its hidden home
-    pipContainer.append(pipLabel, pipControls, pipClose);
-    if (pause) { try { ytPlayer.pauseVideo(); } catch(e) {} syncVideoPlayIcons(false); }
-  }
-
-  pipClose && pipClose.addEventListener('click', () => hidePip(true));
-
-  // When audio starts: sync icons immediately (pauseVideo's onStateChange is
-  // async) and dismiss the now-paused PiP so it doesn't linger alongside the
-  // sticky audio bar.
-  audio.addEventListener('play', () => {
-    syncVideoPlayIcons(false);
-    hidePip(false);
-  });
-})();
-
-// Pause YouTube when audio player starts
-audio.addEventListener('play', () => {
-  Object.values(window._ytPlayers || {}).forEach(p => {
-    try { p.pauseVideo(); } catch(e) {}
-  });
 });
-
-// Sticky player: appears as soon as audio has started — even while the
-// Watch & Listen section is still onscreen. Stays visible while paused (so
-// you can resume without scrolling back) until explicitly closed via ×.
-const audioBox = document.getElementById('audio-box');
-const stickyPlayer = document.getElementById('sticky-player');
-let audioStarted = false;     // a track has been started at least once
-let stickyDismissed = false;  // user closed the bar
-function updateStickyVisibility() {
-  const show = audioStarted && !stickyDismissed;
-  stickyPlayer.classList.toggle('visible', show);
-  document.body.classList.toggle('sticky-active', show);
-}
-if (audioBox && stickyPlayer) {
-  audio.addEventListener('play', () => {
-    audioStarted = true;
-    stickyDismissed = false;
-    updateStickyVisibility();
-  });
-
-  // × — pause and dismiss until playback restarts
-  const stickyCloseBtn = document.getElementById('sticky-close-btn');
-  if (stickyCloseBtn) stickyCloseBtn.addEventListener('click', () => {
-    audio.pause();
-    stickyDismissed = true;
-    updateStickyVisibility();
-  });
-
-  // Track name → scroll back to the full player
-  const stickyTrackName = document.getElementById('sticky-track-name');
-  const scrollToAudioBox = () => audioBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  if (stickyTrackName) {
-    stickyTrackName.addEventListener('click', scrollToAudioBox);
-    stickyTrackName.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToAudioBox(); }
-    });
-  }
-}
 </script>
 </body>
 </html>
