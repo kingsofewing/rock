@@ -575,7 +575,13 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 @media (max-width: 768px) {
   #faq { padding: 5rem 1.5rem; }
   .faq-item summary { font-size: 0.95rem; gap: 1rem; }
-}</style>
+}
+
+/* Offset anchor-jump targets so the fixed nav doesn't cover them on landing */
+#hero, #media, #social, #mailing, #shows, #about, #faq, #book, #presskit {
+  scroll-margin-top: 90px;
+}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
