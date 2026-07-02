@@ -1,0 +1,4 @@
+Trigger file — bumping this forces a fresh commit/run so GitHub Pages deploys cleanly
+(works around the "Multiple artifacts named github-pages" re-run bug).
+
+Last bumped: 2026-07-02
