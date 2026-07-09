@@ -2074,7 +2074,8 @@ let currentVideoIndex = 0;
             audio.pause(); showPause(false);
             if (!displayVisible) showPip();
           } else if (event.data === YT.PlayerState.ENDED) {
-            hidePip(false);
+            // Auto-advance to the next video (wraps to first after the last)
+            selectVideo((currentVideoIndex + 1) % VIDEOS.length);
           }
         }
       }
