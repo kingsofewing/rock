@@ -9,8 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  @font-face { font-family:'KingsOfEwing'; src:url('/docs/sources/font/kings/kings.Regular.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
-  @font-face { font-family:'KingsOfEwing'; src:url('/docs/sources/font/kings/kings.Bold.otf') format('opentype'); font-weight:700; font-style:normal; font-display:swap; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -62,9 +60,11 @@
     border-bottom: 1px solid rgba(232,223,192,0.15);
   }
   .hero h1 {
-    font-family: 'KingsOfEwing', cursive;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 700;
-    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--cream);
     margin-bottom: 0.5rem;
   }
