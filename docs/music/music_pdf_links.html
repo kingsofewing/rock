@@ -41,8 +41,9 @@
     z-index: 10;
   }
 
-  .header-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-  .header-logo img { height: 40px; width: auto; filter: brightness(0) invert(1); }
+  .header-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; transition: opacity 0.2s; }
+  .header-logo img { height: 32px; width: auto; }
+  .header-logo:hover { opacity: 0.75; }
 
   .header-back {
     font-size: 0.8rem;
@@ -174,7 +175,7 @@
 
 <header>
   <a href="https://kingsofewing.com" class="header-logo">
-    <img src="/docs/branding/Kings_of_Ewing_Logo.png" alt="Kings of Ewing">
+    <img src="/docs/branding/kings_of_ewing_title.svg" alt="Kings of Ewing">
   </a>
   <a href="https://kingsofewing.com" class="header-back">← Back to site</a>
 </header>
