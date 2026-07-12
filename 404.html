@@ -6,8 +6,11 @@
 <title>Page Not Found — Kings of Ewing</title>
 <link rel="icon" type="image/png" href="/docs/branding/Kings_of_Ewing_Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face { font-family:'KingsOfEwing'; src:url('/docs/sources/font/kings/kings.Regular.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'KingsOfEwing'; src:url('/docs/sources/font/kings/kings.Bold.otf') format('opentype'); font-weight:700; font-style:normal; font-display:swap; }
+  @font-face { font-family:'KingsOfEwing'; src:url('/docs/sources/font/kings/kings.black.otf') format('opentype'); font-weight:900; font-style:normal; font-display:swap; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg:    #3d4f58;
@@ -41,7 +44,8 @@
   }
   body > *:not(.hero-bg) { position: relative; z-index: 1; }
   .code {
-    font-family: 'Pacifico', cursive;
+    font-family: 'KingsOfEwing', cursive;
+    font-weight: 900;
     font-size: clamp(5rem, 20vw, 10rem);
     color: var(--coral);
     line-height: 1;
@@ -49,8 +53,9 @@
     text-shadow: 0 2px 12px rgba(0,0,0,0.5);
   }
   h1 {
-    font-family: 'Lobster', cursive;
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-family: 'KingsOfEwing', cursive;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 4.5vw, 2.6rem);
     color: var(--cream);
     margin-bottom: 1rem;
     text-shadow: 0 2px 8px rgba(0,0,0,0.6);

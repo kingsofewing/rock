@@ -7,8 +7,10 @@
 <link rel="icon" type="image/png" href="/docs/branding/Kings_of_Ewing_Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Damion&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
+  @font-face { font-family:'KingsOfEwing'; src:url('/docs/sources/font/kings/kings.Regular.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; }
+  @font-face { font-family:'KingsOfEwing'; src:url('/docs/sources/font/kings/kings.Bold.otf') format('opentype'); font-weight:700; font-style:normal; font-display:swap; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -74,8 +76,9 @@
   }
 
   .hero h1 {
-    font-family: 'Damion', cursive;
-    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-family: 'KingsOfEwing', cursive;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
     color: var(--cream);
     margin-bottom: 0.5rem;
   }
