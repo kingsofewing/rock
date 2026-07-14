@@ -1013,7 +1013,12 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     </a>
   </div>
   <p>&copy; <span id="copyright-year">2026</span> Kings of Ewing &middot; Evanston, IL</p>
-  <script>document.getElementById('copyright-year').textContent = new Date().getFullYear();</script>
+  <script>
+    var launchYear = 2026;
+    var currentYear = new Date().getFullYear();
+    document.getElementById('copyright-year').textContent =
+      currentYear > launchYear ? launchYear + '-' + currentYear : launchYear;
+  </script>
 </footer>
 
 <!-- Video PiP chrome (label/controls/close get attached to the floating video) -->
