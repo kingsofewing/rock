@@ -203,5 +203,15 @@
     "start_time": "5:30 PM",
     "end_time": "8:00 PM",
     "address": "2902 Central St, Evanston, IL 60201"
+  },
+  {
+    "date": "12:00 AM",
+    "venue_name": "Willmette Theater",
+    "venue_url": "https://www.wilmettetheatre.com/",
+    "start_time": "7:00 PM",
+    "end_time": "9:00 PM",
+    "address": "1122 Central Ave., Wilmette, IL 60091",
+    "detail": "Live Local Music",
+    "detail_link_url": "https://livelocal.music/"
   }
 ]
