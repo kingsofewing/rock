@@ -4,10 +4,10 @@ PRODID:-//Kings of Ewing//Website//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:2024-06-07-fat-shallot@kingsofewing.com
+UID:2026-09-25-fat-shallot@kingsofewing.com
 DTSTAMP:20260717T202312Z
-DTSTART;VALUE=DATE:20240607
-DTEND;VALUE=DATE:20240608
+DTSTART:20260925T223000Z
+DTEND:20260926T010000Z
 SUMMARY:Kings of Ewing at Fat Shallot
 LOCATION:Fat Shallot\, 2902 Central St\, Evanston\, IL 60201
 DESCRIPTION:More info: https://www.kingsofewing.com

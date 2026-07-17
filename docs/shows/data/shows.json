@@ -211,7 +211,7 @@
     "start_time": "7:00 PM",
     "end_time": "9:00 PM",
     "address": "1122 Central Ave., Wilmette, IL 60091",
-    "detail": "Live Local Music",
+    "detail_link_name": "Live Local Music",
     "detail_link_url": "https://livelocal.music/"
   }
 ]
