@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Training Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4efe4;
+    --paper-2:#fbf8f0;
+    --ink:#211d18;
+    --ink-soft:#5c554a;
+    --line:#d8cfba;
+    --vermilion:#dc4d28;
+    --teal:#1f7a6b;
+    --amber:#d39a1e;
+    --shadow:0 1px 0 rgba(33,29,24,.04);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Hanken Grotesk",system-ui,sans-serif;
+    line-height:1.45;
+    font-size:13px;
+    padding:28px 18px;
+  }
+  .sheet{
+    max-width:1040px;
+    margin:0 auto;
+    background:var(--paper-2);
+    border:1.5px solid var(--ink);
+    padding:30px 32px 26px;
+    position:relative;
+  }
+
+  /* ---- masthead ---- */
+  .masthead{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    border-bottom:2.5px solid var(--ink);
+    padding-bottom:14px;margin-bottom:4px;
+  }
+  .title-block h1{
+    font-family:"Bricolage Grotesque",sans-serif;
+    font-weight:800;
+    font-size:46px;
+    line-height:.92;
+    letter-spacing:-1.5px;
+    text-transform:uppercase;
+  }
+  .title-block h1 .accent{color:var(--vermilion);}
+  .title-block p{
+    color:var(--ink-soft);
+    font-size:12.5px;
+    margin-top:6px;
+    max-width:460px;
+  }
+  .meta{
+    text-align:right;
+    font-family:"Spline Sans Mono",monospace;
+    font-size:10px;
+    letter-spacing:.5px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    line-height:1.7;
+  }
+  .meta b{color:var(--vermilion);}
+
+  /* ---- section headers ---- */
+  .sec-h{
+    font-family:"Bricolage Grotesque",sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    font-size:14px;
+    display:flex;align-items:center;gap:8px;
+    margin:18px 0 9px;
+  }
+  .sec-h::before{
+    content:"";display:inline-block;width:11px;height:11px;
+    background:var(--vermilion);transform:rotate(45deg);
+  }
+
+  /* ---- week table ---- */
+  table.week{width:100%;border-collapse:collapse;font-size:12px;}
+  table.week th{
+    font-family:"Spline Sans Mono",monospace;
+    font-weight:600;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;
+    text-align:left;color:var(--ink-soft);
+    padding:0 8px 6px;border-bottom:1.5px solid var(--ink);
+  }
+  table.week td{
+    padding:8px;border-bottom:1px solid var(--line);vertical-align:middle;
+  }
+  table.week tr:last-child td{border-bottom:none;}
+  .day{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;text-transform:uppercase;font-size:13px;}
+  .focus{font-weight:600;}
+  .focus small{display:block;color:var(--ink-soft);font-weight:400;font-size:11px;}
+  .pill{
+    display:inline-block;font-family:"Spline Sans Mono",monospace;
+    font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;
+    padding:2px 8px;border-radius:20px;white-space:nowrap;
+  }
+  .easy{background:rgba(31,122,107,.14);color:var(--teal);}
+  .mod{background:rgba(211,154,30,.18);color:#9a6f08;}
+  .hard{background:rgba(220,77,40,.15);color:var(--vermilion);}
+  .stretch-tag{font-family:"Spline Sans Mono",monospace;font-weight:600;font-size:11px;}
+  .stretch-tag .am{color:var(--teal);}
+  .stretch-tag .pm{color:var(--vermilion);}
+
+  /* ---- two column body ---- */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:6px;}
+  .card{break-inside:avoid;}
+  .card h3{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:12.5px;text-transform:uppercase;letter-spacing:.3px;
+    border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:7px;
+  }
+  .card h3 span{color:var(--ink-soft);font-weight:600;font-size:10px;}
+  ol.ex,ul.flow{list-style:none;}
+  ol.ex li{
+    display:flex;justify-content:space-between;gap:10px;
+    padding:3.5px 0;border-bottom:1px dotted var(--line);font-size:12px;
+  }
+  ol.ex li:last-child{border-bottom:none;}
+  ol.ex .nm{font-weight:500;}
+  ol.ex .rx{
+    font-family:"Spline Sans Mono",monospace;font-size:10.5px;font-weight:500;
+    color:var(--ink-soft);white-space:nowrap;flex-shrink:0;
+  }
+  .opt{font-size:10.5px;color:var(--ink-soft);margin-top:5px;font-style:italic;}
+
+  .ramp{display:flex;gap:6px;margin:6px 0 4px;}
+  .ramp div{
+    flex:1;text-align:center;border:1px solid var(--line);border-radius:5px;padding:6px 2px;
+    background:var(--paper);
+  }
+  .ramp .wk{font-family:"Spline Sans Mono",monospace;font-size:8.5px;letter-spacing:.5px;color:var(--ink-soft);text-transform:uppercase;}
+  .ramp .val{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:14px;}
+  .ramp div:last-child{border-color:var(--vermilion);background:rgba(220,77,40,.07);}
+  .ramp div:last-child .val{color:var(--vermilion);}
+
+  .blk{margin-bottom:9px;font-size:12px;}
+  .blk b{font-weight:700;}
+  .blk .rx{font-family:"Spline Sans Mono",monospace;font-size:10.5px;color:var(--ink-soft);}
+
+  .rot{margin-bottom:7px;font-size:11.5px;}
+  .rot .lbl{
+    font-family:"Spline Sans Mono",monospace;font-weight:600;font-size:10px;
+    text-transform:uppercase;letter-spacing:.5px;
+  }
+  .rot.am .lbl{color:var(--teal);}
+  .rot.pm .lbl{color:var(--vermilion);}
+  .rot .moves{color:var(--ink-soft);}
+
+  /* ---- footer notes ---- */
+  .notes{
+    margin-top:20px;border-top:2px solid var(--ink);padding-top:12px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  }
+  .notes div{font-size:10.5px;line-height:1.4;}
+  .notes h4{
+    font-family:"Spline Sans Mono",monospace;font-size:9px;letter-spacing:1px;
+    text-transform:uppercase;color:var(--vermilion);margin-bottom:4px;
+  }
+  .disclaimer{
+    margin-top:14px;font-size:9.5px;color:var(--ink-soft);font-style:italic;
+    text-align:center;border-top:1px dotted var(--line);padding-top:9px;
+  }
+
+  @media (max-width:760px){
+    .cols{grid-template-columns:1fr;}
+    .notes{grid-template-columns:1fr 1fr;}
+    .title-block h1{font-size:36px;}
+  }
+  @media print{
+    body{padding:0;background:#fff;font-size:11.5px;}
+    .sheet{border:none;max-width:100%;padding:0 6px;}
+    .ramp div{background:#fff;}
+  }
+  /* ---- page 2 : exercise library ---- */
+  .page2{break-before:page;margin-top:30px;}
+  .lib-sub{color:var(--ink-soft);font-size:12.5px;margin-top:6px;max-width:560px;}
+  .lib-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:4px;}
+  .ex-card{
+    border:1px solid var(--line);border-radius:8px;padding:9px 8px 8px;
+    text-align:center;background:var(--paper);break-inside:avoid;
+  }
+  .ex-card .num{
+    font-family:"Spline Sans Mono",monospace;font-size:8.5px;color:var(--vermilion);
+    font-weight:600;letter-spacing:.5px;display:block;text-align:left;margin-bottom:-6px;
+  }
+  .ex-card svg{width:100%;height:72px;display:block;margin:0 auto 4px;}
+  .ex-card .nm{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:11px;line-height:1.15;text-transform:uppercase;letter-spacing:.2px;}
+  .ex-card .cue{font-size:9.5px;color:var(--ink-soft);line-height:1.3;margin-top:3px;}
+  svg.ex-fig path, svg.ex-fig line, svg.ex-fig circle, svg.ex-fig polyline{
+    fill:none;stroke:var(--ink);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;
+  }
+  svg.ex-fig .acc{stroke:var(--vermilion);}
+  svg.ex-fig .w{fill:var(--ink);stroke:none;}
+  svg.ex-fig .g{stroke:var(--line);stroke-width:2.6;}
+  svg.ex-fig .head{fill:var(--paper);}
+  .dyn-note{
+    margin-top:16px;border:1px dashed var(--line);border-radius:7px;padding:10px 13px;
+    font-size:10.5px;color:var(--ink-soft);line-height:1.5;background:var(--paper);
+  }
+  .dyn-note b{font-family:"Spline Sans Mono",monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--vermilion);}
+  @media (max-width:760px){ .lib-grid{grid-template-columns:repeat(2,1fr);} }
+  @media print{ .lib-grid{grid-template-columns:repeat(4,1fr);gap:9px;} .ex-card{background:#fff;} .dyn-note{background:#fff;} }
+  @page{margin:14mm;}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="masthead">
+    <div class="title-block">
+      <h1>Training<br><span class="accent">Program</span></h1>
+      <p>Balanced strength + cardio, built for a steady comeback. Upper-body focused, toe-friendly, ramping the long ride toward 75 minutes.</p>
+    </div>
+    <div class="meta">
+      <div><b>6</b> active days / week</div>
+      <div><b>2</b> strength · <b>4</b> cardio styles</div>
+      <div>30–60 min sessions</div>
+      <div>AM 5 min · PM 10 min stretch</div>
+    </div>
+  </div>
+
+  <div class="sec-h">The Week</div>
+  <table class="week">
+    <thead>
+      <tr>
+        <th style="width:7%">Day</th>
+        <th style="width:42%">Focus</th>
+        <th style="width:16%">Intensity</th>
+        <th style="width:35%">AM / PM Stretch</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="day">Mon</td>
+        <td class="focus">Upper Body Strength A <small>push emphasis</small></td>
+        <td><span class="pill mod">Moderate</span></td>
+        <td class="stretch-tag"><span class="am">AM · A</span> &nbsp;/&nbsp; <span class="pm">PM · B</span></td>
+      </tr>
+      <tr>
+        <td class="day">Tue</td>
+        <td class="focus">Bike — steady endurance <small>aerobic base, 30–45 min</small></td>
+        <td><span class="pill easy">Easy–Mod</span></td>
+        <td class="stretch-tag"><span class="am">AM · B</span> &nbsp;/&nbsp; <span class="pm">PM · A</span></td>
+      </tr>
+      <tr>
+        <td class="day">Wed</td>
+        <td class="focus">Rowing intervals <small>low-impact high effort</small></td>
+        <td><span class="pill hard">Mod–Hard</span></td>
+        <td class="stretch-tag"><span class="am">AM · C</span> &nbsp;/&nbsp; <span class="pm">PM · A</span></td>
+      </tr>
+      <tr>
+        <td class="day">Thu</td>
+        <td class="focus">Upper Body Strength B <small>pull emphasis</small></td>
+        <td><span class="pill mod">Moderate</span></td>
+        <td class="stretch-tag"><span class="am">AM · A</span> &nbsp;/&nbsp; <span class="pm">PM · B</span></td>
+      </tr>
+      <tr>
+        <td class="day">Fri</td>
+        <td class="focus">Recovery — easy spin or light row <small>+ full mobility</small></td>
+        <td><span class="pill easy">Easy</span></td>
+        <td class="stretch-tag"><span class="am">AM · B</span> &nbsp;/&nbsp; <span class="pm">PM · C</span></td>
+      </tr>
+      <tr>
+        <td class="day">Sat</td>
+        <td class="focus">Long bike <small>the build-to-75 ride</small></td>
+        <td><span class="pill hard">Mod–Hard</span></td>
+        <td class="stretch-tag"><span class="am">AM · C</span> &nbsp;/&nbsp; <span class="pm">PM · A</span></td>
+      </tr>
+      <tr>
+        <td class="day">Sun</td>
+        <td class="focus">Rest <small>or optional easy run if toe is pain-free</small></td>
+        <td><span class="pill easy">Easy</span></td>
+        <td class="stretch-tag"><span class="am">AM · A</span> &nbsp;/&nbsp; <span class="pm">PM · C</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="cols">
+    <!-- LEFT: STRENGTH -->
+    <div>
+      <div class="sec-h">Strength</div>
+      <div class="card">
+        <h3>Upper Body A <span>— push · ~8–12 reps · rest 60–90s</span></h3>
+        <ol class="ex">
+          <li><span class="nm">DB bench press</span><span class="rx">3 × 8–12</span></li>
+          <li><span class="nm">DB overhead press</span><span class="rx">3 × 8–12</span></li>
+          <li><span class="nm">One-arm DB row</span><span class="rx">3 × 8–12 / side</span></li>
+          <li><span class="nm">DB lateral raise</span><span class="rx">2 × 12–15</span></li>
+          <li><span class="nm">Overhead triceps ext.</span><span class="rx">2 × 10–12</span></li>
+          <li><span class="nm">Plank</span><span class="rx">3 × 30–45s</span></li>
+        </ol>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <h3>Upper Body B <span>— pull · ~8–12 reps · rest 60–90s</span></h3>
+        <ol class="ex">
+          <li><span class="nm">Bent-over DB row</span><span class="rx">3 × 8–12</span></li>
+          <li><span class="nm">DB pullover</span><span class="rx">3 × 10–12</span></li>
+          <li><span class="nm">DB floor / incline press</span><span class="rx">3 × 8–12</span></li>
+          <li><span class="nm">DB curl</span><span class="rx">3 × 10–12</span></li>
+          <li><span class="nm">DB rear-delt fly</span><span class="rx">2 × 12–15</span></li>
+          <li><span class="nm">Side plank</span><span class="rx">2 × 20–30s / side</span></li>
+        </ol>
+        <div class="opt">Optional toe-safe lower body: glute bridges 2 × 15 (zero forefoot load).</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: CARDIO + STRETCH -->
+    <div>
+      <div class="sec-h">Cardio</div>
+      <div class="card">
+        <div class="blk"><b>Long bike — build to 75 min</b> (Sat). Seated, conversational pace. Add resistance instead of standing if the toe complains.</div>
+        <div class="ramp">
+          <div><div class="wk">Wk 1</div><div class="val">40–45</div></div>
+          <div><div class="wk">Wk 2</div><div class="val">50–55</div></div>
+          <div><div class="wk">Wk 3</div><div class="val">60–65</div></div>
+          <div><div class="wk">Wk 4</div><div class="val">70–75</div></div>
+        </div>
+        <div class="blk"><b>Steady bike</b> (Tue) — 30–45 min easy. Your aerobic base, not a test.</div>
+        <div class="blk"><b>Row intervals</b> (Wed) — 5 min warm-up · <span class="rx">6–8 × (1 min hard / 90s easy)</span> · 5 min cool-down. Drive through heels.</div>
+        <div class="blk"><b>Optional run</b> (Sun) — only if walking is pain-free. <span class="rx">1 min jog / 2 min walk × 6–8</span>, flat ground, stop at any toe pain.</div>
+      </div>
+
+      <div class="sec-h" style="margin-top:16px">Stretch Rotations</div>
+      <div class="card">
+        <div class="rot am"><span class="lbl">AM A · wake-up</span> <span class="moves">— cat-cow · standing side bends · shoulder rolls + arm circles · hip circles · ankle &amp; toe circles</span></div>
+        <div class="rot am"><span class="lbl">AM B · spine &amp; hips</span> <span class="moves">— child's pose↔cobra flow · thread-the-needle · forward fold (soft knees) · standing twists</span></div>
+        <div class="rot am"><span class="lbl">AM C · cyclist opener</span> <span class="moves">— low-lunge hip flexor · all-fours thoracic rotations · doorway chest · easy ankle mobility</span></div>
+        <div style="height:6px"></div>
+        <div class="rot pm"><span class="lbl">PM A · lower unwind</span> <span class="moves">— figure-4 glute · supine hamstring · lying spinal twist · happy baby · child's pose · gentle big-toe flex</span></div>
+        <div class="rot pm"><span class="lbl">PM B · posture reset</span> <span class="moves">— doorway chest · cross-body shoulder · overhead triceps · neck stretch · cat-cow · child's pose side reach</span></div>
+        <div class="rot pm"><span class="lbl">PM C · full wind-down</span> <span class="moves">— forward fold · low lunge · butterfly · wide-leg fold · supine twist · legs-up-the-wall</span></div>
+        <div class="opt">AM holds ~30s / 5–8 slow reps. PM holds ~45–60s.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <div>
+      <h4>Turf Toe</h4>
+      No push-off loading: skip standing climbs, calf raises, squats/lunges/deadlifts for now. Keep any big-toe stretch slow and pain-free.
+    </div>
+    <div>
+      <h4>Form First</h4>
+      Coming off a layoff, start lighter than feels necessary. Leave 1–2 reps in the tank. Quality of movement beats load.
+    </div>
+    <div>
+      <h4>Progress</h4>
+      Add a little to the long ride each week. Once 75 min feels easy, add load or sets to strength before chasing more time.
+    </div>
+    <div>
+      <h4>Flex It</h4>
+      Tight on time? Cut isolation moves to 2 sets (~35 min). Toe flares? Swap the run for rowing or an easy spin.
+    </div>
+  </div>
+
+  <div class="disclaimer">General training guidance, not medical advice — if the toe is painful when walking, get a PT or doctor's clearance before resuming impact work.</div>
+
+</div>
+
+<!-- shared arrowhead marker -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="ah" markerWidth="6" markerHeight="6" refX="2.6" refY="2.9" orient="auto">
+    <path d="M0.6,0.6 L5.2,2.9 L0.6,5.2 Z" fill="#dc4d28"/>
+  </marker>
+</defs></svg>
+
+<!-- ===================== PAGE 2 ===================== -->
+<div class="sheet page2">
+
+  <div class="masthead">
+    <div class="title-block">
+      <h1>Exercise<br><span class="accent">Library</span></h1>
+      <p class="lib-sub">How each movement looks. Orange arrows show the working direction; the dark dot is the weight. Match the position, then move slowly through full range.</p>
+    </div>
+    <div class="meta">
+      <div><b>13</b> strength moves</div>
+      <div><b>17</b> stretches</div>
+      <div>Pairs with page 1</div>
+    </div>
+  </div>
+
+  <div class="sec-h">Strength — Form Cues</div>
+  <div class="lib-grid">
+
+    <div class="ex-card"><span class="num">A1 / B</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <rect class="g" x="20" y="50" width="70" height="6" rx="2"/>
+        <line class="g" x1="28" y1="56" x2="28" y2="72"/><line class="g" x1="82" y1="56" x2="82" y2="72"/>
+        <circle class="head" cx="30" cy="42" r="6"/>
+        <line x1="36" y1="48" x2="74" y2="48"/><polyline points="74,48 82,48 82,62"/>
+        <line x1="52" y1="48" x2="50" y2="22"/><line x1="60" y1="48" x2="62" y2="22"/>
+        <circle class="w" cx="50" cy="20" r="4"/><circle class="w" cx="62" cy="20" r="4"/>
+        <line class="acc" x1="70" y1="40" x2="70" y2="24" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">DB Bench Press</div><div class="cue">Press up, elbows ~45°, control down</div>
+    </div>
+
+    <div class="ex-card"><span class="num">A2</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="40" y1="74" x2="70" y2="74"/>
+        <circle class="head" cx="55" cy="30" r="6"/>
+        <line x1="55" y1="36" x2="55" y2="56"/><line x1="55" y1="56" x2="47" y2="74"/><line x1="55" y1="56" x2="63" y2="74"/>
+        <polyline points="55,40 46,30 48,16"/><polyline points="55,40 64,30 62,16"/>
+        <circle class="w" cx="48" cy="14" r="4"/><circle class="w" cx="62" cy="14" r="4"/>
+        <line class="acc" x1="74" y1="28" x2="74" y2="14" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">DB Overhead Press</div><div class="cue">Press overhead, ribs down, don't arch</div>
+    </div>
+
+    <div class="ex-card"><span class="num">A3</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <rect class="g" x="58" y="52" width="40" height="5" rx="2"/>
+        <circle class="head" cx="22" cy="40" r="6"/>
+        <line x1="28" y1="44" x2="66" y2="46"/><line x1="62" y1="46" x2="74" y2="52"/>
+        <line x1="44" y1="45" x2="44" y2="72"/><line x1="66" y1="46" x2="66" y2="57"/>
+        <line x1="40" y1="45" x2="50" y2="58"/><circle class="w" cx="51" cy="60" r="4"/>
+        <line class="acc" x1="58" y1="62" x2="58" y2="48" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">One-Arm DB Row</div><div class="cue">Pull weight to hip, squeeze blade</div>
+    </div>
+
+    <div class="ex-card"><span class="num">A4</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="40" y1="74" x2="70" y2="74"/>
+        <circle class="head" cx="55" cy="20" r="6"/>
+        <line x1="55" y1="26" x2="55" y2="50"/><line x1="55" y1="50" x2="47" y2="74"/><line x1="55" y1="50" x2="63" y2="74"/>
+        <line x1="55" y1="32" x2="32" y2="34"/><line x1="55" y1="32" x2="78" y2="34"/>
+        <circle class="w" cx="29" cy="34" r="4"/><circle class="w" cx="81" cy="34" r="4"/>
+        <line class="acc" x1="84" y1="46" x2="84" y2="34" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">DB Lateral Raise</div><div class="cue">Raise to shoulder height, soft elbows</div>
+    </div>
+
+    <div class="ex-card"><span class="num">A5</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="40" y1="74" x2="70" y2="74"/>
+        <circle class="head" cx="55" cy="24" r="6"/>
+        <line x1="55" y1="30" x2="55" y2="52"/><line x1="55" y1="52" x2="47" y2="74"/><line x1="55" y1="52" x2="63" y2="74"/>
+        <polyline points="55,34 48,22 56,12"/><polyline points="55,34 62,22 54,12"/>
+        <circle class="w" cx="55" cy="9" r="5"/>
+        <line class="acc" x1="72" y1="26" x2="72" y2="12" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">Overhead Triceps Ext.</div><div class="cue">Elbows in, extend straight overhead</div>
+    </div>
+
+    <div class="ex-card"><span class="num">A6</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="16" y1="64" x2="96" y2="64"/>
+        <circle class="head" cx="28" cy="46" r="6"/>
+        <line x1="33" y1="49" x2="86" y2="60"/><polyline points="36,50 34,64 30,64"/>
+        <line x1="86" y1="60" x2="90" y2="64"/>
+      </svg>
+      <div class="nm">Plank</div><div class="cue">Straight line, brace core, glutes tight</div>
+    </div>
+
+    <div class="ex-card"><span class="num">B1</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="35" y1="74" x2="80" y2="74"/>
+        <circle class="head" cx="28" cy="34" r="6"/>
+        <line x1="34" y1="38" x2="70" y2="44"/><line x1="64" y1="43" x2="58" y2="74"/><line x1="64" y1="43" x2="70" y2="74"/>
+        <line x1="48" y1="40" x2="50" y2="56"/><line x1="56" y1="42" x2="58" y2="56"/>
+        <circle class="w" cx="50" cy="58" r="4"/><circle class="w" cx="58" cy="58" r="4"/>
+        <line class="acc" x1="40" y1="58" x2="40" y2="44" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">Bent-Over DB Row</div><div class="cue">Hinge, flat back, pull to hips</div>
+    </div>
+
+    <div class="ex-card"><span class="num">B2</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <rect class="g" x="30" y="50" width="64" height="6" rx="2"/>
+        <line class="g" x1="38" y1="56" x2="38" y2="72"/><line class="g" x1="86" y1="56" x2="86" y2="72"/>
+        <circle class="head" cx="84" cy="42" r="6"/>
+        <line x1="48" y1="48" x2="78" y2="48"/><polyline points="40,48 40,62 44,62"/>
+        <polyline points="62,48 50,30 44,20"/><circle class="w" cx="42" cy="17" r="5"/>
+        <path class="acc" d="M30,22 Q34,14 42,12" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">DB Pullover</div><div class="cue">Arc overhead, ribs down, slow</div>
+    </div>
+
+    <div class="ex-card"><span class="num">B3</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="22" y1="66" x2="60" y2="40"/><line class="g" x1="22" y1="66" x2="70" y2="66"/>
+        <circle class="head" cx="58" cy="36" r="6"/>
+        <line x1="52" y1="42" x2="30" y2="62"/><polyline points="30,62 44,66 60,66"/>
+        <line x1="46" y1="48" x2="50" y2="26"/><line x1="40" y1="52" x2="44" y2="28"/>
+        <circle class="w" cx="50" cy="24" r="4"/><circle class="w" cx="44" cy="26" r="4"/>
+        <line class="acc" x1="62" y1="40" x2="58" y2="26" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">Incline / Floor Press</div><div class="cue">Press up &amp; slightly in</div>
+    </div>
+
+    <div class="ex-card"><span class="num">B4</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="40" y1="74" x2="70" y2="74"/>
+        <circle class="head" cx="55" cy="20" r="6"/>
+        <line x1="55" y1="26" x2="55" y2="50"/><line x1="55" y1="50" x2="47" y2="74"/><line x1="55" y1="50" x2="63" y2="74"/>
+        <polyline points="48,30 46,44 52,38"/><polyline points="62,30 64,44 58,38"/>
+        <circle class="w" cx="52" cy="37" r="4"/><circle class="w" cx="58" cy="37" r="4"/>
+        <path class="acc" d="M40,46 Q40,36 47,33" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">DB Curl</div><div class="cue">Curl up, elbows pinned to sides</div>
+    </div>
+
+    <div class="ex-card"><span class="num">B5</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="35" y1="74" x2="80" y2="74"/>
+        <circle class="head" cx="26" cy="34" r="6"/>
+        <line x1="32" y1="38" x2="68" y2="44"/><line x1="62" y1="43" x2="58" y2="74"/><line x1="62" y1="43" x2="68" y2="74"/>
+        <line x1="46" y1="40" x2="40" y2="26"/><line x1="54" y1="42" x2="62" y2="28"/>
+        <circle class="w" cx="38" cy="24" r="4"/><circle class="w" cx="64" cy="26" r="4"/>
+        <line class="acc" x1="34" y1="36" x2="38" y2="26" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">DB Rear-Delt Fly</div><div class="cue">Hinge, wing arms out, squeeze</div>
+    </div>
+
+    <div class="ex-card"><span class="num">B6</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="16" y1="66" x2="96" y2="66"/>
+        <circle class="head" cx="30" cy="40" r="6"/>
+        <line x1="35" y1="44" x2="84" y2="62"/><line x1="40" y1="46" x2="36" y2="66"/>
+        <line x1="42" y1="45" x2="44" y2="22"/><line x1="84" y1="62" x2="90" y2="64"/>
+        <line class="acc" x1="52" y1="42" x2="52" y2="30" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">Side Plank</div><div class="cue">Stack hips, lift, straight line</div>
+    </div>
+
+    <div class="ex-card"><span class="num">opt</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="16" y1="66" x2="96" y2="66"/>
+        <circle class="head" cx="26" cy="56" r="6"/>
+        <line x1="32" y1="58" x2="58" y2="46"/><polyline points="58,46 70,46 70,66"/>
+        <line x1="32" y1="59" x2="40" y2="66"/>
+        <path class="acc" d="M52,62 Q52,52 56,48" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">Glute Bridge</div><div class="cue">Toe-safe: drive heels, squeeze up</div>
+    </div>
+
+  </div>
+
+  <div class="sec-h">Stretch — Form Cues</div>
+  <div class="lib-grid">
+
+    <div class="ex-card"><span class="num">flow</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="20" y1="68" x2="92" y2="68"/>
+        <circle class="head" cx="30" cy="40" r="6"/>
+        <path d="M35,42 Q56,28 78,40"/>
+        <line x1="36" y1="44" x2="36" y2="68"/><line x1="78" y1="40" x2="78" y2="68"/>
+        <path class="acc" d="M50,30 Q56,24 62,30" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">Cat–Cow</div><div class="cue">Alternate arch &amp; round with breath</div>
+    </div>
+
+    <div class="ex-card"><span class="num">rest</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="16" y1="66" x2="96" y2="66"/>
+        <path d="M30,66 Q30,46 46,50"/>
+        <circle class="head" cx="60" cy="58" r="6"/>
+        <line x1="46" y1="50" x2="86" y2="62"/><line x1="30" y1="66" x2="44" y2="66"/>
+      </svg>
+      <div class="nm">Child's Pose</div><div class="cue">Hips to heels, reach long</div>
+    </div>
+
+    <div class="ex-card"><span class="num">open</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="16" y1="66" x2="96" y2="66"/>
+        <line x1="28" y1="66" x2="60" y2="64"/>
+        <path d="M52,64 Q60,50 60,40"/>
+        <circle class="head" cx="62" cy="34" r="6"/>
+        <line x1="56" y1="52" x2="56" y2="66"/>
+        <line class="acc" x1="74" y1="48" x2="76" y2="36" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">Cobra</div><div class="cue">Press up, shoulders down, soft</div>
+    </div>
+
+    <div class="ex-card"><span class="num">twist</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="18" y1="68" x2="94" y2="68"/>
+        <line x1="42" y1="44" x2="78" y2="44"/><line x1="78" y1="44" x2="78" y2="68"/>
+        <circle class="head" cx="34" cy="58" r="6"/>
+        <line x1="42" y1="44" x2="30" y2="66"/><line x1="46" y1="44" x2="50" y2="64"/>
+      </svg>
+      <div class="nm">Thread the Needle</div><div class="cue">Slide arm under, rest shoulder</div>
+    </div>
+
+    <div class="ex-card"><span class="num">hinge</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="42" y1="74" x2="68" y2="74"/>
+        <line x1="52" y1="44" x2="52" y2="74"/><line x1="58" y1="44" x2="58" y2="74"/>
+        <path d="M55,44 Q52,58 50,64"/>
+        <circle class="head" cx="49" cy="60" r="6"/>
+        <line x1="52" y1="48" x2="49" y2="68"/>
+      </svg>
+      <div class="nm">Forward Fold</div><div class="cue">Hinge, soft knees, hang heavy</div>
+    </div>
+
+    <div class="ex-card"><span class="num">hip</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="14" y1="72" x2="96" y2="72"/>
+        <circle class="head" cx="58" cy="24" r="6"/>
+        <line x1="58" y1="30" x2="58" y2="48"/>
+        <polyline points="58,48 50,58 50,72"/><polyline points="58,48 74,62 88,70"/>
+        <line x1="58" y1="34" x2="48" y2="44"/>
+      </svg>
+      <div class="nm">Low Lunge</div><div class="cue">Sink hips, tall chest, feel front hip</div>
+    </div>
+
+    <div class="ex-card"><span class="num">rotate</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="20" y1="68" x2="92" y2="68"/>
+        <circle class="head" cx="32" cy="42" r="6"/>
+        <line x1="38" y1="44" x2="74" y2="46"/><line x1="40" y1="46" x2="40" y2="68"/><line x1="74" y1="46" x2="74" y2="68"/>
+        <polyline points="44,44 50,30 56,22"/>
+        <line class="acc" x1="58" y1="20" x2="64" y2="13" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">Thoracic Rotation</div><div class="cue">Reach arm to ceiling, open chest</div>
+    </div>
+
+    <div class="ex-card"><span class="num">chest</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="40" y1="74" x2="78" y2="74"/>
+        <line class="g" x1="38" y1="10" x2="38" y2="74"/>
+        <circle class="head" cx="62" cy="22" r="6"/>
+        <line x1="62" y1="28" x2="62" y2="52"/><line x1="62" y1="52" x2="55" y2="74"/><line x1="62" y1="52" x2="69" y2="74"/>
+        <polyline points="62,32 50,30 42,22"/><polyline points="62,36 50,40 42,48"/>
+      </svg>
+      <div class="nm">Doorway Chest</div><div class="cue">Forearms on frame, lean through</div>
+    </div>
+
+    <div class="ex-card"><span class="num">glute</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="16" y1="68" x2="96" y2="68"/>
+        <circle class="head" cx="24" cy="58" r="6"/>
+        <line x1="30" y1="60" x2="56" y2="58"/>
+        <polyline points="56,58 64,46 56,40"/><line x1="50" y1="50" x2="68" y2="52"/>
+        <line x1="40" y1="58" x2="48" y2="46"/>
+      </svg>
+      <div class="nm">Figure-4 Glute</div><div class="cue">Cross ankle, pull thigh toward you</div>
+    </div>
+
+    <div class="ex-card"><span class="num">ham</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="16" y1="68" x2="96" y2="68"/>
+        <circle class="head" cx="24" cy="60" r="6"/>
+        <line x1="30" y1="62" x2="56" y2="62"/>
+        <line x1="56" y1="62" x2="66" y2="30"/><line x1="56" y1="62" x2="78" y2="66"/>
+        <line x1="44" y1="62" x2="62" y2="36"/>
+        <line class="acc" x1="74" y1="36" x2="69" y2="26" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">Supine Hamstring</div><div class="cue">Leg up straight, toe relaxed</div>
+    </div>
+
+    <div class="ex-card"><span class="num">twist</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="16" y1="68" x2="96" y2="68"/>
+        <circle class="head" cx="80" cy="40" r="6"/>
+        <line x1="40" y1="50" x2="74" y2="44"/><line x1="40" y1="50" x2="22" y2="50"/>
+        <polyline points="46,50 40,64 28,64"/>
+      </svg>
+      <div class="nm">Supine Spinal Twist</div><div class="cue">Knees one way, shoulders down</div>
+    </div>
+
+    <div class="ex-card"><span class="num">hip</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="16" y1="68" x2="96" y2="68"/>
+        <circle class="head" cx="24" cy="60" r="6"/>
+        <line x1="28" y1="60" x2="50" y2="58"/>
+        <polyline points="50,58 54,40 46,34"/><polyline points="50,58 64,42 70,36"/>
+        <line x1="46" y1="34" x2="56" y2="30"/><line x1="70" y1="36" x2="60" y2="30"/>
+      </svg>
+      <div class="nm">Happy Baby</div><div class="cue">Hold feet, knees wide &amp; down</div>
+    </div>
+
+    <div class="ex-card"><span class="num">hip</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="24" y1="70" x2="86" y2="70"/>
+        <circle class="head" cx="55" cy="28" r="6"/>
+        <line x1="55" y1="34" x2="55" y2="56"/>
+        <polyline points="55,56 40,68 55,66"/><polyline points="55,56 70,68 55,66"/>
+        <line x1="55" y1="44" x2="48" y2="62"/><line x1="55" y1="44" x2="62" y2="62"/>
+      </svg>
+      <div class="nm">Butterfly</div><div class="cue">Soles together, let knees sink</div>
+    </div>
+
+    <div class="ex-card"><span class="num">calm</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="16" y1="68" x2="96" y2="68"/>
+        <line class="g" x1="74" y1="68" x2="74" y2="12"/>
+        <circle class="head" cx="24" cy="60" r="6"/>
+        <line x1="30" y1="62" x2="64" y2="62"/>
+        <line x1="64" y1="62" x2="68" y2="18"/><line x1="66" y1="62" x2="71" y2="18"/>
+      </svg>
+      <div class="nm">Legs Up the Wall</div><div class="cue">Relax, legs vertical, just breathe</div>
+    </div>
+
+    <div class="ex-card"><span class="num">side</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="40" y1="74" x2="70" y2="74"/>
+        <path d="M55,22 Q49,36 50,50"/>
+        <circle class="head" cx="57" cy="15" r="6"/>
+        <line x1="50" y1="50" x2="46" y2="74"/><line x1="50" y1="50" x2="58" y2="74"/>
+        <polyline points="55,24 62,15 54,8"/>
+        <line class="acc" x1="40" y1="22" x2="34" y2="31" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">Standing Side Bend</div><div class="cue">Reach over, lengthen the side</div>
+    </div>
+
+    <div class="ex-card"><span class="num">shldr</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="40" y1="74" x2="70" y2="74"/>
+        <circle class="head" cx="55" cy="18" r="6"/>
+        <line x1="55" y1="24" x2="55" y2="50"/><line x1="55" y1="50" x2="47" y2="74"/><line x1="55" y1="50" x2="63" y2="74"/>
+        <line x1="55" y1="30" x2="34" y2="34"/><polyline points="55,38 44,34 40,34"/>
+      </svg>
+      <div class="nm">Cross-Body Shoulder</div><div class="cue">Pull arm across, relax shoulder</div>
+    </div>
+
+    <div class="ex-card"><span class="num">tricep</span>
+      <svg class="ex-fig" viewBox="0 0 110 80">
+        <line class="g" x1="40" y1="74" x2="70" y2="74"/>
+        <circle class="head" cx="55" cy="22" r="6"/>
+        <line x1="55" y1="28" x2="55" y2="52"/><line x1="55" y1="52" x2="47" y2="74"/><line x1="55" y1="52" x2="63" y2="74"/>
+        <polyline points="55,32 50,18 60,14"/><polyline points="55,34 64,22 58,16"/>
+        <line class="acc" x1="68" y1="20" x2="62" y2="13" marker-end="url(#ah)"/>
+      </svg>
+      <div class="nm">Triceps Stretch</div><div class="cue">Hand down back, ease the elbow</div>
+    </div>
+
+  </div>
+
+  <div class="dyn-note">
+    <b>Dynamic moves — no diagram needed.</b> &nbsp;Shoulder rolls, arm circles, hip circles, ankle &amp; toe circles, gentle neck tilts, and the seated big-toe flex are simple controlled circles or easy holds. Move slowly, stay pain-free, ~5–8 reps each. Keep the big-toe work especially gentle and never forced.
+  </div>
+
+  <div class="disclaimer">Figures are simplified guides to body position — prioritize how the movement feels over matching the drawing exactly.</div>
+
+</div>
+</body>
+</html>
