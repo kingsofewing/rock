@@ -51,6 +51,10 @@ COL_CANCELLED        = 13
 COL_CANCEL_REASON    = 14
 COL_PRIVATE          = 15
 COL_INSTAGRAM_LINK   = 16
+# Columns 17-21 hold weather data. Ticket info appended after it.
+COL_TICKET_PRICE     = 22
+COL_TICKET_URL       = 23
+COL_TICKET_NOTE      = 24
 
 DATA_START_ROW = 3  # row 1 = instructions, row 2 = headers
 
@@ -133,6 +137,27 @@ def build_shows():
         instagram_link = cell_val(row, COL_INSTAGRAM_LINK)
         if instagram_link:
             show["instagram_link"] = instagram_link
+
+        # Ticket price drives the JSON-LD "offers" block. Leave blank when
+        # unknown — the site then omits offers entirely rather than telling
+        # Google the show is free. "Free" or "0" means genuinely free.
+        ticket_price = cell_val(row, COL_TICKET_PRICE)
+        if ticket_price:
+            cleaned = ticket_price.replace("$", "").strip()
+            if cleaned.lower() in ("free", "0", "0.00"):
+                show["ticket_price"] = "0"
+            else:
+                show["ticket_price"] = cleaned
+
+        ticket_url = cell_val(row, COL_TICKET_URL)
+        if ticket_url:
+            show["ticket_url"] = ticket_url
+
+        # Short qualifier shown in parentheses after the price, e.g.
+        # "includes a free drink" -> "$10 (includes a free drink)".
+        ticket_note = cell_val(row, COL_TICKET_NOTE)
+        if ticket_note:
+            show["ticket_note"] = ticket_note
 
         shows.append(show)
 

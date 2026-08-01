@@ -5,6 +5,10 @@
 # Editor / OS cruft
 Thumbs.db
 *.swp
+# LibreOffice lock files + temp copies of open workbooks — these can be
+# unencrypted snapshots of private data, and the site is publicly served.
+.~lock.*#
+*.tmp
 
 # Build / backup cruft
 **/__pycache__/

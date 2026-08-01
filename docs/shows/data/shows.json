@@ -5,7 +5,8 @@
     "start_time": "4:00 PM",
     "end_time": "6:00 PM",
     "address": "Ewing Ave & Payne St, Evanston, IL 60201",
-    "description": "The party that accidentally started a band."
+    "description": "The party that accidentally started a band.",
+    "ticket_price": "0"
   },
   {
     "date": "2024-04-26",
@@ -20,7 +21,8 @@
     "venue_name": "Fat Shallot",
     "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
     "address": "2902 Central St, Evanston, IL 60201",
-    "instagram_link": "https://www.instagram.com/reel/C7coe2QPFQF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    "instagram_link": "https://www.instagram.com/reel/C7coe2QPFQF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "ticket_price": "0"
   },
   {
     "date": "2024-07-21",
@@ -38,7 +40,8 @@
     "venue_name": "Fat Shallot",
     "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
     "address": "2902 Central St, Evanston, IL 60201",
-    "instagram_link": "https://www.instagram.com/p/C-LoSYTSWso/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    "instagram_link": "https://www.instagram.com/p/C-LoSYTSWso/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "ticket_price": "0"
   },
   {
     "date": "2024-09-07",
@@ -46,7 +49,8 @@
     "start_time": "4:00 PM",
     "end_time": "6:00 PM",
     "address": "Ewing Ave & Payne St, Evanston, IL 60201",
-    "description": "The party that accidentally started a band."
+    "description": "The party that accidentally started a band.",
+    "ticket_price": "0"
   },
   {
     "date": "2024-10-09",
@@ -56,7 +60,8 @@
     "detail_link_name": "Covenant Nursery School",
     "detail_link_url": "https://www.covenantnurseryschool.org/",
     "detail_link_suffix": "Dining for Dollars",
-    "instagram_link": "https://www.instagram.com/p/DA6TLQuO_mT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    "instagram_link": "https://www.instagram.com/p/DA6TLQuO_mT/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "ticket_price": "0"
   },
   {
     "date": "2025-04-03",
@@ -72,7 +77,8 @@
     "venue_name": "Fat Shallot",
     "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
     "address": "2902 Central St, Evanston, IL 60201",
-    "instagram_link": "https://www.instagram.com/p/DKAon1wzrMa/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    "instagram_link": "https://www.instagram.com/p/DKAon1wzrMa/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "ticket_price": "0"
   },
   {
     "date": "2025-06-25",
@@ -85,7 +91,8 @@
     "date": "2025-09-06",
     "venue_name": "Ewing Block Party",
     "address": "Ewing Ave & Payne St, Evanston, IL 60201",
-    "description": "The party that accidentally started a band."
+    "description": "The party that accidentally started a band.",
+    "ticket_price": "0"
   },
   {
     "date": "2025-10-10",
@@ -150,7 +157,8 @@
     "detail_link_name": "Covenant Nursery School",
     "detail_link_url": "https://www.covenantnurseryschool.org/",
     "detail_link_suffix": "Dining for Dollars",
-    "instagram_link": "https://www.instagram.com/p/DYFfRttlKsz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+    "instagram_link": "https://www.instagram.com/p/DYFfRttlKsz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+    "ticket_price": "0"
   },
   {
     "date": "2026-05-16",
@@ -186,7 +194,8 @@
     "start_time": "4:00 PM",
     "end_time": "6:00 PM",
     "address": "Ewing Ave & Payne St, Evanston, IL 60201",
-    "description": "The party that accidentally started a band."
+    "description": "The party that accidentally started a band.",
+    "ticket_price": "0"
   },
   {
     "date": "2027-09-11",
@@ -194,7 +203,8 @@
     "start_time": "4:00 PM",
     "end_time": "6:00 PM",
     "address": "Ewing Ave & Payne St, Evanston, IL 60201",
-    "description": "The party that accidentally started a band."
+    "description": "The party that accidentally started a band.",
+    "ticket_price": "0"
   },
   {
     "date": "2026-09-25",
@@ -202,16 +212,19 @@
     "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
     "start_time": "5:30 PM",
     "end_time": "8:00 PM",
-    "address": "2902 Central St, Evanston, IL 60201"
+    "address": "2902 Central St, Evanston, IL 60201",
+    "ticket_price": "0"
   },
   {
     "date": "2026-11-04",
-    "venue_name": "Willmette Theater",
+    "venue_name": "Wilmette Theatre",
     "venue_url": "https://www.wilmettetheatre.com/",
     "start_time": "7:00 PM",
     "end_time": "9:00 PM",
     "address": "1122 Central Ave., Wilmette, IL 60091",
     "detail_link_name": "Live Local Music",
-    "detail_link_url": "https://livelocal.music/"
+    "detail_link_url": "https://livelocal.music/",
+    "ticket_price": "10",
+    "ticket_note": "includes a free drink"
   }
 ]
