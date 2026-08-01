@@ -45,6 +45,13 @@
     --teal:  #4fb3a8;
     --coral: #c8623a;
     --brown: #1e0e08;
+    /* Status-message tones. The base coral/teal are too dark for small text
+       on --bg (2.14:1 and 3.40:1); these are the same hues lifted to pass
+       WCAG AA, and are used only for error/success copy. */
+    --msg-error: #f2b3a0;
+    --msg-ok:    #8fd4cb;
+    /* Teal lifted to 4.51:1 on --bg, for teal links set at body-text size. */
+    --teal-link: #82c9c1;
   }
 
 
@@ -269,9 +276,11 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 /* BOOK */
   .book-inner { max-width: 680px; margin: 0 auto; }
 
-.email-link { display: inline-block; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: clamp(1rem, 2vw, 1.3rem); color: var(--teal); text-decoration: none; transition: color 0.2s; }
+/* Inherits the size, weight and family of the sentence it sits in, so it reads
+   as part of the copy — teal and underlined mark it as the link. */
+.email-link { font: inherit; color: var(--teal-link); text-decoration: underline; text-underline-offset: 0.2em; transition: color 0.2s; }
 
-.email-link:hover, .email-link:focus-visible { color: var(--coral); outline: none; }
+.email-link:hover, .email-link:focus-visible { color: var(--cream); outline: none; }
 
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
 
@@ -291,7 +300,7 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 
 .submit-btn:hover { background: var(--cream); border-color: var(--cream); color: var(--brown); }
 
-.success-msg { display: none; margin-top: 1rem; padding: 1rem; background: rgba(79,179,168,0.12); border: 1.5px solid rgba(79,179,168,0.35); color: var(--teal); font-size: 0.9rem; text-align: center; }
+.success-msg { display: none; margin-top: 1rem; padding: 1rem; background: rgba(79,179,168,0.12); border: 1.5px solid rgba(79,179,168,0.35); color: var(--msg-ok); font-size: 0.9rem; font-weight: 500; text-align: center; }
 
 
 footer p { font-size: 0.75rem; color: rgba(232,223,192,0.85); letter-spacing: 0.08em; text-shadow: 0 1px 4px rgba(0,0,0,0.7); }
@@ -526,7 +535,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .track-name { font-size: 0.74rem; color: rgba(232,223,192,0.45); transition: color 0.2s; }
 
 /* Song requests placeholder — crossed-out "Free Bird" gag */
-#song-requests::placeholder { text-decoration: line-through; }
 
 /* Honeypot — visually hidden, still accessible to bots */
 .honeypot { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
@@ -921,16 +929,15 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
       <div class="form-row">
         <div class="form-field">
           <label for="event-type">Event Type</label>
-          <input type="text" id="event-type" name="event_type" placeholder="Wedding, backyard party, fundraiser, bar gig...">
+          <input type="text" id="event-type" name="event_type">
         </div>
-        <div class="form-field"><label for="location">Event Location</label><input type="text" id="location" name="location" placeholder="Somewhere that can handle the rock"></div>
+        <div class="form-field"><label for="location">Event Location</label><input type="text" id="location" name="location"></div>
       </div>
-      <div class="form-field"><label for="message">Tell us more</label><textarea id="message" name="message" placeholder="How many paparazzi can we expect?"></textarea></div>
-      <div class="form-field"><label for="song-requests">Song Requests / Must-Plays</label><textarea id="song-requests" name="song_requests" placeholder="Free Bird" style="min-height:80px;"></textarea></div>
       <div class="form-field"><label for="referral">How did you hear about us?</label><input type="text" id="referral" name="referral" placeholder="the Grammys"></div>
+      <div class="form-field"><label for="message">Anything else we should know?</label><textarea id="message" name="message"></textarea></div>
       <button type="submit" class="submit-btn">Send Booking Request</button>
       <div class="success-msg" id="success-msg" aria-live="polite">Thanks! We&rsquo;ll be in touch soon. 🎸</div>
-      <div id="booking-error" style="display:none; color:var(--coral); font-size:0.85rem; margin-top:0.75rem;" aria-live="polite"></div>
+      <div id="booking-error" style="display:none; color:var(--msg-error); font-size:0.9rem; font-weight:500; margin-top:0.75rem;" aria-live="polite"></div>
     </form>
   </div>
 </section>
@@ -968,8 +975,8 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
         SIGN ME UP
       </button>
     </div>
-    <p id="ml-success" style="display:none; color:var(--teal); font-size:0.85rem; letter-spacing:0.05em;" aria-live="polite">Thanks! You're on the list. 🎸</p>
-    <p id="ml-error" style="display:none; color:var(--coral); font-size:0.8rem;" aria-live="polite">Something went wrong. Try again!</p>
+    <p id="ml-success" style="display:none; color:var(--msg-ok); font-size:0.9rem; font-weight:500; letter-spacing:0.05em;" aria-live="polite">Thanks! You're on the list. 🎸</p>
+    <p id="ml-error" style="display:none; color:var(--msg-error); font-size:0.9rem; font-weight:500;" aria-live="polite">Something went wrong. Try again!</p>
   </div>
 
 </section>
