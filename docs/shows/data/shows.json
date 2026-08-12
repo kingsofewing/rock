@@ -207,12 +207,12 @@
     "ticket_price": "0"
   },
   {
-    "date": "2026-09-25",
-    "venue_name": "Fat Shallot",
-    "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
-    "start_time": "5:30 PM",
-    "end_time": "8:00 PM",
-    "address": "2902 Central St, Evanston, IL 60201",
+    "date": "2028-09-09",
+    "venue_name": "Ewing Block Party",
+    "start_time": "4:00 PM",
+    "end_time": "6:00 PM",
+    "address": "Ewing Ave & Payne St, Evanston, IL 60201",
+    "description": "The party that accidentally started a band.",
     "ticket_price": "0"
   },
   {
