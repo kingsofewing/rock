@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
 <title>Iowa State Fair 2026 — Things To Do</title>
 <style>
   :root {
@@ -13,6 +12,19 @@
     --muted: #666;
     --bg: #faf7f2;
     --card: #ffffff;
+
+    --c-exhibit: #8f5b1e;
+    --c-exhibit-bg: #fbf1e2;
+    --c-food: #c65a00;
+    --c-food-bg: #fff1e3;
+    --c-grounds: #1f7a45;
+    --c-grounds-bg: #eaf7ef;
+    --c-stage: #6a3fc0;
+    --c-stage-bg: #f4efff;
+    --c-contest: #1f6fb2;
+    --c-contest-bg: #eaf4fb;
+    --c-evening: #c8102e;
+    --c-evening-bg: #fdeceb;
   }
   * { box-sizing: border-box; }
   body {
@@ -30,7 +42,7 @@
   }
   header.top h1 { margin: 0 0 6px 0; font-size: 1.7rem; }
   header.top .sub { font-size: 0.95rem; opacity: 0.92; }
-  .wrap { max-width: 800px; margin: 0 auto; padding: 20px 16px; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 20px 16px; }
 
   .prefs {
     background: var(--card);
@@ -38,16 +50,36 @@
     border-radius: 10px;
     padding: 12px 16px;
     font-size: 0.85rem;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     color: var(--muted);
   }
   .prefs b { color: var(--ink); }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    background: var(--card);
+    border: 1px solid #e5ddd0;
+    border-radius: 10px;
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    font-size: 0.8rem;
+  }
+  .legend .dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  .legend span.item { white-space: nowrap; color: var(--muted); }
 
   .day {
     background: var(--card);
     border: 1px solid #e5ddd0;
     border-radius: 14px;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
@@ -58,46 +90,59 @@
   }
   .day-header h2 { margin: 0; font-size: 1.2rem; }
   .day-header .date { font-size: 0.82rem; opacity: 0.85; }
-  .day-body { padding: 16px 18px 18px; }
+  .day-body { padding: 14px 16px 18px; }
 
-  .group { margin-bottom: 16px; }
-  .group:last-child { margin-bottom: 0; }
-  .group h3 {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--red);
-    margin: 0 0 8px 0;
+  .section {
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border: 1px solid #eee;
   }
-  ul.items { list-style: none; margin: 0; padding: 0; }
-  ul.items li {
-    display: flex;
-    gap: 10px;
-    padding: 6px 0;
-    font-size: 0.93rem;
-    border-bottom: 1px solid #f1ece2;
-  }
-  ul.items li:last-child { border-bottom: none; }
-  ul.items .time {
-    flex: 0 0 118px;
-    color: var(--red);
-    font-weight: 600;
-    font-size: 0.83rem;
-  }
-  ul.items li a { color: var(--red); text-decoration: none; border-bottom: 1px dotted var(--red); }
-  .tag {
-    display: inline-block;
-    font-size: 0.68rem;
+  .section:last-of-type { margin-bottom: 0; }
+  .section-head {
+    padding: 7px 14px;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
-    background: #f6f0ff;
-    color: #6a3fc0;
-    padding: 1px 7px;
-    border-radius: 10px;
-    margin-left: 6px;
+    letter-spacing: 0.05em;
+    color: white;
   }
-  .tag.new { background: #fff4e5; color: #a15c00; }
+  .section.exhibits .section-head { background: var(--c-exhibit); }
+  .section.food .section-head { background: var(--c-food); }
+  .section.grounds .section-head { background: var(--c-grounds); }
+  .section.stage .section-head { background: var(--c-stage); }
+  .section.contest .section-head { background: var(--c-contest); }
+  .section.evening .section-head { background: var(--c-evening); }
+
+  .section.exhibits table { background: var(--c-exhibit-bg); }
+  .section.food table { background: var(--c-food-bg); }
+  .section.grounds table { background: var(--c-grounds-bg); }
+  .section.stage table { background: var(--c-stage-bg); }
+  .section.contest table { background: var(--c-contest-bg); }
+  .section.evening table { background: var(--c-evening-bg); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  table td {
+    padding: 6px 14px;
+    vertical-align: top;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  table tr:last-child td { border-bottom: none; }
+  td.t {
+    width: 108px;
+    font-weight: 700;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    color: var(--ink);
+    opacity: 0.75;
+  }
+  td.e a { color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
+  td.loc { color: var(--muted); font-size: 0.8rem; white-space: nowrap; text-align: right; }
+
   .qbox {
     margin-top: 12px;
     background: #f6f0ff;
@@ -119,7 +164,16 @@
 <div class="wrap">
 
   <div class="prefs">
-    Built around what you told me: <b>try new/unusual foods</b> alongside classics, <b>skip rides</b> and focus on exhibits/food/shows, and hit the <b>Butter Cow, livestock &amp; draft horses, and free stage entertainment</b>. Times below are from the fair's official daily schedule (posted 7/15/2026) — always subject to change, so double check the <a href="https://www.iowastatefair.org/entertainment/fair-schedule" target="_blank">official schedule</a> once you're there.
+    Built around what you told me: <b>try new/unusual foods</b> alongside classics, <b>skip rides</b> and focus on exhibits/food/shows, hit the <b>Butter Cow, livestock &amp; draft horses, and free stage entertainment</b>, and catch the <b>contests</b> — especially food judging and Pioneer Hall classics. Times are from the fair's official daily schedule (posted 7/15/2026) — always double-check the <a href="https://www.iowastatefair.org/entertainment/fair-schedule" target="_blank">official schedule</a> once you're there.
+  </div>
+
+  <div class="legend">
+    <span class="item"><span class="dot" style="background:var(--c-exhibit)"></span>Must-See Exhibits</span>
+    <span class="item"><span class="dot" style="background:var(--c-food)"></span>Food</span>
+    <span class="item"><span class="dot" style="background:var(--c-grounds)"></span>Grounds Entertainment</span>
+    <span class="item"><span class="dot" style="background:var(--c-stage)"></span>Free Stages</span>
+    <span class="item"><span class="dot" style="background:var(--c-contest)"></span>Contests</span>
+    <span class="item"><span class="dot" style="background:var(--c-evening)"></span>Evening / Grandstand</span>
   </div>
 
   <!-- WEDNESDAY -->
@@ -129,38 +183,59 @@
       <div class="date">Arrival day, shorter window before the Grandstand</div>
     </div>
     <div class="day-body">
-      <div class="group">
-        <h3>Food to Try <span class="tag new">New for 2026</span></h3>
-        <ul class="items">
-          <li><span class="time"></span> Bison Burger or Bison Cheesesteak Slider — good first-stop dinner</li>
-          <li><span class="time"></span> Tanghulu (candied fruit skewers) — fun, photogenic, easy to split</li>
-          <li><span class="time"></span> Full list: <a href="https://www.iowastatefair.org/food/whats-new" target="_blank">What's New in Food</a> · <a href="https://www.iowastatefair.org/food/food-on-a-stick" target="_blank">Food on a Stick</a></li>
-        </ul>
+
+      <div class="section food">
+        <div class="section-head">Food — New for 2026</div>
+        <table>
+          <tr><td class="t"></td><td class="e">Bison Burger or Bison Cheesesteak Slider — good first-stop dinner</td></tr>
+          <tr><td class="t"></td><td class="e">Tanghulu (candied fruit skewers) — fun, photogenic, easy to split</td></tr>
+          <tr><td class="t"></td><td class="e">Full list: <a href="https://www.iowastatefair.org/food/whats-new" target="_blank">What's New in Food</a> · <a href="https://www.iowastatefair.org/food/food-on-a-stick" target="_blank">Food on a Stick</a></td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Grounds Entertainment</h3>
-        <ul class="items">
-          <li><span class="time">12, 2, 4 pm</span> Paul Bunyan Lumberjack Show — The Lawn</li>
-          <li><span class="time">10, 12, 3:30, 5:30</span> Chainsaw carvers Gary Keenan, T.J. Jenkins &amp; Clint Henik — Expo Hill</li>
-          <li><span class="time">10:30, 12:30, 2:30, 4:30, 6 pm</span> Hot Glass Academy — Heritage Village</li>
-        </ul>
+
+      <div class="section contest">
+        <div class="section-head">Contests</div>
+        <table>
+          <tr><td class="t">9:30 am</td><td class="e">Horseshoe Pitching: Iowa State Fair Seniors Championship</td><td class="loc">Horseshoe Courts</td></tr>
+          <tr><td class="t">11 am</td><td class="e">Cow Chip Throwing Contest</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">12 pm</td><td class="e">Horseshoe Pitching: Pitch &amp; Win</td><td class="loc">Horseshoe Courts</td></tr>
+          <tr><td class="t">9:30 am</td><td class="e">Homemade Sourdough Breads judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">10 am</td><td class="e">Midwest Living Cookies judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">1:30 pm</td><td class="e">Horseshoe Pitching: Open Singles</td><td class="loc">Horseshoe Courts</td></tr>
+          <tr><td class="t">1 pm</td><td class="e">Best Wing Sauce judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">2 pm</td><td class="e">Ladies Rubber Chicken Throwing Contest</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">2 pm</td><td class="e">Bring Your Best Dip, Iowa Farm to Fork, "Crisp Rice" Rumble judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">3:30 pm</td><td class="e">Favorite Book Desserts judging</td><td class="loc">Elwell Food Center</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Free Stages</h3>
-        <ul class="items">
-          <li><span class="time">12:30 pm</span> Bill Riley Talent Search — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">1:30 pm</span> Jim Dandy &amp; the Kountry Rebels, Grand River — Susan Knapp Amphitheater</li>
-          <li><span class="time">7 &amp; 9 pm</span> The Britins — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">8 pm</span> Colt Ford — MidAmerican Energy Stage</li>
-          <li><span class="time">8 pm</span> Asleep at the Wheel — Susan Knapp Amphitheater</li>
-        </ul>
+
+      <div class="section grounds">
+        <div class="section-head">Grounds Entertainment</div>
+        <table>
+          <tr><td class="t">12, 2, 4 pm</td><td class="e">Paul Bunyan Lumberjack Show</td><td class="loc">The Lawn</td></tr>
+          <tr><td class="t">10, 12, 3:30, 5:30</td><td class="e">Chainsaw carvers Gary Keenan, T.J. Jenkins &amp; Clint Henik</td><td class="loc">Expo Hill</td></tr>
+          <tr><td class="t">10:30, 12:30, 2:30, 4:30, 6 pm</td><td class="e">Hot Glass Academy</td><td class="loc">Heritage Village</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Evening</h3>
-        <ul class="items">
-          <li><span class="time">8 pm</span> Grandstand: <a href="https://www.iowastatefair.org/entertainment/grandstand" target="_blank">AJR w/ Em Beihold</a></li>
-        </ul>
+
+      <div class="section stage">
+        <div class="section-head">Free Stages</div>
+        <table>
+          <tr><td class="t">12:30 pm</td><td class="e">Bill Riley Talent Search</td><td class="loc">Riley Stage</td></tr>
+          <tr><td class="t">1:30 pm</td><td class="e">Jim Dandy &amp; the Kountry Rebels, Grand River</td><td class="loc">Susan Knapp Amphitheater</td></tr>
+          <tr><td class="t">7 &amp; 9 pm</td><td class="e">The Britins</td><td class="loc">Riley Stage</td></tr>
+          <tr><td class="t">8 pm</td><td class="e">Colt Ford</td><td class="loc">MidAmerican Stage</td></tr>
+          <tr><td class="t">8 pm</td><td class="e">Asleep at the Wheel</td><td class="loc">Susan Knapp Amphitheater</td></tr>
+        </table>
       </div>
+
+      <div class="section evening">
+        <div class="section-head">Evening</div>
+        <table>
+          <tr><td class="t">8 pm</td><td class="e">Grandstand: <a href="https://www.iowastatefair.org/entertainment/grandstand" target="_blank">AJR w/ Em Beihold</a></td></tr>
+        </table>
+      </div>
+
       <div class="qbox">❓ Wednesday's a short window before the concert — want to prioritize food and just wander, or try to squeeze in the Butter Cow / Ag Building since you're already there?</div>
     </div>
   </div>
@@ -172,50 +247,72 @@
       <div class="date">Best day for exhibits — get an early start before it gets hot/crowded</div>
     </div>
     <div class="day-body">
-      <div class="group">
-        <h3>Must-See Exhibits</h3>
-        <ul class="items">
-          <li><span class="time">Anytime, 9am-8pm</span> 🧈 <b>Butter Cow</b> — John Deere Agriculture Building. Go early to beat the line.</li>
-          <li><span class="time">Anytime</span> Livestock barns — check the <a href="https://www.iowastatefair.org/competition/livestock-schedules-judges/" target="_blank">livestock schedule</a> for what's judged Thursday</li>
-          <li><span class="time">6 pm</span> Horse Show: Clydesdale, Percheron, Draft Pony — Richard O. Jacobson Exhibition Center</li>
-          <li><span class="time">Anytime, 9am-8pm</span> 4-H Building — kids' projects: photography, crafts, woodworking, robotics</li>
-        </ul>
+
+      <div class="section exhibits">
+        <div class="section-head">Must-See Exhibits</div>
+        <table>
+          <tr><td class="t">9 am–8 pm</td><td class="e">🧈 <b>Butter Cow</b> — go early to beat the line</td><td class="loc">John Deere Ag Building</td></tr>
+          <tr><td class="t">All day</td><td class="e">Livestock barns — check the <a href="https://www.iowastatefair.org/competition/livestock-schedules-judges/" target="_blank">livestock schedule</a> for what's judged today</td><td class="loc">Livestock Barns</td></tr>
+          <tr><td class="t">6 pm</td><td class="e">Horse Show: Clydesdale, Percheron, Draft Pony</td><td class="loc">Jacobson Exhibition Center</td></tr>
+          <tr><td class="t">9 am–8 pm</td><td class="e">4-H Building — kids' projects: photography, crafts, woodworking, robotics</td><td class="loc">4-H Building</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Food to Try <span class="tag new">New for 2026</span></h3>
-        <ul class="items">
-          <li><span class="time"></span> Kalua Pork or Huli Chicken (Hawaiian-inspired)</li>
-          <li><span class="time"></span> Belgian Chocolate Covered Strawberries for dessert</li>
-        </ul>
+
+      <div class="section food">
+        <div class="section-head">Food — New for 2026</div>
+        <table>
+          <tr><td class="t"></td><td class="e">Kalua Pork or Huli Chicken (Hawaiian-inspired)</td></tr>
+          <tr><td class="t"></td><td class="e">Belgian Chocolate Covered Strawberries for dessert</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Grounds Entertainment</h3>
-        <ul class="items">
-          <li><span class="time">12, 1, 2, 4 pm</span> Paul Bunyan Lumberjack Show — The Lawn</li>
-          <li><span class="time">10, 12, 3:30, 5:30</span> Chainsaw carvers — Expo Hill</li>
-          <li><span class="time">10:30, 12:30, 2:30, 4:30, 6 pm</span> Hot Glass Academy — Heritage Village</li>
-          <li><span class="time">2, 4 pm</span> Farmer Chats — Animal Learning Center</li>
-        </ul>
+
+      <div class="section contest">
+        <div class="section-head">Contests</div>
+        <table>
+          <tr><td class="t">9 am</td><td class="e">Bubble Gum Blowing Contest</td><td class="loc">Riley Stage</td></tr>
+          <tr><td class="t">10:30 am</td><td class="e">Pie Eating Contest</td><td class="loc">Riley Stage</td></tr>
+          <tr><td class="t">10:30 am</td><td class="e">Children's Singing Contest</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">10 am</td><td class="e">Midwest Living Cookies judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">11 am</td><td class="e">Yodeling Contest</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">11 am</td><td class="e">Kids Cookie Decorating; Seafood Prepared in the Heartland judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">12 pm</td><td class="e">Horseshoe Pitching: Pitch &amp; Win</td><td class="loc">Horseshoe Courts</td></tr>
+          <tr><td class="t">12:30 pm</td><td class="e">Bill Riley Talent Search Semi-Finals</td><td class="loc">Riley Stage</td></tr>
+          <tr><td class="t">1:30 pm</td><td class="e">Youth Whistling Contest</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">1:30 &amp; 6 pm</td><td class="e">Horseshoe Pitching: Open Singles</td><td class="loc">Horseshoe Courts</td></tr>
+          <tr><td class="t">2 pm</td><td class="e">Adult Whistling Contest</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">2:30 pm</td><td class="e">Kid Sponsored Cookie Championship, Mrs. Grimes Chili Cook Off, Wild Game Contest judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">3 pm</td><td class="e">Piper's Homemade Candies judging</td><td class="loc">Elwell Food Center</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Free Stages</h3>
-        <ul class="items">
-          <li><span class="time">9 am</span> Bubble Gum Blowing Contest — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">10:30 am</span> Pie Eating Contest — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">12:30 pm</span> Bill Riley Talent Search Semi-Finals — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">1:30 pm</span> Blue Tye Affair — Susan Knapp Amphitheater</li>
-          <li><span class="time">7 &amp; 9 pm</span> Dirty Rotten Scoundrels — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">8 pm</span> <b>The SugarHill Gang</b> — Susan Knapp Amphitheater</li>
-          <li><span class="time">8 pm</span> Slaughter — MidAmerican Energy Stage</li>
-        </ul>
+
+      <div class="section grounds">
+        <div class="section-head">Grounds Entertainment</div>
+        <table>
+          <tr><td class="t">12, 1, 2, 4 pm</td><td class="e">Paul Bunyan Lumberjack Show</td><td class="loc">The Lawn</td></tr>
+          <tr><td class="t">10, 12, 3:30, 5:30</td><td class="e">Chainsaw carvers</td><td class="loc">Expo Hill</td></tr>
+          <tr><td class="t">10:30, 12:30, 2:30, 4:30, 6 pm</td><td class="e">Hot Glass Academy</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">2, 4 pm</td><td class="e">Farmer Chats</td><td class="loc">Animal Learning Center</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Evening</h3>
-        <ul class="items">
-          <li><span class="time">8 pm</span> Grandstand: <a href="https://www.iowastatefair.org/entertainment/grandstand" target="_blank">Riley Green w/ Mackenzie Carpenter</a></li>
-        </ul>
+
+      <div class="section stage">
+        <div class="section-head">Free Stages</div>
+        <table>
+          <tr><td class="t">1:30 pm</td><td class="e">Blue Tye Affair</td><td class="loc">Susan Knapp Amphitheater</td></tr>
+          <tr><td class="t">7 &amp; 9 pm</td><td class="e">Dirty Rotten Scoundrels</td><td class="loc">Riley Stage</td></tr>
+          <tr><td class="t">8 pm</td><td class="e"><b>The SugarHill Gang</b></td><td class="loc">Susan Knapp Amphitheater</td></tr>
+          <tr><td class="t">8 pm</td><td class="e">Slaughter</td><td class="loc">MidAmerican Stage</td></tr>
+        </table>
       </div>
-      <div class="qbox">❓ SugarHill Gang is a fun, nostalgic pick for the whole family — want to build the late afternoon around catching that 8pm set at the Amphitheater?</div>
+
+      <div class="section evening">
+        <div class="section-head">Evening</div>
+        <table>
+          <tr><td class="t">8 pm</td><td class="e">Grandstand: <a href="https://www.iowastatefair.org/entertainment/grandstand" target="_blank">Riley Green w/ Mackenzie Carpenter</a></td></tr>
+        </table>
+      </div>
+
+      <div class="qbox">❓ SugarHill Gang is a fun, nostalgic pick for the whole family — want to build the late afternoon around catching that 8pm set at the Amphitheater? And with all the food judging today, want to time lunch near the Elwell Food Center so your wife can watch a few rounds?</div>
     </div>
   </div>
 
@@ -226,49 +323,72 @@
       <div class="date">55% rain chance — good day for air-conditioned exhibits</div>
     </div>
     <div class="day-body">
-      <div class="group">
-        <h3>Must-See Exhibits</h3>
-        <ul class="items">
-          <li><span class="time">8:30 am</span> 🐴 Draft Horse Show: Percheron &amp; Clydesdale lines — Jacobson Exhibition Center</li>
-          <li><span class="time">2 pm</span> Draft Horse Show: Clydesdale &amp; Percheron — Jacobson Exhibition Center</li>
-          <li><span class="time">5 pm</span> Draft Horse Show: Clydesdale, Percheron, Draft Pony — Jacobson Exhibition Center</li>
-          <li><span class="time">10 am</span> Iowa State Fair Podcast — Animal Learning Center</li>
-        </ul>
+
+      <div class="section exhibits">
+        <div class="section-head">Must-See Exhibits</div>
+        <table>
+          <tr><td class="t">8:30 am</td><td class="e">🐴 Draft Horse Show: Percheron &amp; Clydesdale lines</td><td class="loc">Jacobson Exhibition Center</td></tr>
+          <tr><td class="t">2 pm</td><td class="e">Draft Horse Show: Clydesdale &amp; Percheron</td><td class="loc">Jacobson Exhibition Center</td></tr>
+          <tr><td class="t">5 pm</td><td class="e">Draft Horse Show: Clydesdale, Percheron, Draft Pony</td><td class="loc">Jacobson Exhibition Center</td></tr>
+          <tr><td class="t">10 am</td><td class="e">Iowa State Fair Podcast</td><td class="loc">Animal Learning Center</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Food to Try <span class="tag new">New for 2026</span></h3>
-        <ul class="items">
-          <li><span class="time"></span> Deep Fried Cookie Dough Pie</li>
-          <li><span class="time"></span> A poke bowl for something lighter</li>
-        </ul>
+
+      <div class="section food">
+        <div class="section-head">Food — New for 2026</div>
+        <table>
+          <tr><td class="t"></td><td class="e">Deep Fried Cookie Dough Pie</td></tr>
+          <tr><td class="t"></td><td class="e">A poke bowl for something lighter</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Grounds Entertainment</h3>
-        <ul class="items">
-          <li><span class="time">12, 2, 4 pm</span> Paul Bunyan Lumberjack Show — The Lawn</li>
-          <li><span class="time">10, 12, 3:30, 5:30</span> Chainsaw carvers — Expo Hill</li>
-          <li><span class="time">10:30, 12:30, 2:30, 4:30, 6 pm</span> Hot Glass Academy — Heritage Village</li>
-          <li><span class="time">2, 4 pm</span> Farmer Chats — Animal Learning Center</li>
-        </ul>
+
+      <div class="section contest">
+        <div class="section-head">Contests <span style="font-weight:400; text-transform:none; opacity:0.85;">— big day for Pioneer Hall classics</span></div>
+        <table>
+          <tr><td class="t">9 am</td><td class="e">Youth Checkers Tournament</td><td class="loc">Administration Building</td></tr>
+          <tr><td class="t">9:30 am</td><td class="e">Horseshoe Pitching: Two Player Pro-Am</td><td class="loc">Horseshoe Courts</td></tr>
+          <tr><td class="t">9:30 am</td><td class="e">Cookies, Sauces, Honey Foods, Pie Contest judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">10 am</td><td class="e"><b>Husband Calling Contest</b></td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">10 am</td><td class="e">Beef &amp; Pork Casseroles judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">11 am</td><td class="e">Mom Calling Contest</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">11 am–12:30 pm</td><td class="e">Quick Breads, Rhubarb, Cake judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">1 pm</td><td class="e">Children's Joke Telling</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">1–3:30 pm</td><td class="e">Strawberry-Rhubarb, Ice Cream, Berry Pie, Baking Championship judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">2 pm</td><td class="e">Youth Hog Calling Contest</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">2:30 pm</td><td class="e"><b>Adult Hog Calling Contest</b></td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">2:30–5 pm</td><td class="e">Horseshoe Pitching: Championship Class</td><td class="loc">Horseshoe Courts</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Free Stages</h3>
-        <ul class="items">
-          <li><span class="time">12:30 pm</span> Bill Riley Talent Search Semi-Finals — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">4 pm</span> The Lew and Brad Band — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">1:30 pm</span> The Mike Walsh Band — Susan Knapp Amphitheater</li>
-          <li><span class="time">7 &amp; 9 pm</span> Ron Diamond, hypnotist — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">8 pm</span> <b>Eli Young Band</b> — Susan Knapp Amphitheater</li>
-          <li><span class="time">8 pm</span> Not Quite Brothers — MidAmerican Energy Stage</li>
-        </ul>
+
+      <div class="section grounds">
+        <div class="section-head">Grounds Entertainment</div>
+        <table>
+          <tr><td class="t">12, 2, 4 pm</td><td class="e">Paul Bunyan Lumberjack Show</td><td class="loc">The Lawn</td></tr>
+          <tr><td class="t">10, 12, 3:30, 5:30</td><td class="e">Chainsaw carvers</td><td class="loc">Expo Hill</td></tr>
+          <tr><td class="t">10:30, 12:30, 2:30, 4:30, 6 pm</td><td class="e">Hot Glass Academy</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">2, 4 pm</td><td class="e">Farmer Chats</td><td class="loc">Animal Learning Center</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Evening</h3>
-        <ul class="items">
-          <li><span class="time">8 pm</span> Grandstand: <a href="https://www.iowastatefair.org/entertainment/grandstand" target="_blank">Alabama w/ Exile</a></li>
-        </ul>
+
+      <div class="section stage">
+        <div class="section-head">Free Stages</div>
+        <table>
+          <tr><td class="t">1:30 pm</td><td class="e">The Mike Walsh Band</td><td class="loc">Susan Knapp Amphitheater</td></tr>
+          <tr><td class="t">4 pm</td><td class="e">The Lew and Brad Band</td><td class="loc">Riley Stage</td></tr>
+          <tr><td class="t">7 &amp; 9 pm</td><td class="e">Ron Diamond, hypnotist</td><td class="loc">Riley Stage</td></tr>
+          <tr><td class="t">8 pm</td><td class="e"><b>Eli Young Band</b></td><td class="loc">Susan Knapp Amphitheater</td></tr>
+          <tr><td class="t">8 pm</td><td class="e">Not Quite Brothers</td><td class="loc">MidAmerican Stage</td></tr>
+        </table>
       </div>
-      <div class="qbox">❓ With rain most likely today, want to front-load the indoor stuff (Draft Horse Show, Animal Learning Center, 4-H/Ag buildings) in the morning and keep the afternoon flexible?</div>
+
+      <div class="section evening">
+        <div class="section-head">Evening</div>
+        <table>
+          <tr><td class="t">8 pm</td><td class="e">Grandstand: <a href="https://www.iowastatefair.org/entertainment/grandstand" target="_blank">Alabama w/ Exile</a></td></tr>
+        </table>
+      </div>
+
+      <div class="qbox">❓ With rain most likely today, want to front-load the indoor stuff (Draft Horse Show, Animal Learning Center) in the morning and plan around the 10am Husband Calling / 2:30pm Adult Hog Calling contests at Heritage Village either way, since those seem right up your wife's alley?</div>
     </div>
   </div>
 
@@ -279,47 +399,71 @@
       <div class="date">Best weather of the trip — good day to be outside</div>
     </div>
     <div class="day-body">
-      <div class="group">
-        <h3>Must-See Exhibits</h3>
-        <ul class="items">
-          <li><span class="time">8:30 am, 5 pm</span> 🐴 Draft Horse Show: Clydesdale, Percheron, Draft Pony — Jacobson Exhibition Center</li>
-          <li><span class="time"></span> Anything from Butter Cow / livestock / 4-H you missed Thursday</li>
-        </ul>
+
+      <div class="section exhibits">
+        <div class="section-head">Must-See Exhibits</div>
+        <table>
+          <tr><td class="t">8:30 am, 5 pm</td><td class="e">🐴 Draft Horse Show: Clydesdale, Percheron, Draft Pony</td><td class="loc">Jacobson Exhibition Center</td></tr>
+          <tr><td class="t"></td><td class="e">Anything from Butter Cow / livestock / 4-H you missed Thursday</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Food to Try <span class="tag new">New for 2026</span></h3>
-        <ul class="items">
-          <li><span class="time"></span> Spam Musubi</li>
-          <li><span class="time"></span> Caramel Apple Cheesecake with Roasted Pecans — good last-day treat</li>
-        </ul>
+
+      <div class="section food">
+        <div class="section-head">Food — New for 2026</div>
+        <table>
+          <tr><td class="t"></td><td class="e">Spam Musubi</td></tr>
+          <tr><td class="t"></td><td class="e">Caramel Apple Cheesecake with Roasted Pecans — good last-day treat</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Grounds Entertainment</h3>
-        <ul class="items">
-          <li><span class="time">12, 2, 4 pm</span> Paul Bunyan Lumberjack Show — The Lawn</li>
-          <li><span class="time">10, 12, 3:30, 5:30</span> Chainsaw carvers — Expo Hill</li>
-          <li><span class="time">10:30, 12:30, 2:30, 4:30, 6 pm</span> Hot Glass Academy — Heritage Village</li>
-          <li><span class="time">2, 4 pm</span> Farmer Chats — Animal Learning Center</li>
-        </ul>
+
+      <div class="section contest">
+        <div class="section-head">Contests <span style="font-weight:400; text-transform:none; opacity:0.85;">— chili &amp; cinnamon roll finale day</span></div>
+        <table>
+          <tr><td class="t">8–9 am</td><td class="e">Adult Checkers Tournament (registration 8 am)</td><td class="loc">Administration Building</td></tr>
+          <tr><td class="t">9:30 am</td><td class="e">Iowa Elder Men &amp; Men State Horseshoe Championships</td><td class="loc">Horseshoe Courts</td></tr>
+          <tr><td class="t">9:30 am</td><td class="e">Fresh Vegetable Creations, Gluten Free, Mrs. Bonser's Noodles judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">10:30 am</td><td class="e">Ladies Nail Driving Contest</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">10:30 am</td><td class="e">Candy Chemistry; Kids Chef Baking Tournament Finale judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">11 am</td><td class="e">"Anything Hot" judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">11:30 am</td><td class="e">Souper Soups judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">12:15 pm</td><td class="e"><b>Iowa State Chili Cook Off — Homestyle</b> judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">12:30 pm</td><td class="e">Next-Gen Pie judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">1 pm</td><td class="e">Key Lime Dessert Creations judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">1:15 pm</td><td class="e"><b>Iowa State Chili Cook Off — Traditional Red</b> judging</td><td class="loc">Elwell Food Center</td></tr>
+          <tr><td class="t">1:30 pm</td><td class="e">Iowa Men State Championships (Upper Classes)</td><td class="loc">Horseshoe Courts</td></tr>
+          <tr><td class="t">2 pm</td><td class="e">Great Cinnamon Roll Challenge judging</td><td class="loc">Elwell Food Center</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Free Stages</h3>
-        <ul class="items">
-          <li><span class="time">12:30 pm</span> Bill Riley Talent Search Semi-Finals — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">4 pm</span> Day's Live Music, Pella — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">2–4 pm</span> Hannah Dasher — MidAmerican Energy Stage</li>
-          <li><span class="time">7 &amp; 9 pm</span> Ron Diamond, hypnotist — Anne &amp; Bill Riley Stage</li>
-          <li><span class="time">8 pm</span> Chancey Williams — Susan Knapp Amphitheater</li>
-          <li><span class="time">8–9:30 pm</span> Jason Brown — MidAmerican Energy Stage</li>
-        </ul>
+
+      <div class="section grounds">
+        <div class="section-head">Grounds Entertainment</div>
+        <table>
+          <tr><td class="t">12, 2, 4 pm</td><td class="e">Paul Bunyan Lumberjack Show</td><td class="loc">The Lawn</td></tr>
+          <tr><td class="t">10, 12, 3:30, 5:30</td><td class="e">Chainsaw carvers</td><td class="loc">Expo Hill</td></tr>
+          <tr><td class="t">10:30, 12:30, 2:30, 4:30, 6 pm</td><td class="e">Hot Glass Academy</td><td class="loc">Heritage Village</td></tr>
+          <tr><td class="t">2, 4 pm</td><td class="e">Farmer Chats</td><td class="loc">Animal Learning Center</td></tr>
+        </table>
       </div>
-      <div class="group">
-        <h3>Evening</h3>
-        <ul class="items">
-          <li><span class="time">8 pm</span> Grandstand: BigXthaPlug w/ XOLEX <span style="color:var(--muted);">(hip-hop — worth checking content ahead if bringing the boys)</span></li>
-        </ul>
+
+      <div class="section stage">
+        <div class="section-head">Free Stages</div>
+        <table>
+          <tr><td class="t">2–4 pm</td><td class="e">Hannah Dasher</td><td class="loc">MidAmerican Stage</td></tr>
+          <tr><td class="t">4 pm</td><td class="e">Day's Live Music, Pella</td><td class="loc">Riley Stage</td></tr>
+          <tr><td class="t">7 &amp; 9 pm</td><td class="e">Ron Diamond, hypnotist</td><td class="loc">Riley Stage</td></tr>
+          <tr><td class="t">8 pm</td><td class="e">Chancey Williams</td><td class="loc">Susan Knapp Amphitheater</td></tr>
+          <tr><td class="t">8–9:30 pm</td><td class="e">Jason Brown</td><td class="loc">MidAmerican Stage</td></tr>
+        </table>
       </div>
-      <div class="qbox">❓ Since this is the last full day and BigXthaPlug may not be a great fit for the boys, want to plan an earlier wind-down instead — maybe the outdoor demos (chainsaw/lumberjack) in the late afternoon and back to the hotel before the Grandstand crowd?</div>
+
+      <div class="section evening">
+        <div class="section-head">Evening</div>
+        <table>
+          <tr><td class="t">8 pm</td><td class="e">Grandstand: BigXthaPlug w/ XOLEX <span style="color:var(--muted); font-weight:400;">(hip-hop — worth checking content ahead if bringing the boys)</span></td></tr>
+        </table>
+      </div>
+
+      <div class="qbox">❓ The chili cook-offs (12:15 &amp; 1:15pm) and Cinnamon Roll Challenge (2pm) look like a good cluster to build early afternoon around — and since BigXthaPlug may not be a great fit for the boys, want to plan an earlier wind-down instead of staying for the Grandstand?</div>
     </div>
   </div>
 
