@@ -68,17 +68,6 @@
 
   .wrap { max-width: 860px; margin: 0 auto; padding: 20px 16px; }
 
-  .prefs {
-    background: var(--card);
-    border: 1px solid #e5ddd0;
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-size: 0.85rem;
-    margin-bottom: 16px;
-    color: var(--muted);
-  }
-  .prefs b { color: var(--ink); }
-
   .legend {
     display: flex;
     flex-wrap: wrap;
@@ -180,13 +169,16 @@
   td.e a { color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
   td.loc { color: var(--muted); font-size: 0.8rem; white-space: nowrap; text-align: right; }
 
-  .qbox {
-    margin-top: 12px;
-    background: #f6f0ff;
-    border-left: 3px solid #8a5cf6;
-    padding: 10px 14px;
-    font-size: 0.85rem;
-    border-radius: 4px;
+  .indoor {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #1f6fb2;
+    background: #eaf4fb;
+    padding: 1px 6px;
+    border-radius: 8px;
+    margin-left: 6px;
+    white-space: nowrap;
   }
   footer { text-align: center; color: var(--muted); font-size: 0.78rem; margin-top: 20px; }
 </style>
@@ -206,24 +198,20 @@
 
 <div class="wrap">
 
-  <div class="prefs">
-    Built around what you told me: <b>try new/unusual foods</b> alongside classics, <b>skip rides</b> and focus on exhibits/food/shows, hit the <b>Butter Cow, livestock &amp; draft horses, and free stage entertainment</b>, and catch the <b>contests</b> — especially food judging and Pioneer Hall classics. Times are from the fair's official daily schedule (posted 7/15/2026) — always double-check the <a href="https://www.iowastatefair.org/entertainment/fair-schedule" target="_blank">official schedule</a> once you're there. Where the fair publishes a page about a specific act or contest, its name below links straight to it.
-  </div>
-
   <div class="legend">
     <span class="item"><span class="dot" style="background:var(--c-exhibit)"></span>Must-See Exhibits</span>
     <span class="item"><span class="dot" style="background:var(--c-food)"></span>Food</span>
     <span class="item"><span class="dot" style="background:var(--c-grounds)"></span>Grounds Entertainment</span>
     <span class="item"><span class="dot" style="background:var(--c-stage)"></span>Free Stages</span>
     <span class="item"><span class="dot" style="background:var(--c-contest)"></span>Contests</span>
-    <span class="item"><span class="dot" style="background:var(--c-evening)"></span>Evening / Grandstand</span>
+    <span class="item"><span class="dot" style="background:var(--c-evening)"></span>Grandstand (FYI — not attending)</span>
   </div>
 
   <!-- WEDNESDAY -->
   <div class="day" id="wed">
     <div class="day-header">
       <h2>Wed, Aug 19 — Afternoon/Evening</h2>
-      <div class="date">Arrival day, shorter window before the Grandstand</div>
+      <div class="date">Arrival day, shorter window before dinner/evening at the hotel</div>
     </div>
     <div class="day-body">
 
@@ -233,6 +221,8 @@
           <tr><td class="t"></td><td class="e">Bison Burger or Bison Cheesesteak Slider — good first-stop dinner</td></tr>
           <tr><td class="t"></td><td class="e">Tanghulu (candied fruit skewers) — fun, photogenic, easy to split</td></tr>
           <tr><td class="t"></td><td class="e">Full list: <a href="https://www.iowastatefair.org/food/whats-new" target="_blank">What's New in Food</a> · <a href="https://www.iowastatefair.org/food/food-on-a-stick" target="_blank">Food on a Stick</a></td></tr>
+          <tr><td class="t"></td><td class="e"><b>People's Choice Best New Food</b> — voting closes tonight (Aug 19). The 3 finalists: Porky Parm Gnocchi (Destination Grille), Ultimate Minneapple Pie, All-American Scrambled Egg Roll (Winn &amp; Sara's Kitchen)</td></tr>
+          <tr><td class="t"></td><td class="e">Classics locals keep calling out: Pork Chop on a Stick (Iowa Pork Producers), cheese curds, Barksdale's State Fair Cookies</td></tr>
         </table>
       </div>
 
@@ -277,13 +267,13 @@
       </div>
 
       <div class="section evening">
-        <div class="section-head">Evening</div>
+        <div class="section-head">Grandstand <span style="font-weight:400; text-transform:none; opacity:0.85;">— FYI only, not attending</span></div>
         <table>
           <tr><td class="t">8 pm</td><td class="e">Grandstand: <a href="https://www.iowastatefair.org/entertainment/ajr" target="_blank">AJR</a> w/ Em Beihold</td></tr>
+          <tr><td class="t">~9:30–10 pm</td><td class="e">"Spirit in the Sky" drone show — new for 2026, red/white/blue choreographed lights right after the Grandstand ends. No ticket needed, visible fairgrounds-wide.</td></tr>
         </table>
       </div>
 
-      <div class="qbox">❓ Wednesday's a short window before the concert — want to prioritize food and just wander, or try to squeeze in the Butter Cow / Ag Building since you're already there?</div>
     </div>
   </div>
 
@@ -302,6 +292,9 @@
           <tr><td class="t">All day</td><td class="e">Livestock barns — check the <a href="https://www.iowastatefair.org/competition/livestock-schedules-judges/" target="_blank">livestock schedule</a> for what's judged today</td><td class="loc">Livestock Barns</td></tr>
           <tr><td class="t">6 pm</td><td class="e">Horse Show: Clydesdale, Percheron, Draft Pony</td><td class="loc">Jacobson Exhibition Center</td></tr>
           <tr><td class="t">9 am–8 pm</td><td class="e">4-H Building — kids' projects: photography, crafts, woodworking, robotics</td><td class="loc">4-H Building</td></tr>
+          <tr><td class="t">Anytime</td><td class="e">America's 250 Legacy Sculpture — new one-time piece marking the fair's own history</td><td class="loc">Ruan Plaza, by the Giant Slide</td></tr>
+          <tr><td class="t">Anytime</td><td class="e">250 Years of the American Flag display</td><td class="loc">Between Pioneer Hall &amp; Grandfather's Barn</td></tr>
+          <tr><td class="t">Anytime</td><td class="e">Iowa Veterans Memorial Walkway — historical markers for every war/conflict involving Iowans</td><td class="loc">Expo Hill, across from First Church</td></tr>
         </table>
       </div>
 
@@ -357,13 +350,13 @@
       </div>
 
       <div class="section evening">
-        <div class="section-head">Evening</div>
+        <div class="section-head">Grandstand <span style="font-weight:400; text-transform:none; opacity:0.85;">— FYI only, not attending</span></div>
         <table>
           <tr><td class="t">8 pm</td><td class="e">Grandstand: <a href="https://www.iowastatefair.org/entertainment/riley-green" target="_blank">Riley Green</a> w/ Mackenzie Carpenter</td></tr>
+          <tr><td class="t">~9:30–10 pm</td><td class="e">"Spirit in the Sky" drone show — no ticket needed, visible fairgrounds-wide</td></tr>
         </table>
       </div>
 
-      <div class="qbox">❓ SugarHill Gang is a fun, nostalgic pick for the whole family — want to build the late afternoon around catching that 8pm set at the Amphitheater? And with all the food judging today, want to time lunch near the Elwell Food Center so your wife can watch a few rounds?</div>
     </div>
   </div>
 
@@ -378,10 +371,11 @@
       <div class="section exhibits">
         <div class="section-head">Must-See Exhibits</div>
         <table>
-          <tr><td class="t">8:30 am</td><td class="e">🐴 Draft Horse Show: Percheron &amp; Clydesdale lines</td><td class="loc">Jacobson Exhibition Center</td></tr>
-          <tr><td class="t">2 pm</td><td class="e">Draft Horse Show: Clydesdale &amp; Percheron</td><td class="loc">Jacobson Exhibition Center</td></tr>
-          <tr><td class="t">5 pm</td><td class="e">Draft Horse Show: Clydesdale, Percheron, Draft Pony</td><td class="loc">Jacobson Exhibition Center</td></tr>
-          <tr><td class="t">10 am</td><td class="e">Iowa State Fair Podcast</td><td class="loc"><a href="https://www.iowastatefairgrounds.org/buildings/animal-learning-center" target="_blank">Animal Learning Center</a></td></tr>
+          <tr><td class="t">8:30 am</td><td class="e">🐴 Draft Horse Show: Percheron &amp; Clydesdale lines <span class="indoor">Indoor</span></td><td class="loc">Jacobson Exhibition Center</td></tr>
+          <tr><td class="t">2 pm</td><td class="e">Draft Horse Show: Clydesdale &amp; Percheron <span class="indoor">Indoor</span></td><td class="loc">Jacobson Exhibition Center</td></tr>
+          <tr><td class="t">5 pm</td><td class="e">Draft Horse Show: Clydesdale, Percheron, Draft Pony <span class="indoor">Indoor</span></td><td class="loc">Jacobson Exhibition Center</td></tr>
+          <tr><td class="t">10 am</td><td class="e">Iowa State Fair Podcast <span class="indoor">Indoor</span></td><td class="loc"><a href="https://www.iowastatefairgrounds.org/buildings/animal-learning-center" target="_blank">Animal Learning Center</a></td></tr>
+          <tr><td class="t">Anytime</td><td class="e">"Spirit of '76 – Iowa Celebrates America250!" — immersive exhibit on 1776 Iowa &amp; the Revolutionary War <span class="indoor">Indoor</span></td><td class="loc">East Marketplace, under Grandstand's east end</td></tr>
         </table>
       </div>
 
@@ -390,6 +384,7 @@
         <table>
           <tr><td class="t"></td><td class="e">Deep Fried Cookie Dough Pie</td></tr>
           <tr><td class="t"></td><td class="e">A poke bowl for something lighter</td></tr>
+          <tr><td class="t"></td><td class="e"><b>People's Choice Best New Food winner announced today</b> — see if it's Porky Parm Gnocchi, Ultimate Minneapple Pie, or the All-American Scrambled Egg Roll</td></tr>
         </table>
       </div>
 
@@ -397,7 +392,7 @@
         <div class="section-head">Contests <span style="font-weight:400; text-transform:none; opacity:0.85;">— big day for Pioneer Hall classics</span></div>
         <div class="subhead"><a href="https://storage.googleapis.com/iowa-state-fair/2026/Fair-Time-Contests/2026-Special-Events-Book-Website.pdf" target="_blank">Heritage Village &amp; Pioneer Hall ↗</a> <span class="note">— rules &amp; details in the official Special Events Directory</span></div>
         <table>
-          <tr><td class="t">9 am</td><td class="e">Youth Checkers Tournament</td><td class="loc">Administration Building</td></tr>
+          <tr><td class="t">9 am</td><td class="e">Youth Checkers Tournament <span class="indoor">Indoor</span></td><td class="loc">Administration Building</td></tr>
           <tr><td class="t">9:30 am</td><td class="e">Horseshoe Pitching: Two Player Pro-Am</td><td class="loc">Horseshoe Courts</td></tr>
           <tr><td class="t">10 am</td><td class="e"><b>Husband Calling Contest</b> — 1-minute limit, ages 17+</td><td class="loc">Heritage Village</td></tr>
           <tr><td class="t">11 am</td><td class="e">Mom Calling Contest</td><td class="loc">Heritage Village</td></tr>
@@ -406,7 +401,7 @@
           <tr><td class="t">2:30 pm</td><td class="e"><b>Adult Hog Calling Contest</b> — 3-min limit, no live pigs allowed</td><td class="loc">Heritage Village</td></tr>
           <tr><td class="t">2:30–5 pm</td><td class="e">Horseshoe Pitching: Championship Class</td><td class="loc">Horseshoe Courts</td></tr>
         </table>
-        <div class="subhead">Food Judging <span class="note">— Elwell Family Food Center; no individual contest pages published</span></div>
+        <div class="subhead">Food Judging <span class="indoor">Indoor</span> <span class="note">— Elwell Family Food Center; no individual contest pages published</span></div>
         <table>
           <tr><td class="t">9:30 am</td><td class="e">Cookies, Sauces, Honey Foods, Pie Contest judging</td></tr>
           <tr><td class="t">10 am</td><td class="e">Beef &amp; Pork Casseroles judging</td></tr>
@@ -421,7 +416,7 @@
           <tr><td class="t">12, 2, 4 pm</td><td class="e"><a href="https://www.iowastatefair.org/entertainment/paul-bunyan-lumberjack-show" target="_blank">Paul Bunyan Lumberjack Show</a></td><td class="loc">The Lawn</td></tr>
           <tr><td class="t">10, 12, 3:30, 5:30</td><td class="e"><a href="https://www.iowastatefair.org/entertainment/chainsaw-carvers" target="_blank">Chainsaw Carvers</a></td><td class="loc">Expo Hill</td></tr>
           <tr><td class="t">10:30, 12:30, 2:30, 4:30, 6 pm</td><td class="e"><a href="https://www.iowastatefair.org/entertainment/hot-glass-academy" target="_blank">Hot Glass Academy</a></td><td class="loc">Heritage Village</td></tr>
-          <tr><td class="t">2, 4 pm</td><td class="e">Farmer Chats</td><td class="loc"><a href="https://www.iowastatefairgrounds.org/buildings/animal-learning-center" target="_blank">Animal Learning Center</a></td></tr>
+          <tr><td class="t">2, 4 pm</td><td class="e">Farmer Chats <span class="indoor">Indoor</span></td><td class="loc"><a href="https://www.iowastatefairgrounds.org/buildings/animal-learning-center" target="_blank">Animal Learning Center</a></td></tr>
         </table>
       </div>
 
@@ -437,13 +432,13 @@
       </div>
 
       <div class="section evening">
-        <div class="section-head">Evening</div>
+        <div class="section-head">Grandstand <span style="font-weight:400; text-transform:none; opacity:0.85;">— FYI only, not attending</span></div>
         <table>
           <tr><td class="t">8 pm</td><td class="e">Grandstand: <a href="https://www.iowastatefair.org/entertainment/alabama" target="_blank">Alabama</a> w/ Exile</td></tr>
+          <tr><td class="t">~9:30–10 pm</td><td class="e">"Spirit in the Sky" drone show — no ticket needed, visible fairgrounds-wide</td></tr>
         </table>
       </div>
 
-      <div class="qbox">❓ With rain most likely today, want to front-load the indoor stuff (Draft Horse Show, Animal Learning Center) in the morning and plan around the 10am Husband Calling / 2:30pm Adult Hog Calling contests at Heritage Village either way, since those seem right up your wife's alley?</div>
     </div>
   </div>
 
@@ -516,13 +511,13 @@
       </div>
 
       <div class="section evening">
-        <div class="section-head">Evening</div>
+        <div class="section-head">Grandstand <span style="font-weight:400; text-transform:none; opacity:0.85;">— FYI only, not attending</span></div>
         <table>
           <tr><td class="t">8 pm</td><td class="e">Grandstand: <a href="https://www.iowastatefair.org/entertainment/bigxthaplug" target="_blank">BigXthaPlug</a> w/ XOLEX <span style="color:var(--muted); font-weight:400;">(hip-hop — worth checking content ahead if bringing the boys)</span></td></tr>
+          <tr><td class="t">~9:30–10 pm</td><td class="e">"Spirit in the Sky" drone show — no ticket needed, visible fairgrounds-wide</td></tr>
         </table>
       </div>
 
-      <div class="qbox">❓ The chili cook-offs (12:15 &amp; 1:15pm) and Cinnamon Roll Challenge (2pm) look like a good cluster to build early afternoon around — and since BigXthaPlug may not be a great fit for the boys, want to plan an earlier wind-down instead of staying for the Grandstand?</div>
     </div>
   </div>
 
