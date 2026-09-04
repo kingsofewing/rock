@@ -226,14 +226,5 @@
     "detail_link_url": "https://livelocal.music/",
     "ticket_price": "10",
     "ticket_note": "includes a free drink"
-  },
-  {
-    "date": "2026-10-03",
-    "venue_name": "Fat Shallot",
-    "venue_url": "https://www.thefatshallot.com/the-fat-shallots-new-site-is-coming-soon/",
-    "start_time": "6:00 PM",
-    "end_time": "8:00 PM",
-    "address": "2902 Central St, Evanston, IL 60201",
-    "ticket_price": "0"
   }
 ]
