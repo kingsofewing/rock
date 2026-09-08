@@ -33,7 +33,7 @@
   },
   {
     "date": "2024-08-17",
-    "venue_name": "Private Party"
+    "venue_name": "Private Event"
   },
   {
     "date": "2024-08-24",
@@ -162,7 +162,7 @@
   },
   {
     "date": "2026-05-16",
-    "venue_name": "Private Party",
+    "venue_name": "Private Event",
     "start_time": "7:00 PM"
   },
   {
@@ -226,5 +226,9 @@
     "detail_link_url": "https://livelocal.music/",
     "ticket_price": "10",
     "ticket_note": "includes a free drink"
+  },
+  {
+    "date": "2026-10-03",
+    "venue_name": "Private Event"
   }
 ]
