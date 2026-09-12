@@ -1519,20 +1519,21 @@ function renderShow(s, isPast) {
   return wrap;
 }
 
-// Shows further out than this are treated as placeholders — see filterFarOut.
-const FAR_OUT_MONTHS = 12;
-
 // The Ewing Block Party is a standing date (the Saturday after Labor Day), so
-// it gets booked years ahead. We keep those rows in shows.json but only surface
-// a far-future one when there's nothing nearer — that way Upcoming is never
-// empty, and it never looks padded once real gigs are on the calendar.
+// it gets booked years ahead — sometimes two or three summers out. We keep
+// those rows in shows.json but only surface a block party date once it's
+// within BLOCK_PARTY_MONTHS of today, unless it's the only thing on the
+// calendar — that way Upcoming never looks empty, and a stray future block
+// party date doesn't crowd out real, closer gigs.
+const BLOCK_PARTY_MONTHS = 4;
+const BLOCK_PARTY_VENUE = 'Ewing Block Party';
+
 function filterFarOut(upcoming, today) {
+  const others = upcoming.filter(s => s.venue_name !== BLOCK_PARTY_VENUE);
+  if (others.length === 0) return upcoming;
   const cutoff = new Date(today);
-  cutoff.setMonth(cutoff.getMonth() + FAR_OUT_MONTHS);
-  const near = upcoming.filter(s => new Date(s.date + 'T00:00:00') <= cutoff);
-  if (near.length) return near;
-  // Nothing within the window — fall back to the single soonest future show.
-  return upcoming.slice(0, 1);
+  cutoff.setMonth(cutoff.getMonth() + BLOCK_PARTY_MONTHS);
+  return upcoming.filter(s => s.venue_name !== BLOCK_PARTY_VENUE || new Date(s.date + 'T00:00:00') <= cutoff);
 }
 
 function buildShows(SHOWS) {
