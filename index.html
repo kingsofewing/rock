@@ -1529,11 +1529,15 @@ const BLOCK_PARTY_MONTHS = 4;
 const BLOCK_PARTY_VENUE = 'Ewing Block Party';
 
 function filterFarOut(upcoming, today) {
-  const others = upcoming.filter(s => s.venue_name !== BLOCK_PARTY_VENUE);
+  // Shows are normalized to { venue: { name, url } } by normalizeShow —
+  // there is no top-level venue_name on these objects, so the block-party
+  // check has to go through s.venue.name, same as renderShow/buildICS/etc.
+  const isBlockParty = s => Boolean(s.venue) && s.venue.name === BLOCK_PARTY_VENUE;
+  const others = upcoming.filter(s => !isBlockParty(s));
   if (others.length === 0) return upcoming;
   const cutoff = new Date(today);
   cutoff.setMonth(cutoff.getMonth() + BLOCK_PARTY_MONTHS);
-  return upcoming.filter(s => s.venue_name !== BLOCK_PARTY_VENUE || new Date(s.date + 'T00:00:00') <= cutoff);
+  return upcoming.filter(s => !isBlockParty(s) || new Date(s.date + 'T00:00:00') <= cutoff);
 }
 
 function buildShows(SHOWS) {
