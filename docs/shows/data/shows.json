@@ -218,18 +218,6 @@
     "ticket_price": "0"
   },
   {
-    "date": "2026-11-04",
-    "venue_name": "Wilmette Theatre",
-    "venue_url": "https://www.wilmettetheatre.com/",
-    "start_time": "7:00 PM",
-    "end_time": "9:00 PM",
-    "address": "1122 Central Ave., Wilmette, IL 60091",
-    "detail_link_name": "Live Local Music",
-    "detail_link_url": "https://livelocal.music/",
-    "ticket_price": "10",
-    "ticket_note": "includes a free drink"
-  },
-  {
     "date": "2026-10-03",
     "venue_name": "Private Event",
     "private": true
