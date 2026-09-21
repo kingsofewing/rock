@@ -1557,6 +1557,21 @@ function buildShows(SHOWS) {
   const pastEl = document.getElementById('past-list');
   upEl.replaceChildren(...upcoming.map(s => renderShow(s, false)));
   pastEl.replaceChildren(...past.map(s => renderShow(s, true)));
+
+  // No upcoming shows: drop the Upcoming/Past tabs entirely and just show
+  // past shows under the section's existing "Shows" heading. No tab bar,
+  // no "nothing scheduled" messaging — just the list.
+  const tabsEl = document.querySelector('.shows-tabs');
+  const upPanel = document.getElementById('tab-upcoming');
+  const pastPanel = document.getElementById('tab-past');
+  const showTabs = upcoming.length > 0;
+  if (tabsEl) tabsEl.style.display = showTabs ? '' : 'none';
+  if (!showTabs) {
+    upPanel.classList.remove('active');
+    upPanel.setAttribute('hidden', '');
+    pastPanel.classList.add('active');
+    pastPanel.removeAttribute('hidden');
+  }
 }
 
 // ─────────────────────────────────────────────────────────────
