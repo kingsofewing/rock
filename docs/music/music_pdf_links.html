@@ -156,6 +156,9 @@
     color: var(--cream);
   }
   .song-btn.audio:hover { background: var(--cream); color: var(--brown); }
+  .show-cover { display: block; margin-bottom: 0.75rem; border-radius: 4px; overflow: hidden; line-height: 0; }
+  .show-cover img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; transition: transform 0.25s; }
+  .show-cover:hover img { transform: scale(1.03); }
   .no-links { font-size: 0.72rem; color: rgba(232,223,192,0.3); font-style: italic; }
 
   footer {
@@ -168,6 +171,35 @@
   }
   footer a { color: var(--teal); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
+
+
+  html { scroll-behavior: smooth; }
+  .section-label { scroll-margin-top: 8.5rem; }
+  .section-nav {
+    background: rgba(30,14,8,0.92);
+    border-bottom: 1px solid rgba(79,179,168,0.35);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    padding: 0.7rem 1rem;
+    position: sticky;
+    top: 70px;
+    z-index: 9;
+  }
+  .section-nav a {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--cream);
+    border: 1.5px solid rgba(232,223,192,0.3);
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .section-nav a:hover { background: var(--teal); border-color: var(--teal); color: var(--brown); }
 
   @media (max-width: 480px) {
     .song-grid { grid-template-columns: 1fr; }
@@ -191,9 +223,15 @@
   <p>Kings of Ewing — chord charts &amp; tabs</p>
 </div>
 
+<nav class="section-nav" aria-label="Sections">
+  <a href="#charts">Chord Charts &amp; Tabs</a>
+  <a href="#originals">Originals</a>
+  <a href="#shows">Live Show Recordings</a>
+</nav>
+
 <main>
 
-  <div class="section-label">Chord Charts &amp; Tabs</div>
+  <div class="section-label" id="charts">Chord Charts &amp; Tabs</div>
   <div class="song-grid">
     <div class="song-card">
       <div class="song-title"><span class="note-icon">🎵</span>All These Things That I've Done</div>
@@ -622,7 +660,7 @@
     </div>
   </div>
 
-  <div class="section-label">Originals</div>
+  <div class="section-label" id="originals">Originals</div>
   <!-- To add an original: copy a card below, put the files in docs/music/originals/<Song Name>/,
        and update the title + hrefs (spaces are %20). Keep cards alphabetical. -->
   <div class="song-grid">
@@ -653,14 +691,22 @@
     </div>
   </div>
 
-  <div class="section-label">Live Show Recordings</div>
+  <div class="section-label" id="shows">Live Show Recordings</div>
   <!-- To add a show: copy a card, set the title (date + event) and the OneDrive share link.
        Each zip holds the show video + the song-by-song MP3 album. Newest first. -->
   <div class="song-grid">
     <div class="song-card">
+      <a class="show-cover" href="https://1drv.ms/u/c/ed1140b1d7a4cdbf/IQA_f-q3grE0Sq6n4ws4upTTARLGB1rw5FZwa0to6XQNtGA?e=SSZWLz" target="_blank" rel="noopener noreferrer"><img src="/docs/images/shows/2026-10-03-lincolnwood-pta.jpg" alt="Lincolnwood PTA Fundraiser, October 3, 2026" loading="lazy"></a>
       <div class="song-title"><span class="note-icon">🎧</span>2026-10-03 Lincolnwood PTA Fundraiser</div>
       <div class="song-links">
         <a class="song-btn audio" href="https://1drv.ms/u/c/ed1140b1d7a4cdbf/IQA_f-q3grE0Sq6n4ws4upTTARLGB1rw5FZwa0to6XQNtGA?e=SSZWLz" target="_blank" rel="noopener noreferrer">⬇ Zip</a>
+      </div>
+    </div>
+    <div class="song-card">
+      <a class="show-cover" href="https://1drv.ms/u/c/ed1140b1d7a4cdbf/IQBPbKzdPeIZSZ6WSlffZs0vAfqe_kMzgZwezOX0wrBZbU4?e=IRFKWp" target="_blank" rel="noopener noreferrer"><img src="/docs/images/shows/2026-01-24-goat-village.jpg" alt="Goat Village, January 24, 2026" loading="lazy"></a>
+      <div class="song-title"><span class="note-icon">🎧</span>2026-01-24 Goat Village</div>
+      <div class="song-links">
+        <a class="song-btn audio" href="https://1drv.ms/u/c/ed1140b1d7a4cdbf/IQBPbKzdPeIZSZ6WSlffZs0vAfqe_kMzgZwezOX0wrBZbU4?e=IRFKWp" target="_blank" rel="noopener noreferrer">⬇ Zip</a>
       </div>
     </div>
   </div>
