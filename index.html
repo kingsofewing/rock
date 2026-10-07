@@ -289,7 +289,7 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 }
 
 /* SONG LIST */
-  .songs-inner { max-width: 860px; margin: 0 auto; }
+  .songs-inner { max-width: 600px; margin: 0 auto; }
 
 .songs-label { font-family: 'DM Sans', sans-serif; font-size: clamp(0.95rem, 2.2vw, 1.1rem); letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin: 2rem 0 0.75rem; text-align: center; }
 
@@ -1613,8 +1613,9 @@ function filterFarOut(upcoming, today) {
 }
 
 // Long show lists: first 2 on mobile (and the first `desktopLimit` on wider
-// screens, 0 = no limit), the rest behind a "Show all" button. CSS decides
-// which items/buttons are hidden at each width, so it holds up on resize.
+// screens, 0 = no limit), the rest behind a "Show all" / "Show fewer" toggle.
+// CSS decides which items/buttons are hidden at each width, so it holds up
+// on resize.
 const MOBILE_SHOW_LIMIT = 2;
 function collapseList(listEl, btn, desktopLimit) {
   if (!listEl || !btn) return;
@@ -1627,10 +1628,18 @@ function collapseList(listEl, btn, desktopLimit) {
   btn.classList.toggle('more-mobile', items.length > MOBILE_SHOW_LIMIT);
   btn.classList.toggle('more-desktop', desktopLimit > 0 && items.length > desktopLimit);
   btn.textContent = 'Show all shows';
+  btn.setAttribute('aria-expanded', 'false');
   btn.addEventListener('click', () => {
-    listEl.classList.remove('collapsed');
-    btn.classList.remove('more-mobile', 'more-desktop');
-  }, { once: true });
+    const collapsing = !listEl.classList.contains('collapsed');
+    listEl.classList.toggle('collapsed', collapsing);
+    btn.textContent = collapsing ? 'Show all shows' : 'Show fewer shows';
+    btn.setAttribute('aria-expanded', collapsing ? 'false' : 'true');
+    // After collapsing a long list, bring its top back into view (below the fixed nav)
+    if (collapsing) {
+      const top = listEl.getBoundingClientRect().top;
+      if (top < 0) window.scrollTo({ top: window.scrollY + top - 100, behavior: 'smooth' });
+    }
+  });
 }
 
 function buildShows(SHOWS) {
