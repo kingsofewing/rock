@@ -143,9 +143,10 @@ nav .nav-book-btn { margin-left: auto; margin-right: 0.9rem; padding: 0.45rem 0.
 .divider { width: 40px; height: 2px; background: var(--coral); margin: 0.8rem 0 1.8rem; }
 
 
-/* Section order: hero(photo + brown) > media(bg) > shows(photo strip + brown) > about(bg + band photo) > faq+book(dark photo) > footer (chalk photo; mailing list, socials, press kit) */
+/* Section rhythm: photo-led sections alternate with flat ones.
+   hero(photo) > media(slate) > shows(photo strip) > about(slate) > songs(dark photo) > faq+book(brown) > footer(chalk photo) */
 .section-photo-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
-#faqbook-bg { background-image: url('docs/images/kings_of_ewing-1.jpg'); background-position: center 40%; filter: brightness(0.24); }
+#songs-bg   { background-image: url('docs/images/kings_of_ewing-1.jpg'); background-position: center 40%; filter: brightness(0.3); }
 #shows-bg   { position: relative; inset: auto; height: clamp(180px, 30vw, 340px); margin-bottom: 3.5rem; background-image: url('docs/images/IMG_1810.jpeg'); background-position: center 50%; }
 #shows-bg::after { content: ''; position: absolute; inset: auto 0 0 0; height: 35%; background: linear-gradient(to bottom, rgba(30,14,8,0), var(--brown)); }
 
@@ -154,6 +155,9 @@ nav .nav-book-btn { margin-left: auto; margin-right: 0.9rem; padding: 0.45rem 0.
 #shows > *:not(#shows-bg) { position: relative; z-index: 1; }
 
 #about   { background: var(--bg); padding: 7rem 3rem; }
+
+#songs   { background: var(--brown); padding: 6rem 3rem; position: relative; overflow: hidden; }
+#songs > *:not(#songs-bg) { position: relative; z-index: 1; }
 
 #book    { background: var(--bg); padding: 3rem 2.5rem; text-align: center; border: 1px solid rgba(200,98,58,0.35); }
 
@@ -275,21 +279,21 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 
 .about-text p { font-size: 1rem; line-height: 1.85; color: rgba(232,223,192,0.8); font-weight: 300; margin-bottom: 1.2rem; max-width: 680px; }
 
-.about-text .songs-label, .about-text .songs-note { max-width: none; }
-
 .about-intro { display: grid; gap: 2rem; }
 
-.about-photo { display: block; width: 100%; height: auto; max-height: 440px; object-fit: cover; object-position: center 55%; border: 1px solid rgba(200,98,58,0.4); }
+.about-photo { order: -1; display: block; width: 100%; height: auto; max-height: 440px; object-fit: cover; object-position: center 55%; border: 1px solid rgba(200,98,58,0.4); }
 
 @media (min-width: 900px) {
   .about-intro { grid-template-columns: minmax(0, 1fr) 280px; gap: 2.75rem; align-items: start; }
-  .about-photo { max-height: none; margin-top: 0.35rem; }
+  .about-photo { order: 0; max-height: none; margin-top: 0.35rem; }
 }
 
 /* SONG LIST */
-  .about-text .songs-label { font-family: 'DM Sans', sans-serif; font-size: clamp(0.95rem, 2.2vw, 1.1rem); letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin: 2rem 0 0.75rem; text-align: center; }
+  .songs-inner { max-width: 860px; margin: 0 auto; }
 
-.song-grid { border: 1px solid rgba(79,179,168,0.2); margin-bottom: 0.75rem; }
+.songs-label { font-family: 'DM Sans', sans-serif; font-size: clamp(0.95rem, 2.2vw, 1.1rem); letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); font-weight: 700; margin: 2rem 0 0.75rem; text-align: center; }
+
+.song-grid { border: 1px solid rgba(79,179,168,0.2); margin-bottom: 0.75rem; background: rgba(30,14,8,0.88); }
 .song-grid-decade { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; background-image: linear-gradient(to right, transparent calc(50% - 0.5px), rgba(79,179,168,0.2) calc(50% - 0.5px), rgba(79,179,168,0.2) calc(50% + 0.5px), transparent calc(50% + 0.5px)); grid-auto-flow: column; }
 
 .song-item { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(79,179,168,0.12); }
@@ -298,7 +302,7 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 
 .song-artist { font-size: 0.68rem; color: rgba(232,223,192,0.4); margin-top: 0.1rem; }
 
-.songs-note { font-size: 0.75rem; color: rgba(232,223,192,0.35); font-style: italic; }
+.songs-note { font-size: 0.75rem; color: rgba(232,223,192,0.6); font-style: italic; }
 
 .song-header { font-family: 'DM Sans', sans-serif; display: flex; align-items: baseline; cursor: pointer; list-style: none; padding: 0.5rem 1rem; background: rgba(79,179,168,0.12); font-size: 1rem; letter-spacing: 0.12em; text-transform: none; color: var(--teal); font-weight: 700; border-bottom: 1px solid rgba(79,179,168,0.2); }
 .song-header small { font-size: 0.75em; font-weight: 700; }
@@ -375,6 +379,7 @@ p.footer-legal { font-size: 0.7rem; color: rgba(232,223,192,0.5); letter-spacing
   nav { padding: 0.8rem 1.5rem; }
 
   #about { padding: 5rem 1.5rem; }
+  #songs { padding: 4.5rem 1.5rem; }
   #shows { padding: 0 0 5rem; }
   .shows-inner { padding: 0 1.5rem; }
   .form-row { grid-template-columns: 1fr; }
@@ -619,8 +624,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .video-cover-label { position: absolute; left: 1rem; bottom: 0.8rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cream); }
 
 /* FAQ */
-.faq-book { position: relative; overflow: hidden; display: grid; gap: 4rem; background: var(--brown); padding: 7rem max(3rem, calc((100% - 1160px) / 2)); }
-.faq-book > *:not(#faqbook-bg) { position: relative; z-index: 1; }
+.faq-book { display: grid; gap: 4rem; background: var(--brown); padding: 7rem max(3rem, calc((100% - 1160px) / 2)); }
 @media (min-width: 920px) { .faq-book { grid-template-columns: 1fr 1fr; align-items: start; } }
 @media (min-width: 920px) and (max-width: 1199px) { #book .form-row { grid-template-columns: 1fr; gap: 0; margin-bottom: 0; } }
 .faq-inner { max-width: 760px; margin: 0 auto; }
@@ -642,7 +646,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 }
 
 /* Offset anchor-jump targets so the fixed nav doesn't cover them on landing */
-#hero, #media, #mailing, #shows, #about, #faq, #book {
+#hero, #media, #mailing, #shows, #about, #songs, #faq, #book {
   scroll-margin-top: 90px;
 }
 </style>
@@ -832,123 +836,128 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
         <img class="about-photo" src="docs/images/Resized_IMG_5512.jpg.jpeg" alt="Kings of Ewing playing under the neon sign at Goat Village" width="879" height="1080" loading="lazy">
       </div>
 
-      <p class="songs-label"><a href="docs/library/" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">A Sample of What We Play</a></p>
-      <div class="song-grid">
-
-        <!-- 1960s: 10 songs → 5 rows per column -->
-        <details class="song-decade">
-          <summary class="song-header">1960<small>s</small></summary>
-          <div class="song-grid-decade" style="grid-template-rows: repeat(5, auto);">
-          <div class="song-item"><div class="song-title">Come Together</div><div class="song-artist">Beatles</div></div>
-          <div class="song-item"><div class="song-title">Crossroads</div><div class="song-artist">Cream</div></div>
-          <div class="song-item"><div class="song-title">Dedicated Follower of Fashion</div><div class="song-artist">The Kinks</div></div>
-          <div class="song-item"><div class="song-title">Don&rsquo;t Let Me Down</div><div class="song-artist">Beatles</div></div>
-          <div class="song-item"><div class="song-title">For What It&rsquo;s Worth</div><div class="song-artist">Buffalo Springfield</div></div>
-          <div class="song-item"><div class="song-title">Fortunate Son</div><div class="song-artist">CCR</div></div>
-          <div class="song-item"><div class="song-title">I&rsquo;ve Got A Feeling</div><div class="song-artist">Beatles</div></div>
-          <div class="song-item"><div class="song-title">Octopus&rsquo;s Garden</div><div class="song-artist">Beatles</div></div>
-          <div class="song-item"><div class="song-title">Sympathy For The Devil</div><div class="song-artist">Rolling Stones</div></div>
-          <div class="song-item"><div class="song-title">Voodoo Child</div><div class="song-artist">Jimi Hendrix</div></div>
-        </div>
-        </details>
-
-        <!-- 1970s: 14 songs → 7 rows per column -->
-        <details class="song-decade">
-          <summary class="song-header">1970<small>s</small></summary>
-          <div class="song-grid-decade" style="grid-template-rows: repeat(7, auto);">
-          <div class="song-item"><div class="song-title">Angel From Montgomery</div><div class="song-artist">John Prine</div></div>
-          <div class="song-item"><div class="song-title">Heroes</div><div class="song-artist">David Bowie</div></div>
-          <div class="song-item"><div class="song-title">Just What I Needed</div><div class="song-artist">The Cars</div></div>
-          <div class="song-item"><div class="song-title">Let Me Roll It</div><div class="song-artist">Wings</div></div>
-          <div class="song-item"><div class="song-title">Midnight Rider</div><div class="song-artist">The Allman Brothers Band</div></div>
-          <div class="song-item"><div class="song-title">No One To Depend On</div><div class="song-artist">Santana</div></div>
-          <div class="song-item"><div class="song-title">Ohio</div><div class="song-artist">CSNY</div></div>
-          <div class="song-item"><div class="song-title">Riders On The Storm</div><div class="song-artist">The Doors</div></div>
-          <div class="song-item"><div class="song-title">Teach Your Children</div><div class="song-artist">CSNY</div></div>
-          <div class="song-item"><div class="song-title">The Seeker</div><div class="song-artist">The Who</div></div>
-          <div class="song-item"><div class="song-title">Walk On</div><div class="song-artist">Neil Young</div></div>
-          <div class="song-item"><div class="song-title">War Pigs</div><div class="song-artist">Black Sabbath</div></div>
-          <div class="song-item"><div class="song-title">Whipping Post</div><div class="song-artist">The Allman Brothers Band</div></div>
-          <div class="song-item"><div class="song-title">Who&rsquo;s That Lady</div><div class="song-artist">The Isley Brothers</div></div>
-        </div>
-        </details>
-
-        <!-- 1980s: 7 songs → 4 rows left, 3 rows right -->
-        <details class="song-decade">
-          <summary class="song-header">1980<small>s</small></summary>
-          <div class="song-grid-decade" style="grid-template-rows: repeat(4, auto);">
-          <div class="song-item"><div class="song-title">End Of The World</div><div class="song-artist">R.E.M.</div></div>
-          <div class="song-item"><div class="song-title">Head Over Heels</div><div class="song-artist">Tears for Fears</div></div>
-          <div class="song-item"><div class="song-title">Just Like Heaven</div><div class="song-artist">The Cure</div></div>
-          <div class="song-item"><div class="song-title">Message In A Bottle</div><div class="song-artist">The Police</div></div>
-          <div class="song-item"><div class="song-title">Rockin&rsquo; In The Free World</div><div class="song-artist">Neil Young</div></div>
-          <div class="song-item"><div class="song-title">Smooth Operator</div><div class="song-artist">Sade</div></div>
-          <div class="song-item"><div class="song-title">Won&rsquo;t Back Down</div><div class="song-artist">Tom Petty</div></div>
-        </div>
-        </details>
-
-        <!-- 1990s: 4 songs → 2 rows per column -->
-        <details class="song-decade">
-          <summary class="song-header">1990<small>s</small></summary>
-          <div class="song-grid-decade" style="grid-template-rows: repeat(2, auto);">
-          <div class="song-item"><div class="song-title">Black</div><div class="song-artist">Pearl Jam</div></div>
-          <div class="song-item"><div class="song-title">Don&rsquo;t Look Back In Anger</div><div class="song-artist">Oasis</div></div>
-          <div class="song-item"><div class="song-title">Found Out About You</div><div class="song-artist">Gin Blossoms</div></div>
-          <div class="song-item"><div class="song-title">Laid</div><div class="song-artist">James</div></div>
-        </div>
-        </details>
-
-        <!-- 2000s: 4 songs → 2 rows per column -->
-        <details class="song-decade">
-          <summary class="song-header">2000<small>s</small></summary>
-          <div class="song-grid-decade" style="grid-template-rows: repeat(2, auto);">
-          <div class="song-item"><div class="song-title">Bohemian Like You</div><div class="song-artist">Dandy Warhols</div></div>
-          <div class="song-item"><div class="song-title">Little By Little</div><div class="song-artist">Oasis</div></div>
-          <div class="song-item"><div class="song-title">Seven Nation Army</div><div class="song-artist">The White Stripes</div></div>
-          <div class="song-item"><div class="song-title">Starlight</div><div class="song-artist">Muse</div></div>
-        </div>
-        </details>
-
-        <!-- 2010s: 1 song → single column -->
-        <details class="song-decade">
-          <summary class="song-header">2010<small>s</small></summary>
-          <div class="song-grid-decade" style="grid-template-rows: repeat(1, auto);">
-          <div class="song-item"><div class="song-title">Follow Your Arrow</div><div class="song-artist">Kacey Musgraves</div></div>
-        </div>
-        </details>
-
-        <!-- 2020s: 4 songs → 2 rows per column -->
-        <details class="song-decade">
-          <summary class="song-header">2020<small>s</small></summary>
-          <div class="song-grid-decade" style="grid-template-rows: repeat(2, auto);">
-          <div class="song-item"><div class="song-title">From The Start</div><div class="song-artist">Laufey</div></div>
-          <div class="song-item"><div class="song-title">Guess Again</div><div class="song-artist">Jeff Tweedy</div></div>
-          <div class="song-item"><div class="song-title">Pink Pony Club</div><div class="song-artist">Chappell Roan</div></div>
-          <div class="song-item"><div class="song-title">That&rsquo;s What I Love</div><div class="song-artist">Leon Bridges</div></div>
-        </div>
-        </details>
-
-        <!-- Originals: 2 songs → 1 row per column -->
-        <details class="song-decade">
-          <summary class="song-header">Originals</summary>
-          <div class="song-grid-decade" style="grid-template-rows: repeat(1, auto);">
-          <div class="song-item"><div class="song-title">Beautiful Boy</div><div class="song-artist">Kings of Ewing</div></div>
-          <div class="song-item"><div class="song-title">Kings Of Ewing</div><div class="song-artist">Kings of Ewing</div></div>
-        </div>
-        </details>
-
-      </div>
-      <p class="songs-note">Plus more. Sets are customized for each crowd and event.</p>
-
 
     </div>
 
   </div>
 </section>
 
+<!-- 3b. WHAT WE PLAY (song list over a darkened photo) -->
+<section id="songs" class="reveal">
+  <div id="songs-bg" class="section-photo-bg" aria-hidden="true"></div>
+  <div class="songs-inner">
+    <p class="songs-label"><a href="docs/library/" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">A Sample of What We Play</a></p>
+    <div class="song-grid">
+
+      <!-- 1960s: 10 songs → 5 rows per column -->
+      <details class="song-decade">
+        <summary class="song-header">1960<small>s</small></summary>
+        <div class="song-grid-decade" style="grid-template-rows: repeat(5, auto);">
+        <div class="song-item"><div class="song-title">Come Together</div><div class="song-artist">Beatles</div></div>
+        <div class="song-item"><div class="song-title">Crossroads</div><div class="song-artist">Cream</div></div>
+        <div class="song-item"><div class="song-title">Dedicated Follower of Fashion</div><div class="song-artist">The Kinks</div></div>
+        <div class="song-item"><div class="song-title">Don&rsquo;t Let Me Down</div><div class="song-artist">Beatles</div></div>
+        <div class="song-item"><div class="song-title">For What It&rsquo;s Worth</div><div class="song-artist">Buffalo Springfield</div></div>
+        <div class="song-item"><div class="song-title">Fortunate Son</div><div class="song-artist">CCR</div></div>
+        <div class="song-item"><div class="song-title">I&rsquo;ve Got A Feeling</div><div class="song-artist">Beatles</div></div>
+        <div class="song-item"><div class="song-title">Octopus&rsquo;s Garden</div><div class="song-artist">Beatles</div></div>
+        <div class="song-item"><div class="song-title">Sympathy For The Devil</div><div class="song-artist">Rolling Stones</div></div>
+        <div class="song-item"><div class="song-title">Voodoo Child</div><div class="song-artist">Jimi Hendrix</div></div>
+      </div>
+      </details>
+
+      <!-- 1970s: 14 songs → 7 rows per column -->
+      <details class="song-decade">
+        <summary class="song-header">1970<small>s</small></summary>
+        <div class="song-grid-decade" style="grid-template-rows: repeat(7, auto);">
+        <div class="song-item"><div class="song-title">Angel From Montgomery</div><div class="song-artist">John Prine</div></div>
+        <div class="song-item"><div class="song-title">Heroes</div><div class="song-artist">David Bowie</div></div>
+        <div class="song-item"><div class="song-title">Just What I Needed</div><div class="song-artist">The Cars</div></div>
+        <div class="song-item"><div class="song-title">Let Me Roll It</div><div class="song-artist">Wings</div></div>
+        <div class="song-item"><div class="song-title">Midnight Rider</div><div class="song-artist">The Allman Brothers Band</div></div>
+        <div class="song-item"><div class="song-title">No One To Depend On</div><div class="song-artist">Santana</div></div>
+        <div class="song-item"><div class="song-title">Ohio</div><div class="song-artist">CSNY</div></div>
+        <div class="song-item"><div class="song-title">Riders On The Storm</div><div class="song-artist">The Doors</div></div>
+        <div class="song-item"><div class="song-title">Teach Your Children</div><div class="song-artist">CSNY</div></div>
+        <div class="song-item"><div class="song-title">The Seeker</div><div class="song-artist">The Who</div></div>
+        <div class="song-item"><div class="song-title">Walk On</div><div class="song-artist">Neil Young</div></div>
+        <div class="song-item"><div class="song-title">War Pigs</div><div class="song-artist">Black Sabbath</div></div>
+        <div class="song-item"><div class="song-title">Whipping Post</div><div class="song-artist">The Allman Brothers Band</div></div>
+        <div class="song-item"><div class="song-title">Who&rsquo;s That Lady</div><div class="song-artist">The Isley Brothers</div></div>
+      </div>
+      </details>
+
+      <!-- 1980s: 7 songs → 4 rows left, 3 rows right -->
+      <details class="song-decade">
+        <summary class="song-header">1980<small>s</small></summary>
+        <div class="song-grid-decade" style="grid-template-rows: repeat(4, auto);">
+        <div class="song-item"><div class="song-title">End Of The World</div><div class="song-artist">R.E.M.</div></div>
+        <div class="song-item"><div class="song-title">Head Over Heels</div><div class="song-artist">Tears for Fears</div></div>
+        <div class="song-item"><div class="song-title">Just Like Heaven</div><div class="song-artist">The Cure</div></div>
+        <div class="song-item"><div class="song-title">Message In A Bottle</div><div class="song-artist">The Police</div></div>
+        <div class="song-item"><div class="song-title">Rockin&rsquo; In The Free World</div><div class="song-artist">Neil Young</div></div>
+        <div class="song-item"><div class="song-title">Smooth Operator</div><div class="song-artist">Sade</div></div>
+        <div class="song-item"><div class="song-title">Won&rsquo;t Back Down</div><div class="song-artist">Tom Petty</div></div>
+      </div>
+      </details>
+
+      <!-- 1990s: 4 songs → 2 rows per column -->
+      <details class="song-decade">
+        <summary class="song-header">1990<small>s</small></summary>
+        <div class="song-grid-decade" style="grid-template-rows: repeat(2, auto);">
+        <div class="song-item"><div class="song-title">Black</div><div class="song-artist">Pearl Jam</div></div>
+        <div class="song-item"><div class="song-title">Don&rsquo;t Look Back In Anger</div><div class="song-artist">Oasis</div></div>
+        <div class="song-item"><div class="song-title">Found Out About You</div><div class="song-artist">Gin Blossoms</div></div>
+        <div class="song-item"><div class="song-title">Laid</div><div class="song-artist">James</div></div>
+      </div>
+      </details>
+
+      <!-- 2000s: 4 songs → 2 rows per column -->
+      <details class="song-decade">
+        <summary class="song-header">2000<small>s</small></summary>
+        <div class="song-grid-decade" style="grid-template-rows: repeat(2, auto);">
+        <div class="song-item"><div class="song-title">Bohemian Like You</div><div class="song-artist">Dandy Warhols</div></div>
+        <div class="song-item"><div class="song-title">Little By Little</div><div class="song-artist">Oasis</div></div>
+        <div class="song-item"><div class="song-title">Seven Nation Army</div><div class="song-artist">The White Stripes</div></div>
+        <div class="song-item"><div class="song-title">Starlight</div><div class="song-artist">Muse</div></div>
+      </div>
+      </details>
+
+      <!-- 2010s: 1 song → single column -->
+      <details class="song-decade">
+        <summary class="song-header">2010<small>s</small></summary>
+        <div class="song-grid-decade" style="grid-template-rows: repeat(1, auto);">
+        <div class="song-item"><div class="song-title">Follow Your Arrow</div><div class="song-artist">Kacey Musgraves</div></div>
+      </div>
+      </details>
+
+      <!-- 2020s: 4 songs → 2 rows per column -->
+      <details class="song-decade">
+        <summary class="song-header">2020<small>s</small></summary>
+        <div class="song-grid-decade" style="grid-template-rows: repeat(2, auto);">
+        <div class="song-item"><div class="song-title">From The Start</div><div class="song-artist">Laufey</div></div>
+        <div class="song-item"><div class="song-title">Guess Again</div><div class="song-artist">Jeff Tweedy</div></div>
+        <div class="song-item"><div class="song-title">Pink Pony Club</div><div class="song-artist">Chappell Roan</div></div>
+        <div class="song-item"><div class="song-title">That&rsquo;s What I Love</div><div class="song-artist">Leon Bridges</div></div>
+      </div>
+      </details>
+
+      <!-- Originals: 2 songs → 1 row per column -->
+      <details class="song-decade">
+        <summary class="song-header">Originals</summary>
+        <div class="song-grid-decade" style="grid-template-rows: repeat(1, auto);">
+        <div class="song-item"><div class="song-title">Beautiful Boy</div><div class="song-artist">Kings of Ewing</div></div>
+        <div class="song-item"><div class="song-title">Kings Of Ewing</div><div class="song-artist">Kings of Ewing</div></div>
+      </div>
+      </details>
+
+    </div>
+    <p class="songs-note">Plus more. Sets are customized for each crowd and event.</p>
+  </div>
+</section>
+
 <!-- 4. FAQ + BOOK (side by side on desktop, stacked on mobile) -->
 <div class="faq-book">
-<div id="faqbook-bg" class="section-photo-bg" aria-hidden="true"></div>
 <section id="faq" class="reveal">
   <div class="faq-inner">
     <h2 class="section-title" aria-label="Frequently Asked"><svg viewBox="0 0 1447 259" width="1447" height="259" style="height:clamp(2rem,4.5vw,2.8rem);width:auto;display:block;margin:0;" xmlns="http://www.w3.org/2000/svg" aria-label="Frequently Asked" role="img"><title>Frequently Asked</title><path d="M135.63819095477388 140.4422110552764C147.49748743718592 132.20100502512565 140.26130653266333 113.30653266331659 140.26130653266333 113.30653266331659C133.42713567839195 116.32160804020101 126.39195979899498 118.3316582914573 118.95477386934674 119.93969849246233L120.16080402010051 115.11557788944725C131.6180904522613 52.0 141.06532663316582 61.2462311557789 141.4673366834171 61.045226130653276C143.47738693467338 52.201005025125625 113.32663316582915 48.582914572864325 102.07035175879398 59.638190954773876C91.61809045226131 69.68844221105529 86.79396984924624 88.58291457286433 82.17085427135679 123.75879396984925V123.95979899497488C60.86432160804021 125.5678391959799 40.56281407035176 127.57788944723619 26.090452261306535 139.035175879397C0.5628140703517586 159.33668341708545 4.381909547738694 193.90954773869348 30.512562814070353 204.7638190954774C57.84924623115578 216.02010050251258 94.03015075376885 196.9246231155779 112.32160804020101 144.66331658291458C122.77386934673368 144.46231155778895 131.21608040201005 143.4572864321608 135.63819095477388 140.4422110552764ZM199.95979899497488 54.21105527638193C226.4924623115578 41.34673366834173 204.3819095477387 12.0 204.3819095477387 12.0C181.86934673366835 25.065326633165824 148.10050251256283 36.120603015075375 123.57788944723619 37.125628140703526C61.26633165829146 38.934673366834176 33.527638190954775 48.180904522613076 25.286432160804022 65.46733668341709C19.859296482412063 76.72361809045226 32.321608040201006 94.8140703517588 43.77889447236181 99.03517587939699C43.77889447236181 99.03517587939699 45.185929648241206 94.41206030150755 49.80904522613066 88.18090452261308C67.69849246231156 63.457286432160814 90.8140703517588 46.9748743718593 126.39195979899498 48.984924623115575C146.4924623115578 49.989949748743726 180.46231155778895 63.65829145728644 199.95979899497488 54.21105527638193ZM37.14572864321608 152.50251256281408C45.788944723618094 146.2713567839196 61.869346733668344 144.66331658291458 78.75376884422111 144.46231155778895C70.1105527638191 185.4673366834171 54.63316582914573 204.16080402010053 36.34170854271357 197.32663316582915C18.85427135678392 190.69346733668343 20.8643216080402 164.7638190954774 37.14572864321608 152.50251256281408Z M208.80402010050256 113.50753768844223C215.23618090452266 96.42211055276383 210.8140703517588 92.00000000000001 179.65829145728645 94.61306532663318C160.96482412060303 96.2211055276382 155.33668341708545 85.76884422110554 155.33668341708545 85.76884422110554C155.33668341708545 85.76884422110554 154.53266331658293 85.76884422110554 154.13065326633168 86.37185929648243C149.10552763819098 93.00502512562815 148.90452261306535 105.66834170854273 154.3316582914573 113.70854271356785C152.72361809045228 128.3819095477387 148.5025125628141 147.27638190954775 141.4673366834171 158.53266331658293C141.4673366834171 158.53266331658293 141.4673366834171 158.73366834170855 141.66834170854273 158.93467336683418C142.67336683417088 162.5527638190955 147.29648241206033 163.55778894472363 150.713567839196 157.52763819095478C156.94472361809048 145.4673366834171 161.16582914572865 132.6030150753769 163.77889447236183 120.5427135678392C166.19095477386938 121.14572864321609 168.80402010050253 121.34673366834173 171.61809045226133 120.94472361809046L173.42713567839198 120.5427135678392C160.96482412060303 156.72361809045228 166.79396984924625 180.24120603015078 182.070351758794 184.26130653266333C197.748743718593 188.2814070351759 211.4170854271357 172.6030150753769 219.05527638190955 153.3065326633166C221.4673366834171 146.8743718592965 218.25125628140705 144.26130653266333 214.63316582914575 145.4673366834171H214.43216080402013C209.2060301507538 159.93969849246233 200.7638190954774 174.0100502512563 194.3316582914573 172.6030150753769C188.30150753768845 171.39698492462313 194.73366834170855 150.69346733668343 208.80402010050256 113.50753768844223Z M246.19095477386935 154.1105527638191C299.65829145728645 127.97989949748745 307.2964824120603 97.02512562814071 268.90452261306535 89.7889447236181C243.17587939698495 85.16582914572865 217.04522613065328 104.46231155778895 211.4170854271357 133.00502512562815C206.19095477386935 161.54773869346735 230.31155778894475 181.44723618090453 245.58793969849248 184.26130653266333C274.53266331658295 189.28643216080403 298.4522613065327 169.58793969849248 304.8844221105528 153.3065326633166C307.49748743718595 146.8743718592965 304.2814070351759 144.26130653266333 300.6633165829146 145.4673366834171H300.26130653266335C295.035175879397 160.94472361809045 276.94472361809045 176.42211055276383 258.0502512562814 172.6030150753769C251.21608040201005 171.39698492462313 246.79396984924625 163.75879396984925 244.58291457286435 154.713567839196C245.18592964824123 154.51256281407035 245.58793969849248 154.51256281407035 246.19095477386935 154.1105527638191ZM244.58291457286435 129.98994974874373C248.20100502512565 116.12060301507539 254.83417085427138 94.21105527638191 263.0753768844221 96.42211055276383C269.9095477386935 98.43216080402011 264.2814070351759 128.3819095477387 243.37688442211058 145.4673366834171C242.9748743718593 140.04020100502515 243.37688442211058 134.8140703517588 244.58291457286435 129.98994974874373Z M352.7236180904523 92.00000000000001C330.41206030150755 85.36683417085428 302.6733668341709 103.65829145728644 297.2462311557789 133.00502512562815C292.2211055276382 160.94472361809045 305.28643216080405 182.6532663316583 322.1708542713568 181.44723618090453C331.61809045226136 180.84422110552765 336.84422110552765 175.01507537688443 340.26130653266335 167.5778894472362C335.6381909547739 193.3065326633166 330.0100502512563 213.60804020100505 319.7587939698493 227.678391959799C319.7587939698493 227.678391959799 345.0854271356784 249.38693467336685 357.54773869346735 230.89447236180905C367.5979899497488 215.81909547738695 369.4070351758794 174.21105527638193 374.8341708542714 141.2462311557789C379.8592964824121 110.4924623115578 387.0954773869347 101.84924623115579 387.0954773869347 101.84924623115579C380.6633165829146 95.41708542713569 370.41206030150755 93.20603015075378 361.76884422110555 97.82914572864323C359.1557788944724 95.21608040201006 356.14070351758795 93.00502512562815 352.7236180904523 92.00000000000001ZM347.0954773869347 122.15075376884423 344.8844221105528 137.82914572864323C339.45728643216086 159.33668341708545 334.63316582914575 168.18090452261308 330.21105527638196 166.77386934673368C323.77889447236186 164.96482412060303 326.391959798995 145.26633165829148 330.41206030150755 129.98994974874373C334.8341708542714 113.70854271356785 341.2663316582915 101.2462311557789 351.11557788944725 101.84924623115579C352.7236180904523 102.05025125628141 353.92964824120605 102.25125628140704 355.33668341708545 102.85427135678393C351.5175879396985 107.27638190954775 348.30150753768845 113.50753768844223 347.0954773869347 122.15075376884423Z M423.678391959799 129.98994974874373C432.1206030150754 99.8391959798995 422.07035175879395 85.56783919597991 395.53768844221105 94.41206030150755C395.53768844221105 94.41206030150755 398.95477386934675 102.45226130653268 391.11557788944725 133.00502512562815C384.08040201005025 160.34170854271358 391.5175879396985 181.2462311557789 408.20100502512565 183.2562814070352C424.4824120603015 185.26633165829148 432.1206030150754 161.34673366834173 435.9396984924623 148.2814070351759C437.74874371859295 168.3819095477387 445.1859296482412 178.83417085427138 454.4321608040201 182.45226130653268C467.4974874371859 187.678391959799 482.57286432160805 175.61809045226133 491.4170854271357 153.3065326633166C493.8291457286432 146.8743718592965 490.61306532663315 144.26130653266333 486.99497487437185 145.4673366834171H486.79396984924625C481.5678391959799 159.93969849246233 473.5276381909548 172.0 467.0954773869347 171.39698492462313C460.46231155778895 170.59296482412063 463.0753768844221 152.50251256281408 466.6934673366834 134.61306532663318C470.713567839196 112.50251256281408 479.356783919598 95.21608040201006 479.356783919598 95.21608040201006C467.69849246231155 83.356783919598 442.3718592964824 86.17085427135679 437.74874371859295 115.5175879396985C436.94472361809045 120.34170854271358 436.5427135678392 124.96482412060303 436.14070351758795 129.58793969849248C429.70854271356785 155.5175879396985 424.08040201005025 170.79396984924625 418.45226130653265 169.18592964824123C412.62311557788945 167.5778894472362 417.04522613065325 153.90954773869348 423.678391959799 129.98994974874373Z M517.9497487437186 154.1105527638191C571.4170854271357 127.97989949748745 579.0552763819096 97.02512562814071 540.6633165829146 89.7889447236181C514.9346733668342 85.16582914572865 488.80402010050256 104.46231155778895 483.17587939698495 133.00502512562815C477.94974874371866 161.54773869346735 502.070351758794 181.44723618090453 517.3467336683418 184.26130653266333C546.2914572864322 189.28643216080403 570.211055276382 169.58793969849248 576.643216080402 153.3065326633166C579.2562814070352 146.8743718592965 576.0402010050252 144.26130653266333 572.4221105527639 145.4673366834171H572.0201005025126C566.7939698492463 160.94472361809045 548.7035175879397 176.42211055276383 529.8090452261307 172.6030150753769C522.9748743718593 171.39698492462313 518.5527638190955 163.75879396984925 516.3417085427136 154.713567839196C516.9447236180905 154.51256281407035 517.3467336683418 154.51256281407035 517.9497487437186 154.1105527638191ZM516.3417085427136 129.98994974874373C519.9597989949749 116.12060301507539 526.5929648241206 94.21105527638191 534.8341708542714 96.42211055276383C541.6683417085428 98.43216080402011 536.0402010050252 128.3819095477387 515.1356783919598 145.4673366834171C514.7336683417086 140.04020100502515 515.1356783919598 134.8140703517588 516.3417085427136 129.98994974874373Z M569.4070351758794 171.1959798994975C569.4070351758794 178.03015075376885 570.0100502512563 180.84422110552765 570.0100502512563 180.84422110552765C584.6834170854272 186.47236180904525 596.5427135678392 180.84422110552765 601.9698492462312 143.2562814070352C614.2311557788945 113.50753768844223 618.854271356784 105.66834170854273 622.8743718592965 106.67336683417086C626.6934673366834 107.47738693467338 624.8844221105528 114.71356783919599 618.6532663316583 138.63316582914575C611.4170854271357 165.76884422110555 623.2763819095478 183.05527638190955 636.9447236180905 184.86432160804023C650.6130653266332 186.67336683417088 667.497487437186 172.80402010050253 675.1356783919598 153.3065326633166C677.5477386934674 146.8743718592965 674.3316582914573 144.26130653266333 670.713567839196 145.4673366834171H670.3115577889448C665.286432160804 159.93969849246233 654.4321608040201 172.20100502512565 648.0 170.79396984924625C641.5678391959799 169.38693467336685 646.1909547738694 153.10552763819098 650.6130653266332 134.61306532663318C657.4472361809046 106.47236180904524 651.4170854271357 90.99497487437186 642.5728643216081 88.58291457286433C632.7236180904523 86.17085427135679 617.2462311557789 95.41708542713569 605.3869346733669 118.13065326633166C609.2060301507538 96.42211055276383 613.0251256281407 92.80402010050253 613.2261306532664 92.60301507537689C613.0251256281407 92.20100502512564 594.1306532663317 78.93467336683418 580.8643216080402 87.77889447236181C568.2010050251257 96.2211055276382 569.2060301507538 124.96482412060303 569.4070351758794 171.1959798994975Z M729.4070351758795 56.62311557788945C722.5728643216081 59.23618090452263 716.9447236180905 62.25125628140704 710.713567839196 64.66331658291458C714.1306532663317 56.62311557788945 716.9447236180905 52.6030150753769 716.9447236180905 52.6030150753769C716.9447236180905 52.6030150753769 697.8492462311558 39.53768844221105 682.7738693467337 53.4070351758794C679.3567839195981 56.62311557788945 676.7437185929649 61.648241206030164 674.532663316583 68.08040201005026C674.3316582914574 68.08040201005026 674.1306532663317 68.08040201005026 673.9296482412061 68.08040201005026C660.2613065326634 66.47236180904524 656.2412060301508 77.52763819095478 662.8743718592966 83.95979899497489C662.8743718592966 83.95979899497489 665.6884422110553 83.95979899497489 670.3115577889448 83.95979899497489C668.3015075376885 94.01005025125629 666.8944723618091 105.4673366834171 665.6884422110553 117.12562814070353C662.6733668341709 144.26130653266333 669.3065326633167 176.82412060301507 682.3718592964825 182.45226130653268C695.6381909547739 188.2814070351759 711.7185929648242 172.6030150753769 719.3567839195981 153.3065326633166C721.7688442211056 146.8743718592965 718.5527638190956 144.26130653266333 714.9346733668342 145.4673366834171H714.7336683417086C709.5075376884423 159.93969849246233 701.0653266331659 173.20603015075378 695.0351758793971 170.79396984924625C689.4070351758795 168.78391959798995 694.6331658291458 136.8241206030151 697.6482412060302 117.32663316582915C699.2562814070352 105.66834170854273 701.0653266331659 96.42211055276383 703.2763819095478 88.3819095477387C710.9145728643217 90.19095477386935 718.1507537688443 91.1959798994975 724.78391959799 87.17587939698494C739.6582914572865 77.92964824120604 729.4070351758795 56.62311557788945 729.4070351758795 56.62311557788945Z M768.0 43.15577889447238C768.0 43.15577889447238 743.2763819095478 23.658291457286424 730.0100502512563 41.748743718592976C721.7688442211056 53.80904522613065 714.7336683417086 87.37688442211056 711.5175879396985 117.12562814070353C708.7035175879397 144.26130653266333 714.7336683417086 176.82412060301507 727.5979899497488 182.45226130653268C741.0653266331659 188.2814070351759 757.1457286432161 172.6030150753769 764.78391959799 153.3065326633166C767.1959798994975 146.8743718592965 763.9798994974875 144.26130653266333 760.3618090452262 145.4673366834171H760.1608040201005C754.9346733668342 159.93969849246233 746.4924623115578 173.20603015075378 740.2613065326633 170.79396984924625C734.6331658291458 168.78391959798995 739.8592964824121 133.4070351758794 743.2763819095478 113.90954773869348C752.5226130653267 60.64321608040201 768.0 43.15577889447238 768.0 43.15577889447238Z M790.5125628140704 129.98994974874373C798.9547738693468 99.8391959798995 788.9045226130653 85.56783919597991 762.3718592964824 94.41206030150755C762.3718592964824 94.41206030150755 765.5879396984925 102.45226130653268 757.748743718593 133.00502512562815C751.3165829145729 158.53266331658293 758.7537688442211 177.82914572864323 775.035175879397 179.8391959798995C786.0904522613066 181.2462311557789 793.5276381909548 172.40201005025128 798.1507537688442 162.75376884422113C796.7437185929648 171.1959798994975 795.3366834170854 178.83417085427138 794.1306532663317 185.26633165829148C772.6231155778895 192.50251256281408 752.5226130653267 200.14070351758795 746.8944723618091 217.22613065326635C740.0603015075377 238.53266331658293 758.5527638190955 251.59798994974875 778.4522613065327 244.7638190954774C795.7386934673367 238.9346733668342 811.6180904522613 217.42713567839198 822.6733668341709 184.26130653266333C838.1507537688442 178.03015075376885 848.6030150753769 169.18592964824123 854.8341708542714 153.3065326633166C857.2462311557789 146.8743718592965 854.0301507537689 144.26130653266333 850.4120603015076 145.4673366834171H850.0100502512563C845.1859296482412 159.33668341708545 835.9396984924623 167.77889447236183 826.0904522613066 173.20603015075378C829.3065326633166 161.54773869346735 831.9195979899498 148.68341708542715 833.929648241206 134.61306532663318C838.7537688442211 102.25125628140704 846.5929648241206 95.21608040201006 846.5929648241206 95.21608040201006C834.9346733668342 83.356783919598 810.0100502512563 86.17085427135679 805.5879396984925 115.5175879396985L802.7738693467337 134.61306532663318C796.7437185929648 157.32663316582915 791.1155778894473 167.37688442211058 785.0854271356784 165.76884422110555C779.8592964824121 164.36180904522615 784.2814070351759 152.10050251256283 790.5125628140704 129.98994974874373ZM777.4472361809045 237.5276381909548C771.4170854271357 239.33668341708545 772.0201005025126 228.88442211055278 776.2412060301508 218.03015075376885C779.2562814070352 210.19095477386935 784.0804020100503 202.35175879396985 792.1206030150754 196.52261306532665C786.0904522613066 227.07537688442213 782.070351758794 236.1206030150754 777.4472361809045 237.5276381909548Z M1068.3015075376884 25.668341708542727C1068.3015075376884 25.668341708542727 1044.78391959799 4.1608040201005 1031.7185929648242 22.452261306532677C1028.9045226130654 26.472361809045225 1026.4924623115578 33.10552763819095 1024.281407035176 41.748743718592976C1016.8442211055277 50.391959798994975 1009.4070351758794 62.45226130653268 1000.7638190954774 78.93467336683418C988.9045226130654 101.64824120603016 978.2512562814071 120.74371859296483 968.0 136.42211055276383C942.2713567839196 134.0100502512563 902.8743718592965 142.25125628140705 887.5979899497488 167.17587939698493C873.5276381909548 190.4924623115578 897.0452261306533 215.01507537688445 925.1859296482413 204.7638190954774C944.4824120603016 197.72864321608043 961.9698492462312 177.22613065326635 977.8492462311558 151.09547738693468C989.105527638191 152.90452261306535 1002.7738693467337 155.11557788944725 1015.8391959798996 155.91959798994975C1020.6633165829146 171.59798994974875 1029.5075376884422 181.8492462311558 1039.5577889447236 184.46231155778895C1062.8743718592966 191.09547738693468 1076.3417085427136 171.1959798994975 1083.5778894472362 152.7035175879397C1085.9899497487438 146.47236180904525 1082.7738693467338 143.65829145728645 1079.1557788944724 145.06532663316585H1078.9547738693468C1074.1306532663318 158.3316582914573 1061.6683417085428 173.20603015075378 1051.21608040201 171.79899497487438C1045.5879396984926 171.1959798994975 1042.572864321608 165.36683417085428 1041.56783919598 155.5175879396985C1047.1959798994976 154.51256281407035 1052.0201005025126 153.10552763819098 1055.8391959798996 150.69346733668343C1067.8994974874372 143.05527638190955 1060.2613065326634 116.72361809045228 1060.2613065326634 116.72361809045228C1056.0402010050252 119.53768844221106 1050.4120603015076 122.75376884422111 1043.5778894472362 125.96984924623116C1044.3819095477388 119.93969849246233 1045.5879396984926 113.50753768844223 1046.994974874372 106.67336683417086C1058.4522613065328 48.582914572864325 1068.3015075376884 25.668341708542727 1068.3015075376884 25.668341708542727ZM925.7889447236181 179.63819095477388C913.3266331658292 184.0603015075377 905.4874371859297 175.4170854271357 913.1256281407036 162.95477386934675C920.5628140703518 151.09547738693468 940.462311557789 146.67336683417085 959.7587939698493 148.68341708542715C947.2964824120604 165.76884422110555 936.0402010050252 176.2211055276382 925.7889447236181 179.63819095477388ZM1013.6281407035176 108.08040201005026C1012.0201005025126 118.13065326633166 1011.819095477387 127.17587939698493 1012.2211055276382 135.4170854271357C1004.1809045226131 136.8241206030151 995.5376884422111 137.42713567839198 985.889447236181 137.42713567839198C994.9346733668342 121.54773869346735 1003.7788944723619 104.0603015075377 1011.819095477387 86.9748743718593C1014.0301507537689 82.15075376884423 1016.4422110552764 77.52763819095478 1018.6532663316584 73.30653266331659C1017.0452261306533 83.95979899497489 1015.4371859296483 95.41708542713569 1013.6281407035176 108.08040201005026Z M1072.7236180904524 159.1356783919598C1072.7236180904524 159.1356783919598 1072.7236180904524 159.1356783919598 1072.924623115578 159.33668341708545C1074.1306532663318 162.95477386934675 1078.35175879397 163.55778894472363 1081.3668341708544 157.52763819095478C1087.3969849246232 145.66834170854273 1094.030150753769 134.21105527638193 1099.2562814070352 121.74874371859298C1107.2964824120604 127.17587939698493 1111.7185929648242 135.4170854271357 1110.3115577889448 147.678391959799C1107.0954773869348 148.68341708542715 1103.8793969849248 149.8894472361809 1100.462311557789 151.09547738693468C1084.9849246231156 157.92964824120605 1079.1557788944724 172.80402010050253 1089.6080402010052 179.8391959798995C1104.0804020100504 189.28643216080403 1139.4572864321608 184.86432160804023 1145.0854271356784 152.50251256281408C1145.0854271356784 152.10050251256283 1145.2864321608042 151.2964824120603 1145.2864321608042 150.89447236180905C1153.9296482412062 147.47738693467338 1160.9648241206032 142.05025125628143 1164.78391959799 132.6030150753769C1167.3969849246232 126.37185929648243 1164.1809045226132 123.55778894472363 1160.5628140703518 124.96482412060303C1160.1608040201006 124.96482412060303 1160.1608040201006 124.96482412060303 1160.1608040201006 124.96482412060303C1157.3467336683418 132.80402010050253 1151.9195979899498 136.8241206030151 1145.0854271356784 139.63819095477388C1142.070351758794 120.94472361809046 1125.386934673367 109.0854271356784 1108.7035175879398 100.04020100502514L1106.0904522613066 98.83417085427136C1106.0904522613066 98.83417085427136 1106.2914572864322 98.83417085427136 1106.2914572864322 98.63316582914574C1107.497487437186 90.59296482412061 1106.6934673366836 79.33668341708544 1103.4773869346734 76.12060301507539C1099.2562814070352 71.69849246231156 1080.3618090452262 85.16582914572865 1078.7537688442212 93.20603015075378C1077.1457286432162 100.64321608040201 1081.7688442211056 107.87939698492464 1087.5979899497488 113.30653266331659C1084.9849246231156 127.77889447236183 1078.5527638190956 148.08040201005025 1072.7236180904524 159.1356783919598ZM1095.4371859296484 172.80402010050253C1091.0150753768846 170.59296482412063 1092.2211055276382 162.5527638190955 1099.2562814070352 160.14070351758795C1101.8693467336684 159.1356783919598 1104.8844221105528 158.53266331658293 1108.3015075376886 157.92964824120605C1104.4824120603016 171.79899497487438 1100.2613065326634 175.21608040201005 1095.4371859296484 172.80402010050253Z M1152.1206030150754 171.1959798994975C1152.1206030150754 178.03015075376885 1153.1256281407034 180.84422110552765 1153.1256281407034 180.84422110552765C1167.396984924623 186.47236180904525 1179.6582914572864 180.84422110552765 1185.0854271356784 143.4572864321608C1197.748743718593 114.71356783919599 1206.1909547738694 105.26633165829146 1213.2261306532664 109.0854271356784C1220.6633165829146 112.90452261306534 1217.0452261306532 128.3819095477387 1202.3718592964824 138.03015075376885C1196.9447236180904 141.64824120603015 1186.4924623115578 145.4673366834171 1186.4924623115578 145.4673366834171C1194.3316582914572 172.6030150753769 1204.3819095477386 183.05527638190955 1218.251256281407 184.86432160804023C1231.9195979899498 186.67336683417088 1250.2110552763818 172.80402010050253 1258.0502512562814 153.3065326633166C1260.462311557789 146.8743718592965 1257.2462311557788 144.26130653266333 1253.6281407035176 145.4673366834171H1253.427135678392C1248.2010050251256 159.53768844221108 1235.1356783919598 173.80904522613068 1227.497487437186 170.99497487437188C1223.2763819095478 169.38693467336685 1221.2663316582914 163.15577889447238 1215.4371859296482 145.06532663316585C1215.4371859296482 145.06532663316585 1215.8391959798994 144.8643216080402 1216.8442211055276 144.46231155778895C1249.4070351758794 130.5929648241206 1255.8391959798994 94.21105527638191 1237.5477386934674 85.16582914572865C1223.2763819095478 78.33165829145729 1201.7688442211056 97.22613065326634 1187.6984924623116 121.14572864321609C1195.7386934673366 63.65829145728644 1212.2211055276382 44.964824120603026 1212.2211055276382 44.964824120603026C1212.2211055276382 44.964824120603026 1188.3015075376884 24.0603015075377 1174.43216080402 41.748743718592976C1160.7638190954774 59.23618090452263 1152.7236180904522 105.26633165829146 1152.1206030150754 171.1959798994975Z M1284.5829145728644 154.1105527638191C1338.0502512562814 127.97989949748745 1345.6884422110554 97.02512562814071 1307.2964824120604 89.7889447236181C1281.56783919598 85.16582914572865 1255.4371859296484 104.46231155778895 1249.8090452261308 133.00502512562815C1244.5829145728644 161.54773869346735 1268.7035175879398 181.44723618090453 1283.9798994974876 184.26130653266333C1312.924623115578 189.28643216080403 1336.8442211055276 169.58793969849248 1343.2763819095478 153.3065326633166C1345.889447236181 146.8743718592965 1342.673366834171 144.26130653266333 1339.0552763819096 145.4673366834171H1338.6532663316584C1333.427135678392 160.94472361809045 1315.3366834170854 176.42211055276383 1296.4422110552764 172.6030150753769C1289.608040201005 171.39698492462313 1285.1859296482412 163.75879396984925 1282.9748743718594 154.713567839196C1283.5778894472362 154.51256281407035 1283.9798994974876 154.51256281407035 1284.5829145728644 154.1105527638191ZM1282.9748743718594 129.98994974874373C1286.5929648241206 116.12060301507539 1293.2261306532664 94.21105527638191 1301.4673366834172 96.42211055276383C1308.3015075376886 98.43216080402011 1302.673366834171 128.3819095477387 1281.7688442211056 145.4673366834171C1281.3668341708544 140.04020100502515 1281.7688442211056 134.8140703517588 1282.9748743718594 129.98994974874373Z M1439.959798994975 44.964824120603026C1439.959798994975 44.964824120603026 1415.035175879397 23.658291457286424 1402.1708542713568 41.748743718592976C1395.9396984924624 50.391959798994975 1391.1155778894474 70.09045226130654 1387.6984924623116 91.59798994974875C1365.7889447236182 86.17085427135679 1340.8643216080404 104.46231155778895 1335.638190954774 133.00502512562815C1330.6130653266332 160.94472361809045 1343.678391959799 182.6532663316583 1360.5628140703518 181.44723618090453C1376.0402010050252 180.4422110552764 1379.8592964824122 165.36683417085428 1383.0753768844222 153.10552763819098C1383.8793969849248 168.78391959798995 1391.1155778894474 179.8391959798995 1401.3668341708544 182.45226130653268C1417.0452261306534 186.47236180904525 1430.9145728643218 172.6030150753769 1438.35175879397 153.3065326633166C1440.9648241206032 146.8743718592965 1437.748743718593 144.26130653266333 1434.1306532663318 145.4673366834171H1433.7286432160806C1428.7035175879398 159.93969849246233 1420.0603015075378 172.20100502512565 1413.8291457286434 170.79396984924625C1407.5979899497488 169.58793969849248 1411.6180904522614 152.7035175879397 1413.8291457286434 134.61306532663318C1422.4723618090454 66.2713567839196 1439.959798994975 44.964824120603026 1439.959798994975 44.964824120603026ZM1383.6783919597992 132.80402010050253C1377.4472361809046 158.13065326633168 1374.030150753769 168.3819095477387 1368.4020100502514 166.77386934673368C1362.1708542713568 164.96482412060303 1364.78391959799 145.26633165829148 1368.8040201005026 129.98994974874373C1372.2211055276382 116.9246231155779 1377.4472361809046 102.6532663316583 1386.4924623115578 101.84924623115579C1385.0854271356784 112.50251256281408 1384.281407035176 122.95477386934675 1383.6783919597992 132.80402010050253Z" fill="#e8dfc0"/></svg></h2>
