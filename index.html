@@ -2243,13 +2243,21 @@ let currentVideoIndex = 0;
   // Song-list watch icons: load one song's video into the player and scroll to it
   let pendingSongVideo = null;
   let songVideoActive  = false;
+  let songVideoTitle   = '';
   window.playSongVideo = function(id, title) {
     hideCover();
     songVideoActive = true;
+    songVideoTitle  = title;
     document.querySelectorAll('.video-track-item').forEach(el => el.classList.remove('now-playing'));
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    videoAnchor.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-    if (!ytPlayer || !ytReady) { pendingSongVideo = id; return; }
+    // Play in place: no scroll. If the main player is off-screen, onStateChange
+    // (PLAYING) floats it as the PiP mini-player.
+    if (!ytPlayer || !ytReady) {
+      pendingSongVideo = id;
+      // The embed is lazy-loaded; force it to load now even though it's off-screen.
+      const frame = document.getElementById('yt-player');
+      if (frame && frame.getAttribute('loading') === 'lazy') frame.setAttribute('loading', 'eager');
+      return;
+    }
     ytPlayer.loadVideoById(id);
     if (pipVisible) pipLabel.textContent = title;
   };
@@ -2373,7 +2381,7 @@ let currentVideoIndex = 0;
         bottom: '80px', right: '1.5rem', left: 'auto', width: '300px'
       });
     }
-    pipLabel.textContent = VIDEOS[currentVideoIndex]?.title || '';
+    pipLabel.textContent = songVideoActive ? songVideoTitle : (VIDEOS[currentVideoIndex]?.title || '');
     videoDisplay.insertBefore(pipLabel, videoDisplay.firstChild);
     videoDisplay.appendChild(pipControls);
     videoDisplay.appendChild(pipClose);
