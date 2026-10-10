@@ -146,7 +146,7 @@ nav .nav-book-btn { margin-left: auto; margin-right: 0.9rem; padding: 0.45rem 0.
 /* Section rhythm: photo-led sections alternate with flat ones.
    hero(photo) > media(slate) > shows(photo strip) > about(slate) > songs(dark photo) > faq+book(brown) > footer(chalk photo) */
 .section-photo-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
-#songs-bg   { background-image: url('docs/images/kings_of_ewing-1.jpg'); background-position: center 40%; filter: brightness(0.3); }
+#songs-bg   { background-image: url('docs/images/goat_village_live.jpg'); background-position: center 40%; filter: brightness(0.3); }
 #shows-bg   { position: relative; inset: auto; height: clamp(180px, 30vw, 340px); margin-bottom: 3.5rem; background-image: url('docs/images/IMG_1810.jpeg'); background-position: center 50%; }
 #shows-bg::after { content: ''; position: absolute; inset: auto 0 0 0; height: 35%; background: linear-gradient(to bottom, rgba(30,14,8,0), var(--brown)); }
 
@@ -763,7 +763,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
       <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><polygon points="5,3 19,12 5,21"/><rect x="18" y="3" width="3" height="18"/></svg>
     </button>
   </div>
-  <div id="video-track-list" class="video-track-list"></div>
     </div>
     <div class="media-audio">
     <div class="audio-box" id="audio-box">
@@ -829,7 +828,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
         <p>By day, we hold down regular jobs. By night we play the music we love: rock, pop, folk, blues, and soul from the &rsquo;60s to today, from Beatles classics and Allman Brothers jams to The Cure, Sade, and Chappell Roan &mdash; and everything in between. All five of us pull double duty &mdash; four sing lead, and between us we cover horn and rhythm guitar (Miles), keys (Matt), lead guitar (Drew), bass (Jack), and drums (Jim). We know how to read a room, keep the dance floor moving, and get the crowd singing along.</p>
         <p>We play weddings, birthday and anniversary parties, block parties, fundraisers, bars, and backyard gatherings throughout North Chicagoland (Evanston, Wilmette, Lincolnwood, Skokie, Glenview, Northbrook, and into Chicago). Reach out about events further afield and we&rsquo;ll let you know. We&rsquo;re flexible on production too: we can bring our own PA and mixing board and run our own sound if needed, or plug into whatever a venue has. Either way works for us.</p>
         </div>
-        <img class="about-photo" src="docs/images/Resized_IMG_5512.jpg.jpeg" alt="Kings of Ewing playing under the neon sign at Goat Village" width="879" height="1080" loading="lazy">
+        <img class="about-photo" src="docs/images/kings_of_ewing-1.jpg" alt="Kings of Ewing playing on stage at Double Clutch Brewing" width="1920" height="1280" loading="lazy">
       </div>
 
 
@@ -2114,6 +2113,7 @@ audio.addEventListener('ended', playerNext);
 // ─────────────────────────────────────────────────────────────
 const SONG_VIDEOS = {
   // 'heroes': 'YOUTUBE_VIDEO_ID',
+  'fortunate son': 'mMwmRn1mP-A',
 };
 const ICON_PLAY  = '<svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" aria-hidden="true"><polygon points="6,3 20,12 6,21"/></svg>';
 const ICON_PAUSE = '<svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
@@ -2190,7 +2190,7 @@ function playSongAudio(i) {
 // ─────────────────────────────────────────────────────────────
 const VIDEOS = [
   { id: 'PhVwRvgKHvQ', title: 'Highlights from Goat Village'  },
-  { id: 'mMwmRn1mP-A', title: 'Highlights from Chicago Union' },
+  { id: 'mMwmRn1mP-A', title: 'Fortunate Son (Chicago Union)' },
 ];
 let currentVideoIndex = 0;
 
@@ -2213,28 +2213,6 @@ let currentVideoIndex = 0;
   let ytPlayer       = null;
   let pipVisible     = false;
   let displayVisible = true;
-
-  // Render video listing
-  if (videoListEl) {
-    VIDEOS.forEach((v, i) => {
-      const item = document.createElement('div');
-      item.className = 'video-track-item' + (i === 0 ? ' now-playing' : '');
-      item.dataset.index = i;
-
-      const num = document.createElement('span');
-      num.className = 'video-track-num';
-      num.textContent = (i + 1) + '.';
-
-      const name = document.createElement('span');
-      name.className = 'video-track-name';
-      name.textContent = v.title;
-
-      item.appendChild(num);
-      item.appendChild(name);
-      item.addEventListener('click', () => selectVideo(i));
-      videoListEl.appendChild(item);
-    });
-  }
 
   function updateVideoList() {
     document.querySelectorAll('.video-track-item').forEach((el, i) => {
@@ -2347,7 +2325,7 @@ let currentVideoIndex = 0;
             if (!displayVisible) showPip();
           } else if (event.data === YT.PlayerState.ENDED && songVideoActive) {
             songVideoActive = false; // a single song video: don't roll into the highlight reels
-          } else if (event.data === YT.PlayerState.ENDED) {
+          } else if (event.data === YT.PlayerState.ENDED && VIDEOS.length > 1) {
             // Auto-advance to the next video (wraps to first after the last)
             selectVideo((currentVideoIndex + 1) % VIDEOS.length);
           }
