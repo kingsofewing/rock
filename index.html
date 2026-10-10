@@ -300,7 +300,13 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 
 .song-title { font-size: 0.82rem; font-weight: 500; color: var(--cream); }
 
-.song-artist { font-size: 0.68rem; color: rgba(232,223,192,0.4); margin-top: 0.1rem; }
+.song-artist { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem 0.45rem; font-size: 0.68rem; color: rgba(232,223,192,0.4); margin-top: 0.1rem; }
+.song-links { display: inline-flex; gap: 0.45rem; }
+.song-link { position: relative; width: 1.4rem; height: 1.4rem; padding: 0; border-radius: 50%; border: 1px solid var(--teal); background: transparent; color: var(--teal); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s; }
+.song-link::after { content: ''; position: absolute; inset: -6px; }
+.song-link.video { border-color: var(--coral); color: var(--coral); }
+.song-link:hover, .song-link:focus-visible, .song-link.active { background: var(--teal); color: var(--brown); outline: none; }
+.song-link.video:hover, .song-link.video:focus-visible { background: var(--coral); color: var(--brown); }
 
 .songs-note { font-size: 0.75rem; color: rgba(232,223,192,0.6); font-style: italic; }
 
@@ -574,15 +580,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 @media (max-width: 600px) {
   #video-pip { width: calc(100vw - 2rem); right: 1rem; }
 }
-/* Audio track list inside the player box */
-.audio-track-list { margin-top: 0.8rem; border-top: 1px solid rgba(232,223,192,0.1); padding-top: 0.6rem; }
-.track-item { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.18rem 0; cursor: pointer; }
-.track-item:hover .track-name, .track-item:hover .track-num { color: var(--teal); }
-.track-item.now-playing .track-name { color: var(--teal); }
-.track-item.now-playing .track-num { color: var(--coral); }
-.track-num { font-size: 0.6rem; color: rgba(232,223,192,0.55); min-width: 1rem; text-align: right; flex-shrink: 0; }
-.track-name { font-size: 0.74rem; color: rgba(232,223,192,0.88); transition: color 0.2s; }
-
 /* Song requests placeholder — crossed-out "Free Bird" gag */
 
 /* Honeypot — visually hidden, still accessible to bots */
@@ -792,7 +789,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
         <input type="range" id="player-volume" min="0" max="1" step="0.05" value="0.8" aria-label="Volume" style="width:90px; accent-color:var(--teal); cursor:pointer;">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--cream)" style="opacity:0.5;" aria-hidden="true"><polygon points="11,5 6,9 2,9 2,15 6,15 11,19"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
       </div>
-      <div id="audio-track-list" class="audio-track-list"></div>
     </div>
     </div>
   </div>
@@ -1921,55 +1917,31 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 // ─────────────────────────────────────────────────────────────
 const audio = document.getElementById('band-audio');
 const TRACKS = [
-  { src: 'docs/audio/midnight_rider.mp3',    name: 'Midnight Rider',    artist: 'The Allman Brothers Band' },
-  { src: 'docs/audio/head_over_heels.mp3',   name: 'Head Over Heels',   artist: 'Tears for Fears'},
-  { src: 'docs/audio/ohio.mp3',              name: 'Ohio',              artist: 'CSNY'            },
-  { src: 'docs/audio/dont_let_me_down.mp3',  name: "Don't Let Me Down", artist: 'The Beatles'    },
-  { src: 'docs/audio/end_of_the_world.mp3',  name: 'End of the World',  artist: 'R.E.M.'          },
-  { src: 'docs/audio/whipping_post.mp3',     name: 'Whipping Post',     artist: 'The Allman Brothers Band' },
+  { src: 'docs/audio/midnight_rider.mp3', name: 'Midnight Rider', artist: 'The Allman Brothers Band' },
+  { src: 'docs/audio/head_over_heels.mp3', name: 'Head Over Heels', artist: 'Tears for Fears' },
+  { src: 'docs/audio/dont_let_me_down.mp3', name: "Don't Let Me Down", artist: 'The Beatles' },
+  { src: 'docs/audio/end_of_the_world.mp3', name: 'End of the World', artist: 'R.E.M.' },
+  { src: 'docs/audio/whipping_post.mp3', name: 'Whipping Post', artist: 'The Allman Brothers Band' },
+  { src: 'docs/audio/starlight.mp3', name: 'Starlight', artist: 'Muse' },
+  { src: 'docs/audio/thats_what_i_love.mp3', name: "That's What I Love", artist: 'Leon Bridges' },
+  { src: 'docs/audio/message_in_a_bottle.mp3', name: 'Message in a Bottle', artist: 'The Police' },
+  { src: 'docs/audio/smooth_operator.mp3', name: 'Smooth Operator', artist: 'Sade' },
+  { src: 'docs/audio/the_seeker.mp3', name: 'The Seeker', artist: 'The Who' },
+  { src: 'docs/audio/pink_pony_club.mp3', name: 'Pink Pony Club', artist: 'Chappell Roan' },
+  { src: 'docs/audio/no_one_to_depend_on.mp3', name: 'No One to Depend On', artist: 'Santana' },
+  { src: 'docs/audio/heroes.mp3', name: 'Heroes', artist: 'David Bowie' },
+  { src: 'docs/audio/laid.mp3', name: 'Laid', artist: 'James' },
+  { src: 'docs/audio/fortunate_son.mp3', name: 'Fortunate Son', artist: 'CCR' },
+  { src: 'docs/audio/just_like_heaven.mp3', name: 'Just Like Heaven', artist: 'The Cure' },
+  { src: 'docs/audio/ohio.mp3', name: 'Ohio', artist: 'CSNY' },
+  { src: 'docs/audio/little_by_little.mp3', name: 'Little by Little', artist: 'Oasis' },
 ];
 
-// Render track list
-(function() {
-  const listEl = document.getElementById('audio-track-list');
-  if (!listEl) return;
-  TRACKS.forEach((t, i) => {
-    const item = document.createElement('div');
-    item.className = 'track-item';
-
-    const num = document.createElement('span');
-    num.className = 'track-num';
-    num.textContent = (i + 1) + '.';
-
-    const name = document.createElement('span');
-    name.className = 'track-name';
-    name.textContent = t.artist ? `${t.name} (${t.artist})` : t.name;
-
-    item.appendChild(num);
-    item.appendChild(name);
-    item.addEventListener('click', () => {
-      currentPos = i;
-      loadTrack(i, true);
-    });
-    listEl.appendChild(item);
-  });
-})();
-
-let currentPos = 0;
+let currentPos = Math.floor(Math.random() * TRACKS.length); // random starting track each visit
 
 function currentTrackIndex() { return currentPos; }
 
-// Called after currentPos is declared — safe
-function updateTrackList() {
-  document.querySelectorAll('.track-item').forEach((el, i) => {
-    el.classList.toggle('now-playing', i === currentTrackIndex());
-  });
-}
-
-function loadTrack(index, autoplay) {
-  const t = TRACKS[index];
-  audio.src = t.src;
-  audio.volume = document.getElementById('player-volume').value;
+function setTrackLabel(t) {
   const trackLabel = t.artist ? `${t.name} (${t.artist})` : t.name;
   document.getElementById('player-track-name').textContent = trackLabel;
   // Sticky player: scroll text if it overflows, else show static
@@ -1985,8 +1957,14 @@ function loadTrack(index, autoplay) {
       stn.replaceChildren(span);
     }
   });
+}
+
+function loadTrack(index, autoplay) {
+  const t = TRACKS[index];
+  audio.src = t.src;
+  audio.volume = document.getElementById('player-volume').value;
+  setTrackLabel(t);
   updateProgress();
-  updateTrackList();
   // OS-level metadata (lock screen / notification / media keys)
   if ('mediaSession' in navigator) {
     navigator.mediaSession.metadata = new MediaMetadata({
@@ -1997,7 +1975,10 @@ function loadTrack(index, autoplay) {
     });
   }
   if (autoplay) { audio.play().then(() => showPause(true)).catch(() => showPause(false)); }
+  updateSongChips();
 }
+
+setTrackLabel(TRACKS[currentPos]);
 
 function showPause(playing) {
   document.getElementById('player-play-icon').style.display  = playing ? 'none'  : 'block';
@@ -2127,6 +2108,84 @@ audio.addEventListener('timeupdate', updateProgress);
 audio.addEventListener('ended', playerNext);
 
 // ─────────────────────────────────────────────────────────────
+// Song list: listen / watch icons
+// Listen icons come from TRACKS (matched by song title). To add a watch icon,
+// put the song's YouTube id in SONG_VIDEOS, keyed by lowercase song title.
+// ─────────────────────────────────────────────────────────────
+const SONG_VIDEOS = {
+  // 'heroes': 'YOUTUBE_VIDEO_ID',
+};
+const ICON_PLAY  = '<svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" aria-hidden="true"><polygon points="6,3 20,12 6,21"/></svg>';
+const ICON_PAUSE = '<svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+const ICON_VIDEO = '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg>';
+const songAudioBtns = [];
+
+function songKey(str) { return str.toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/\s+/g, ' ').trim(); }
+
+function trackIsLoaded(i) {
+  return !!audio.src && audio.src !== window.location.href && audio.src.endsWith(TRACKS[i].src);
+}
+
+function updateSongChips() {
+  songAudioBtns.forEach(b => {
+    const on = trackIsLoaded(b.idx) && !audio.paused;
+    b.el.classList.toggle('active', on);
+    b.el.innerHTML = on ? ICON_PAUSE : ICON_PLAY;
+    b.el.setAttribute('aria-label', (on ? 'Pause ' : 'Listen to ') + b.label);
+    b.el.title = on ? 'Pause' : 'Listen';
+  });
+}
+
+function playSongAudio(i) {
+  if (trackIsLoaded(i)) {
+    if (audio.paused) { audio.play().then(() => showPause(true)).catch(() => showPause(false)); }
+    else              { audio.pause(); }
+    return;
+  }
+  currentPos = i;
+  loadTrack(i, true);
+}
+
+(function buildSongLinks() {
+  document.querySelectorAll('.song-item').forEach(item => {
+    const titleEl  = item.querySelector('.song-title');
+    const artistEl = item.querySelector('.song-artist');
+    if (!titleEl || !artistEl) return;
+    const label = titleEl.textContent.trim();
+    const key   = songKey(label);
+    const ti    = TRACKS.findIndex(t => songKey(t.name) === key);
+    const vid   = SONG_VIDEOS[key];
+    if (ti < 0 && !vid) return;
+
+    const wrap = document.createElement('span');
+    wrap.className = 'song-links';
+
+    if (ti >= 0) {
+      const a = document.createElement('a');
+      a.className = 'song-link audio';
+      a.href = TRACKS[ti].src;
+      a.addEventListener('click', e => { e.preventDefault(); playSongAudio(ti); });
+      wrap.appendChild(a);
+      songAudioBtns.push({ el: a, idx: ti, label });
+    }
+    if (vid) {
+      const v = document.createElement('button');
+      v.type = 'button';
+      v.className = 'song-link video';
+      v.innerHTML = ICON_VIDEO;
+      v.title = 'Watch';
+      v.setAttribute('aria-label', 'Watch ' + label);
+      v.addEventListener('click', () => window.playSongVideo && window.playSongVideo(vid, label));
+      wrap.appendChild(v);
+    }
+    artistEl.appendChild(wrap);
+  });
+  updateSongChips();
+  audio.addEventListener('play',  updateSongChips);
+  audio.addEventListener('pause', updateSongChips);
+})();
+
+// ─────────────────────────────────────────────────────────────
 // Videos — single player + clickable listing
 // ─────────────────────────────────────────────────────────────
 const VIDEOS = [
@@ -2196,11 +2255,26 @@ let currentVideoIndex = 0;
   function selectVideo(index) {
     if (!ytPlayer) return;
     hideCover();
+    songVideoActive = false;
     currentVideoIndex = index;
     updateVideoList();
     ytPlayer.loadVideoById(VIDEOS[index].id);
     if (pipVisible) pipLabel.textContent = VIDEOS[index].title;
   }
+
+  // Song-list watch icons: load one song's video into the player and scroll to it
+  let pendingSongVideo = null;
+  let songVideoActive  = false;
+  window.playSongVideo = function(id, title) {
+    hideCover();
+    songVideoActive = true;
+    document.querySelectorAll('.video-track-item').forEach(el => el.classList.remove('now-playing'));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    videoAnchor.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    if (!ytPlayer || !ytReady) { pendingSongVideo = id; return; }
+    ytPlayer.loadVideoById(id);
+    if (pipVisible) pipLabel.textContent = title;
+  };
 
   // Play/pause icon sync helpers
   const videoPlayIcon  = document.getElementById('video-play-icon');
@@ -2261,7 +2335,8 @@ let currentVideoIndex = 0;
       events: {
         onReady() {
           ytReady = true;
-          if (playWhenReady) ytPlayer.playVideo();
+          if (pendingSongVideo) { ytPlayer.loadVideoById(pendingSongVideo); pendingSongVideo = null; }
+          else if (playWhenReady) ytPlayer.playVideo();
         },
         onStateChange(event) {
           const playing = event.data === YT.PlayerState.PLAYING;
@@ -2270,6 +2345,8 @@ let currentVideoIndex = 0;
             hideCover();
             audio.pause(); showPause(false);
             if (!displayVisible) showPip();
+          } else if (event.data === YT.PlayerState.ENDED && songVideoActive) {
+            songVideoActive = false; // a single song video: don't roll into the highlight reels
           } else if (event.data === YT.PlayerState.ENDED) {
             // Auto-advance to the next video (wraps to first after the last)
             selectVideo((currentVideoIndex + 1) % VIDEOS.length);
