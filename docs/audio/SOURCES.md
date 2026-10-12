@@ -2,7 +2,7 @@
 
 Every MP3 in this folder is a recording by Kings of Ewing: either a live show or a rehearsal (basement) recording. Each section below is headed by the date and place it came from. Files are renamed to
 `lowercase_with_underscores.mp3` so the website player can reference them; the player
-shows each one as **Song (Original Artist)** from the `TRACKS` array in `index.html`.
+shows each one as **Song – Album** (album = date and venue, e.g. `2026-01-24 Goat Village`, from the `album` field) from the `TRACKS` array in `index.html`.
 
 All files are re-encoded to 160 kbps MP3 (44.1 kHz) from the original 320 kbps exports.
 Trimmed edges get a short fade (0.3 s in / 2 s out) so cuts don't click.
