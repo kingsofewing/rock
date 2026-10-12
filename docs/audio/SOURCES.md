@@ -29,7 +29,6 @@ Trimmed edges get a short fade (0.3 s in / 2 s out) so cuts don't click.
 |---|---|---|---|
 | no_one_to_depend_on.mp3 | 06 No One To Depend On.mp3 | No One to Depend On (Santana) | start at 0:15 |
 | heroes.mp3 | 11 Heroes.mp3 | Heroes (David Bowie) | start at 0:14 |
-| laid.mp3 | 03 Laid.mp3 | Laid (James) | start at 0:24, end at 2:54 |
 | fortunate_son.mp3 | 04 Fortunate Son.mp3 | Fortunate Son (CCR) | none |
 | just_like_heaven.mp3 | 02 Just Like Heaven.mp3 | Just Like Heaven (The Cure) | end at 3:18 |
 | ohio.mp3 | 08 Ohio.mp3 | Ohio (CSNY) | start at 0:09 |
@@ -39,3 +38,9 @@ Trimmed edges get a short fade (0.3 s in / 2 s out) so cuts don't click.
 | File on site | Original export name | Shown in player as | Trim |
 |---|---|---|---|
 | little_by_little.mp3 | 03 Little By Little.mp3 | Little by Little (Oasis) | none |
+
+## 2026-04-19 — Rehearsal
+
+| File on site | Original export name | Shown in player as | Trim |
+|---|---|---|---|
+| laid.mp3 | (not recorded) | Laid (James) | (not recorded) |
