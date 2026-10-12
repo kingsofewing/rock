@@ -291,14 +291,7 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 /* SONG LIST */
   .songs-inner { max-width: 600px; margin: 0 auto; }
 
-.songs-label { font-family: 'DM Sans', sans-serif; font-size: clamp(0.95rem, 2.2vw, 1.1rem); letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); font-weight: 600; margin: 2rem 0 0.4rem; text-align: center; }
-
-/* Legend for the listen/watch buttons */
-.songs-legend { display: flex; justify-content: center; align-items: center; gap: 1rem; margin: 0 0 0.9rem; font-size: 0.75rem; color: rgba(232,223,192,0.75); }
-.songs-legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
-.songs-legend i { width: 1rem; height: 1rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--brown); }
-.songs-legend .lg-audio { background: var(--teal); }
-.songs-legend .lg-video { background: var(--coral); }
+.songs-label { font-family: 'DM Sans', sans-serif; font-size: clamp(0.95rem, 2.2vw, 1.1rem); letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); font-weight: 600; margin: 2rem 0 0.75rem; text-align: center; }
 
 .song-grid { border: 1px solid rgba(79,179,168,0.2); margin-bottom: 0.75rem; background: rgba(30,14,8,0.88); }
 /* Mobile-first: one column, so right-aligned buttons leave room for titles.
@@ -598,7 +591,9 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
 .video-display { max-width: 680px; margin: 0 auto; }
 .video-ratio { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
 .video-ratio iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-.video-nav { display: flex; justify-content: center; gap: 1.5rem; margin: 0.75rem auto 0; max-width: 680px; }
+.video-nav { display: flex; justify-content: center; gap: 1.5rem; margin: 0.75rem auto 0; max-width: 680px; animation: fadeUp 0.4s ease both; }
+/* Hidden until a video has played once (revealed in onStateChange) */
+.video-nav[hidden] { display: none; }
 .video-nav-btn { background: none; border: none; cursor: pointer; color: var(--cream); opacity: 0.6; padding: 4px; display: flex; align-items: center; transition: opacity 0.2s; }
 .video-nav-btn:hover, .video-nav-btn:focus-visible { opacity: 1; outline: none; box-shadow: 0 0 0 2px var(--teal); }
 @media (max-width: 768px) { #media { padding: 5rem 1.5rem; } }
@@ -748,7 +743,7 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
       </div>
     </div>
   </div>
-  <div class="video-nav">
+  <div class="video-nav" id="video-nav" hidden>
     <button id="video-prev-btn" class="video-nav-btn" aria-label="Previous video" title="Previous">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><polygon points="19,3 5,12 19,21"/><rect x="3" y="3" width="3" height="18"/></svg>
     </button>
@@ -839,7 +834,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
   <div id="songs-bg" class="section-photo-bg" aria-hidden="true"></div>
   <div class="songs-inner">
     <p class="songs-label"><a href="docs/library/" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">A Sample of What We Play</a></p>
-    <p class="songs-legend"><span><i class="lg-audio" aria-hidden="true"><svg viewBox="0 0 24 24" width="8" height="8" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg></i>Listen live</span><span><i class="lg-video" aria-hidden="true"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="3"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg></i>Watch</span></p>
     <div class="song-grid">
 
       <!-- 1960s: 10 songs → 5 rows per column -->
@@ -2305,6 +2299,7 @@ let currentVideoIndex = 0;
     if (pipPauseIcon)   pipPauseIcon.style.display   = playing ? ''      : 'none';
   }
 
+  const videoNav     = document.getElementById('video-nav');
   const videoPrevBtn = document.getElementById('video-prev-btn');
   const videoNextBtn = document.getElementById('video-next-btn');
   const videoPlayBtn = document.getElementById('video-play-btn');
@@ -2359,6 +2354,7 @@ let currentVideoIndex = 0;
           syncVideoPlayIcons(playing);
           if (playing) {
             hideCover();
+            if (videoNav) videoNav.hidden = false; // prev/play/next appear once a video has played
             audio.pause(); showPause(false);
             if (!displayVisible) showPip();
           } else if (event.data === YT.PlayerState.ENDED && songVideoActive) {
