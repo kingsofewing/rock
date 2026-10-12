@@ -1,6 +1,6 @@
 # Audio source log
 
-Every MP3 in this folder is a live recording by Kings of Ewing. Files are renamed to
+Every MP3 in this folder is a recording by Kings of Ewing: either a live show or a rehearsal (basement) recording. Each section below is headed by the date and place it came from. Files are renamed to
 `lowercase_with_underscores.mp3` so the website player can reference them; the player
 shows each one as **Song (Original Artist)** from the `TRACKS` array in `index.html`.
 
