@@ -96,13 +96,6 @@
     "ticket_price": "0"
   },
   {
-    "date": "2025-10-10",
-    "venue_name": "Ackerman Park",
-    "address": "Ackerman Park, Evanston, IL 60201",
-    "detail_link_name": "Invest in Neighborhood Schools",
-    "detail_link_url": "https://www.investinevanston.com/"
-  },
-  {
     "date": "2025-10-18",
     "venue_name": "Mack's Bike & Goods",
     "venue_url": "https://www.macksbikeandgoods.com/",
@@ -110,6 +103,13 @@
     "detail": "Fall Fest",
     "cancelled": true,
     "instagram_link": "https://www.instagram.com/p/DPEyQR-jrBD/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+  },
+  {
+    "date": "2025-10-26",
+    "venue_name": "Ackerman Park",
+    "address": "Ackerman Park, Evanston, IL 60201",
+    "detail_link_name": "Invest in Neighborhood Schools",
+    "detail_link_url": "https://www.investinevanston.com/"
   },
   {
     "date": "2025-11-16",
