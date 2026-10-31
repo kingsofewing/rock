@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kings of Ewing//Website//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:2026-12-16-wilmette-theatre@kingsofewing.com
+DTSTAMP:20261031T135105Z
+DTSTART:20261217T010000Z
+DTEND:20261217T030000Z
+SUMMARY:Kings of Ewing at Wilmette Theatre
+LOCATION:Wilmette Theatre\, 1122 Central Ave\, Wilmette\, IL 60091
+DESCRIPTION:More info: https://www.kingsofewing.com
+URL:https://www.wilmettetheatre.com/
+END:VEVENT
+END:VCALENDAR
