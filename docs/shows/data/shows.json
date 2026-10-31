@@ -96,6 +96,13 @@
     "ticket_price": "0"
   },
   {
+    "date": "2025-10-10",
+    "venue_name": "Ackerman Park",
+    "address": "Ackerman Park, Evanston, IL 60201",
+    "detail_link_name": "Invest in Neighborhood Schools",
+    "detail_link_url": "https://www.investinevanston.com/"
+  },
+  {
     "date": "2025-10-18",
     "venue_name": "Mack's Bike & Goods",
     "venue_url": "https://www.macksbikeandgoods.com/",
@@ -103,13 +110,6 @@
     "detail": "Fall Fest",
     "cancelled": true,
     "instagram_link": "https://www.instagram.com/p/DPEyQR-jrBD/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-  },
-  {
-    "date": "2025-10-26",
-    "venue_name": "Ackerman Park",
-    "address": "Ackerman Park, Evanston, IL 60201",
-    "detail_link_name": "Invest in Neighborhood Schools",
-    "detail_link_url": "https://www.investinevanston.com/"
   },
   {
     "date": "2025-11-16",
@@ -221,5 +221,16 @@
     "date": "2026-10-03",
     "venue_name": "Private Event",
     "private": true
+  },
+  {
+    "date": "2026-12-16",
+    "venue_name": "Wilmette Theatre",
+    "venue_url": "https://www.wilmettetheatre.com/",
+    "start_time": "7:00 PM",
+    "end_time": "9:00 PM",
+    "address": "1122 Central Ave, Wilmette, IL 60091",
+    "detail_link_url": "https://livelocal.music/",
+    "ticket_price": "10",
+    "ticket_note": "includes free drink"
   }
 ]
