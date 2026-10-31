@@ -168,11 +168,7 @@ footer   { background: linear-gradient(rgba(30,14,8,0.82), rgba(30,14,8,0.82)), 
 
 .shows-note { font-size: 1rem; color: var(--cream); margin: 0 0 1.5rem; }
 
-.shows-note a, .shows-recent button { color: var(--teal-link); text-decoration: underline; text-underline-offset: 0.2em; }
-
-.shows-recent { font-size: 0.85rem; color: rgba(232,223,192,0.75); margin-top: 1.5rem; }
-
-.shows-recent button { background: none; border: none; padding: 0; font: inherit; cursor: pointer; }
+.shows-note a { color: var(--teal-link); text-decoration: underline; text-underline-offset: 0.2em; }
 
 .shows-tabs { display: flex; border-bottom: 1px solid rgba(79,179,168,0.3); }
 
@@ -800,7 +796,6 @@ input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-calen
     <div class="tab-panel active" id="tab-upcoming" role="tabpanel" aria-labelledby="tab-btn-upcoming">
       <div class="show-list" id="upcoming-list"></div>
       <button type="button" class="btn btn-outline more-btn" id="upcoming-more"></button>
-      <p class="shows-recent" id="shows-recent" hidden></p>
     </div>
     <div class="tab-panel" id="tab-past" role="tabpanel" aria-labelledby="tab-btn-past" hidden>
       <div class="show-list" id="past-list"></div>
@@ -1674,9 +1669,7 @@ function buildShows(SHOWS) {
   }
 
   // Nothing upcoming: a "now booking" line above the past gigs.
-  // Otherwise: a short "recently played" line under the upcoming list.
   const noteEl = document.getElementById('shows-note');
-  const recentEl = document.getElementById('shows-recent');
   if (!showTabs && noteEl) {
     const bookYear = today.getFullYear() + (today.getMonth() >= 8 ? 1 : 0);
     const link = document.createElement('a');
@@ -1684,16 +1677,6 @@ function buildShows(SHOWS) {
     link.textContent = 'ask about your date';
     noteEl.replaceChildren('Now booking ' + bookYear + ' \u2014 ', link, '.');
     noteEl.hidden = false;
-  } else if (recentEl) {
-    const venues = [...new Set(past.filter(s => !s.private && !s.cancelled && s.venue && s.venue.name).map(s => s.venue.name))].slice(0, 3);
-    if (venues.length) {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.textContent = 'See past shows';
-      btn.addEventListener('click', () => switchTab('past'));
-      recentEl.replaceChildren('Recently played: ' + venues.join(' \u00b7 ') + '. ', btn);
-      recentEl.hidden = false;
-    }
   }
 }
 
