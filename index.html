@@ -246,6 +246,11 @@ a.show-date-link:hover .show-ig-badge { opacity: 1; }
 .cal-btn:hover { background: var(--teal); color: var(--brown); border-color: var(--teal); }
 
 .cal-wrap { position: relative; display: inline-block; }
+.show-actions { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0.5rem; margin-top: 0.7rem; }
+.show-actions .cal-btn { margin-top: 0; min-height: 44px; }
+.ticket-btn { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 44px; padding: 0.4rem 0.95rem; background: var(--coral); border: 1px solid var(--coral); color: var(--brown); font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, border-color 0.2s; }
+.ticket-btn:hover, .ticket-btn:focus-visible { background: var(--cream); border-color: var(--cream); color: var(--brown); }
+.ticket-btn svg { flex-shrink: 0; }
 .cal-menu { position: absolute; left: 0; top: calc(100% + 0.4rem); z-index: 20; min-width: 190px; background: var(--brown); border: 1px solid rgba(79,179,168,0.5); border-radius: 4px; box-shadow: 0 6px 20px rgba(0,0,0,0.45); overflow: hidden; }
 .cal-menu-item { display: block; width: 100%; box-sizing: border-box; text-align: left; padding: 0.6rem 0.9rem; background: none; border: none; color: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 0.72rem; cursor: pointer; text-decoration: none; transition: background 0.15s, color 0.15s; }
 .cal-menu-item + .cal-menu-item { border-top: 1px solid rgba(79,179,168,0.2); }
@@ -1484,12 +1489,9 @@ function renderShow(s, isPast) {
     if (legacyDetail) parts.push({ text: legacyDetail });
     if (s.detailLink) parts.push({ link: s.detailLink });
     // An optional note rides along in parentheses, e.g. "$10 (includes a free
-    // drink)". It stays outside the link so only the price is clickable.
+    // drink)". The price is plain text; the Buy Tickets button carries the link.
     const priceNote = (priceText && s.ticket_note) ? ` (${s.ticket_note})` : '';
-    if (priceText)    parts.push(
-      s.ticket_url ? { link: { name: priceText, url: s.ticket_url, suffix: priceNote } }
-                   : { text: priceText + priceNote }
-    );
+    if (priceText)    parts.push({ text: priceText + priceNote });
     if (parts.length) {
       const p = document.createElement('p');
       p.className = 'show-meta';
@@ -1512,6 +1514,35 @@ function renderShow(s, isPast) {
     desc.className = 'show-desc';
     desc.textContent = s.description;
     info.appendChild(desc);
+  }
+
+  // Action row — Buy Tickets (when a ticket link exists) + Add to Calendar.
+  // Upcoming, non-cancelled, public shows only.
+  const actions = document.createElement('div');
+  actions.className = 'show-actions';
+  if (!isPast && !s.cancelled && !s.private && s.ticket_url) {
+    const tix = document.createElement('a');
+    tix.className = 'ticket-btn';
+    tix.href = s.ticket_url;
+    tix.target = '_blank';
+    tix.rel = 'noopener noreferrer';
+    const tName = s.venue && s.venue.name ? s.venue.name + ' ' : '';
+    tix.setAttribute('aria-label', 'Buy tickets for ' + tName + 'show (opens in a new tab)');
+    const tSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    tSvg.setAttribute('viewBox', '0 0 24 24'); tSvg.setAttribute('width', '15'); tSvg.setAttribute('height', '15');
+    tSvg.setAttribute('fill', 'none'); tSvg.setAttribute('stroke', 'currentColor');
+    tSvg.setAttribute('stroke-width', '2'); tSvg.setAttribute('stroke-linecap', 'round');
+    tSvg.setAttribute('stroke-linejoin', 'round'); tSvg.setAttribute('aria-hidden', 'true');
+    ['M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4Z',
+     'M14 5v2', 'M14 11v2', 'M14 17v2'].forEach(d => {
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', d);
+      tSvg.appendChild(path);
+    });
+    const tSpan = document.createElement('span');
+    tSpan.textContent = 'Buy Tickets';
+    tix.append(tSvg, tSpan);
+    actions.appendChild(tix);
   }
 
   // Add-to-calendar button — upcoming, non-cancelled, public shows only
@@ -1568,8 +1599,9 @@ function renderShow(s, isPast) {
     cal.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
     calWrap.append(cal, menu);
-    info.appendChild(calWrap);
+    actions.appendChild(calWrap);
   }
+  if (actions.childNodes.length) info.appendChild(actions);
 
   if (s.cancelled) {
     const c = document.createElement('p');
