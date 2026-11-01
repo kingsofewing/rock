@@ -1,6 +1,6 @@
 # Kings of Ewing — Brand System (2026)
 
-A bold, genre-neutral identity built to work everywhere the band plays: weddings,
+A bold, genre-neutral identity built to work everywhere the band plays: parties,
 block parties, fundraisers, posters, and social. The mark is a stacked condensed
 wordmark with a single signal-red bar as its signature device.
 
