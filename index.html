@@ -1308,6 +1308,20 @@ function icsUTC(iso) {
          pad2(d.getUTCHours()) + pad2(d.getUTCMinutes()) + pad2(d.getUTCSeconds()) + 'Z';
 }
 
+// Calendar invite body (Google + .ics): blurb, ticket info when there's a
+// ticket link, then the site link. URLs sit on their own line so calendar
+// apps auto-link them.
+function calDetails(s) {
+  let tickets = null;
+  if (s.ticket_url) {
+    const price = (s.ticket_price && Number(s.ticket_price) > 0) ? formatPrice(s.ticket_price) : '';
+    const note = (price && s.ticket_note) ? ` (${s.ticket_note})` : '';
+    tickets = 'Tickets' + (price ? ': ' + price + note : '') + '\n' + s.ticket_url;
+  }
+  return [s.description, tickets, 'More info: https://www.kingsofewing.com']
+    .filter(Boolean).join('\n\n');
+}
+
 function buildICS(s) {
   const venueName = (s.venue && s.venue.name) || 'TBA';
   const { start, end, hasTime } = showStartEnd(s);
@@ -1339,8 +1353,7 @@ function buildICS(s) {
   if (locText) locParts.push(locText);
   if (s.address) locParts.push(s.address);
   const location = locParts.join(', ');
-  const description = [s.description, 'More info: https://www.kingsofewing.com']
-    .filter(Boolean).join('\n\n');
+  const description = calDetails(s);
   const uid = `${s.date}-${venueName.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}@kingsofewing.com`;
 
   return [
@@ -1357,7 +1370,7 @@ function buildICS(s) {
     'SUMMARY:' + esc('Kings of Ewing at ' + venueName),
     'LOCATION:' + esc(location),
     'DESCRIPTION:' + esc(description),
-    'URL:' + ((s.venue && s.venue.url) || 'https://www.kingsofewing.com'),
+    'URL:' + (s.ticket_url || (s.venue && s.venue.url) || 'https://www.kingsofewing.com'),
     'END:VEVENT',
     'END:VCALENDAR'
   ].map(fold).join('\r\n');
@@ -1399,7 +1412,7 @@ function buildGoogleCalUrl(s) {
     text: 'Kings of Ewing at ' + venueName,
     dates: dates,
     location: locParts.join(', '),
-    details: [s.description, 'More info: https://www.kingsofewing.com'].filter(Boolean).join('\n\n')
+    details: calDetails(s)
   });
   return 'https://calendar.google.com/calendar/render?' + params.toString();
 }
