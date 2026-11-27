@@ -52,7 +52,7 @@ On a busy photo, put the logo on a solid or semi-transparent panel so it stays l
 
 **Holiday touch:** this is the Kings' Holiday Show, so give it a holiday touch, but keep it subtle. A few string-light dots along the marquee edge or a small snowflake glyph is enough. No Santa hats, no clip-art trees.
 
-**Don't:** use the Wilmette Theatre's logo or imitate its branding. Use the venue name only, set in our type.
+**Venue logo:** Option B uses the Wilmette Theatre's logo (recolored cream) as a stand-in. Miles decided to keep it until the theatre sends its official file, then swap that in. Don't otherwise imitate the theatre's branding.
 
 ---
 
@@ -87,7 +87,7 @@ A **"Songs you'll hear"** card in the style of the band's song-list PDF, with de
 Footer: `WED · DEC 16 · WILMETTE THEATRE`
 
 ### D. Optional square: **1080 × 1080**
-Same content as A, for Facebook or other reposts. Put the logo and date block side by side if that reads better at this ratio.
+Same content as A, for reposts where a square fits better. Put the logo and date block side by side if that reads better at this ratio.
 
 ---
 
